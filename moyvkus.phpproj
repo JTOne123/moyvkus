@@ -24,6 +24,650 @@
 }
 "Files"
 {
+    "system\\application\\config\\autoload.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\config.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\database.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\hooks.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\mimes.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\routes.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\smileys.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\config\\user_agents.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\controllers\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\controllers\\welcome.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\errors\\error_404.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\errors\\error_db.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\errors\\error_general.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\errors\\error_php.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\errors\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\helpers\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\hooks\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\language\\english\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\libraries\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\models\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\welcome_message.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\cache\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\codeigniter\\base4.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\codeigniter\\base5.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\codeigniter\\codeigniter.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\codeigniter\\common.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\codeigniter\\compat.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\codeigniter\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mssql\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mssql\\mssql_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mssql\\mssql_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mssql\\mssql_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mssql\\mssql_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysql\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysql\\mysql_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysql\\mysql_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysql\\mysql_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysql\\mysql_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysqli\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysqli\\mysqli_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysqli\\mysqli_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysqli\\mysqli_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\mysqli\\mysqli_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\oci8\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\oci8\\oci8_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\oci8\\oci8_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\oci8\\oci8_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\oci8\\oci8_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\odbc\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\odbc\\odbc_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\odbc\\odbc_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\odbc\\odbc_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\odbc\\odbc_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\postgre\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\postgre\\postgre_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\postgre\\postgre_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\postgre\\postgre_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\postgre\\postgre_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\sqlite\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\sqlite\\sqlite_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\sqlite\\sqlite_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\sqlite\\sqlite_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\sqlite\\sqlite_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\drivers\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db_active_rec.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db_cache.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db_driver.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db_forge.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db_result.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\db_utility.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\database\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\fonts\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\fonts\\texb.ttf"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\array_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\cookie_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\date_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\directory_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\download_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\email_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\file_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\form_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\html_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\inflector_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\path_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\security_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\smiley_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\string_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\text_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\typography_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\url_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\helpers\\xml_helper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\calendar_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\date_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\db_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\email_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\ftp_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\imglib_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\profiler_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\scaffolding_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\unit_test_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\upload_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\english\\validation_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\benchmark.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\calendar.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\config.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\controller.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\email.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\encrypt.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\exceptions.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\ftp.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\hooks.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\image_lib.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\input.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\language.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\loader.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\log.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\model.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\output.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\pagination.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\parser.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\profiler.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\router.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\session.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\sha1.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\table.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\trackback.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\uri.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\unit_test.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\upload.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\user_agent.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\validation.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\xmlrpc.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\xmlrpcs.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\zip.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\libraries\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\logs\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\plugins\\captcha_pi.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\plugins\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\plugins\\js_calendar_pi.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\images\\background.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\images\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\images\\logo.jpg"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\add.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\delete.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\edit.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\footer.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\header.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\no_data.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\stylesheet.css"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\views\\view.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\scaffolding.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\scaffolding\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "index.php"
+    {
+    "ProjRelPath" = "T"
+    }
 }
 "ProjStartupServices"
 {

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{1863889A-00DF-4350-BA39-669CA949CB81}") = "moyvkus", "moyvkus.phpproj", "{0CD259BF-15E1-4DDF-99F9-8E08183954EE}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Local|PHP 4 = Local|PHP 4
+		Local|PHP 5 = Local|PHP 5
+		Remote|PHP 4 = Remote|PHP 4
+		Remote|PHP 5 = Remote|PHP 5
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 4.ActiveCfg = Local|PHP 5
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 4.Deploy.0 = Local|PHP 5
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 5.ActiveCfg = Local|PHP 5
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 5.Deploy.0 = Local|PHP 5
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Remote|PHP 4.ActiveCfg = Remote|PHP 4
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Remote|PHP 4.Deploy.0 = Remote|PHP 4
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Remote|PHP 5.ActiveCfg = Remote|PHP 5
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Remote|PHP 5.Deploy.0 = Remote|PHP 5
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
