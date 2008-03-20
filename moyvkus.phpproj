@@ -1,0 +1,36 @@
+"General"
+{
+"ProjectIdGuid" = "{0CD259BF-15E1-4DDF-99F9-8E08183954EE}"
+"ProjectVersion" = "2.4.4.4494"
+}
+"Configurations"
+{
+    "Local|PHP 5"
+    {
+    "IncludeDirs" = ""
+    }
+    "Local|PHP 4"
+    {
+    "IncludeDirs" = ""
+    }
+    "Remote|PHP 5"
+    {
+    "IncludeDirs" = ""
+    }
+    "Remote|PHP 4"
+    {
+    "IncludeDirs" = ""
+    }
+}
+"Files"
+{
+}
+"ProjStartupServices"
+{
+}
+"Globals"
+{
+}
+"References"
+{
+}
