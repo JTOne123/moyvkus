@@ -1,5 +1,5 @@
 <?php
-
+ 
 class Welcome extends Controller {
 
 	function Welcome()
