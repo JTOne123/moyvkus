@@ -100,6 +100,14 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\userauthorization.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\libraries\\usermanagment.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\index.html"
     {
     "ProjRelPath" = "T"
