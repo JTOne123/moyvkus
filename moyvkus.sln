@@ -16,6 +16,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 4.ActiveCfg = Local|PHP 5
+		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 4.Build.0 = Local|PHP 5
 		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 4.Deploy.0 = Local|PHP 5
 		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 5.ActiveCfg = Local|PHP 5
 		{0CD259BF-15E1-4DDF-99F9-8E08183954EE}.Local|PHP 5.Deploy.0 = Local|PHP 5
