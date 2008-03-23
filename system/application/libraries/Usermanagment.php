@@ -23,7 +23,7 @@ class Usermanagment {
 			return -1;
 		else
 		{	
-		
+			
 			$this->ci->load->helper('date');
 			
 			$datestring = "$year-$month-$day";
@@ -40,11 +40,10 @@ class Usermanagment {
 	Проверка существует ли юзер с заданым email'ом
 	*/
 	function IsUserExits($email)
-	{
-		$count=0;
-		
+	{	
 		$query = $this->ci->db->query("CALL IsUserExits('$email')");
 		
+		$count=0;	
 		foreach ($query->result() as $row)
 		{	
 			$count=$row->c;
@@ -54,6 +53,26 @@ class Usermanagment {
 			return false;
 		else
 			return true;
+	}
+	
+	/*
+	Проверка валидности пароля по email
+	*/
+	function IsPasswordValid($email, $password)
+	{
+		$query = $this->ci->db->query("CALL IsPasswordValid('$email')");
+		
+		$result_password="";	
+		
+		foreach ($query->result() as $row)
+		{	
+			$result_password=$row->password;
+		}
+		
+		if($result_password==$password)
+			return true;
+		else
+			return false;
 	}
 	
 	/*

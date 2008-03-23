@@ -10,13 +10,13 @@ CREATE TABLE `users` (
   UNIQUE KEY `UserID` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/* Procedure structure for procedure `AddUser` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `AddUser` */;
+/* AddUser */;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `AddUser`(
+DROP PROCEDURE IF EXISTS `moyvkus_db`.`AddUser`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddUser`(
 _email VARCHAR(100),
 _password VARCHAR(100),
 _first_name VARCHAR(100),
@@ -25,35 +25,51 @@ _birthday date
 )
 BEGIN
 insert into `moyvkus_db`.`users` (`email`, `password`, `first_name`, `last_name`, `birthday`) 	values (_email, _password, _first_name, _last_name, _birthday);
-END */$$
+END$$
+
 DELIMITER ;
 
-/* Procedure structure for procedure `GetUser` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `GetUser` */;
+/* IsUserExits */;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUser`(
-_ID INT
-)
-BEGIN
-SELECT `FirstName`,`LastName`,`Email`,`Password` FROM `moyvkus_db`.`users` WHERE `ID`=_ID;
-    END */$$
-DELIMITER ;
+DROP PROCEDURE IF EXISTS `moyvkus_db`.`IsUserExits`$$
 
-/* Procedure structure for procedure `IsUserExits` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `IsUserExits` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `IsUserExits`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IsUserExits`(
 _email VARCHAR(100)
 )
 BEGIN
 	SELECT COUNT(*) as c FROM `moyvkus_db`.`users` WHERE `email` = _email;
-    END */$$
+    END$$
+
 DELIMITER ;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/* GetUser */;
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `moyvkus_db`.`GetUser`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUser`(
+_ID INT
+)
+BEGIN
+SELECT `FirstName`,`LastName`,`Email`,`Password` FROM `moyvkus_db`.`users` WHERE `ID`=_ID;
+    END$$
+
+DELIMITER ;
+
+/* IsPasswordValid */;
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `moyvkus_db`.`IsPasswordValid`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `IsPasswordValid`(
+_email VARCHAR(100)
+)
+BEGIN
+	SELECT `password` FROM `moyvkus_db`.`users` WHERE `email`=_email;
+    END$$
+
+DELIMITER ;
