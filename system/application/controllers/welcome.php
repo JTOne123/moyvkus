@@ -14,13 +14,13 @@ class Welcome extends Controller {
 		$this->load->library('Usermanagment'); 
 		
 		/*$answer = $this->usermanagment->IsUserExits("aaa@aaa.com");
-		
+				
 		if($answer)
 			echo "<br/> Answer - true";
 		else
 			echo "<br/> Answer - false";*/
 		
-		echo $this->usermanagment->IsUserExits("aaa@aaa123.com","password","fn","ln",1,2,1986);
+		echo $this->usermanagment->AddUser("aaa@aaa123.com","password","fn","ln",1,2,1986);
 		
 	}
 }

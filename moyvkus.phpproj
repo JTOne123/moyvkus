@@ -116,6 +116,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\views\\skin\\default.css"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\views\\index.html"
     {
     "ProjRelPath" = "T"

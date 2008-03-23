@@ -23,9 +23,15 @@ class Usermanagment {
 			return -1;
 		else
 		{	
-			$birthday=time();
+		
+			$this->ci->load->helper('date');
 			
-			$query = $this->ci->db->query("CALL AddUser($email, $password, $first_name, $last_name, $birthday)");
+			$datestring = "$year-$month-$day";
+			$time = time();
+			
+			$date_str = mdate($datestring, $time);
+			
+			$query = $this->ci->db->query("CALL AddUser('$email', '$password', '$first_name', '$last_name', '$date_str')");
 			return 0;
 		}
 	}
