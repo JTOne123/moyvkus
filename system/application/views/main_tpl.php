@@ -17,6 +17,7 @@
 <!-- Left Sidebar END -->
 
 <!-- Page Body START -->
+{body}
 <!-- Page Body END -->
 
 
