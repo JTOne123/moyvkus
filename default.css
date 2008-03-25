@@ -1,4 +1,32 @@
 body
 {
+}
 
+.Menu
+{
+	background-color: Red;
+	text-align: center;
+	vertical-align: bottom;
+	border-color: Black;
+	border-style: solid;
+	border-width: 1px;
+	color: White;
+	cursor: hand;
+	float: left;
+	font-size:25px;
+	text-decoration: none
+}
+
+.Menu:Hover
+{
+	background-color: Blue;
+	text-align: center;
+	vertical-align: middle;
+	border-color: Black;
+	border-style: solid;
+	border-width: 1px;
+	color: White;
+	cursor: hand;
+	float: left;
+	text-decoration: none
 }
