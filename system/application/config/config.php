@@ -11,7 +11,7 @@
 |	http://www.your-site.com/
 |
 */
-$config['base_url']	= "http://127.0.0.1/CodeIgniter/";
+$config['base_url']	= "http://moyvkus";
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ $config['url_suffix'] = "";
 | than english.
 |
 */
-$config['language']	= "english";
+$config['language']	= "russian";
 
 /*
 |--------------------------------------------------------------------------
