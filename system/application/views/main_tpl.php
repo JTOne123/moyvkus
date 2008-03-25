@@ -27,5 +27,5 @@
 <!-- Counters END-->
 </body>
 
-{footer}
+
 </html>
