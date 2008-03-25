@@ -1,7 +1,10 @@
+/* Общий стиль */
 body
 {
+	font-family: "lucida grande" ,tahoma,verdana,arial,sans-serif;
 }
 
+/* Стиль меню */
 .Menu
 {
 	background-color: Red;
@@ -13,8 +16,8 @@ body
 	color: White;
 	cursor: hand;
 	float: left;
-	font-size:25px;
-	text-decoration: none
+	font-size: 25px;
+	text-decoration: none;
 }
 
 .Menu:Hover
@@ -28,5 +31,83 @@ body
 	color: White;
 	cursor: hand;
 	float: left;
-	text-decoration: none
+	text-decoration: none;
+}
+
+/* Стиль формы для регистрации */
+.Registration
+{
+	background-color: #DFE4EE;
+	border: 1px solid #C6CFE1;
+	margin: 0pt;
+	padding: 10px;
+	display: block;
+	margin: 0pt;
+	width: 300px;
+	font-size: 11px;
+}
+
+.Registraion_h2
+{
+	font-size: 13px;
+	font-weight: bold;
+	padding: 0pt 0pt 5px;
+	color: #333333;
+}
+
+.Registration_table
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Registration_text
+{
+	color: #555555;
+	font-weight: bold;
+	text-align: right;
+	width: 90px;
+}
+
+.Registration_input
+{
+	width: 180px;
+}
+
+.Registration_signup
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #3B6E22;
+	font-size: 11px;
+	text-decoration: none;
+	height: 22px;
+	width: 100px;
+	background-color: #67A54B;
+	color: White;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 40%;
+	cursor: hand;
+}
+
+.Registration_signup_td
+{
+	text-align: center;
+}
+
+.Registraion_validator
+{
+	margin-top: 5px;
+	background: #FFEBE8 none repeat scroll 0% 50%;
+	border: 1px solid #DD3C10;
+	height: 0px;
+	line-height: 15px;
+	margin: 10px 0pt 0pt;
+	overflow: hidden;
+	padding: 7px 0pt;
+	text-align: center;
+	display: block;
+	height: 15px;
 }
