@@ -17,23 +17,16 @@ class Usermanagment {
 	 0 - ок
 	 */
 	
-	function AddUser($email, $password, $first_name, $last_name, $day, $month, $year)
+	function AddUser($email, $first_name, $last_name, $password)
 	{
-		if($this->IsUserExits($email))
+	/*	if($this->IsUserExits($email))
 			return -1;
 		else
-		{	
+		{	*/
 			
-			$this->ci->load->helper('date');
-			
-			$datestring = "$year-$month-$day";
-			$time = time();
-			
-			$date_str = mdate($datestring, $time);
-			
-			$query = $this->ci->db->query("CALL AddUser('$email', '$password', '$first_name', '$last_name', '$date_str')");
-			return 0;
-		}
+			$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, pass) VALUES($email, $first_name, $last_name, $pass)");
+			//return 0;
+		//}
 	}
 	
 	/*

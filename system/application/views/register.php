@@ -1,6 +1,7 @@
     <div style="width: 100%; height: 100%; display: inline;">
         <!--Содержимое этой дивки и есть регистрация-->
         <div id="Registration" class="Registration">
+        <form method="POST" action="register">
             <table cellpadding="2" cellspacing="0" class="Registration_table">
                 <tbody>
                     <tr>
@@ -18,7 +19,7 @@
                             {first_name}
                         </td>
                         <td>
-                            <input type="text" class="Registration_input" />
+                            <input name="first_name" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -26,7 +27,7 @@
                             {last_name}
                         </td>
                         <td>
-                            <input type="text" class="Registration_input" />
+                            <input name="last_name" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +35,7 @@
                             E-mail:
                         </td>
                         <td>
-                            <input type="text" class="Registration_input" />
+                            <input name="email" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -42,16 +43,12 @@
                             {password}
                         </td>
                         <td>
-                            <input type="text" class="Registration_input" />
+                            <input name="pass" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="Registration_signup_td">
-                            <a href="register">
-                                <div class="Registration_signup">
-                                    {sing_up}
-                                </div>
-                            </a>
+                             <input type="submit" value="{sing_up}" name="send">
                         </td>
                     </tr>
                     <tr>
@@ -63,5 +60,6 @@
                     </tr>
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
