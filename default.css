@@ -108,6 +108,6 @@ body
 	overflow: hidden;
 	padding: 7px 0pt;
 	text-align: center;
-	display: block;
+	display: none;
 	height: 15px;
 }
