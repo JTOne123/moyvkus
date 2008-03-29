@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Untitled Page</title>
+
+    <script language="javascript" type="text/javascript" src="file:///C:/moyvkus/validator.js"></script>
+
+</head>
+<body>
+
+    <script language="javascript" type="text/javascript">
+
+        window.onload = function() {
+        addForm("myform" ,"vg");
+        
+        var re = "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$";
+        addValidatorRegEx("txtRegex", "errorDiv", re, "vg");
+        
+        addValidatorRequiredField("txtRequiredfield", "errorDiv", "vg");
+        
+        addValidatorCompare("txtComaper1", "txtComaper2", "errorDiv", "vg");
+        
+        addValidatorRange("txtRange", 5, 15, "errorDiv", "vg");
+
+        
+        addSubmitButton("smb", "vg");
+        }
+    </script>
+
+    <form method="post" id="myform">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" id="txtRegex" /></td>
+                <td>
+                    <input type="text" id="txtRequiredfield" /></td>
+                <td>
+                    <input type="text" id="txtComaper1" /></td>
+                <td>
+                    <input type="text" id="txtComaper2" /></td>
+                <td>
+                    <input type="text" id="txtRange" /></td>
+                <td>
+                    <input type="submit" id="smb" /></td>
+                <td>
+                    <div id="errorDiv" style="display: none;">
+                        error
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
