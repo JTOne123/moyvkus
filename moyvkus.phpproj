@@ -7,7 +7,7 @@
 {
     "Local|PHP 5"
     {
-    "IncludeDirs" = ""
+    "IncludeDirs" = "c:\\moyvkus"
     }
     "Local|PHP 4"
     {
@@ -64,6 +64,14 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\main.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\controllers\\register.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\welcome.php"
     {
     "ProjRelPath" = "T"
@@ -100,6 +108,14 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\language\\russian\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\language\\russian\\main_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\userauthorization.php"
     {
     "ProjRelPath" = "T"
@@ -116,7 +132,7 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\views\\skin\\default.css"
+    "system\\application\\views\\header.php"
     {
     "ProjRelPath" = "T"
     }
@@ -124,7 +140,11 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\views\\welcome_message.php"
+    "system\\application\\views\\main_tpl.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\register.php"
     {
     "ProjRelPath" = "T"
     }
@@ -468,6 +488,54 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\language\\russian\\calendar_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\date_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\db_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\email_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\ftp_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\imglib_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\info.txt"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\profiler_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\scaffolding_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\unit_test_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\upload_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\language\\russian\\validation_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\language\\index.html"
     {
     "ProjRelPath" = "T"
@@ -673,6 +741,10 @@
     "ProjRelPath" = "T"
     }
     "system\\scaffolding\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "default.css"
     {
     "ProjRelPath" = "T"
     }

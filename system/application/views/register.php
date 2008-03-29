@@ -1,7 +1,24 @@
     <div style="width: 100%; height: 100%; display: inline;">
         <!--Содержимое этой дивки и есть регистрация-->
+<script language="javascript" type="text/javascript">
+
+    window.onload = function() {
+    addForm("RegistForm" ,"vg");
+    
+    addValidatorRegEx("email", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vg");
+    
+    addValidatorRequiredField("first_name", "errorDivFirstName", "vg");
+    addValidatorRequiredField("last_name", "errorDivLastName", "vg");
+
+    addValidatorRegEx("password", "errorDivPassword", "^.{6,20}$", "vg");
+	
+    addSubmitButton("send", "vg");
+    }
+	
+</script>
+	
         <div id="Registration" class="Registration">
-        <form method="POST" action="register">
+        <form method="POST" action="register" id="RegistForm">
             <table cellpadding="2" cellspacing="0" class="Registration_table">
                 <tbody>
                     <tr>
@@ -19,7 +36,7 @@
                             {first_name}
                         </td>
                         <td>
-                            <input name="first_name" type="text" class="Registration_input" />
+                            <input id="first_name" name="first_name" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +44,7 @@
                             {last_name}
                         </td>
                         <td>
-                            <input name="last_name" type="text" class="Registration_input" />
+                            <input id="last_name" name="last_name" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -35,7 +52,7 @@
                             E-mail:
                         </td>
                         <td>
-                            <input name="email" type="text" class="Registration_input" />
+                            <input id="email" name="email" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -43,18 +60,31 @@
                             {password}
                         </td>
                         <td>
-                            <input name="pass" type="text" class="Registration_input" />
+                            <input id="password" name="pass" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="Registration_signup_td">
-                             <input type="submit" value="{sing_up}" name="send">
+						    <a href="#" id="send" name="send">
+                                <div class="Registration_signup">
+                                    {sing_up}
+                                </div>
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <div id="Registraion_validator" class="Registraion_validator">
-                            {Error}
+                            <div id="errorDivEmail" class="Registraion_validator">
+                            {Error_email}
+                            </div>
+							<div id="errorDivFirstName" class="Registraion_validator">
+                            {Error_firstname}
+                            </div>
+							<div id="errorDivLastName" class="Registraion_validator">
+                            {Error_lastname}
+                            </div>
+							<div id="errorDivPassword" class="Registraion_validator">
+                            {Error_password}
                             </div>
                         </td>
                     </tr>

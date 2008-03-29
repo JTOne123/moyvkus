@@ -34,6 +34,12 @@ class Register extends Controller {
     $data['last_name'] = $this->lang->line('last_name');
     $data['password'] = $this->lang->line('password');
     $data['sing_up'] = $this->lang->line('sing_up');
+	//Сообщение от валидаторов
+	$data['Error_email'] = $this->lang->line('Error_email');
+	$data['Error_firstname'] = $this->lang->line('Error_firstname');
+	$data['Error_lastname'] = $this->lang->line('Error_lastname');
+	$data['Error_password'] = $this->lang->line('Error_password');
+			
     $data['body']= $this->parser->parse('register', $data);
     //Форма END
     }

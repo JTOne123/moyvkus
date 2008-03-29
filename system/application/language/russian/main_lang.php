@@ -11,4 +11,10 @@ $lang['last_name'] = "Фамилия:";
 $lang['password'] = "Пароль:";
 $lang['sing_up'] = "Регистрация";
 
+//Сообщение от валидаторов
+$lang['Error_email'] = "Введенный email не корректный";
+$lang['Error_firstname'] = "Вы не ввели имени";
+$lang['Error_lastname'] = "Вы не ввели фамилии";
+$lang['Error_password'] = "Пароль должен быть не мение 6 символов";
+
 ?>
