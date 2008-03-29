@@ -1,3 +1,11 @@
+/****************************************
+
+   JavaScript client validators
+   (c) Paul D. 2008
+   http://jthotblog.blogspot.com/
+
+****************************************/
+
 //Initialization of arrays with data
 var validationGroupForms = new Array();
 var validadedForms = new Array();
