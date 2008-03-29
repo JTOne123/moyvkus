@@ -167,6 +167,8 @@ function isFormValid(validationGroup)
     var generalCountInValidationGroup = 0;
     var validCountInValidationGroup = 0;
     var checkedInputId = "none";
+    
+    var notValidInputId = "none";
 
     for (i=0;i<validadedInputs.length;i++)
         {
@@ -177,6 +179,8 @@ function isFormValid(validationGroup)
 
                     if(isValidInputs[checkedInputId])
                         validCountInValidationGroup++;
+                    else
+                        notValidInputId = checkedInputId;
                 }
         }
 
@@ -186,8 +190,8 @@ function isFormValid(validationGroup)
         document.forms[getFormByValidationGroup(validationGroup)].submit();
         }
      else
-        if(checkedInputId != "none")
-                showErrorDiv(true, checkedInputId);
+        if(notValidInputId != "none")
+                showErrorDiv(true, notValidInputId);
 }
 
 //Get validation group of form
