@@ -166,8 +166,7 @@ function isFormValid(validationGroup)
 {
     var generalCountInValidationGroup = 0;
     var validCountInValidationGroup = 0;
-    var checkedInputId = "none";
-    
+    var checkedInputId = "none";    
     var notValidInputId = "none";
 
     for (i=0;i<validadedInputs.length;i++)
