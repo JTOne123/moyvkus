@@ -2,6 +2,7 @@
 
    JavaScript client validators
    (c) Paul D. 2008
+   jthotbox@gmail.com
    http://jthotblog.blogspot.com/
 
 ****************************************/
