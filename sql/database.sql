@@ -17,5 +17,7 @@ CREATE TABLE `menu` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(50) DEFAULT NULL,
   `url` varchar(200) DEFAULT NULL,
+  `img_url` varchar(200) DEFAULT NULL,
+  `tooltip` varchar(200) DEFAULT NULL,
   UNIQUE KEY `id` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
