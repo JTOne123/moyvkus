@@ -12,6 +12,7 @@
     <script language="javascript" type="text/javascript" src="validator.js"></script>
 	
 <!-- Top Sidebar START-->
+{menu}
 <!-- Top Sidebar END-->
 
 <!-- Left Sidebar START -->

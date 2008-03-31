@@ -10,7 +10,7 @@ CREATE TABLE `users` (
   `password` varchar(100) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   UNIQUE KEY `UserID` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 /* CREATE TABLE menu */
 CREATE TABLE `menu` (
@@ -20,4 +20,4 @@ CREATE TABLE `menu` (
   `img_url` varchar(200) DEFAULT NULL,
   `tooltip` varchar(200) DEFAULT NULL,
   UNIQUE KEY `id` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;

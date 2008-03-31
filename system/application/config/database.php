@@ -37,9 +37,23 @@
 $active_group = "default";
 $active_record = TRUE;
 
+//У меня нет возможности создать на Денвере юзера root для БД. Потому настройки для БД разделяю. (если есть возможность, поменяй на такие как у меня. Если нет или влом - то просто раскоментируй свои и закоменти мои)
+//Паша
+
+/*
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
 $db['default']['password'] = "123123";
+*/
+
+//Саша
+$db['default']['hostname'] = "localhost";
+$db['default']['username'] = "moyvkus_db";
+$db['default']['password'] = "moyvkus_db";
+
+
+
+
 $db['default']['database'] = "moyvkus_db";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";

@@ -14,7 +14,8 @@ class Main extends Controller {
     $data['description'] = $this->lang->line('description');
     $data['header'] = $this->load->view('header', $data, true);
 	
-	
+
+	$data['menu']=$this->Menu->buildmenu();
     
     $this->parser->parse('main_tpl', $data);
 	

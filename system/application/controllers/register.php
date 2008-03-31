@@ -39,6 +39,7 @@ class Register extends Controller {
 	$data['Error_firstname'] = $this->lang->line('Error_firstname');
 	$data['Error_lastname'] = $this->lang->line('Error_lastname');
 	$data['Error_password'] = $this->lang->line('Error_password');
+    
 			
     $data['body']= $this->parser->parse('register', $data);
     //Ôîğìà END
@@ -49,6 +50,7 @@ class Register extends Controller {
     //Äîáàâëÿåì şçåğà â ÁÄ END
     
     
+	$data['menu']=$this->Menu->buildmenu();
     $this->parser->parse('main_tpl', $data);	
 	}
 }
