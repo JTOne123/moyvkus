@@ -24,7 +24,7 @@ class Usermanagment {
 		else
 		{	*/
 			
-			$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, pass) VALUES($email, $first_name, $last_name, $pass)");
+			$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, password) VALUES('$email', '$first_name', '$last_name', '$password')");
 			//return 0;
 		//}
 	}
@@ -34,18 +34,12 @@ class Usermanagment {
 	*/
 	function IsUserExits($email)
 	{	
-		$query = $this->ci->db->query("CALL IsUserExits('$email')");
+		$query = $this->ci->db->query("SELECT id FROM users WHERE email = '$email'");
 		
-		$count=0;	
-		foreach ($query->result() as $row)
-		{	
-			$count=$row->c;
-		}
-		
-		if($count==0)
-			return false;
-		else
-			return true;
+		if($query->num_rows()==0)
+		 return true;
+		else 
+		 return false;
 	}
 	
 	/*

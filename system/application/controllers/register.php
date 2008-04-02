@@ -8,6 +8,8 @@ class Register extends Controller {
 		$this->load->helper('form');
 		$this->load->library('captcha');
         $this->load->library('validation');
+        $this->load->library('usermanagment');
+        
 	}
 	
 	function index()
@@ -30,7 +32,7 @@ class Register extends Controller {
      $rules['captcha']    = "required|exact_length[4]|callback_captcha_check";
      $rules['first_name'] = "required|min_length[4]|max_length[100]|alpha";
      $rules['last_name'] = "required|min_length[4]|max_length[100]|alpha";
-     $rules['email'] = "required|min_length[6]|max_length[100]|valid_email";
+     $rules['email'] = "required|min_length[6]|max_length[100]|valid_email|callback_email_check";
      $rules['password'] = "required|min_length[6]|max_length[100]|alpha_numeric";
      $this->validation->set_rules($rules);
      
@@ -41,10 +43,14 @@ class Register extends Controller {
      $fields['password'] = $this->lang->line('password');
      $this->validation->set_fields($fields);
      
+
+     $FormBuild=1;  //Показывать форму. Если включится валидатор, он поставит FormBuild=0 и форма не покажется. :)
      
      //Прошли валидацию - записываем данные из полей в БД START
-     if ($this->validation->run() === TRUE) 
+     if ($this->validation->run() == TRUE) 
      {
+     	$FormBuild=0;
+     	$this->usermanagment->AddUser($email, $first_name, $last_name, $password);
      	$data['body'] = 'run';
      }
      //Прошли валидацию - записываем данные из полей в БД END
@@ -52,14 +58,16 @@ class Register extends Controller {
      
      
     
-    if ($this->validation->run() == FALSE)
+    if ($FormBuild == 1)
     {
     	$expiration = time()-300; // Two hour limit
     	$this->db->query("DELETE FROM captcha WHERE captcha_time < ".$expiration);
+    	//Создаем слово для капчи START
     	$pool = '0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
-    	$explode = explode(' ', $pool);
-        shuffle($explode);
-        $word = implode(array_slice($explode, 0, 4));
+    	$explode = explode(' ', $pool); 			  //разбиваем строку в массив
+        shuffle($explode);                            //перемешиваем элементы массива
+        $word = implode(array_slice($explode, 0, 4)); //берем только 4 элемента массива и складываем в строку
+        //Создаем слово для капчи END
     	$vals = array(
     	'word'         => "$word",
     	'img_path'     => './uploads/',
@@ -82,23 +90,7 @@ class Register extends Controller {
     	$query = $this->db->insert_string('captcha', $query_string);
     	$this->db->query($query);	
 
-/*    $this->load->helper('captcha');
-    $aCaptchaCfg = array(
-            //'word'          => 'myrandomword',    //default: random()
-            'length'        => 4,                         //default: 5
-            'img_path'   => './uploads/',   //no default !
-            'img_url'       => base_url().'/uploads/',  // no default!
-            'font_path'  => './www/system/fonts/', // default: ./system/fonts/
-            'fonts'         => array('texb.ttf'), // default: texb.ttf
-            'font_size'     => 25,      // default: 18
-            'img_width'  => '100',  // default: 170
-            'img_height' => '30',   // default: 60
-            'expiration' => 7200 // default: 7200
-            );
-      
-      
-      $data['image'] = create_captcha($aCaptchaCfg);     
-*/    	
+    	
     //Форма START
     $data['sign_up_message'] = $this->lang->line('sign_up_message');
     $data['sign_up_slogan_message'] = $this->lang->line('sign_up_slogan_message');
@@ -117,14 +109,13 @@ class Register extends Controller {
     }
 
     
-    
-    
+   
 	$data['menu']=$this->Menu->buildmenu();
     $this->parser->parse('main_tpl', $data);	
 	}
 	
 	
-	
+	//CALLBACK: Проверяем есть ли такая картинка для капчи в базе START
 	function captcha_check($str)
 	{
 		// Then see if a captcha exists:
@@ -142,9 +133,22 @@ class Register extends Controller {
 			return TRUE;
 		}
 	}
+	//CALLBACK: Проверяем есть ли такая картинка для капчи в базе END
 	
+	//CALLBACK: Проверяем есть ли уже базе email, который хотят зарегать START
+	function email_check($mail)
+	{
+		$returned_value = $this->usermanagment->IsUserExits($mail);
+		if($returned_value==false)
+		{
+		   $this->validation->set_message('email_check', $this->lang->line('email_check'));
+		   return false;
+		}
+		else 
+		   return true;
+	}
 	
-	
+	//CALLBACK: Проверяем есть ли уже базе email, который хотят зарегать END
 	
 }
 ?>
