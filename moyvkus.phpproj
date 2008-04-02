@@ -68,10 +68,6 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\controllers\\menu.php"
-    {
-    "ProjRelPath" = "T"
-    }
     "system\\application\\controllers\\register.php"
     {
     "ProjRelPath" = "T"
@@ -117,6 +113,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\language\\russian\\main_lang.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\libraries\\captcha.php"
     {
     "ProjRelPath" = "T"
     }

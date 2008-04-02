@@ -169,6 +169,8 @@ function isFormValid(validationGroup)
     var checkedInputId = "none";    
     var notValidInputId = "none";
 
+    autoBlur();
+    
     for (i=0;i<validadedInputs.length;i++)
         {
         checkedInputId = validadedInputs[i];
@@ -235,4 +237,14 @@ function showErrorDiv(visible, checkedInputId)
                 errorDiv.style.display="block";
             else
                 errorDiv.style.display="none";
+}
+
+//Auto blur of all valided inputs
+function autoBlur()
+{
+    for(i=0;i<validadedInputs.length;i++)
+        {
+           var checkedElement = document.getElementById(validadedInputs[i]);
+           checkedElement.onblur(); 
+        }
 }

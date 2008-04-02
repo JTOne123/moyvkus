@@ -7,11 +7,14 @@
     
     addValidatorRegEx("email", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vg");
     
-    addValidatorRequiredField("first_name", "errorDivFirstName", "vg");
-    addValidatorRequiredField("last_name", "errorDivLastName", "vg");
+    addValidatorRegEx("first_name", "errorDivFirstName", "^.{4,100}$", "vg");
 
-    addValidatorRegEx("password", "errorDivPassword", "^.{6,20}$", "vg");
+    addValidatorRegEx("last_name", "errorDivLastName", "^.{4,100}$", "vg");
+
+    addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vg");
 	
+	addValidatorRegEx("captcha", "errorDivCaptcha", "^.{4}$", "vg");
+
     addSubmitButton("send", "vg");
     }
 	
@@ -54,7 +57,6 @@
                             E-mail:
                         </td>
                         <td>
-                            <?=$this->validation->email_error;?>
                             <input id="email" name="email" value="<?=$this->validation->email;?>" type="text" class="Registration_input" />
                         </td>
                     </tr>
@@ -63,7 +65,6 @@
                             {password}
                         </td>
                         <td>
-                            <?=$this->validation->password_error;?>
                             <input id="password" name="password" " value="<?=$this->validation->password;?>" type="text" class="Registration_input" />
                         </td>
                     </tr>
@@ -73,7 +74,6 @@
                             {image}
                         </td>
                         <td>
-                            <?php echo $this->validation->captcha_error; ?>
                             <input id="captcha" name="captcha" type="text" class="Registration_input" />
                         </td>
                     </tr>
@@ -101,6 +101,12 @@
 							<div id="errorDivPassword" class="Registraion_validator">
                             {Error_password}
                             </div>
+							<div id="errorDivCaptcha" class="Registraion_validator">
+                            {Error_captcha}
+                            </div>
+							<?php echo $this->validation->email_error;?>
+							<?php echo $this->validation->captcha_error;?>
+							
                         </td>
                     </tr>
                 </tbody>
