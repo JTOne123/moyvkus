@@ -18,7 +18,7 @@
 </script>
 	
         <div id="Registration" class="Registration">
-        <form method="POST" action="register" id="RegistForm">
+        <form method="POST" action="/register" id="RegistForm">
             <table cellpadding="2" cellspacing="0" class="Registration_table">
                 <tbody>
                     <tr>
@@ -36,7 +36,8 @@
                             {first_name}
                         </td>
                         <td>
-                            <input id="first_name" name="first_name" type="text" class="Registration_input" />
+                            <?=$this->validation->first_name_error;?>
+                            <input id="first_name" name="first_name" value="<?=$this->validation->first_name;?>" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +45,8 @@
                             {last_name}
                         </td>
                         <td>
-                            <input id="last_name" name="last_name" type="text" class="Registration_input" />
+                            <?=$this->validation->last_name_error;?>
+                            <input id="last_name" name="last_name" value="<?=$this->validation->last_name;?>" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +54,8 @@
                             E-mail:
                         </td>
                         <td>
-                            <input id="email" name="email" type="text" class="Registration_input" />
+                            <?=$this->validation->email_error;?>
+                            <input id="email" name="email" value="<?=$this->validation->email;?>" type="text" class="Registration_input" />
                         </td>
                     </tr>
                     <tr>
@@ -60,14 +63,26 @@
                             {password}
                         </td>
                         <td>
-                            <input id="password" name="pass" type="text" class="Registration_input" />
+                            <?=$this->validation->password_error;?>
+                            <input id="password" name="password" " value="<?=$this->validation->password;?>" type="text" class="Registration_input" />
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <td class="Registration_text">
+                            {image}
+                        </td>
+                        <td>
+                            <?php echo $this->validation->captcha_error; ?>
+                            <input id="captcha" name="captcha" type="text" class="Registration_input" />
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <td colspan="2" class="Registration_signup_td">
 						    <a href="#" id="send" name="send">
                                 <div class="Registration_signup">
-                                    {sing_up}
+                                    {sign_up}
                                 </div>
                             </a>
                         </td>

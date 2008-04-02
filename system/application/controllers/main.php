@@ -12,8 +12,8 @@ class Main extends Controller {
     $data['title'] = $this->lang->line('title');
     $data['keywords'] = $this->lang->line('keywords');
     $data['description'] = $this->lang->line('description');
+    $data['baseurl'] = base_url();
     $data['header'] = $this->load->view('header', $data, true);
-	
 
 	$data['menu']=$this->Menu->buildmenu();
     

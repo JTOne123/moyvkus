@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script language="javascript" type="text/javascript" src="validator.js"></script>
+
 	
 <!-- Top Sidebar START-->
 {menu}

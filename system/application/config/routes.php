@@ -41,6 +41,7 @@
 */
 
 $route['default_controller'] = "main";
+$route['register/wrong_captcha'] = "register";
 $route['scaffolding_trigger'] = "";
 
 ?>
