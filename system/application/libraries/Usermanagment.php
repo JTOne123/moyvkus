@@ -19,14 +19,8 @@ class Usermanagment {
 	
 	function AddUser($email, $first_name, $last_name, $password)
 	{
-	/*	if($this->IsUserExits($email))
-			return -1;
-		else
-		{	*/
-			
+		    $password=md5($password); //md5 кодирует строку с паролем 
 			$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, password) VALUES('$email', '$first_name', '$last_name', '$password')");
-			//return 0;
-		//}
 	}
 	
 	/*
