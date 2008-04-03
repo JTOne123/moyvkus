@@ -65,7 +65,7 @@
                             {password}
                         </td>
                         <td>
-                            <input id="password" name="password" " value="<?=$this->validation->password;?>" type="text" class="Registration_input" />
+                            <input id="password" name="password" " value="<?=$this->validation->password;?>" type="password" class="Registration_input" />
                         </td>
                     </tr>
                     
