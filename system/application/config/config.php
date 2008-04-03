@@ -11,7 +11,7 @@
 |	http://www.your-site.com/
 |
 */
-$config['base_url']	= "http://moyvkus";
+$config['base_url']	=  'http://' . $_SERVER['HTTP_HOST'];
 
 /*
 |--------------------------------------------------------------------------
@@ -310,5 +310,9 @@ $config['time_reference'] = 'local';
 */
 $config['rewrite_short_tags'] = FALSE;
 
+$config['protocol'] = 'sendmail';
+$config['mailpath'] = '/usr/sbin/sendmail';
+$config['charset'] = 'iso-8859-1';
+$config['wordwrap'] = TRUE;
 
 ?>
