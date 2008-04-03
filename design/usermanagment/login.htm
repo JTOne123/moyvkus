@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Untitled Page</title>
+    <link rel="stylesheet" href="file:///C:/moyvkus/default.css" type="text/css" />
+</head>
+<body>
+    <div id="login">
+        <form method="POST" action="/login" id="LoginForm">
+            <div class="Login">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="Login_text">
+                            {email}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="email" name="email" type="text" class="Login_input" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Login_text">
+                            {password}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="password" name="password" type="password" class="Login_input" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Login_checkbox Login_space">
+                            <input name="checkbox_remember" type="checkbox" />{checkbox_remember}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Login_space">
+                            <a href="#" id="login_sumbit" name="login_sumbit">
+                                <div class="Login_submit">
+                                    {login}
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Login_space">
+                            <a href="#">{forgot}</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

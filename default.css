@@ -4,6 +4,18 @@ body
 	font-family: "lucida grande" ,tahoma,verdana,arial,sans-serif;
 }
 
+a:hover
+{
+	text-decoration: underline;
+}
+
+a
+{
+	color: #3B5998;
+	text-decoration: none;
+}
+
+
 /* Стиль меню */
 .Menu
 {
@@ -18,7 +30,7 @@ body
 	float: left;
 	font-size: 10px;
 	text-decoration: none;
-	padding-right:4px;
+	padding-right: 4px;
 }
 
 .Menu:Hover
@@ -48,9 +60,9 @@ body
 .MenuImage
 {
 	text-decoration: none;
-	border-width:0px;
-	width:30px;
-	height:30px;	
+	border-width: 0px;
+	width: 30px;
+	height: 30px;
 }
 
 /* Стиль формы для регистрации */
@@ -129,4 +141,54 @@ body
 	text-align: center;
 	display: none;
 	height: 15px;
+}
+
+/* Стиль формы для логина */
+
+.Login_input
+{
+	width: 123px;
+}
+
+.Login
+{
+	background: #F7F7F7 none repeat scroll 0%;
+	border-bottom: 1px solid #DDDDDD;
+	color: #000000;
+	font-size: 11px;
+	width: 170px;
+}
+
+.Login_submit
+{
+	background-color: #3B5998;
+	border-color: #D9DFEA rgb(14, 31, 91) rgb(14, 31, 91) rgb(217, 223, 234);
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+	font-family: "lucida grande" ,tahoma,verdana,arial,sans-serif;
+	font-size: 11px;
+	padding: 2px 15px 3px;
+	text-align: center;
+}
+
+.Login_text
+{
+	color: #555555;
+	font-weight: bold;
+	padding-top: 7px;
+}
+
+.Login_checkbox
+{
+	color: #333333;
+	display: block;
+	font-size: 11px;
+	font-weight: normal;
+	line-height: 16px;
+}
+
+.Login_space
+{
+	padding-top: 7px;
 }
