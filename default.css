@@ -170,6 +170,9 @@ a
 	font-size: 11px;
 	padding: 2px 15px 3px;
 	text-align: center;
+	text-decoration:none;
+	width:50px;
+	cursor:hand;
 }
 
 .Login_text
@@ -191,4 +194,9 @@ a
 .Login_space
 {
 	padding-top: 7px;
+}
+
+.Login_validator
+{
+	display:none;
 }

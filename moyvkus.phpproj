@@ -120,6 +120,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\notification.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\userauthorization.php"
     {
     "ProjRelPath" = "T"
