@@ -22,4 +22,17 @@ $lang['Error_captcha'] = "Код с картинки, должен содержать 4 символа";
 $lang['captcha_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Код с картинки введен не верно! Попробуйте еще раз</div>";
 $lang['email_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователь с таким email уже зарегестрирован!</div>";
 
+//Notification
+$lang['AfterRegistraionEmailFrom'] = "support@moyvkus.ru";
+$lang['AfterRegistraionEmailFromName'] = "Мой вкус - Поддержка";
+$lang['AfterRegistraionEmailSubject'] = "Регистрация аккауна";
+$lang['AfterRegistraionEmailMessage'] = "<html>
+										<body>
+										<p>Дорогой абоннет {first_name} {last_name}</p>
+										<p>Ваша учетная запись активирован</p>
+										<p>Ваш пароль {password}</p>
+										<p>С уважением администрация moyvkus.ru</p>
+										</body>
+										</html>";
+
 ?>
