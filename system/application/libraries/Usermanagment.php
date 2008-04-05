@@ -57,11 +57,22 @@ class Usermanagment {
 	}
 	
 	/*
-	Получение ID юзера по email
+	Получение Info юзера по email
+	Пример использования:
+	
+	$var=$this->usermanagment->GetUserInfoByEmail('mail@mail.org');
+	echo $var['last_name'];
 	*/
-	function GetUserIDByEmail($email)
+	function GetUserInfoByEmail($email)
 	{
+		$query = $this->ci->db->query("SELECT id, first_name, last_name, birthday FROM users WHERE email = '$email'");
+		$row = $query->row();
 		
+		$user_data['first_name'] = $row->first_name;
+		$user_data['last_name'] = $row->last_name;
+		$user_data['birthday'] = $row->birthday;
+		
+		return $user_data;
 	}
 	
 	/*

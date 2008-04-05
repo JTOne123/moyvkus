@@ -30,8 +30,8 @@ class Register extends Controller {
 		//Получаем поля с формы END
 		
 		$rules['captcha']    = "required|exact_length[4]|callback_captcha_check";
-		$rules['first_name'] = "required|min_length[4]|max_length[100]|alpha";
-		$rules['last_name'] = "required|min_length[4]|max_length[100]|alpha";
+		$rules['first_name'] = "required|min_length[4]|max_length[100]";
+		$rules['last_name'] = "required|min_length[4]|max_length[100]";
 		$rules['email'] = "required|min_length[6]|max_length[100]|valid_email|callback_email_check";
 		$rules['password'] = "required|min_length[6]|max_length[100]|alpha_numeric";
 		$this->validation->set_rules($rules);
