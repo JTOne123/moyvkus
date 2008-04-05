@@ -33,7 +33,6 @@ function addForm(formId, validationGroup)
 function addValidatorRegEx(checkedInputId, errorDivId, regExStr, validationGroup)
 {
    validatorRegExExpression[checkedInputId] = regExStr;
-   
    registrateValidatorData(checkedInputId, errorDivId, validationGroup);
 
    receivedElement = document.getElementById(checkedInputId);
