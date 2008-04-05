@@ -22,53 +22,61 @@ var validatorRegExExpression = new Array();
 //Add regist of validation group and form
 function addForm(formId, validationGroup)
 {
-document.forms[formId].setAttribute("onsubmit", "return false");
-
-validationGroupForms[formId] = validationGroup;
-validadedForms[validadedForms.length] = formId;   
-
+    validationGroupForms[formId] = validationGroup;
+    validadedForms[validadedForms.length] = formId;
+    
+    receivedElement = document.getElementById(formId);
+    receivedElement.onsubmit = function(){return false};
 }
 
 //Regist regex validator
 function addValidatorRegEx(checkedInputId, errorDivId, regExStr, validationGroup)
 {
-   document.getElementById(checkedInputId).setAttribute("onblur", "checkInputRegEx('" + checkedInputId + "');");
-   
    validatorRegExExpression[checkedInputId] = regExStr;
    
    registrateValidatorData(checkedInputId, errorDivId, validationGroup);
+
+   receivedElement = document.getElementById(checkedInputId);
+   receivedElement.onblur = function(){checkInputRegEx(checkedInputId)};
+        
 }
 
 //Regist required field validator
 function addValidatorRequiredField(checkedInputId, errorDivId, validationGroup)
-{
-   document.getElementById(checkedInputId).setAttribute("onblur", "checkInputRequiredField('" + checkedInputId + "');");
-   
+{  
    registrateValidatorData(checkedInputId, errorDivId, validationGroup);
+   
+   receivedElement = document.getElementById(checkedInputId);
+   receivedElement.onblur = function(){checkInputRequiredField(checkedInputId)};
 }
 
 //Regist compare validator
 function addValidatorCompare(checkedInputId1, checkedInputId2, errorDivId, validationGroup)
 {
-   document.getElementById(checkedInputId1).setAttribute("onblur", "checkInputCompare('" + checkedInputId1 + "', '" + checkedInputId2 + "');");
-   document.getElementById(checkedInputId2).setAttribute("onblur", "checkInputCompare('" + checkedInputId1 + "', '" + checkedInputId2 + "');");
-      
    registrateValidatorData(checkedInputId1, errorDivId, validationGroup);
    registrateValidatorData(checkedInputId2, errorDivId, validationGroup);
+   
+   receivedElement = document.getElementById(checkedInputId1);
+   receivedElement.onblur = function(){checkInputCompare(checkedInputId1, checkedInputId2)};
+
+   receivedElement = document.getElementById(checkedInputId2);
+   receivedElement.onblur = function(){checkInputCompare(checkedInputId1, checkedInputId2)};
 }
 
 //Regist range validator
 function addValidatorRange(checkedInputId, minValue, maxValue, errorDivId, validationGroup)
-{
-   document.getElementById(checkedInputId).setAttribute("onblur", "checkInputRange('" + checkedInputId + "', '" + minValue + "', '" + maxValue + "');");
-      
+{      
    registrateValidatorData(checkedInputId, errorDivId, validationGroup);
+   
+   receivedElement = document.getElementById(checkedInputId);
+   receivedElement.onblur = function(){checkInputRange(checkedInputId, minValue, maxValue)};
 }
 
 //Add submit button for validation group and form
 function addSubmitButton(sumbitId, validationGroup)
 {
-   document.getElementById(sumbitId).setAttribute("onclick", "isFormValid('" + validationGroup + "');");
+    receivedElement = document.getElementById(sumbitId);
+    receivedElement.onclick = function(){isFormValid(validationGroup)};
 }
 
 //Check regex validator
