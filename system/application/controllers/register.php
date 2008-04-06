@@ -9,6 +9,7 @@ class Register extends Controller {
 		$this->load->library('captcha');
 		$this->load->library('validation');
 		$this->load->library('usermanagment');
+		$this->load->library('notification');
 		
 	}
 	
@@ -51,6 +52,7 @@ class Register extends Controller {
 		{
 			$FormBuild=0;
 			$this->usermanagment->AddUser($email, $first_name, $last_name, $password);
+			$this->notification->AfterRegistration($email, $password);
 			$data['body'] = 'run';
 		}
 		//Прошли валидацию - записываем данные из полей в БД END
