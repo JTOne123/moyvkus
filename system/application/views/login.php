@@ -25,6 +25,7 @@
                                     {log_in}
                                 </div>
                             </a>
+                            <input type="submit" value="Submit" name="B1">
                         </td>
                     </tr>
                     </tbody>

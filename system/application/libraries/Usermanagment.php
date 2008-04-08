@@ -11,9 +11,10 @@ class Usermanagment {
 	}
 	
 	
+	
 	function AddUser($email, $first_name, $last_name, $password)
 	{
-		    $password=md5($password); //md5 кодирует строку с паролем 
+		    $password=md5($password.'secret_message'); //md5 кодирует строку с паролем 
 			$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, password) VALUES('$email', '$first_name', '$last_name', '$password')");
 	}
 	
@@ -35,20 +36,20 @@ class Usermanagment {
 	*/
 	function IsPasswordValid($email, $password)
 	{
-		$query = $this->ci->db->query("CALL IsPasswordValid('$email')");
+		$query = $this->ci->db->query("SELECT password FROM users WHERE email='$email'");
 		
-		$result_password="";	
+		$row = $query->row();
 		
-		foreach ($query->result() as $row)
-		{	
-			$result_password=$row->password;
-		}
+		$password=md5($password.'secret_message');
 		
-		if($result_password==$password)
+		if($password==$row->password)
+		{
 			return true;
-		else
-			return false;
+		}
+		else 
+		    return false;
 	}
+	
 	
 	/*
 	ѕолучение Info юзера по email

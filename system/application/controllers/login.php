@@ -29,8 +29,26 @@ class Login extends Controller {
 	
 	function try_login()
 	{
-		//echo 'TODO: пишу авторизацию...';
-		echo $this->input->post('email');
+	    
+		$email=$this->input->post('email');
+	    $password=$this->input->post('password');
+        if($email!==false && $password!==false)
+        {
+        
+	    $returned_bool = $this->usermanagment->IsPasswordValid($email, $password);
+	    
+	    if($returned_bool==true)
+	    {
+	    	echo 'Создаем сессию и т.д.';
+	    }
+	    else 
+	    {
+	    	redirect('/login/', 'refresh');
+	    }
+		
+        }
+        else redirect('/login/', 'refresh');
+        
 	}
 	
 }
