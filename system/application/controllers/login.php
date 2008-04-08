@@ -19,13 +19,19 @@ class Login extends Controller {
 		$data['header'] = $this->load->view('header', $data, true);
 	    $data['menu']=$this->Menu->buildmenu();
 		
-	    $var=$this->usermanagment->GetUserInfoByEmail('milo@milo.com');
-    
-		$data['body'] = $var['last_name'];
+	    $data['password'] = $this->lang->line('password');
+	    $data['log_in'] = $this->lang->line('log_in');
+	    $data['body']= $this->parser->parse('login', $data);
+ 
 		$this->parser->parse('main_tpl', $data);
 	}
 	
-	//CALLBACK: Проверяем есть ли уже базе email, который хотят зарегать END
+	
+	function try_login()
+	{
+		//echo 'TODO: пишу авторизацию...';
+		echo $this->input->post('email');
+	}
 	
 }
 ?>

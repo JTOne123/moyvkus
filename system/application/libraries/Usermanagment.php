@@ -10,12 +10,6 @@ class Usermanagment {
 		$this->ci->load->database();
 	}
 	
-	/*
-	ѕолна€ соотвестиве регистрациионой форме файсбука
-	email, пароль, им€, фамили€, день рождени€, мес€ц рождени€, и год рождени€
-	-1 - юзер с таким email'ом уже существует
-	 0 - ок
-	 */
 	
 	function AddUser($email, $first_name, $last_name, $password)
 	{
