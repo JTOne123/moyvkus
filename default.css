@@ -201,6 +201,7 @@ a
 	display:none;
 }
 
+/* Профайлер */
 .LeftColumn
 {
 	float: left;
@@ -216,7 +217,7 @@ a
 	margin: 0px;
 	overflow: hidden;
 	padding: 0px;
-	width: 400px;
+	width: 420px;
 	height: 100%;
 	vertical-align: top;
 }
@@ -242,12 +243,17 @@ a
 	background-repeat: repeat-x;
 	border-bottom: 1px solid #D7CF9E;
 	border-left: 1px solid #E4DDB4;
-	border-right: 1px solid #DCD4A4;
 	color: black;
 	font-size: 16px;
 	font-weight: bold;
 	margin: 0px;
 	padding: 2px 10px 5px;
+}
+
+.UserStatusEdit
+{
+	text-align: right;
+	border-right: 1px solid #DCD4A4;
 }
 
 .Headers
@@ -272,4 +278,54 @@ a
 .Avatar
 {
 	text-align: center;
+}
+
+.LabelText
+{
+	color: gray;
+	width: 140px;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.LableValue
+{
+	width: 260px;
+	font-size: 14px;
+	line-height: 16px;
+	display: block;
+}
+
+/* Редоктирование профайлера */
+.LabelValueEdit
+{
+	height: 30px;
+}
+
+.FileAvatarUpload
+{
+	width: 100%;
+}
+
+.IMTextBox
+{
+	width: 70px;
+}
+
+.SaveButtonTD
+{
+	text-align: right;
+}
+
+.SaveButtonTable, .SettingsTable
+{
+	width: 100%;
+}
+
+.SaveLabelTD
+{
+	color: Red;
+	width: 140px;
+	font-size: 14px;
+	line-height: 16px;
 }
