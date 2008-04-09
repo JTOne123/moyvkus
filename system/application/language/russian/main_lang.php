@@ -15,6 +15,8 @@ $lang['captcha'] = "Код на картинке";
 
 //Форма авторизации
 $lang['log_in'] = "Войти";
+$lang['forgot_password'] = "забыли пароль?";
+$lang['checkbox_remember'] = "запомнить меня";
 
 
 
@@ -28,6 +30,7 @@ $lang['captcha_check'] = "<div class = \"Registraion_validator\" style=\"display
 $lang['email_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователь с таким email уже зарегестрирован!</div>";
  //Форма авторизации
 $lang['check_user_mail_exist'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователя с таким email не существует!</div>";
+$lang['check_password'] = "<div class = \"Registraion_validator\" style=\"display:block;\"> Указан неверный логин или пароль.</div>";
 
 
 //Notification

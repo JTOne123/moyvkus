@@ -21,9 +21,11 @@ class Login extends Controller {
 		
 	    $data['password'] = $this->lang->line('password');
 	    $data['log_in'] = $this->lang->line('log_in');
+	    $data['forgot_password'] = $this->lang->line('forgot_password');
+	    $data['checkbox_remember'] = $this->lang->line('checkbox_remember');
 	    
 	    ///валидатор
-		$rules['email'] = "callback_check_mail";//required|min_length[6]|max_length[100]|valid_email|
+		$rules['email'] = "required|min_length[6]|max_length[100]|valid_email|callback_check_mail";
 		$rules['password'] = "required|min_length[6]|max_length[100]|alpha_numeric";
 		$this->validation->set_rules($rules);
 
@@ -37,8 +39,22 @@ class Login extends Controller {
 		
 	   if ($this->validation->run() == TRUE) 
 		{
-			$FormBuild=0;
+			$email=$this->input->post('email');
+			$password=$this->input->post('password');
+			
+			$result_of_check = $this->usermanagment->IsPasswordValid($email, $password);
+			if($result_of_check==true)
+			{
+				echo 'true';
+			}
+			else 
+			{
+			 redirect('/login/', 'refresh');
+			}
+			
+			
 			$data['body'] = 'run';
+			$FormBuild=0;
 		}
 		
 		
@@ -65,21 +81,6 @@ class Login extends Controller {
 			return true;
 	}
 	//Проверка на наличие адреса email в БД END
-
-	function check_pasword()
-	{
-		$returned_bool = $this->usermanagment->IsPasswordValid($email, $password);
-
-		if($returned_bool==true)
-		{
-			return true;
-		}
-		else 
-		{
-			$this->validation->set_message('check_mail', $this->lang->line('check_user_mail_exist'));
-			return false;
-		}
-	}
 	
 }
 ?>
