@@ -31,6 +31,7 @@ class Usermanagment {
 		 return false;
 	}
 	
+	
 	/*
 	Проверка валидности пароля по email
 	*/

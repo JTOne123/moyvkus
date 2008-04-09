@@ -26,6 +26,9 @@ $lang['Error_password'] = "Пароль должен быть не менее 6 символов";
 $lang['Error_captcha'] = "Код с картинки должен содержать 4 символа";
 $lang['captcha_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Код с картинки введен не верно! Попробуйте еще раз</div>";
 $lang['email_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователь с таким email уже зарегестрирован!</div>";
+ //Форма авторизации
+$lang['check_user_mail_exist'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователя с таким email не существует!</div>";
+
 
 //Notification
 $lang['AfterRegistraionEmailFrom'] = "support@moyvkus.ru";
