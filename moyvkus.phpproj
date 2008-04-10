@@ -64,6 +64,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\login.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\main.php"
     {
     "ProjRelPath" = "T"
@@ -145,6 +149,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\login.php"
     {
     "ProjRelPath" = "T"
     }

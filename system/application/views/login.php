@@ -26,7 +26,7 @@
                         </td>
                         <td>
                             <div id="errorDivEmail" class="Login_validator">
-                                <img src="invalid.gif" />
+                                <img src="../../images/invalid.gif" />
                             </div>
                         </td>
                     </tr>
@@ -41,7 +41,7 @@
                         </td>
                         <td>
                             <div id="errorDivPassword" class="Login_validator">
-                                <img src="invalid.gif" />
+                                <img src="../../images/invalid.gif" />
                             </div>
                         </td>
                     </tr>
