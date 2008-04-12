@@ -53,7 +53,7 @@ class Register extends Controller {
 			$FormBuild=0;
 			$this->usermanagment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
-			$data['body'] = 'run';
+			$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
 		}
 		//Прошли валидацию - записываем данные из полей в БД END
 		

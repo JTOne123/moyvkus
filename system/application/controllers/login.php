@@ -18,6 +18,7 @@ class Login extends Controller {
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
 	    $data['menu']=$this->Menu->buildmenu();
+	    $data['login']=$this->Loginform->build_login_form();
 		
 	    $data['password'] = $this->lang->line('password');
 	    $data['log_in'] = $this->lang->line('log_in');
@@ -43,14 +44,11 @@ class Login extends Controller {
 			$password=$this->input->post('password');
 			
 			$result_of_check = $this->usermanagment->IsPasswordValid($email, $password);
-			if($result_of_check==true)
-			{
-				echo 'true';
-			}
-			else 
+			if($result_of_check==false) //если пароль не правильный, - редирект на страницу login
 			{
 			 redirect('/login/', 'refresh');
 			}
+			
 			
 			
 			$data['body'] = 'run';
