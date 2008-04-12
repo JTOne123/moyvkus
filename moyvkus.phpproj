@@ -72,6 +72,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\register.php"
     {
     "ProjRelPath" = "T"
@@ -161,6 +165,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\profile.php"
     {
     "ProjRelPath" = "T"
     }

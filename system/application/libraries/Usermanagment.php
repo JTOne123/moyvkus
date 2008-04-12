@@ -74,9 +74,23 @@ class Usermanagment {
 	/*
 	Получение юзера по ID
 	*/
-	function GetUser($ID)
+	function GetUser($UserID)
 	{
+		$query = $this->ci->db->query("SELECT first_name, last_name, birthday, sex, city, country FROM users WHERE ID = $UserID");
+		$row = $query->row();
 		
+		return $row;
+	}
+	
+	/*
+	Получение дополнительных данных  про юзера по ID
+	*/
+	function GetUserData($UserID)
+	{
+		$query = $this->ci->db->query("SELECT phone, website, activities, interests, about, avatar_url FROM user_data WHERE user_id = $UserID");
+		$row = $query->row();
+		
+		return $row;
 	}
 	
 	/*
