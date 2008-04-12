@@ -42,6 +42,21 @@ class Profile extends Controller {
 		$data['Contacts'] = $this->lang->line('Contacts');
 		$data['MyRatingTextHeader'] = $this->lang->line('MyRatingTextHeader');
 		
+		$month = array(
+				'01'  => 'Январь',
+				'02'  => 'Февраль',
+				'03'  => 'Март',
+				'04'  => 'Апрель',
+				'05'  => 'Май',
+				'06'  => 'Июнь',
+				'07'  => 'Июль',
+				'08'  => 'Август',
+				'09'  => 'Сентябрь',
+				'10' => 'Октябрь',
+				'11' => 'Ноябрь',
+				'12' => 'Декабрь',
+				);
+				
 		//Получение данных юзера и заполнение их
 		$users = $this->usermanagment->GetUser(1);
 		$user_data = $this->usermanagment->GetUserData(1);
@@ -54,8 +69,11 @@ class Profile extends Controller {
 			$data['LastName'] = $users->last_name;
 			$data['Sex'] = $this->GetSex($users->sex);
 			
-			$datestring = "%d/%m/%Y";
-			$data['Birthday'] = mdate($datestring, mysql_to_unix($users->birthday));
+			$day_string =  mdate("%d", mysql_to_unix($users->birthday));
+			$month_string =  mdate("%m", mysql_to_unix($users->birthday));
+			$year_string =  mdate("%Y", mysql_to_unix($users->birthday));
+			
+			$data['Birthday'] = $day_string .  ' ' . $month[$month_string] . ' ' . $year_string;
 			
 			$separator = "";
 			if($users->city != null && $users->country != null)
