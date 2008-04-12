@@ -108,7 +108,7 @@ $autoload['language'] = array('main');
 |
 */
 
-$autoload['model'] = array('Menu');
+$autoload['model'] = array('Menu', 'Loginform');
 
 
 /*

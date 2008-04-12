@@ -16,6 +16,7 @@ class Main extends Controller {
     $data['header'] = $this->load->view('header', $data, true);
 
 	$data['menu']=$this->Menu->buildmenu();
+	$data['login']=$this->Loginform->build_login_form();
     
     $this->parser->parse('main_tpl', $data);
 	
