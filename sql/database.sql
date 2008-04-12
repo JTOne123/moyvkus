@@ -41,16 +41,29 @@ CREATE TABLE `menu` (
   UNIQUE KEY `id` (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
 
--- 
--- Структура таблицы `users`
--- 
+/*Table structure for table `user_data` */
+
+CREATE TABLE `user_data` (
+  `user_id` int(11) NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `website` varchar(100) DEFAULT NULL,
+  `activities` varchar(2000) DEFAULT NULL,
+  `interests` varchar(2000) DEFAULT NULL,
+  `about` varchar(2000) DEFAULT NULL,
+  `avatar_url` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `users` */
 
 CREATE TABLE `users` (
-  `ID` int(11) NOT NULL auto_increment,
-  `first_name` varchar(100) default NULL,
-  `last_name` varchar(100) default NULL,
-  `email` varchar(100) default NULL,
-  `password` varchar(100) default NULL,
-  `birthday` date default NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `sex` tinyint(1) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
   UNIQUE KEY `UserID` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=cp1251;
