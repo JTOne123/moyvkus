@@ -69,8 +69,25 @@ $lang['MyRecipes'] = "Мои рецепты";
 $lang['MyInfo'] = "О себе";
 $lang['Contacts'] = "Контактная информация";
 $lang['MyRatingTextHeader'] = "Рейтинги";
-
 $lang['Man'] = "Мужской";
 $lang['Woman'] = "Женский";
+
+//Edit profile
+$lang['LoginInformation'] = "Регистрационная информация";
+$lang['NewEmailText'] = "E-mail:";
+$lang['OldPasswordText'] = "Старый пароль:";
+$lang['NewPassword'] = "Новый пароль:";
+$lang['ReNewPassword'] = "Повтор нового пароля:";
+$lang['SaveAllChanges'] = "Сохранить все изменения?";
+$lang['Save'] = "Сохранить";
+$lang['Upload'] = "Загрузить";
+$lang['Day'] = "День";
+$lang['Month'] = "Месяц";
+$lang['Year'] = "Год";
+$lang['Country'] = "Страна";
+$lang['City'] = "Город";
+$lang['MySettings'] = "Мои настройки";
+$lang['Cancel'] = "Отмена";
+
 
 ?>

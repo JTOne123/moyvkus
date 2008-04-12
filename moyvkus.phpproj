@@ -60,6 +60,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\edit_profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\index.html"
     {
     "ProjRelPath" = "T"
@@ -145,6 +149,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\models\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\edit_profile.php"
     {
     "ProjRelPath" = "T"
     }

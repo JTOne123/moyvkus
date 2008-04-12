@@ -76,7 +76,7 @@ class Usermanagment {
 	*/
 	function GetUser($UserID)
 	{
-		$query = $this->ci->db->query("SELECT first_name, last_name, birthday, sex, city, country FROM users WHERE ID = $UserID");
+		$query = $this->ci->db->query("SELECT email, first_name, last_name, birthday, sex, city, country FROM users WHERE ID = $UserID");
 		$row = $query->row();
 		
 		return $row;
