@@ -73,6 +73,7 @@ $lang['Man'] = "Мужской";
 $lang['Woman'] = "Женский";
 
 //Edit profile
+$lang['EditPrifile'] = "Редактирование профайла";
 $lang['LoginInformation'] = "Регистрационная информация";
 $lang['NewEmailText'] = "E-mail:";
 $lang['OldPasswordText'] = "Старый пароль:";

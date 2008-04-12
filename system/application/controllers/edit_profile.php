@@ -8,6 +8,7 @@ class Edit_Profile extends Controller {
 		$this->load->library('validation');
 		$this->load->library('usermanagment');
 		$this->load->helper('date');
+		$this->load->helper('form');
 	}
 	
 	function index()
@@ -18,6 +19,7 @@ class Edit_Profile extends Controller {
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
+		$data['login']='';
 		
 		// Локализация надписей
 		$data['Edit'] = $this->lang->line('Edit');
@@ -68,10 +70,50 @@ class Edit_Profile extends Controller {
 			
 			$data['FirstName'] = $users->first_name;
 			$data['LastName'] = $users->last_name;
-			$data['Sex'] = $this->GetSex($users->sex);
 			
-			$datestring = "%d/%m/%Y";
-			$data['Birthday'] = mdate($datestring, mysql_to_unix($users->birthday));
+			if($users->sex == 0)
+			{
+				$data['txtSexManCHECKED'] = "checked";
+				$data['txtSexWomanCHECKED'] = "";	
+			}
+			else
+			{
+				$data['txtSexManCHECKED'] = "";
+				$data['txtSexWomanCHECKED'] = "checked";	
+			}
+			
+			
+			$day = array();
+			for($i=1;$i<=31;$i++)
+				$day[$i] = $i;
+			
+			$month = array(
+					'01'  => 'Январь',
+					'02'  => 'Февраль',
+					'03'  => 'Март',
+					'04'  => 'Апрель',
+					'05'  => 'Май',
+					'06'  => 'Июнь',
+					'07'  => 'Июль',
+					'08'  => 'Август',
+					'09'  => 'Сентябрь',
+					'10' => 'Октябрь',
+					'11' => 'Ноябрь',
+					'12' => 'Декабрь',
+					);
+			
+			$current_year = mdate("%Y", time());
+			$year = array();
+			for($i=0;$i<=100;$i++)
+				$year[$i] = $current_year - $i;
+			
+			$selectedDay = mdate("%d", mysql_to_unix($users->birthday));
+			$selectedMonth = mdate("%m", mysql_to_unix($users->birthday));
+			$selectedYear = mdate("%Y", mysql_to_unix($users->birthday));
+
+			$data['SelectDay'] = form_dropdown('SelectDay', $day, $selectedDay);
+			$data['SelectMonth'] = form_dropdown('SelectMonth', $month, $selectedMonth);
+			$data['SelectYear'] = form_dropdown('SelectYear', $year, $current_year - $selectedYear);
 			
 			$separator = "";
 			if($users->city != null && $users->country != null)
@@ -108,30 +150,9 @@ class Edit_Profile extends Controller {
 			
 		}
 		
-		
 		$data['body']= $this->parser->parse('edit_profile', $data);
 		
 		$this->parser->parse('main_tpl', $data);
 	}
-	
-	function GetSex($SexID)
-	{
-		if($SexID == null)
-			return "";
-		
-		switch($SexID)
-		{
-			case 0:
-				return $this->lang->line('Man');
-				break;
-			case 1: 
-				return $this->lang->line('Woman');
-				break;
-			default:
-				return "";
-				break;
-		}
-	}
-	
 }
 ?>

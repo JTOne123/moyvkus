@@ -95,8 +95,8 @@
                                                 {SexText}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                <input type="radio" id="txtSexMan" name="txtSexMan" />{Man}&nbsp;
-                                                <input type="radio" id="txtSexWoman" name="txtSexWoman" />{Woman}
+                                                <input type="radio" id="txtSexMan" name="txtSex" value="txtSexMan" {txtSexManCHECKED}/>{Man}&nbsp;
+                                                <input type="radio" id="txtSexWoman" name="txtSex" value="txtSexWoman" {txtSexWomanCHECKED}/>{Woman}
                                             </td>
                                         </tr>
                                         <tr>
@@ -104,7 +104,20 @@
                                                 {BirthdayText}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                {Day}<select></select>&nbsp;{Month}<select></select>&nbsp;{Year}<select></select>
+												<table>
+													<tr>
+														<td>{Day}</td>
+														<td>{SelectDay}</td>
+													</tr>
+													<tr>
+														<td>{Month}</td>
+														<td>{SelectMonth}</td>
+													</tr>
+													<tr>
+														<td>{Year}</td>
+														<td>{SelectYear}</td>
+													</tr>
+												</table>
                                             </td>
                                         </tr>
                                         <tr>

@@ -18,7 +18,8 @@ class Profile extends Controller {
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
-		
+		$data['login']='';
+				
 		// Локализация надписей
 		$data['Edit'] = $this->lang->line('Edit');
 		$data['Avatar'] = $this->lang->line('Avatar');
