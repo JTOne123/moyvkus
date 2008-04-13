@@ -27,7 +27,7 @@ class Login extends Controller {
 	    
 	    ///валидатор
 		$rules['email'] = "required|min_length[6]|max_length[100]|valid_email|callback_check_mail";
-		$rules['password'] = "required|min_length[6]|max_length[100]|alpha_numeric";
+		$rules['password'] = "required|min_length[6]|max_length[21]|alpha_numeric";
 		$this->validation->set_rules($rules);
 
 		$fields['email'] = $this->lang->line('email');
