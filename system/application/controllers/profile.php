@@ -5,8 +5,12 @@ class Profile extends Controller {
 	function Profile()
 	{
 		parent::Controller();
+		
 		$this->load->library('validation');
+		
 		$this->load->library('usermanagment');
+		$this->load->library('location');
+		
 		$this->load->helper('date');
 	}
 	
@@ -19,7 +23,9 @@ class Profile extends Controller {
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
 		$data['login']='';
-				
+		
+		$data['EditProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/edit_profile';
+		
 		// Локализация надписей
 		$data['Edit'] = $this->lang->line('Edit');
 		$data['Avatar'] = $this->lang->line('Avatar');
@@ -76,11 +82,26 @@ class Profile extends Controller {
 			
 			$data['Birthday'] = $day_string .  ' ' . $month[$month_string] . ' ' . $year_string;
 			
-			$separator = "";
-			if($users->city != null && $users->country != null)
-				$separator = ", ";
+			if($users->city != null)
+			{
+				$city = $this->location->GetCity($users->city);
+				$city_name = $city->name;
+			}
+			else
+			{
+				$city_name = "";
+			}
+			if($users->country != null)	
+			{		
+				$country = $this->location->GetCountry($users->country);
+				$country_name = ', ' . $country->name;
+			}
+			else
+			{
+				$country_name = "";
+			}
 			
-			$data['Loction'] = $users->city . $separator . $users->country;
+			$data['Loction'] =  $city_name . $country_name;
 		}
 		
 		if($user_data != null)

@@ -56,7 +56,7 @@ $lang['FirstNameText'] = "Имя:";
 $lang['LastNameText'] = "Фамилия:";
 $lang['SexText'] = "Пол:";
 $lang['BirthdayText'] = "День рождения:";
-$lang['LoctionText'] = "Родной город:";
+$lang['LoctionText'] = "Местоположение:";
 $lang['WebSiteText'] = "Веб-сайт:";
 $lang['InstantMessagerText'] = "Телефон:";
 $lang['ActivitiesText'] = "Деятельность:";
@@ -89,6 +89,6 @@ $lang['Country'] = "Страна";
 $lang['City'] = "Город";
 $lang['MySettings'] = "Мои настройки";
 $lang['Cancel'] = "Отмена";
-
+$lang['Region'] = "Регион";
 
 ?>

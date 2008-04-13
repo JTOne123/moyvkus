@@ -132,6 +132,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\location.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\notification.php"
     {
     "ProjRelPath" = "T"

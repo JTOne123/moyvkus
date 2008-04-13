@@ -63,7 +63,8 @@ CREATE TABLE `users` (
   `password` varchar(100) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `sex` tinyint(1) DEFAULT NULL,
-  `city` varchar(50) DEFAULT NULL,
-  `country` varchar(50) DEFAULT NULL,
+  `city` int(11) DEFAULT NULL,
+  `region` int(11) DEFAULT NULL,
+  `country` int(11) DEFAULT NULL,
   UNIQUE KEY `UserID` (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=cp1251;

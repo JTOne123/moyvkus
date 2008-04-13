@@ -170,9 +170,9 @@ a
 	font-size: 11px;
 	padding: 2px 15px 3px;
 	text-align: center;
-	text-decoration:none;
-	width:50px;
-	cursor:hand;
+	text-decoration: none;
+	width: 50px;
+	cursor: hand;
 }
 
 .Login_text
@@ -198,12 +198,12 @@ a
 
 .Login_validator
 {
-	display:none;
+	display: none;
 }
 
 .MessageWide
 {
-	height:25px;
+	height: 25px;
 }
 
 /* Профайлер */
@@ -330,7 +330,6 @@ a
 .SaveLabelTD
 {
 	color: Red;
-	width: 140px;
 	font-size: 14px;
 	line-height: 16px;
 }

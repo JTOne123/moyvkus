@@ -1,4 +1,4 @@
-<form id="EditProfile" method="POST" action="/edit_profile/">
+<form id="EditProfile" name="EditProfile" method="POST" action="/edit_profile/">
 	<div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile">
             <tr>
@@ -6,7 +6,7 @@
                     {UserStatus}
                 </td>
                 <td class="UserStatus UserStatusEdit">
-                    <a href="#">{Save}</a>&nbsp;<a href="profile.htm">{Cancel}</a>
+                    <a href="#" onclick="document.EditProfile.submit();">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>
                 </td>
             </tr>
             <tr>
@@ -25,13 +25,17 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input id="FileAvatarUpload" name="FileAvatarUpload" type="file" class="FileAvatarUpload"
-                                        size="15" />
-                                    <a href="#" id="UploadAvatar" name="UploadAvatar">
-                                        <div class="Login_submit">
-                                            {Upload}
-                                        </div>
-                                    </a>
+									<?=$error;?>
+									<?=form_open_multipart('upload/do_upload'); ?>
+									
+										<input id="FileAvatarUpload" name="FileAvatarUpload" type="file" class="FileAvatarUpload"
+											size="15" />
+										<a href="#" id="UploadAvatar" name="UploadAvatar">
+											<div class="Login_submit">
+												{Upload}
+											</div>
+										</a>
+										<input type="submit" value="upload" />
                                 </td>
                             </tr>
                             <tr>
@@ -125,7 +129,20 @@
                                                 {LoctionText}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                {Country}<select></select>&nbsp;{City}<select></select>
+												<table>
+													<tr>
+														<td>{Country}</td>
+														<td><select></select></td>
+													</tr>
+													<tr>
+														<td>{Region}</td>
+														<td><select></select></td>
+													</tr>
+													<tr>
+														<td>{City}</td>
+														<td><select></select></td>
+													</tr>
+												</table>
                                             </td>
                                         </tr>
                                     </table>
@@ -244,8 +261,8 @@
                                                 {SaveAllChanges}
                                             </td>
                                             <td class="SaveButtonTD">
-                                                <div>
-                                                    <a href="#" id="Save" name="Save">
+                                                <div align="right">
+                                                    <a href="#" id="Save" name="Save" onclick="document.EditProfile.submit();">
                                                         <div class="Login_submit">
                                                             {Save}
                                                         </div>

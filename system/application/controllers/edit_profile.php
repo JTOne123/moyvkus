@@ -5,10 +5,15 @@ class Edit_Profile extends Controller {
 	function Edit_Profile()
 	{
 		parent::Controller();
+		
 		$this->load->library('validation');
+		
 		$this->load->library('usermanagment');
+		$this->load->library('location');
+		
 		$this->load->helper('date');
 		$this->load->helper('form');
+		$this->load->helper(array('form', 'url'));
 	}
 	
 	function index()
@@ -20,7 +25,10 @@ class Edit_Profile extends Controller {
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
 		$data['login']='';
+		$this->load->view('edit_profile', array('error' => ' ' ));
 		
+		$data['ProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile';
+
 		// Локализация надписей
 		$data['Edit'] = $this->lang->line('Edit');
 		$data['Avatar'] = $this->lang->line('Avatar');
@@ -56,6 +64,7 @@ class Edit_Profile extends Controller {
 		$data['Month'] = $this->lang->line('Month');
 		$data['Year'] = $this->lang->line('Year');
 		$data['Country'] = $this->lang->line('Country');
+		$data['Region'] = $this->lang->line('Region');
 		$data['City'] = $this->lang->line('City');
 		$data['MySettings'] = $this->lang->line('MySettings');
 		$data['Cancel'] = $this->lang->line('Cancel');
@@ -154,5 +163,29 @@ class Edit_Profile extends Controller {
 		
 		$this->parser->parse('main_tpl', $data);
 	}
+	
+	function do_upload()
+	{
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		
+		$this->load->library('upload', $config);
+		
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			
+			$this->load->view('upload_form', $error);
+		}	
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			
+			$this->load->view('upload_success', $data);
+		}
+	}	
 }
 ?>

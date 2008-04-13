@@ -5,7 +5,7 @@
                     {UserStatus}
                 </td>
                 <td class="UserStatus UserStatusEdit">
-                    <a href="edit_profile.htm">{Edit}</a>
+                    <a href="{EditProfileUrl}">{Edit}</a>
                 </td>
             </tr>
             <tr>
