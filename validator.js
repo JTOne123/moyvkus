@@ -53,12 +53,8 @@ function addValidatorRequiredField(checkedInputId, errorDivId, validationGroup)
 function addValidatorCompare(checkedInputId1, checkedInputId2, errorDivId, validationGroup)
 {
    registrateValidatorData(checkedInputId1, errorDivId, validationGroup);
-   registrateValidatorData(checkedInputId2, errorDivId, validationGroup);
    
    receivedElement = document.getElementById(checkedInputId1);
-   receivedElement.onblur = function(){checkInputCompare(checkedInputId1, checkedInputId2)};
-
-   receivedElement = document.getElementById(checkedInputId2);
    receivedElement.onblur = function(){checkInputCompare(checkedInputId1, checkedInputId2)};
 }
 
@@ -117,16 +113,14 @@ function checkInputCompare(checkedInputId1, checkedInputId2)
     var checkedElement1 = document.getElementById(checkedInputId1);
     var checkedElement2 = document.getElementById(checkedInputId2);
 
-    if(checkedElement1.value == checkedElement2.value && checkedElement1.value != "")
+    if(checkedElement1.value == checkedElement2.value)
         {
             isValidInputs[checkedInputId1] = true;
-            isValidInputs[checkedInputId2] = true;
             showErrorDiv(false, checkedInputId1);
         }
     else
         {
             isValidInputs[checkedInputId1] = false;
-            isValidInputs[checkedInputId2] = false;
             showErrorDiv(true, checkedInputId1);
         }
 }        

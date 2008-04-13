@@ -14,8 +14,12 @@ class Usermanagment {
 	
 	function AddUser($email, $first_name, $last_name, $password)
 	{
-		    $password=md5($password.'secret_message'); //md5 кодирует строку с паролем 
-			$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, password) VALUES('$email', '$first_name', '$last_name', '$password')");
+		$password=md5($password.'secret_message'); //md5 кодирует строку с паролем 
+		$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, password) VALUES('$email', '$first_name', '$last_name', '$password')");
+		
+		$UserID = GetUserInfoByEmail($email)->id;
+		
+		$query = $this->ci->db->query("INSERT INTO user_data(user_id) VALUES('$UserID')");
 	}
 	
 	/*
@@ -26,9 +30,9 @@ class Usermanagment {
 		$query = $this->ci->db->query("SELECT id FROM users WHERE email = '$email'");
 		
 		if($query->num_rows()==0)
-		 return true;
+			return true;
 		else 
-		 return false;
+			return false;
 	}
 	
 	
@@ -48,14 +52,14 @@ class Usermanagment {
 			return true;
 		}
 		else 
-		    return false;
+			return false;
 	}
 	
 	
 	/*
 	Получение Info юзера по email
 	Пример использования:
-	
+		
 	$var=$this->usermanagment->GetUserInfoByEmail('mail@mail.org');
 	echo $var['last_name'];
 	*/
@@ -94,11 +98,29 @@ class Usermanagment {
 	}
 	
 	/*
-	Расширение редоктирование юзера
+	Обновление данных юзера
 	*/
-	function EditUser()
+	function UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $city, $region, $country, $phone, $website, $activities, $interests, $about)
 	{
-		
+		$query = $this->ci->db->query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', birthday = '$birthday', sex = '$sex', city = '$city', region = '$region', country = '$country'  WHERE ID = '$UserID'");
+		$query = $this->ci->db->query("UPDATE user_data SET phone = '$phone', website = '$website', activities = '$activities', interests = '$interests', about = '$about' WHERE user_id = '$UserID'");
+	}
+	
+	/*
+	Изменение пароля
+	*/
+	function NewPassword($UserID, $NewPassword)
+	{
+		$NewPassword=md5($NewPassword.'secret_message'); //md5 кодирует строку с паролем 
+		$query = $this->ci->db->query("UPDATE users SET password = '$NewPassword' WHERE user_id = '$UserID");
+	}
+	
+	/*
+	Редактирование аватара
+	*/
+	function UpdateAvatar($UserID, $AvatarImagePath)
+	{
+		$query = $this->ci->db->query("UPDATE user_data SET avatar_url = '$AvatarImagePath' WHERE user_id = '$UserID");
 	}
 }
 ?>
