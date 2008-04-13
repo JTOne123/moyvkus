@@ -14,9 +14,31 @@ class Edit_Profile extends Controller {
 		$this->load->helper('date');
 		$this->load->helper('form');
 		$this->load->helper(array('form', 'url'));
+		
+		$this->load->view('edit_profile', array('error' => ' ' ));
 	}
 	
 	function index()
+	{
+		$data = $this->load_headrs();
+		
+		$data = $this->load_resource($data);
+		
+		$data = $this->data_bind($data);
+		
+		//Тут чувак напиши проверку сабмит
+		//$this->update_user(1);
+		//$this->updata_password(1);
+		//Это все должно происходить после вызывания сабмита
+		
+		//redirect('/profile/', 'refresh');
+		
+		$data['body']= $this->parser->parse('edit_profile', $data);
+		
+		$this->parser->parse('main_tpl', $data);
+	}
+	
+	function load_headrs()
 	{
 		$data['title'] = $this->lang->line('EditPrifile');
 		$data['keywords'] = $this->lang->line('keywords');
@@ -25,10 +47,12 @@ class Edit_Profile extends Controller {
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
 		$data['login']='';
-		$this->load->view('edit_profile', array('error' => ' ' ));
 		
-		$data['ProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile';
-
+		return $data;
+	}
+	
+	function load_resource($data)
+	{
 		// Локализация надписей
 		$data['Edit'] = $this->lang->line('Edit');
 		$data['Avatar'] = $this->lang->line('Avatar');
@@ -68,6 +92,14 @@ class Edit_Profile extends Controller {
 		$data['City'] = $this->lang->line('City');
 		$data['MySettings'] = $this->lang->line('MySettings');
 		$data['Cancel'] = $this->lang->line('Cancel');
+		
+		return $data;
+	}
+	
+	function data_bind($data)
+	{
+		$data['ProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile';
+		$data['OldPasswordError'] = "none";
 		
 		//Получение данных юзера и заполнение их
 		$users = $this->usermanagment->GetUser(1);
@@ -114,15 +146,15 @@ class Edit_Profile extends Controller {
 			$current_year = mdate("%Y", time());
 			$year = array();
 			for($i=0;$i<=100;$i++)
-				$year[$i] = $current_year - $i;
+				$year[$current_year - $i] = $current_year - $i;
 			
 			$selectedDay = mdate("%d", mysql_to_unix($users->birthday));
 			$selectedMonth = mdate("%m", mysql_to_unix($users->birthday));
 			$selectedYear = mdate("%Y", mysql_to_unix($users->birthday));
-
+			
 			$data['SelectDay'] = form_dropdown('SelectDay', $day, $selectedDay);
 			$data['SelectMonth'] = form_dropdown('SelectMonth', $month, $selectedMonth);
-			$data['SelectYear'] = form_dropdown('SelectYear', $year, $current_year - $selectedYear);
+			$data['SelectYear'] = form_dropdown('SelectYear', $year, $selectedYear);
 			
 			$separator = "";
 			if($users->city != null && $users->country != null)
@@ -159,9 +191,7 @@ class Edit_Profile extends Controller {
 			
 		}
 		
-		$data['body']= $this->parser->parse('edit_profile', $data);
-		
-		$this->parser->parse('main_tpl', $data);
+		return $data;
 	}
 	
 	function do_upload()
@@ -187,5 +217,63 @@ class Edit_Profile extends Controller {
 			$this->load->view('upload_success', $data);
 		}
 	}	
+	
+	function update_user($UserID)
+	{
+		$first_name = $this->input->post('txtFirstName');
+		$last_name = $this->input->post('txtLastName');
+		
+		$SelectDay = $this->input->post('SelectDay');
+		$SelectMonth = $this->input->post('SelectMonth');
+		$SelectYear = $this->input->post('SelectYear');
+		
+		$sexValue = $this->input->post('txtSex');
+		
+		$city = 0;
+		$region = 0;
+		$country = 0;
+		
+		$phone = $this->input->post('txtPhone');
+		$website = $this->input->post('txtWebSite');
+		$activities = $this->input->post('txtActivities');
+		$interests = $this->input->post('txtInterests');
+		$about = $this->input->post('txtAbout');
+		
+		$birthday =  "$SelectYear-$SelectMonth-$SelectDay";
+		
+		if($sexValue == "txtSexMan")
+			$sex = 0;
+		else
+			$sex = 1;
+		
+		$users = $this->usermanagment->UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $city, $region, $country, $phone, $website, $activities, $interests, $about);
+	}
+	
+	function updata_password($UserID)
+	{
+		$old_password = $this->input->post('txtOldPassword');
+		if(strlen($old_password) != 0)
+		{
+			if($this->usermanagment->IsPasswordValidByID($UserID))
+			{
+				$rules['txtNewPassword'] = "required|min_length[6]|max_length[21]|alpha_numeric";
+				$this->validation->set_rules($rules);
+				
+				$fields['txtNewPassword'] = $this->lang->line('txtNewPassword');
+				$this->validation->set_fields($fields);
+				
+				if ($this->validation->run())
+				{
+					$new_password=$this->input->post('txtNewPassword');
+					$this->usermanagment->NewPassword($UserID, $new_password);
+				} 
+			}
+			else
+			{
+				$data['OldPasswordError'] = "block";
+			}
+		}
+		
+	}
 }
 ?>

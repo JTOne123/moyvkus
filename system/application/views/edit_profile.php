@@ -1,3 +1,24 @@
+    <script language="javascript" type="text/javascript">
+	
+	function AttachValidators()
+	{
+		var oldPassword = document.getElementById("txtOldPassword");
+
+		if(oldPassword.value != "")
+		{
+    		addForm("EditProfile" ,"vgEditProfile");
+
+    		addValidatorRegEx("txtNewPassword", "errorDivNewPassword", "^.{6,21}$", "vgEditProfile");
+    		addValidatorCompare("txtReNewPassword", "txtNewPassword", "errorDivReNewPassword", "vgEditProfile");
+
+    		addSubmitButton("Save", "vgEditProfile");
+			addSubmitButton("lnkSave", "vgEditProfile");
+		}
+
+    }
+	
+    </script>
+	
 <form id="EditProfile" name="EditProfile" method="POST" action="/edit_profile/">
 	<div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile">
@@ -6,7 +27,7 @@
                     {UserStatus}
                 </td>
                 <td class="UserStatus UserStatusEdit">
-                    <a href="#" onclick="document.EditProfile.submit();">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>
+                    <a href="#" id="lnkSave" onclick="document.EditProfile.submit();">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>
                 </td>
             </tr>
             <tr>
@@ -169,7 +190,7 @@
                                                 {InstantMessagerText}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtInstantMessagerNumber" name="txtInstantMessagerNumber" value="{InstantMessager}" />
+                                                <input type="text" id="txtPhone" name="txtPhone" value="{InstantMessager}" />
                                             </td>
                                         </tr>
                                     </table>
@@ -231,7 +252,18 @@
                                                 {OldPasswordText}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                <input type="password" id="txtOldPassword" name="txtOldPassword" />
+												<table cellpadding="0" cellspacing="0">
+													<tr>
+														<td>
+															<input type="password" id="txtOldPassword" name="txtOldPassword" onblur="AttachValidators();"/>
+														</td>
+														<td>
+															<div id="errorDivOldPassword" class="Login_validator" style="display:{OldPasswordError}">
+																<img src="../../images/invalid.gif" />
+															</div>
+														</td>
+													</tr>
+												</table>
                                             </td>
                                         </tr>
                                         <tr>
@@ -239,7 +271,21 @@
                                                 {NewPassword}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                <input type="password" id="txtNewPassword" name="txtNewPassword" />
+												<table cellpadding="0" cellspacing="0">
+													<tr>
+														<td>
+															<input type="password" id="txtNewPassword" name="txtNewPassword" />
+															<!--<?php
+															echo $this->validation->txtNewPassword_error;
+															?>-->
+														</td>
+														<td>
+															<div id="errorDivNewPassword" class="Login_validator">
+																<img src="../../images/invalid.gif" />
+															</div>
+														</td>
+													</tr>
+												</table>
                                             </td>
                                         </tr>
                                         <tr>
@@ -247,7 +293,18 @@
                                                 {ReNewPassword}
                                             </td>
                                             <td class="LableValue LabelValueEdit">
-                                                <input type="password" id="txtReNewPassword" name="txtReNewPassword" />
+												<table cellpadding="0" cellspacing="0">
+													<tr>
+														<td>
+															<input type="password" id="txtReNewPassword" name="txtReNewPassword" />
+														</td>
+														<td>
+															<div id="errorDivReNewPassword" class="Login_validator">
+																<img src="../../images/invalid.gif" />
+															</div>
+														</td>
+													</tr>
+												</table>
                                             </td>
                                         </tr>
                                     </table>

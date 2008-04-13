@@ -55,6 +55,24 @@ class Usermanagment {
 			return false;
 	}
 	
+	/*
+	Проверка валидности пароля по email
+	*/
+	function IsPasswordValidByID($ID, $password)
+	{
+		$query = $this->ci->db->query("SELECT password FROM users WHERE email='$ID'");
+		
+		$row = $query->row();
+		
+		$password=md5($password.'secret_message');
+		
+		if($password==$row->password)
+		{
+			return true;
+		}
+		else 
+			return false;
+	}
 	
 	/*
 	Получение Info юзера по email

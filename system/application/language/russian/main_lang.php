@@ -90,5 +90,5 @@ $lang['City'] = "Город";
 $lang['MySettings'] = "Мои настройки";
 $lang['Cancel'] = "Отмена";
 $lang['Region'] = "Регион";
-
+$lang['txtNewPassword'] = "Пароль должен быть не менее 6 символов";
 ?>
