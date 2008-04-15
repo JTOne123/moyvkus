@@ -17,7 +17,7 @@ class Usermanagment {
 		$password=md5($password.'secret_message'); //md5 кодирует строку с паролем 
 		$query = $this->ci->db->query("INSERT INTO users(email, first_name, last_name, password) VALUES('$email', '$first_name', '$last_name', '$password')");
 		
-		$UserID = GetUserInfoByEmail($email)->id;
+		$UserID = $this->GetUserInfoByEmail($email)->id;
 		
 		$query = $this->ci->db->query("INSERT INTO user_data(user_id) VALUES('$UserID')");
 	}
@@ -86,11 +86,7 @@ class Usermanagment {
 		$query = $this->ci->db->query("SELECT id, first_name, last_name, birthday FROM users WHERE email = '$email'");
 		$row = $query->row();
 		
-		$user_data['first_name'] = $row->first_name;
-		$user_data['last_name'] = $row->last_name;
-		$user_data['birthday'] = $row->birthday;
-		
-		return $user_data;
+		return $row;
 	}
 	
 	/*

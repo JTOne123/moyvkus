@@ -22,8 +22,8 @@ class Notification {
 		
 		$message_text = $this->ci->lang->line('AfterRegistraionEmailMessage');
 		
-		$message_text = str_replace("{first_name}", $returned_value['first_name'], $message_text);
-		$message_text = str_replace("{last_name}", $returned_value['last_name'], $message_text);
+		$message_text = str_replace("{first_name}", $returned_value->first_name, $message_text);
+		$message_text = str_replace("{last_name}", $returned_value->last_name, $message_text);
 		$message_text = str_replace("{password}", $password, $message_text);
 
 		$this->ci->email->message($message_text);
