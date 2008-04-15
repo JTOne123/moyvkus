@@ -7,6 +7,7 @@ class Login extends Controller {
 		parent::Controller();
 		$this->load->library('validation');
 		$this->load->library('usermanagment');
+		$this->load->library('userauthorization');
 		
 	}
 	
@@ -18,7 +19,7 @@ class Login extends Controller {
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
 	    $data['menu']=$this->Menu->buildmenu();
-	    $data['login']=$this->Loginform->build_login_form();
+	    $data['login']='';
 		
 	    $data['password'] = $this->lang->line('password');
 	    $data['log_in'] = $this->lang->line('log_in');
@@ -42,6 +43,8 @@ class Login extends Controller {
 		{
 			$email=$this->input->post('email');
 			$password=$this->input->post('password');
+			$checkbox_remember=$this->input->post('checkbox_remember');
+			
 			
 			$result_of_check = $this->usermanagment->IsPasswordValid($email, $password);
 			if($result_of_check==false) //если пароль не правильный, - редирект на страницу login
@@ -49,9 +52,9 @@ class Login extends Controller {
 			 redirect('/login/', 'refresh');
 			}
 			
-			
-			
-			$data['body'] = 'run';
+			$this->userauthorization->login($email, $checkbox_remember);
+			redirect('/main/', 'refresh');
+			//$data['body'] = 'run';
 			$FormBuild=0;
 		}
 		
