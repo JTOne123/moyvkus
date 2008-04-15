@@ -26,12 +26,13 @@ class Edit_Profile extends Controller {
 		
 		$data = $this->data_bind($data);
 		
-		//Тут чувак напиши проверку сабмит
-		//$this->update_user(1);
-		//$this->updata_password(1);
-		//Это все должно происходить после вызывания сабмита
+		if($this->input->post('btnSave') == "true")
+		{
+			$this->update_user(1);
+			if($this->updata_password(1))
+				redirect('/profile/', 'refresh');
+		}
 		
-		//redirect('/profile/', 'refresh');
 		
 		$data['body']= $this->parser->parse('edit_profile', $data);
 		
@@ -251,27 +252,33 @@ class Edit_Profile extends Controller {
 	
 	function updata_password($UserID)
 	{
+		$rules['txtNewPassword'] = "min_length[6]|max_length[21]|alpha_numeric";
+		$this->validation->set_rules($rules);
+		
+		$fields['txtNewPassword'] = $this->lang->line('txtNewPassword');
+		$this->validation->set_fields($fields);
+		
 		$old_password = $this->input->post('txtOldPassword');
-		if(strlen($old_password) != 0)
+		$new_password=$this->input->post('txtNewPassword');
+				
+		if(strlen($old_password) != 0 && strlen($new_password) != 0)
 		{
-			if($this->usermanagment->IsPasswordValidByID($UserID))
-			{
-				$rules['txtNewPassword'] = "required|min_length[6]|max_length[21]|alpha_numeric";
-				$this->validation->set_rules($rules);
-				
-				$fields['txtNewPassword'] = $this->lang->line('txtNewPassword');
-				$this->validation->set_fields($fields);
-				
+			if($this->usermanagment->IsPasswordValidByID($UserID, $old_password))
+			{			
 				if ($this->validation->run())
 				{
-					$new_password=$this->input->post('txtNewPassword');
 					$this->usermanagment->NewPassword($UserID, $new_password);
-				} 
+					return true;
+				}
 			}
 			else
 			{
-				$data['OldPasswordError'] = "block";
+				return false;
 			}
+		}
+		else
+		{
+			return true;
 		}
 		
 	}

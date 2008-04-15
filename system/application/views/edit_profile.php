@@ -6,7 +6,7 @@
 
 		if(oldPassword.value != "")
 		{
-    		addForm("EditProfile" ,"vgEditProfile");
+    		addButton("btnSave" ,"vgEditProfile");
 
     		addValidatorRegEx("txtNewPassword", "errorDivNewPassword", "^.{6,21}$", "vgEditProfile");
     		addValidatorCompare("txtReNewPassword", "txtNewPassword", "errorDivReNewPassword", "vgEditProfile");
@@ -16,6 +16,12 @@
 		}
 
     }
+	
+	function btnSaveClick()
+	{
+		var btnSave = document.getElementById("btnSave");
+		btnSave.click();
+	}
 	
     </script>
 	
@@ -27,7 +33,7 @@
                     {UserStatus}
                 </td>
                 <td class="UserStatus UserStatusEdit">
-                    <a href="#" id="lnkSave" onclick="document.EditProfile.submit();">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>
+                    <a href="#" id="lnkSave" onclick="btnSaveClick()">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>
                 </td>
             </tr>
             <tr>
@@ -275,9 +281,9 @@
 													<tr>
 														<td>
 															<input type="password" id="txtNewPassword" name="txtNewPassword" />
-															<!--<?php
-															echo $this->validation->txtNewPassword_error;
-															?>-->
+															<?php
+																	echo $this->validation->txtnewpassword_error;
+															?>
 														</td>
 														<td>
 															<div id="errorDivNewPassword" class="Login_validator">
@@ -319,12 +325,13 @@
                                             </td>
                                             <td class="SaveButtonTD">
                                                 <div align="right">
-                                                    <a href="#" id="Save" name="Save" onclick="document.EditProfile.submit();">
+                                                    <a href="#" id="Save" name="Save" onclick="btnSaveClick()">
                                                         <div class="Login_submit">
                                                             {Save}
                                                         </div>
                                                     </a>
                                                 </div>
+												<input id="btnSave" name="btnSave" type="submit" value="true" style="display:none;"/>
                                             </td>
                                         </tr>
                                     </table>

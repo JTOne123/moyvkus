@@ -60,13 +60,12 @@ class Usermanagment {
 	*/
 	function IsPasswordValidByID($ID, $password)
 	{
-		$query = $this->ci->db->query("SELECT password FROM users WHERE email='$ID'");
+		$query = $this->ci->db->query("SELECT password FROM users WHERE ID='$ID'");
 		
 		$row = $query->row();
 		
 		$password=md5($password.'secret_message');
-		
-		if($password==$row->password)
+		if($password == $row->password)
 		{
 			return true;
 		}
@@ -126,7 +125,7 @@ class Usermanagment {
 	function NewPassword($UserID, $NewPassword)
 	{
 		$NewPassword=md5($NewPassword.'secret_message'); //md5 кодирует строку с паролем 
-		$query = $this->ci->db->query("UPDATE users SET password = '$NewPassword' WHERE user_id = '$UserID");
+		$query = $this->ci->db->query("UPDATE users SET password = '$NewPassword' WHERE ID = '$UserID'");
 	}
 	
 	/*

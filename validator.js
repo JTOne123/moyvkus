@@ -19,6 +19,8 @@ var validatorErrorDiv = new Array();
 
 var validatorRegExExpression = new Array();
 
+var validatorSubmit = false;
+
 //Add regist of validation group and form
 function addForm(formId, validationGroup)
 {
@@ -27,6 +29,18 @@ function addForm(formId, validationGroup)
     
     receivedElement = document.getElementById(formId);
     receivedElement.onsubmit = function(){return false};
+    
+    validatorSubmit = false;
+}
+function addButton(formId, validationGroup)
+{
+    validationGroupForms[formId] = validationGroup;
+    validadedForms[validadedForms.length] = formId;
+    
+    receivedElement = document.getElementById(formId);
+    receivedElement.onsubmit = function(){return false};
+    
+    validatorSubmit = true;
 }
 
 //Regist regex validator
@@ -188,8 +202,13 @@ function isFormValid(validationGroup)
 
      if(generalCountInValidationGroup == validCountInValidationGroup)
         {
-        showErrorDiv(false, checkedInputId);           
-        document.forms[getFormByValidationGroup(validationGroup)].submit();
+        showErrorDiv(false, checkedInputId);
+        
+        if(validatorSubmit==false)           
+            document.forms[getFormByValidationGroup(validationGroup)].submit();
+        else
+            document.getElementById(getFormByValidationGroup(validationGroup)).click();
+        
         }
      else
         if(notValidInputId != "none")
