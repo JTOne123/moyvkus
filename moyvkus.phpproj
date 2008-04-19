@@ -76,6 +76,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\myfriends.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\profile.php"
     {
     "ProjRelPath" = "T"
@@ -136,6 +140,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\myfriends.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\notification.php"
     {
     "ProjRelPath" = "T"
@@ -153,6 +161,14 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\models\\index.html"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\models\\loginform.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\models\\menu.php"
     {
     "ProjRelPath" = "T"
     }
@@ -181,6 +197,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\myfriends.php"
     {
     "ProjRelPath" = "T"
     }

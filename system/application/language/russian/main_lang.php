@@ -91,4 +91,11 @@ $lang['MySettings'] = "Мои настройки";
 $lang['Cancel'] = "Отмена";
 $lang['Region'] = "Регион";
 $lang['txtNewPassword'] = "Пароль должен быть не менее 6 символов";
+
+//My friends
+$lang['MyFriends'] = "Мои друзья";
+$lang['FriendsFilter'] = "Фильтр друзей";
+$lang['Search'] = "Отсортировать";
+
+
 ?>
