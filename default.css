@@ -171,7 +171,6 @@ a
 	padding: 2px 15px 3px;
 	text-align: center;
 	text-decoration: none;
-	width: 50px;
 	cursor: hand;
 }
 
@@ -332,4 +331,54 @@ a
 	color: Red;
 	font-size: 14px;
 	line-height: 16px;
+}
+
+/* Äðóçüÿ */
+.Friends
+{
+	width: 632px;
+	border-left: 1px solid #EAEEF3;
+	border-right: 1px solid #EAEEF3;
+	border-bottom: 1px solid #EAEEF3;
+}
+
+.FriendsFilter
+{
+	background: #F7F7F7 none repeat scroll 0%;
+	border-bottom: 1px solid #D8DFEA;
+	color: gray;
+	padding: 5px 10px 4px;
+}
+
+.FriendsCount
+{
+	border-bottom: 1px solid #DAE2E8;
+	clear: both;
+	color: #45688E;
+	font-weight: bold;
+	line-height: normal;
+	padding: 11px 10px 0pt;
+	font-size: 14px;
+}
+
+.FriendsBuilder
+{
+	float: left;
+	padding: 10px 10px 5px;
+	width: 606px;
+}
+
+.FriendsItem
+{
+	background: #FFFFFF none repeat scroll 0%;
+	border: 1px solid #CCCCCC;
+	margin-bottom: 5px;
+	padding: 5px 4px 4px;
+	width: 100%;
+}
+
+.FriendAvatar
+{
+	text-decoration: none;
+	border-width: 0px;
 }
