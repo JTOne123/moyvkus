@@ -64,7 +64,7 @@ $lang['InterestsText'] = "Интересы:";
 $lang['AboutText'] = "О себе:";
 $lang['MyRatingText'] = "Мой рейтинг:";
 $lang['MyRatingLevelText'] = "Уровень:";
-$lang['MyBestRecipesText'] = "Лучший рецепт";
+$lang['MyBestRecipesText'] = "Лучший рецепт:";
 $lang['MyRecipes'] = "Мои рецепты";
 $lang['MyInfo'] = "О себе";
 $lang['Contacts'] = "Контактная информация";
@@ -95,7 +95,7 @@ $lang['txtNewPassword'] = "Пароль должен быть не менее 6 символов";
 //My friends
 $lang['MyFriends'] = "Мои друзья";
 $lang['FriendsFilter'] = "Фильтр друзей";
-$lang['Search'] = "Отсортировать";
+$lang['Search'] = "Поиск";
 $lang['MyFriendsCount'] = "У Вас {Number} друзей";
 $lang['FriendItem'] = "<div id=\"FriendsItem\" class=\"FriendsItem\">
 						<table cellpadding=\"0\" cellspacing=\"0\" class=\"FriendsItemTable\">
@@ -124,7 +124,7 @@ $lang['FriendItem'] = "<div id=\"FriendsItem\" class=\"FriendsItem\">
 										</tr>
 										<tr>
 											<td class=\"LabelText\">
-												{FriendBestRecipe}
+												{FriendBestRecipeText}
 											</td>
 											<td class=\"LableValue\">
 												<a href=\"{FriendBestRecipesUrl}\">{FriendBestRecipe}</a>
@@ -166,12 +166,9 @@ $lang['FriendItem'] = "<div id=\"FriendsItem\" class=\"FriendsItem\">
 							</tr>
 						</table>
 					</div>";
-$lang['FullNameText'] = "Имя:";
-$lang['FriendRatingLevelText'] = "Уровень мастерства:";
-$lang['FriendBestRecipe'] = "Лучший рецепт:";
-$lang['SendMessage'] = "Отослать сообщение";
+$lang['SendMessage'] = "Отправить сообщение";
 $lang['FriendFriends'] = "Его(ее) друзья";
-$lang['DeleteFriend'] = "Удалить из списка друзей";
+$lang['DeleteFriend'] = "Убрать из друзей";
 
 
 ?>

@@ -7,25 +7,26 @@
             </tr>
             <tr>
                 <td class="FriendsFilter">
-                    <form id="FriendsFilterForm" method="POST" action="/myfriends">
-                    </form>
-                    <table>
-                        <tr>
-                            <td>
-                                {FriendsFilter}
-                            </td>
-                            <td>
-                                <input type="text" name="InputFriendsFilter" id="InputFriendsFilter" />
-                            </td>
-                            <td>
-                                <a href="#" id="FriendFilterSubmit" name="FriendFilterSubmit" onclick="document.forms['FriendsFilterForm'].submit();">
-                                    <div class="Login_submit">
-                                        {Search}
-                                    </div>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
+                    <form id="FriendsFilterForm" method="POST" action="/myfriends" class="FriendsFilterForm">
+						<table>
+							<tr>
+								<td>
+									{FriendsFilter}
+								</td>
+								<td>
+									<input type="text" name="InputFriendsFilter" id="InputFriendsFilter" />
+								</td>
+								<td>
+									<a href="#" id="FriendFilterSubmit" name="FriendFilterSubmit" onclick="document.forms['FriendsFilterForm'].submit();">
+										<div class="Login_submit">
+											{Search}
+										</div>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</form>
+
                 </td>
             </tr>
             <tr>

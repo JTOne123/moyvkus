@@ -25,8 +25,8 @@ class MyFriendsLib {
 	function IsTheyFriends($user_id, $friend_id)
 	{
 		$query = $this->ci->db->query("SELECT count(1) FROM myfriends 
-									   WHERE user_id = $user_id AND friend_id = $friend_id 
-									   OR user_id = $friend_id AND friend_id = $user_id");
+					WHERE user_id = $user_id AND friend_id = $friend_id 
+					OR user_id = $friend_id AND friend_id = $user_id");
 		$row = $query->row();
 		
 		if($row == 0)
@@ -47,10 +47,17 @@ class MyFriendsLib {
 	/*
 	Получаем список друзей
 	*/
-	function GetFriends($user_id)
+	function GetFriends($user_id, $filter)
 	{
-		$query = $this->ci->db->query("SELECT friend_id FROM myfriends WHERE user_id = $user_id 
-									   UNION SELECT user_id AS friend_id FROM myfriends WHERE friend_id = $user_id");
+		if($filter == "")
+			$query = $this->ci->db->query("SELECT friend_id FROM myfriends WHERE user_id = $user_id 
+						UNION SELECT user_id AS friend_id FROM myfriends WHERE friend_id = $user_id");
+		else
+			$query = $this->ci->db->query("SELECT friend_id FROM myfriends AS mf LEFT JOIN users as u ON mf.friend_id = u.ID 
+						WHERE mf.user_id = $user_id and (u.first_name LIKE '%$filter%' or u.last_name LIKE '%$filter%')
+						UNION SELECT user_id FROM myfriends AS mf LEFT JOIN users as u ON mf.user_id = u.ID 
+						WHERE mf.friend_id = $user_id and (u.first_name LIKE '%$filter%' or u.last_name LIKE '%$filter%')");
+		
 		
 		return $query;
 	}

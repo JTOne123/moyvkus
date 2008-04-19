@@ -53,7 +53,7 @@ class MyFriends extends Controller {
 	
 	function data_bind($data)
 	{
-		$query =  $this->myfriendslib->GetFriends(1);
+		$query =  $this->myfriendslib->GetFriends(1, $this->input->post('InputFriendsFilter'));
 		
 		$friends_counts = str_replace("{Number}", $query->num_rows(), $this->lang->line('MyFriendsCount'));
 		$data['FriendsCount'] = $friends_counts;
@@ -66,14 +66,33 @@ class MyFriends extends Controller {
 	function friends_builder($query)
 	{
 		$friend_item = $this->lang->line('FriendItem');
+		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
+		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
+		$friend_item = str_replace("{FriendBestRecipeText}", $this->lang->line('MyBestRecipesText'), $friend_item);
+		$friend_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $friend_item);
+		$friend_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $friend_item);
+		$friend_item = str_replace("{DeleteFriend}", $this->lang->line('DeleteFriend'), $friend_item);
+		
+		$friends_list = "";
 		
 		foreach ($query->result() as $row)
-		{
+		{	
 			$friend = $this->usermanagment->GetUser($row->friend_id);
+			$friend_data = $this->usermanagment->GetUserData($row->friend_id);
 			
+			$friend_current = str_replace("{FriendFullName}", $friend->first_name . ' ' . $friend->last_name, $friend_item);
+			$friend_current = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id' . $row->friend_id, $friend_current);
+			
+			if($friend_data->avatar_url != null)
+				$avatar_url = $user_data->avatar_url;
+			else
+				$avatar_url = "../../images/noavatar.gif";
+				
+			$friend_current = str_replace("{FriendAvatarUrl}", $avatar_url, $friend_current);
+			
+			$friends_list = $friends_list . $friend_current;
 		}
-		
-		return $friend_item;
+		return $friends_list;
 	}
 }
 ?>
