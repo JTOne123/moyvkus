@@ -77,3 +77,11 @@ user_agent varchar(50) NOT NULL,
 last_activity int(10) unsigned DEFAULT 0 NOT NULL,
 PRIMARY KEY (session_id)
 );
+
+
+/*Table structure for table `myfriends` */
+
+CREATE TABLE `myfriends` (
+  `user_id` int(11) DEFAULT NULL,
+  `friend_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -9,6 +9,7 @@ class MyFriends extends Controller {
 		$this->load->library('validation');
 		
 		$this->load->library('usermanagment');
+		$this->load->library('myfriendslib');
 		
 		$this->load->helper('date');
 	}
@@ -52,9 +53,27 @@ class MyFriends extends Controller {
 	
 	function data_bind($data)
 	{
-		$data['FriendsCount'] = $this->lang->line('MyFriendsHeader');
+		$query =  $this->myfriendslib->GetFriends(1);
+		
+		$friends_counts = str_replace("{Number}", $query->num_rows(), $this->lang->line('MyFriendsCount'));
+		$data['FriendsCount'] = $friends_counts;
+		
+		$data['FriendsBuilder'] = $this->friends_builder($query);
 		
 		return $data;
+	}
+	
+	function friends_builder($query)
+	{
+		$friend_item = $this->lang->line('FriendItem');
+		
+		foreach ($query->result() as $row)
+		{
+			$friend = $this->usermanagment->GetUser($row->friend_id);
+			
+		}
+		
+		return $friend_item;
 	}
 }
 ?>
