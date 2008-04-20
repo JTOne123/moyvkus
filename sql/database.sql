@@ -50,7 +50,7 @@ CREATE TABLE `user_data` (
   `activities` varchar(2000) DEFAULT NULL,
   `interests` varchar(2000) DEFAULT NULL,
   `about` varchar(2000) DEFAULT NULL,
-  `avatar_url` varchar(200) DEFAULT NULL
+  `avatar_name` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 /*Table structure for table `users` */
