@@ -20,7 +20,7 @@ class Edit_Profile extends Controller {
 	
 	function index()
 	{
-		$data = $this->load_headrs();
+		$data = $this->load_headers();
 		
 		$data = $this->load_resource($data);
 		
@@ -33,15 +33,14 @@ class Edit_Profile extends Controller {
 				redirect('/profile/', 'refresh');
 		}
 		
-		
 		$data['body']= $this->parser->parse('edit_profile', $data);
 		
 		$this->parser->parse('main_tpl', $data);
 	}
 	
-	function load_headrs()
+	function load_headers()
 	{
-		$data['title'] = $this->lang->line('EditPrifile');
+		$data['title'] = $this->lang->line('EditProfile');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();

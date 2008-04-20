@@ -16,7 +16,7 @@ class MyFriends extends Controller {
 	
 	function index()
 	{
-		$data = $this->load_headrs();
+		$data = $this->load_headers();
 		
 		$data = $this->load_resource($data);
 		
@@ -28,9 +28,9 @@ class MyFriends extends Controller {
 		$this->parser->parse('main_tpl', $data);
 	}
 	
-	function load_headrs()
+	function load_headers()
 	{
-		$data['title'] = $this->lang->line('MyFriends');
+		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('MyFriends');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();
