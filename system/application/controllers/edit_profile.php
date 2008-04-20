@@ -102,8 +102,8 @@ class Edit_Profile extends Controller {
 		$data['OldPasswordError'] = "none";
 		
 		//Получение данных юзера и заполнение их
-		$users = $this->usermanagment->GetUser(1);
-		$user_data = $this->usermanagment->GetUserData(1);
+		$users = $this->usermanagment->GetUser($this->userauthorization->get_loged_on_user_id());
+		$user_data = $this->usermanagment->GetUserData($this->userauthorization->get_loged_on_user_id());
 		
 		if($users != null)
 		{
