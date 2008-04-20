@@ -42,9 +42,26 @@ $lang['AfterRegistraionEmailMessage'] = "<html>
 										<p>Уважаемый(ая) {first_name} {last_name}</p>
 										<p>Ваша учетная запись активирована</p>
 										<p>Ваш пароль: {password}</p>
-										<p>С уважением, администрация moyvkus.ru</p>
-										</body>
+								<p>С уважаением администарация проекта Мой Вкус.ru <a href=\"http://www.moyvkus.ru\">http://www.moyvkus.ru</a></p>
+		</body>
 										</html>";
+										
+$lang['InviteEmailSubject'] = "Приглашаем вас зарегистрироваться в нашем проекте Мой Вкус.ru http://www.moyvkus.ru";
+$lang['InviteEmailMessage'] = "<html>
+								<body>
+								<p>Уважаемый {InvetedUserFullName}</p>
+								<br/>
+								<p>Пользователь сети Мой Вкус.ru(http://www.moyvkus.ru), 
+								{UserFullName} желает вас пригласить и принять участие в проекте, который просвещенный вкусным блюдам.</p>
+								<br/>
+								<p>Для начала регистрации пройдите по этой ссылке {UrlForRegister}</p>
+								<br/>
+								<p>Если вы не хотите участвовать в проекте или вы не знакомы с данным пользователем, просто удалите это письмо.</p>
+								<br/>
+								<p>С уважаением администарация проекта Мой Вкус.ru <a href=\"http://www.moyvkus.ru\">http://www.moyvkus.ru</a></p>
+								</body>
+								</html>";
+
 										
 //Profile
 $lang['Prifile'] = "Профайл";
@@ -107,6 +124,16 @@ $lang['MessageBoxTitle'] = "Удаление из списка друзей";
 $lang['MessageBoxText'] = 'Вы точно хотите удалить участника(цу) <a href="{FriendUrl}">{FriendFullName}</a> из списка друзей?';
 $lang['Yes'] = "Удалить";
 $lang['No'] = "Отмена";
+
+//Invite
+$lang['Invite'] = "Пригласить друга";
+$lang['Information'] = "Информация о Вашем друге";
+$lang['Note'] = "Кого можно пригласить?";
+$lang['NoteAnswer'] = "Приглашать можно только тех, с кем Вы знакомы. Спам категорически запрещен.";
+$lang['Email'] = "E-mail:*";
+$lang['FirstName'] = "Имя:";
+$lang['LastName'] = "Фамилия:";
+$lang['Send'] = "Отправить приглашение";
 
 
 ?>

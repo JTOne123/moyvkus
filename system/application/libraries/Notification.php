@@ -25,7 +25,27 @@ class Notification {
 		$message_text = str_replace("{first_name}", $returned_value->first_name, $message_text);
 		$message_text = str_replace("{last_name}", $returned_value->last_name, $message_text);
 		$message_text = str_replace("{password}", $password, $message_text);
-
+		
+		$this->ci->email->message($message_text);
+		
+		$this->ci->email->send();
+	}
+	
+	function InviteFriend($user_id, $friend_email, $friend_first_name, $friend_last_name)
+	{	
+		$user = $this->ci->usermanagment->GetUser($user_id);
+	
+		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));
+		$this->ci->email->to($friend_email);
+		
+		$this->ci->email->subject($this->ci->lang->line('InviteEmailSubject'));
+		
+		$message_text = $this->ci->lang->line('InviteEmailMessage');
+		
+		$message_text = str_replace("{InvetedUserFullName}", $friend_first_name . ' ' . $friend_last_name, $message_text);
+		$message_text = str_replace("{UserFullName}", $user->first_name . ' ' . $user->last_name, $message_text);
+		$message_text = str_replace("{UrlForRegister}", 'http://' . $_SERVER['HTTP_HOST'] . '/register/invite/id/' . $user->id, $message_text);
+		
 		$this->ci->email->message($message_text);
 		
 		$this->ci->email->send();

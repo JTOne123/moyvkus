@@ -454,3 +454,19 @@ a
 {
 	padding-top: 5px;
 }
+
+/* Invite */
+
+.Note
+{
+	background: #F7F7F7 none repeat scroll 0%;
+	border: 1px solid #DDDDDD;
+	color: #111111;
+	font-size: 12px;
+}
+
+.InvateMainTable
+{
+	margin-left: auto;
+	margin-right: auto;
+}
