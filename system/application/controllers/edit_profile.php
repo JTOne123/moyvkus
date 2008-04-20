@@ -18,13 +18,30 @@ class Edit_Profile extends Controller {
 		$this->load->view('edit_profile', array('error' => ' ' ));
 	}
 	
+	function _remap($method) {
+		//страницы, доступные без авторизации
+		$allowedPages = array();
+		$pars = $this->uri->segment_array();
+		unset($pars[1]);
+		unset($pars[2]);
+
+
+		if (($method != null) &&
+		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+			call_user_func_array(array($this, $method), $pars);
+		}
+		else
+		redirect('/login/', 'refresh');
+	}
+	
+	
 	function index()
 	{
-		$data = $this->load_headers();
+		$data = $this->_load_headers();
 		
-		$data = $this->load_resource($data);
+		$data = $this->_load_resource($data);
 		
-		$data = $this->data_bind($data);
+		$data = $this->_data_bind($data);
 		
 		if($this->input->post('btnSave') == "true")
 		{
@@ -38,7 +55,7 @@ class Edit_Profile extends Controller {
 		$this->parser->parse('main_tpl', $data);
 	}
 	
-	function load_headers()
+	function _load_headers()
 	{
 		$data['title'] = $this->lang->line('EditProfile');
 		$data['keywords'] = $this->lang->line('keywords');
@@ -51,7 +68,7 @@ class Edit_Profile extends Controller {
 		return $data;
 	}
 	
-	function load_resource($data)
+	function _load_resource($data)
 	{
 		// Локализация надписей
 		$data['Edit'] = $this->lang->line('Edit');
@@ -96,7 +113,7 @@ class Edit_Profile extends Controller {
 		return $data;
 	}
 	
-	function data_bind($data)
+	function _data_bind($data)
 	{
 		$data['ProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile';
 		$data['OldPasswordError'] = "none";
