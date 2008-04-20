@@ -65,7 +65,7 @@ class MyFriends extends Controller {
 	
 	function friends_builder($query)
 	{
-		$friend_item = $this->lang->line('FriendItem');
+		$friend_item = $this->myfriendslib->GetFriendsBuilderHTML();
 		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
 		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
 		$friend_item = str_replace("{FriendBestRecipeText}", $this->lang->line('MyBestRecipesText'), $friend_item);
@@ -81,7 +81,7 @@ class MyFriends extends Controller {
 			$friend_data = $this->usermanagment->GetUserData($row->friend_id);
 			
 			$friend_current = str_replace("{FriendFullName}", $friend->first_name . ' ' . $friend->last_name, $friend_item);
-			$friend_current = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id' . $row->friend_id, $friend_current);
+			$friend_current = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $row->friend_id, $friend_current);
 			
 			if($friend_data->avatar_url != null)
 				$avatar_url = $user_data->avatar_url;

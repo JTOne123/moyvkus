@@ -392,3 +392,17 @@ a
 {
 	height: 30px;
 }
+
+.Dialog
+{
+	background: #FFFFFF none repeat scroll 0%;
+	border: 10px solid #DAE2E8;
+	padding: 5px;
+	text-align: center;
+}
+
+.DialogTable
+{
+	margin-left: auto;
+	width:200px;
+}

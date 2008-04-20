@@ -61,5 +61,78 @@ class MyFriendsLib {
 		
 		return $query;
 	}
+	
+	function GetFriendsBuilderHTML()
+	{
+		return "<div id=\"FriendsItem\" class=\"FriendsItem\">
+				<table cellpadding=\"0\" cellspacing=\"0\" class=\"FriendsItemTable\">
+				<tr>
+				<td valign=\"top\">
+				<a href=\"{FriendUrl}\">
+				<img src=\"{FriendAvatarUrl}\" title=\"{FriendFullName}\" class=\"FriendAvatar\"/></a>
+				</td>
+				<td valign=\"top\">
+				<table>
+				<tr>
+				<td class=\"LabelText\">
+				{FullNameText}
+				</td>
+				<td class=\"LableValue\">
+				<a href=\"{FriendUrl}\">{FriendFullName}</a>
+				</td>
+				</tr>
+				<tr>
+				<td class=\"LabelText\">
+				{FriendRatingLevelText}
+				</td>
+				<td class=\"LableValue\">
+				{FriendRatingLevel}
+				</td>
+				</tr>
+				<tr>
+				<td class=\"LabelText\">
+				{FriendBestRecipeText}
+				</td>
+				<td class=\"LableValue\">
+				<a href=\"{FriendBestRecipesUrl}\">{FriendBestRecipe}</a>
+				</td>
+				</tr>
+				</table>
+				</td>
+				<td valign=\"top\">
+				<table>
+				<tr>
+				<td>
+				<a href=\"{SendMessageUrl}\" id=\"SendMessage\" name=\"SendMessage\">
+				<div class=\"Login_submit\">
+				{SendMessage}
+				</div>
+				</a>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<a href=\"{FriendFriendsUrl}\" id=\"FriendFriends\" name=\"FriendFriends\">
+				<div class=\"Login_submit\">
+				{FriendFriends}
+				</div>
+				</a>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<a href=\"{DeleteFriendUrl}\" id=\"DeleteFriend\" name=\"DeleteFriend\">
+				<div class=\"Login_submit\">
+				{DeleteFriend}
+				</div>
+				</a>
+				</td>
+				</tr>
+				</table>
+				</td>
+				</tr>
+				</table>
+				</div>";
+	}
 }
 ?>
