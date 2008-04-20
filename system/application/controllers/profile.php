@@ -65,9 +65,8 @@ class Profile extends Controller {
 				);
 				
 		//Получение данных юзера и заполнение их
-		$users = $this->usermanagment->GetUser(1);
-		$user_data = $this->usermanagment->GetUserData(1);
-		
+		$users = $this->usermanagment->GetUser($this->userauthorization->get_loged_on_user_id());
+		$user_data = $this->usermanagment->GetUserData($this->userauthorization->get_loged_on_user_id());
 		if($users != null)
 		{
 			$data['UserStatus'] = $users->first_name . ' ' . $users->last_name;
@@ -112,8 +111,8 @@ class Profile extends Controller {
 			$data['Interests'] = $user_data->interests;
 			$data['About'] = $user_data->about;
 			
-			if($user_data->avatar_url != null)
-				$data['AvatarUrl'] = $user_data->avatar_url;
+			if($user_data->avatar_name != null)
+				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;
 			else
 				$data['AvatarUrl'] = "../../images/noavatar.gif";
 			

@@ -13,14 +13,13 @@ class Edit_Profile extends Controller {
 		
 		$this->load->helper('date');
 		$this->load->helper('form');
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper('url');
 		
-		$this->load->view('edit_profile', array('error' => ' ' ));
 	}
 	
 	function _remap($method) {
 		//страницы, доступные без авторизации
-		$allowedPages = array();
+		$allowedPages = array('do_upload');
 		$pars = $this->uri->segment_array();
 		unset($pars[1]);
 		unset($pars[2]);
@@ -36,7 +35,7 @@ class Edit_Profile extends Controller {
 	
 	
 	function index()
-	{
+	{		
 		$data = $this->_load_headers();
 		
 		$data = $this->_load_resource($data);
@@ -45,11 +44,12 @@ class Edit_Profile extends Controller {
 		
 		if($this->input->post('btnSave') == "true")
 		{
-			$this->update_user(1);
-			if($this->updata_password(1))
+			$this->update_user($this->userauthorization->get_loged_on_user_id());
+			if($this->update_password($this->userauthorization->get_loged_on_user_id()))
 				redirect('/profile/', 'refresh');
 		}
 		
+		$data['Error'] = '';
 		$data['body']= $this->parser->parse('edit_profile', $data);
 		
 		$this->parser->parse('main_tpl', $data);
@@ -190,8 +190,8 @@ class Edit_Profile extends Controller {
 			$data['Interests'] = $user_data->interests;
 			$data['About'] = $user_data->about;
 			
-			if($user_data->avatar_url != null)
-				$data['AvatarUrl'] = $user_data->avatar_url;
+			if($user_data->avatar_name != null)
+				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;
 			else
 				$data['AvatarUrl'] = "../../images/noavatar.gif";
 			
@@ -213,9 +213,15 @@ class Edit_Profile extends Controller {
 	
 	function do_upload()
 	{
-		$config['upload_path'] = './uploads/';
+		$data = $this->_load_headers();
+		$data = $this->_load_resource($data);
+		$data = $this->_data_bind($data);
+		
+		$this->load->library('image_lib');
+		
+		$config['upload_path'] = './uploads/user_avatars/stack';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
+		$config['max_size']	= '2048';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 		
@@ -223,17 +229,37 @@ class Edit_Profile extends Controller {
 		
 		if ( ! $this->upload->do_upload())
 		{
-			$error = array('error' => $this->upload->display_errors());
-			
-			$this->load->view('upload_form', $error);
+			$data['Error'] = $this->upload->display_errors();
+			$data['body']= $this->parser->parse('edit_profile', $data);
+		    $this->parser->parse('main_tpl', $data);
 		}	
-		else
+		else //успешная загрузка
 		{
-			$data = array('upload_data' => $this->upload->data());
 			
-			$this->load->view('upload_success', $data);
-		}
-	}	
+			$upl_arr=$this->upload->data();
+			
+			$config['image_library'] = 'GD2';
+			$config['new_image'] = './uploads/user_avatars/a_'.$this->userauthorization->get_loged_on_user_id().$upl_arr['file_ext'];
+			$config['source_image'] = './uploads/user_avatars/stack/'.$upl_arr['raw_name'].$upl_arr['file_ext'];
+			$config['quality'] = '90%';
+			$config['width'] = 300;
+			$config['height'] = 130;
+			$this->image_lib->initialize($config);
+			$this->image_lib->resize();
+			
+	        $this->write_avatar_name_to_db($upl_arr['file_ext']);
+			
+			redirect('/edit_profile/', 'refresh');
+		}		
+	}
+	
+	function write_avatar_name_to_db($file_ext) //запись названия аватарки в базу
+	{
+		$user_id=$this->userauthorization->get_loged_on_user_id();
+		$this->db->query("UPDATE user_data set avatar_name='a_$user_id$file_ext' WHERE user_id=$user_id");
+	}
+	
+	
 	
 	function update_user($UserID)
 	{
@@ -266,7 +292,7 @@ class Edit_Profile extends Controller {
 		$users = $this->usermanagment->UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $city, $region, $country, $phone, $website, $activities, $interests, $about);
 	}
 	
-	function updata_password($UserID)
+	function update_password($UserID)
 	{
 		$rules['txtNewPassword'] = "min_length[6]|max_length[21]|alpha_numeric";
 		$this->validation->set_rules($rules);

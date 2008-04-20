@@ -1,5 +1,4 @@
     <script language="javascript" type="text/javascript">
-	
 	function AttachValidators()
 	{
 		var oldPassword = document.getElementById("txtOldPassword");
@@ -22,10 +21,9 @@
 		var btnSave = document.getElementById("btnSave");
 		btnSave.click();
 	}
-	
     </script>
 	
-<form id="EditProfile" name="EditProfile" method="POST" action="/edit_profile/">
+    
 	<div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile">
             <tr>
@@ -52,17 +50,19 @@
                             </tr>
                             <tr>
                                 <td>
-									<?=$error;?>
-									<?=form_open_multipart('upload/do_upload'); ?>
-									
-										<input id="FileAvatarUpload" name="FileAvatarUpload" type="file" class="FileAvatarUpload"
-											size="15" />
-										<a href="#" id="UploadAvatar" name="UploadAvatar">
-											<div class="Login_submit">
-												{Upload}
-											</div>
-										</a>
-										<input type="submit" value="upload" />
+                                
+								<?=form_open_multipart('edit_profile/do_upload'); ?>
+								<input type="file" name="userfile" size="15" />
+
+								<br />
+
+								<input type="submit" value="{Upload}" />
+								<br />
+								{Error}
+								</form>	
+						
+								
+<form id="EditProfile" name="EditProfile" method="POST" action="/edit_profile/">									
                                 </td>
                             </tr>
                             <tr>
@@ -282,7 +282,7 @@
 														<td>
 															<input type="password" id="txtNewPassword" name="txtNewPassword" />
 															<?php
-																	echo $this->validation->txtnewpassword_error;
+															//		echo $this->validation->txtnewpassword_error;
 															?>
 														</td>
 														<td>
