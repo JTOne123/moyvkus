@@ -222,8 +222,6 @@ class Edit_Profile extends Controller {
 		$config['upload_path'] = './uploads/user_avatars/stack';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '2048';
-		//$config['max_width']  = '1024';
-		//$config['max_height']  = '768';
 		$this->load->library('upload', $config);
 		
 		if ( ! $this->upload->do_upload())
@@ -247,7 +245,7 @@ class Edit_Profile extends Controller {
 			$this->image_lib->resize();
 			
 	        $this->write_avatar_name_to_db($upl_arr['file_ext']);
-			
+			unlink('./uploads/user_avatars/stack/'.$upl_arr['raw_name'].$upl_arr['file_ext']);
 			redirect('/edit_profile/', 'refresh');
 		}		
 	}
