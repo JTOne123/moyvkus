@@ -16,19 +16,18 @@ class MyFriends extends Controller {
 	
 	function index()
 	{
-		$data = $this->load_headers();
+		$data = $this->_load_headers();
 		
-		$data = $this->load_resource($data);
+		$data = $this->_load_resource($data);
 		
-		$data = $this->data_bind($data);
-		
-		
+		$data = $this->_data_bind($data);
+
 		$data['body']= $this->parser->parse('myfriends', $data);
 		
 		$this->parser->parse('main_tpl', $data);
 	}
 	
-	function load_headers()
+	function _load_headers()
 	{
 		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('MyFriends');
 		$data['keywords'] = $this->lang->line('keywords');
@@ -41,7 +40,7 @@ class MyFriends extends Controller {
 		return $data;
 	}
 	
-	function load_resource($data)
+	function _load_resource($data)
 	{
 		// Ëîêàëèçàöèÿ íàäïèñåé
 		$data['MyFriends'] = $this->lang->line('MyFriends');
@@ -51,15 +50,22 @@ class MyFriends extends Controller {
 		return $data;
 	}
 	
-	function data_bind($data)
+	function _data_bind($data)
 	{
-		$query =  $this->myfriendslib->GetFriends(1, $this->input->post('InputFriendsFilter'));
-		
-		$friends_counts = str_replace("{Number}", $query->num_rows(), $this->lang->line('MyFriendsCount'));
-		$data['FriendsCount'] = $friends_counts;
-		
-		$data['FriendsBuilder'] = $this->friends_builder($query);
-		
+		$user_id = $this->uri->segment(3);
+		if($user_id != null)
+		{
+			$query =  $this->myfriendslib->GetFriends($user_id, $this->input->post('InputFriendsFilter'));
+			
+			$friends_counts = str_replace("{Number}", $query->num_rows(), $this->lang->line('MyFriendsCount'));
+			$data['FriendsCount'] = $friends_counts;
+			
+			$data['FriendsBuilder'] = $this->friends_builder($query);
+		}
+		else
+		{
+			redirect('', 'refresh');
+		}
 		return $data;
 	}
 	
@@ -82,6 +88,8 @@ class MyFriends extends Controller {
 			
 			$friend_current = str_replace("{FriendFullName}", $friend->first_name . ' ' . $friend->last_name, $friend_item);
 			$friend_current = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $row->friend_id, $friend_current);
+			$friend_current = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $row->friend_id, $friend_current);
+			$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $row->friend_id, $friend_current);
 			
 			if($friend_data->avatar_url != null)
 				$avatar_url = $user_data->avatar_url;

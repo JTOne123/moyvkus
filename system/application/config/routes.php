@@ -15,7 +15,7 @@
 | so that a different class/function is called than the one
 | corresponding to the URL.
 |
-| Please see the user guide for complete details:
+| Please see the user guide for complete details:s
 |
 |	http://codeigniter.com/user_guide/general/routing.html
 |
@@ -40,6 +40,8 @@
 |
 */
 
+$route['messagebox/:any'] = "messagebox";
+$route['myfriends/id/:num'] = "myfriends";
 $route['default_controller'] = "main";
 $route['register/wrong_captcha'] = "register";
 $route['scaffolding_trigger'] = "";

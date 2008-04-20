@@ -72,7 +72,15 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\logout.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\main.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\controllers\\messagebox.php"
     {
     "ProjRelPath" = "T"
     }
@@ -197,6 +205,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\messagebox.php"
     {
     "ProjRelPath" = "T"
     }

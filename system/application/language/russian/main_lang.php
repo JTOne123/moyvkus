@@ -101,5 +101,12 @@ $lang['SendMessage'] = "Отправить сообщение";
 $lang['FriendFriends'] = "Его(ее) друзья";
 $lang['DeleteFriend'] = "Убрать из друзей";
 
+//MessageBox
+$lang['MessageBoxTitleFriendDelete'] = "Убрать из друзей";
+$lang['MessageBoxTitle'] = "Удаление из списка друзей";
+$lang['MessageBoxText'] = 'Вы точно хотите удалить участника(цу) <a href="{FriendUrl}">{FriendFullName}</a> из списка друзей?';
+$lang['Yes'] = "Удалить";
+$lang['No'] = "Отмена";
+
 
 ?>
