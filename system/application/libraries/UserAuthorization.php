@@ -66,7 +66,8 @@ class Userauthorization {
 	//ID авторизированого юзера
 	function get_loged_on_user_id()
 	{
-		return get_cookie('userid');
+		//return get_cookie('userid');
+		return $this->ci->session->userdata('user_id');
 	}
 	
 	
