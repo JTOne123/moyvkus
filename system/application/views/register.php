@@ -39,18 +39,18 @@
                             {first_name}
                         </td>
                         <td>
-                            <?=$this->validation->first_name_error;?>
                             <input id="first_name" name="first_name" value="<?=$this->validation->first_name;?>" type="text" class="Registration_input" />
-                        </td>
+                            <?=$this->validation->first_name_error;?>
+						</td>
                     </tr>
                     <tr>
                         <td class="Registration_text">
                             {last_name}
                         </td>
                         <td>
-                            <?=$this->validation->last_name_error;?>
                             <input id="last_name" name="last_name" value="<?=$this->validation->last_name;?>" type="text" class="Registration_input" />
-                        </td>
+                            <?=$this->validation->last_name_error;?>
+						</td>
                     </tr>
                     <tr>
                         <td class="Registration_text">

@@ -31,7 +31,7 @@ class Notification {
 		$this->ci->email->send();
 	}
 	
-	function InviteFriend($user_id, $friend_email, $friend_first_name, $friend_last_name)
+	function InviteFriend($user_id, $friend_id, $friend_email, $friend_first_name, $friend_last_name)
 	{	
 		$user = $this->ci->usermanagment->GetUser($user_id);
 	
@@ -44,7 +44,7 @@ class Notification {
 		
 		$message_text = str_replace("{InvetedUserFullName}", $friend_first_name . ' ' . $friend_last_name, $message_text);
 		$message_text = str_replace("{UserFullName}", $user->first_name . ' ' . $user->last_name, $message_text);
-		$message_text = str_replace("{UrlForRegister}", 'http://' . $_SERVER['HTTP_HOST'] . '/register/invite/id/' . $user_id, $message_text);
+		$message_text = str_replace("{UrlForRegister}", 'http://' . $_SERVER['HTTP_HOST'] . '/register/invite/id/' . $friend_id, $message_text);
 		
 		$this->ci->email->message($message_text);
 		

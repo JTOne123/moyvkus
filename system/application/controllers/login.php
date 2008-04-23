@@ -73,7 +73,7 @@ class Login extends Controller {
 	function check_mail($email) //есть ли в БД такой юзер. Если нет - значит нехер логинится.
 	{
 		$returned_value = $this->usermanagment->IsUserExits($email);
-		if($returned_value==true)
+		if($returned_value == false)
 		{
 			$this->validation->set_message('check_mail', $this->lang->line('check_user_mail_exist'));
 			return false;

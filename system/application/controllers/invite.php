@@ -96,8 +96,8 @@ class Invite extends Controller {
 				{
 					if($this->is_allready_sended($friend_email) == false)
 					{
-						$this->add_to_invite_table($user_id, $friend_email, $friend_first_name, $friend_last_name);
-						$this->notification->InviteFriend($user_id, $friend_email, $friend_first_name, $friend_last_name);
+						$friend_id = $this->add_to_invite_table($user_id, $friend_email, $friend_first_name, $friend_last_name);
+						$this->notification->InviteFriend($user_id, $friend_id, $friend_email, $friend_first_name, $friend_last_name);
 					}
 				}
 				else
@@ -123,7 +123,13 @@ class Invite extends Controller {
 	
 	function add_to_invite_table($user_id, $friend_email, $friend_first_name, $friend_last_name)
 	{
-		$this->db->query("INSERT INTO invite VALUES ($user_id, '$friend_email', '$friend_first_name', '$friend_last_name')");
+		$this->db->query("INSERT INTO invite (user_id, friend_email, friend_first_name, friend_last_name)
+					VALUES ($user_id, '$friend_email', '$friend_first_name', '$friend_last_name')");
+		
+		$query = $this->db->query("SELECT id FROM invite WHERE id = last_insert_id()");
+		$row = $query->row();
+		
+		return $row->id;
 	}
 }
 ?>

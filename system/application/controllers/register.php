@@ -5,15 +5,33 @@ class Register extends Controller {
 	function Register()
 	{
 		parent::Controller();
+		
 		$this->load->helper('form');
+		
 		$this->load->library('captcha');
 		$this->load->library('validation');
+		
 		$this->load->library('usermanagment');
 		$this->load->library('notification');
-		
+		$this->load->library('myfriendslib');
 	}
 	
 	function index()
+	{
+		$data = $this->_load_headers();
+		
+		$data = $this->_load_resource($data);
+		
+		$data = $this->_data_bind($data);
+		
+		$data['body']= $this->parser->parse('register', $data);
+		
+		$data['menu']=$this->Menu->buildmenu();
+		
+		$this->parser->parse('main_tpl', $data);	
+	}
+	
+	function _load_headers()
 	{
 		$data['title'] = $this->lang->line('title').' - Регистрация';
 		$data['keywords'] = $this->lang->line('keywords');
@@ -21,6 +39,30 @@ class Register extends Controller {
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
 		
+		return $data;
+	}
+	function _load_resource($data)
+	{
+		//Форма START
+		$data['sign_up_message'] = $this->lang->line('sign_up_message');
+		$data['sign_up_slogan_message'] = $this->lang->line('sign_up_slogan_message');
+		$data['first_name'] = $this->lang->line('first_name');
+		$data['last_name'] = $this->lang->line('last_name');
+		$data['password'] = $this->lang->line('password');
+		$data['sign_up'] = $this->lang->line('sign_up');
+		//Сообщения от JavaScript-валидатора
+		$data['Error_email'] = $this->lang->line('Error_email');
+		$data['Error_firstname'] = $this->lang->line('Error_firstname');
+		$data['Error_lastname'] = $this->lang->line('Error_lastname');
+		$data['Error_password'] = $this->lang->line('Error_password');
+		$data['Error_captcha'] = $this->lang->line('Error_captcha');
+		
+		//Форма END
+		
+		return $data;
+	}
+	function _data_bind($data)
+	{	
 		//Получаем поля с формы START
 		$send=$this->input->post('send');
 		$first_name=$this->input->post('first_name');
@@ -44,6 +86,25 @@ class Register extends Controller {
 		$fields['password'] = $this->lang->line('password');
 		$this->validation->set_fields($fields);
 		
+		$invite_id = $this->uri->segment(4);
+		if($invite_id != false)
+		{
+			$user = $this->get_invited_user($invite_id);
+			
+			if($user != null)
+			{
+				if($user->friend_first_name != null)
+					$this->validation->first_name = $user->friend_first_name;
+				
+				if($user->friend_last_name != null)
+					$this->validation->last_name = $user->friend_last_name;
+				
+				if($user->friend_email != null)
+					$this->validation->email = $user->friend_email;	
+			}
+			else
+				redirect('', 'refresh');
+		}
 		
 		$FormBuild=1;  //Показывать форму. Если включится валидатор, он поставит FormBuild=0 и форма не покажется. :)
 		
@@ -53,6 +114,12 @@ class Register extends Controller {
 			$FormBuild=0;
 			$this->usermanagment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
+			
+			if($invite_id != false)
+			{
+				
+			}
+			
 			$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
 		}
 		//Прошли валидацию - записываем данные из полей в БД END
@@ -92,30 +159,9 @@ class Register extends Controller {
 			$this->db->query($query);	
 			
 			
-			//Форма START
-			$data['sign_up_message'] = $this->lang->line('sign_up_message');
-			$data['sign_up_slogan_message'] = $this->lang->line('sign_up_slogan_message');
-			$data['first_name'] = $this->lang->line('first_name');
-			$data['last_name'] = $this->lang->line('last_name');
-			$data['password'] = $this->lang->line('password');
-			$data['sign_up'] = $this->lang->line('sign_up');
-			//Сообщения от JavaScript-валидатора
-			$data['Error_email'] = $this->lang->line('Error_email');
-			$data['Error_firstname'] = $this->lang->line('Error_firstname');
-			$data['Error_lastname'] = $this->lang->line('Error_lastname');
-			$data['Error_password'] = $this->lang->line('Error_password');
-			$data['Error_captcha'] = $this->lang->line('Error_captcha');
-			
-			$data['body']= $this->parser->parse('register', $data);
-			//Форма END
 		}
-		
-		
-		
-		$data['menu']=$this->Menu->buildmenu();
-		$this->parser->parse('main_tpl', $data);	
+		return $data;
 	}
-	
 	
 	//CALLBACK: Проверяем есть ли такая картинка для капчи в базе START
 	function captcha_check($str)
@@ -152,5 +198,12 @@ class Register extends Controller {
 	
 	//CALLBACK: Проверяем есть ли уже базе email, который хотят зарегать END
 	
+	function get_invited_user($invited_id)
+	{
+		$query = $this->db->query("SELECT user_id, friend_email, friend_first_name, friend_last_name FROM invite WHERE id = " . $invited_id);
+		$row = $query->row();
+		
+		return $row;
+	}
 }
 ?>

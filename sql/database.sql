@@ -89,6 +89,7 @@ CREATE TABLE `myfriends` (
 /*Table structure for table `invite` */
 
 CREATE TABLE `invite` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `friend_email` varchar(100) DEFAULT NULL,
   `friend_first_name` varchar(100) DEFAULT NULL,

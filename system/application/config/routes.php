@@ -40,6 +40,7 @@
 |
 */
 
+$route['register/invite/id/:num'] = "register";
 $route['messagebox/:any'] = "messagebox";
 $route['myfriends/id/:num'] = "myfriends";
 $route['default_controller'] = "main";
