@@ -30,9 +30,9 @@ class Usermanagment {
 		$query = $this->ci->db->query("SELECT id FROM users WHERE email = '$email'");
 		
 		if($query->num_rows()==0)
-			return true;
-		else 
 			return false;
+		else 
+			return true;
 	}
 	
 	
@@ -126,9 +126,9 @@ class Usermanagment {
 	/*
 	Редактирование аватара
 	*/
-	function UpdateAvatar($UserID, $AvatarImagePath)
+	function UpdateAvatar($user_id, $file_ext)
 	{
-		$query = $this->ci->db->query("UPDATE user_data SET avatar_url = '$AvatarImagePath' WHERE user_id = '$UserID");
+		$this->ci->db->query("UPDATE user_data set avatar_name='a_$user_id$file_ext' WHERE user_id=$user_id");
 	}
 }
 ?>

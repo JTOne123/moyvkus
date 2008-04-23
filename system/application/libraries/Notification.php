@@ -44,7 +44,7 @@ class Notification {
 		
 		$message_text = str_replace("{InvetedUserFullName}", $friend_first_name . ' ' . $friend_last_name, $message_text);
 		$message_text = str_replace("{UserFullName}", $user->first_name . ' ' . $user->last_name, $message_text);
-		$message_text = str_replace("{UrlForRegister}", 'http://' . $_SERVER['HTTP_HOST'] . '/register/invite/id/' . $user->id, $message_text);
+		$message_text = str_replace("{UrlForRegister}", 'http://' . $_SERVER['HTTP_HOST'] . '/register/invite/id/' . $user_id, $message_text);
 		
 		$this->ci->email->message($message_text);
 		

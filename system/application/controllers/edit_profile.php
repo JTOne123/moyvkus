@@ -253,7 +253,7 @@ class Edit_Profile extends Controller {
 	function write_avatar_name_to_db($file_ext) //запись названия аватарки в базу
 	{
 		$user_id=$this->userauthorization->get_loged_on_user_id();
-		$this->db->query("UPDATE user_data set avatar_name='a_$user_id$file_ext' WHERE user_id=$user_id");
+		$this->usermanagment->UpdateAvatar($user_id, $file_ext);
 	}
 	
 	

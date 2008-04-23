@@ -83,27 +83,28 @@ class Invite extends Controller {
 		$fields['txtEmail'] = $this->lang->line('Error_lastname');
 		$this->validation->set_fields($fields);
 		
-		var_dump($this->input->post('btnSend'));
 		if($this->input->post('btnSend') != false)
 		{
 			$user_id = $this->userauthorization->get_loged_on_user_id();
-
+			
 			$friend_email = $this->input->post('txtEmail');
 			$friend_first_name = $this->input->post('txtFirstName');
 			$friend_last_name = $this->input->post('txtLastName');
-			if($this->usermanagment->IsUserExits($friend_email) == false)
-			{
-				if($this->is_allready_sended == false)
+			
+			if($this->validation->run())
+				if($this->usermanagment->IsUserExits($friend_email) == false)
 				{
-					$this->add_to_invite_table($user_id, $friend_email, $friend_first_name, $friend_last_name);
-					$this->notification->InviteFriend($user_id, $friend_email, $friend_first_name, $friend_last_name);
+					if($this->is_allready_sended($friend_email) == false)
+					{
+						$this->add_to_invite_table($user_id, $friend_email, $friend_first_name, $friend_last_name);
+						$this->notification->InviteFriend($user_id, $friend_email, $friend_first_name, $friend_last_name);
+					}
 				}
-			}
-			else
-			{
-				$friend = $this->$this->usermanagment->GetUserInfoByEmail($friend_email);
-				redirect('/profile/id/' . $friend->id, 'refresh');	
-			}
+				else
+				{
+					$friend = $this->usermanagment->GetUserInfoByEmail($friend_email);
+					redirect('/profile/id/' . $friend->id, 'refresh');	
+				}
 		}
 		
 		return $data;
@@ -122,7 +123,7 @@ class Invite extends Controller {
 	
 	function add_to_invite_table($user_id, $friend_email, $friend_first_name, $friend_last_name)
 	{
-		
+		$this->db->query("INSERT INTO invite VALUES ($user_id, '$friend_email', '$friend_first_name', '$friend_last_name')");
 	}
 }
 ?>

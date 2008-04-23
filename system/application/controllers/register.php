@@ -141,7 +141,7 @@ class Register extends Controller {
 	function email_check($mail)
 	{
 		$returned_value = $this->usermanagment->IsUserExits($mail);
-		if($returned_value==false)
+		if($returned_value)
 		{
 			$this->validation->set_message('email_check', $this->lang->line('email_check'));
 			return false;
