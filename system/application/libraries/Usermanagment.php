@@ -20,6 +20,8 @@ class Usermanagment {
 		$UserID = $this->GetUserInfoByEmail($email)->id;
 		
 		$query = $this->ci->db->query("INSERT INTO user_data(user_id) VALUES('$UserID')");
+		
+		return $UserID;
 	}
 	
 	/*

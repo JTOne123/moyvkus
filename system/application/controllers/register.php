@@ -86,11 +86,10 @@ class Register extends Controller {
 		$fields['password'] = $this->lang->line('password');
 		$this->validation->set_fields($fields);
 		
-		$invite_id = $this->uri->segment(4);
+		$invite_id = $this->uri->segment(4);		
 		if($invite_id != false)
 		{
 			$user = $this->get_invited_user($invite_id);
-			
 			if($user != null)
 			{
 				if($user->friend_first_name != null)
@@ -101,23 +100,30 @@ class Register extends Controller {
 				
 				if($user->friend_email != null)
 					$this->validation->email = $user->friend_email;	
+				
+				$_SESSION['invite_id'] = $invite_id;
 			}
 			else
 				redirect('', 'refresh');
 		}
-		
+
 		$FormBuild=1;  //Показывать форму. Если включится валидатор, он поставит FormBuild=0 и форма не покажется. :)
 		
 		//Прошли валидацию - записываем данные из полей в БД START
 		if ($this->validation->run() == TRUE) 
 		{
 			$FormBuild=0;
-			$this->usermanagment->AddUser($email, $first_name, $last_name, $password);
+			$new_user_id = $this->usermanagment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
+			
+			$invite_id = $_SESSION['invite_id'];
 			
 			if($invite_id != false)
 			{
+				$this->myfriendslib->AddFriend($user->user_id, $new_user_id);
+				delete_from_invite($invite_id);
 				
+				$_SESSION['invite_id'] = false;
 			}
 			
 			$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
@@ -204,6 +210,11 @@ class Register extends Controller {
 		$row = $query->row();
 		
 		return $row;
+	}
+	
+	function delete_from_invite($invited_id)
+	{
+		$this->db->query("DELETE FROM invite WHERE id = " . $invited_id);
 	}
 }
 ?>
