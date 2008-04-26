@@ -135,5 +135,12 @@ $lang['FirstName'] = "Имя:";
 $lang['LastName'] = "Фамилия:";
 $lang['Send'] = "Отправить приглашение";
 
+//Send Message
+$lang['send_message'] = "Новое сообщение";
+$lang['From'] = "От кого:";
+$lang['To'] = "Кому:";
+$lang['Subject'] = "Тема:";
+$lang['Text'] = "Сообщение:";
+$lang['Previous'] = "Предыдущие сообщение";
 
 ?>

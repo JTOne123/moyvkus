@@ -100,6 +100,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\send_message.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\welcome.php"
     {
     "ProjRelPath" = "T"
@@ -149,6 +153,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\libraries\\location.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\libraries\\message.php"
     {
     "ProjRelPath" = "T"
     }
@@ -229,6 +237,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\register.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\send_message.php"
     {
     "ProjRelPath" = "T"
     }

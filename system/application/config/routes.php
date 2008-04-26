@@ -40,6 +40,7 @@
 |
 */
 
+$route['send_message/send_to/id/:num'] = "send_message";
 $route['register/invite/id/:num'] = "register";
 $route['messagebox/:any'] = "messagebox";
 $route['myfriends/id/:num'] = "myfriends";
