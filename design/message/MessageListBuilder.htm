@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Untitled Page</title>
+    <link rel="stylesheet" href="file:///C:/moyvkus/default.css" type="text/css" />
+</head>
+<body>
+    <div id="FriendsItem" class="FriendsItem">
+        <table cellpadding="0" cellspacing="0" class="MessageItemTable">
+            <tr>
+                <td valign="top">
+                    <a href="{AuthorUrl}">
+                        <img src="{AuthorUrl}" title="{MessageAuthorAvatar}" class="MessageAuthorAvatar" /></a>
+                </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td class="MessageCaption">
+                                {Sender}
+                            </td>
+                            <td class="MessageCaption">
+                                {Subject}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="LabelText">
+                                <a href="{AuthorUrl}">{AuthorFullName}</a>
+                            </td>
+                            <td class="LableValue">
+                                <a href="{MessageUrl}">{MessageSubject}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="LabelText">
+                                {MessageDate}
+                            </td>
+                            <td class="LableValue">
+                                <a href="{MessageUrl}">{MessageShortText}</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td class="MessageCaption">
+                                {Action}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" id="Answer" name="Answer">
+                                    <div class="Login_submit">
+                                        {Answer}
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" id="Delete" name="Delete">
+                                    <div class="Login_submit">
+                                        {Delete}
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

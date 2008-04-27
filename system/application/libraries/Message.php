@@ -15,12 +15,17 @@ class Message {
 	
 	function SendMessage($from_id, $to_id, $subject, $text)
 	{
-		$this->ci->db->query("INSERT INTO message(from_id, to_id, subject, text) VALUES('$from_id', '$to_id', '$subject', '$text')");
+		$now = mdate("%Y-%m-%d %h:%i:%a", time());
+		
+		$this->ci->db->query("INSERT INTO message(from_id, to_id, subject, text, date) VALUES('$from_id', '$to_id', '$subject', '$text', '$now')");
 	}
 	
 	function GetCountOfMessage($user_id)
 	{
+		$query = $this->ci->db->query("SELECT COUNT(1) AS c FROM message WHERE to_id = $user_id");
+		$row = $query->row();
 		
+		return $row->c;
 	}
 	
 	function GetMessage($message_id)

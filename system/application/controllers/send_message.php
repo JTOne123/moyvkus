@@ -111,7 +111,6 @@ class Send_Message extends Controller {
 		{
 			if($this->can_send($user_id, $send_to_id))
 			{
-				
 				$txtSubject = $this->input->post('txtSubject');
 				$txtText = $this->input->post('txtText');
 				

@@ -104,6 +104,7 @@ CREATE TABLE `message` (
   `subject` varchar(100) DEFAULT NULL,
   `text` varchar(2000) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
