@@ -87,10 +87,41 @@ class MessageBox extends Controller {
 					
 					$data['MessageBoxText'] = $message;
 					
+					$data['DisplayYes'] = 'block';
+					$data['DisplayNo'] = 'block';
+					
 					$data['Yes'] = $this->lang->line('Yes');
 					$data['No'] = $this->lang->line('No');
 					
 					break;
+				
+				case 'warning':
+					$warning_type = $this->uri->segment(4);
+					
+					switch($warning_type)
+					{
+						case 'spam':
+							
+							$data['Type'] = $action_type;
+							$data['Item'] = $warning_type;
+							$data['ItemId'] = "";
+							
+							$data['MessageBoxTitle'] = $this->lang->line('MessageBoxTitleSpamWarrning');
+							$data['MessageBoxText'] = $this->lang->line('SpamWarning');
+							
+							$data['DisplayYes'] = 'block';
+							$data['DisplayNo'] = 'none';
+							
+							$data['Yes'] = $this->lang->line('Cancel');
+							
+							break;
+						default:
+							redirect('', 'refresh');
+							break;	
+					}
+					
+					break;
+				
 				default:
 					redirect('', 'refresh');
 					break;
@@ -108,6 +139,12 @@ class MessageBox extends Controller {
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;
+				
+				case 'warning':
+					redirect('', 'refresh');
+					
+					break;
+					
 				default:
 					redirect('', 'refresh');
 					break;

@@ -95,3 +95,24 @@ CREATE TABLE `invite` (
   `friend_first_name` varchar(100) DEFAULT NULL,
   `friend_last_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+
+/*Table structure for table `message` */
+
+CREATE TABLE `message` (
+  `from_id` int(11) DEFAULT NULL,
+  `to_id` int(11) DEFAULT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `text` varchar(2000) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+
+/*Table structure for table `message_spam_filter` */
+
+CREATE TABLE `message_spam_filter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `message_count` int(11) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;

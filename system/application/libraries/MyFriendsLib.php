@@ -24,12 +24,12 @@ class MyFriendsLib {
 	*/
 	function IsTheyFriends($user_id, $friend_id)
 	{
-		$query = $this->ci->db->query("SELECT count(1) FROM myfriends 
+		$query = $this->ci->db->query("SELECT count(1) AS c FROM myfriends 
 					WHERE user_id = $user_id AND friend_id = $friend_id 
 					OR user_id = $friend_id AND friend_id = $user_id");
 		$row = $query->row();
 		
-		if($row == 0)
+		if($row->c == 0)
 			return false;
 		else
 			return true;

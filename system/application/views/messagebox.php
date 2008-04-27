@@ -22,7 +22,7 @@
 						<table class="DialogTable">
 							<tr>
 								<td>
-									<a href="#" id="lnkYes" name="lnkYes" onclick="btnYesClick();">
+									<a href="#" id="lnkYes" name="lnkYes" onclick="btnYesClick();" style="display:{DisplayYes}">
 										<div class="Login_submit">
 											{Yes}
 										</div>
@@ -30,7 +30,7 @@
 									<input id="btnYes" name="btnYes" type="submit" style="display:none;"/>
 								</td>
 								<td>
-									<a href="javascript:history.back(1)" id="lnkNo" name="lnkNo">
+									<a href="javascript:history.back(1)" id="lnkNo" name="lnkNo" style="display:{DisplayNo}">
 										<div class="Login_submit">
 											{No}
 										</div>

@@ -8,6 +8,7 @@ class Send_Message extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('message');
+		$this->load->library('myfriendslib');
 		
 		$this->load->library('validation');
 		
@@ -108,15 +109,38 @@ class Send_Message extends Controller {
 		}
 		else
 		{
-			$txtSubject = $this->input->post('txtSubject');
-			$txtText = $this->input->post('txtText');
-			
-			$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
-			
-			redirect('', 'refresh');
+			if($this->can_send($user_id, $send_to_id))
+			{
+				
+				$txtSubject = $this->input->post('txtSubject');
+				$txtText = $this->input->post('txtText');
+				
+				$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
+				
+				redirect('', 'refresh');
+			}
+			else
+				redirect('/messagebox/type/warning/spam', 'refresh');
 		}
 		
 		return $data;
+	}
+	
+	function can_send($from_id, $to_id)
+	{
+		$return_value = false;
+		
+		if($this->myfriendslib->IsTheyFriends($from_id, $to_id))
+			$return_value = true;
+		else
+		{
+			if($this->message->CanSend($from_id))
+				$return_value = true;
+			else
+				$return_value = false;
+		}
+		
+		return $return_value;
 	}
 }
 ?>

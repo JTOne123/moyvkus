@@ -124,6 +124,8 @@ $lang['MessageBoxTitle'] = "Удаление из списка друзей";
 $lang['MessageBoxText'] = 'Вы точно хотите удалить участника(цу) <a href="{FriendUrl}">{FriendFullName}</a> из списка друзей?';
 $lang['Yes'] = "Удалить";
 $lang['No'] = "Отмена";
+$lang['SpamWarning'] = "Вы не можете отправить более чем 20 сообщений в сутки, пользователям которые не входят в список ваших друзей";
+$lang['MessageBoxTitleSpamWarrning'] = "Внимание";
 
 //Invite
 $lang['Invite'] = "Пригласить друга";
