@@ -47,7 +47,7 @@ class Edit_Profile extends Controller {
 		{
 			$this->update_user($this->userauthorization->get_loged_on_user_id());
 			if($this->update_password($this->userauthorization->get_loged_on_user_id()))
-			$i=0;	//redirect('/profile/', 'refresh');
+			redirect('/profile/', 'refresh');
 		}
 		
 		$data['Error'] = '';
@@ -324,6 +324,7 @@ class Edit_Profile extends Controller {
 	function update_password($UserID)
 	{
 		$rules['txtNewPassword'] = "min_length[6]|max_length[21]|alpha_numeric";
+		$rules['txtOldPassword']="callback_check_old_password";
 		$this->validation->set_rules($rules);
 		
 		$fields['txtNewPassword'] = $this->lang->line('txtNewPassword');
@@ -331,27 +332,36 @@ class Edit_Profile extends Controller {
 		
 		$old_password = $this->input->post('txtOldPassword');
 		$new_password=$this->input->post('txtNewPassword');
-				
-		if(strlen($old_password) != 0 && strlen($new_password) != 0)
+		$txtReNewPassword=$this->input->post('txtReNewPassword');
+		
+		if($old_password!='')
 		{
-			if($this->usermanagment->IsPasswordValidByID($UserID, $old_password))
-			{			
-				if ($this->validation->run())
-				{
-					$this->usermanagment->NewPassword($UserID, $new_password);
-					return true;
-				}
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else
-		{
+		  if ($this->validation->run() == TRUE && $new_password==$txtReNewPassword) 
+		  {
+		  	$this->usermanagment->NewPassword($UserID, $new_password);
 			return true;
+		  }
+		  else 
+		   return false;
 		}
+		else 
+		 return false;
+	}
+	
+	function check_old_password($old_password)
+	{
+		$ID=$this->userauthorization->get_loged_on_user_id();
+		$old_password_md5=md5($old_password.'secret_message');
+		$returned=$this->usermanagment->IsPasswordValidByID($ID, $old_password_md5);
+		if($returned==true)
+		{
+		return true;
+		}
+		else 
+		return false;
 		
 	}
+	
+	
 }
 ?>

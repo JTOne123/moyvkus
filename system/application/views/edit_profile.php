@@ -52,7 +52,7 @@
 
 
 <script language="javascript" type="text/javascript">
-	function AttachValidators()
+/*	function AttachValidators()
 	{
 		var oldPassword = document.getElementById("txtOldPassword");
 
@@ -74,6 +74,7 @@
 		var btnSave = document.getElementById("btnSave");
 		btnSave.click();
 	}	
+*/	
     </script>
 	
     
@@ -336,7 +337,8 @@
 														<td>
 															<input type="password" id="txtNewPassword" name="txtNewPassword" />
 															<?php
-															//		echo $this->validation->txtnewpassword_error;
+															        if(isset($this->validation->txtNewPassword_error))
+																	echo $this->validation->txtNewPassword_error;
 															?>
 														</td>
 														<td>
@@ -379,9 +381,10 @@
                                             </td>
                                             <td class="SaveButtonTD">
                                                 <div align="right">
-                                                    <a href="#" id="Save" name="Save" onclick="btnSaveClick()">
+                                                   <!-- <a href="#" id="Save" name="Save" onclick="btnSaveClick()"> -->
                                                         <div class="Login_submit">
                                                             {Save}
+                                                            <input type="submit" name="btnSave" value="{Save}" />
                                                         </div>
                                                     </a>
                                                 </div>
