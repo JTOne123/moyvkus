@@ -101,9 +101,14 @@ class Register extends Controller {
 				if($user->friend_email != null)
 					$this->validation->email = $user->friend_email;	
 				
-				session_start();
-				$_SESSION["invite_id"] = $invite_id;			
-				$_SESSION["user_id"] = $user->user_id;			
+				//Создание сессия для инвайта START
+			    $this->session->sess_create();
+			    $new_sess_data = array(
+				'invite_id'     => $invite_id,
+				'user_id' => $user->user_id
+				);
+				$this->session->set_userdata($new_sess_data);
+				//Создание сессия для инвайта END		
 				
 			}
 			else
@@ -119,20 +124,17 @@ class Register extends Controller {
 			$new_user_id = $this->usermanagment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
 			
-			//session_start(); - Вот тут бага, когда я включаю вызываю эту функцию вылитает другая ошибка, а без этого метода я не могу работать с сесией
-			var_dump($_SESSION["invite_id"]);
-			if(isset($_SESSION["invite_id"]) && isset($_SESSION["user_id"]))
+			//Вроде исправил, но не могу понять почему этот код здесь. Он должен быть по идее ниже, если это для постбеков. Эта функция выполняется если валидация прошла успешно...
+			if($this->session->userdata('invite_id')!='' && $this->session->userdata('invite_id')!=null)
 			{
-				$invite_id = $_SESSION["invite_id"];
-				$user_id = $_SESSION["user_id"];
-				var_dump($invite_id, $user_id);
+				$invite_id = $this->session->userdata('invite_id');
+				$user_id = $this->session->userdata('user_id');
 				$this->myfriendslib->AddFriend($user_id, $new_user_id);
 				$this->delete_from_invite($invite_id);
 				
-				unset($_SESSION["invite_id"]);
-				unset($_SESSION["user_id"]);
+				$array_items = array('invite_id' => '', 'user_id' => '');
+				$this->session->unset_userdata($array_items);
 			}
-			
 			$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
 		}
 		//Прошли валидацию - записываем данные из полей в БД END

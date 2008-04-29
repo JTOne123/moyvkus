@@ -93,7 +93,8 @@ CREATE TABLE `invite` (
   `user_id` int(11) DEFAULT NULL,
   `friend_email` varchar(100) DEFAULT NULL,
   `friend_first_name` varchar(100) DEFAULT NULL,
-  `friend_last_name` varchar(100) DEFAULT NULL
+  `friend_last_name` varchar(100) DEFAULT NULL,
+   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 /*Table structure for table `message` */
