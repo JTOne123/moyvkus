@@ -20,7 +20,7 @@
 		var returned = originalRequest.responseText;
 		
 		$("SelectRegion").insert({ top: returned });
-	    $("SelectRegion").insert({ top: "<option selected></option>" });
+	    //$("SelectRegion").insert({ top: "<option selected></option>" });
 	}		
 	}
 	
@@ -44,7 +44,7 @@
 		var returned = originalRequest.responseText;
 		
 		$("SelectCity").insert({ top: returned });
-		$("SelectCity").insert({ top: "<option selected></option>" });
+		//$("SelectCity").insert({ top: "<option selected></option>" });
 	}		
 	}
 	
