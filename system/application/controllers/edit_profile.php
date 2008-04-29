@@ -10,6 +10,7 @@ class Edit_Profile extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('location');
+		$this->load->library('ajax');
 		
 		$this->load->helper('date');
 		$this->load->helper('form');
@@ -46,7 +47,7 @@ class Edit_Profile extends Controller {
 		{
 			$this->update_user($this->userauthorization->get_loged_on_user_id());
 			if($this->update_password($this->userauthorization->get_loged_on_user_id()))
-				redirect('/profile/', 'refresh');
+			$i=0;	//redirect('/profile/', 'refresh');
 		}
 		
 		$data['Error'] = '';
@@ -113,6 +114,8 @@ class Edit_Profile extends Controller {
 		return $data;
 	}
 	
+	
+	
 	function _data_bind($data)
 	{
 		$data['ProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile';
@@ -172,12 +175,12 @@ class Edit_Profile extends Controller {
 			$data['SelectDay'] = form_dropdown('SelectDay', $day, $selectedDay);
 			$data['SelectMonth'] = form_dropdown('SelectMonth', $month, $selectedMonth);
 			$data['SelectYear'] = form_dropdown('SelectYear', $year, $selectedYear);
-			
-			$separator = "";
-			if($users->city != null && $users->country != null)
-				$separator = ", ";
-			
-			$data['Loction'] = $users->city . $separator . $users->country;
+
+			$country=$this->location->GetCountryNames();
+			$nulled=array();
+			$data['SelectCountry'] = form_dropdown('SelectCountry',$country,'', "onChange='ajax_locator_country()'");
+			$data['SelectRegion'] = form_dropdown('SelectRegion',$nulled,'',"onChange='ajax_locator_region()'");
+			$data['SelectCity'] = form_dropdown('SelectCity');
 			
 			$data['Email'] = $users->email;
 		}
@@ -210,6 +213,34 @@ class Edit_Profile extends Controller {
 		
 		return $data;
 	}
+	
+	//Работа с Ajax-загрузчиком городов START
+	function ajax_locator_country(){
+		
+		$countryID=$this->input->post('countryID');
+		
+		if(isset($countryID))
+		{
+		  	$region=$this->location->GetRegions($countryID);
+		  	$data['regions']=$region;
+		  	$this->load->view('locator_drop_down', $data);
+		}
+	}
+	
+	function ajax_locator_region(){
+	
+		$regionID=$this->input->post('regionID');
+		
+		if(isset($regionID))
+		{
+		  	$citys=$this->location->GetCitys($regionID);
+		  	$data['citys']=$citys;
+		  	$this->load->view('locator_drop_down', $data);
+		}
+		
+	}
+	//Работа с Ajax-загрузчиком городов END
+	
 	
 	function do_upload()
 	{
@@ -267,11 +298,12 @@ class Edit_Profile extends Controller {
 		$SelectMonth = $this->input->post('SelectMonth');
 		$SelectYear = $this->input->post('SelectYear');
 		
-		$sexValue = $this->input->post('txtSex');
+		$SelectCountry = $this->input->post('SelectCountry');
+		$SelectRegion = $this->input->post('SelectRegion');
+		$SelectCity = $this->input->post('SelectCity');
 		
-		$city = 0;
-		$region = 0;
-		$country = 0;
+		
+		$sexValue = $this->input->post('txtSex');
 		
 		$phone = $this->input->post('txtPhone');
 		$website = $this->input->post('txtWebSite');
@@ -286,7 +318,7 @@ class Edit_Profile extends Controller {
 		else
 			$sex = 1;
 		
-		$users = $this->usermanagment->UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $city, $region, $country, $phone, $website, $activities, $interests, $about);
+		$users = $this->usermanagment->UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $SelectCity, $SelectRegion, $SelectCountry, $phone, $website, $activities, $interests, $about);
 	}
 	
 	function update_password($UserID)

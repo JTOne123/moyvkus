@@ -1,4 +1,57 @@
-    <script language="javascript" type="text/javascript">
+<script src="<?=$baseurl?>js/prototype.js"></script>
+<script>
+	function ajax_locator_country()
+	{
+		var country = escape($F("SelectCountry"));
+		var url = '<?=$baseurl?>/edit_profile/ajax_locator_country';
+		var pars = {countryID: country};
+		
+		var myAjax = new Ajax.Request(
+					url, 
+					 {
+						method: 'post', 
+						parameters: pars, 
+						onComplete: showResponse
+					 }
+					);
+	
+	 function showResponse(originalRequest)
+	{
+		var returned = originalRequest.responseText;
+		
+		$("SelectRegion").insert({ top: returned });
+	    $("SelectRegion").insert({ top: "<option selected></option>" });
+	}		
+	}
+	
+	function ajax_locator_region()
+	{
+		var region = escape($F("SelectRegion"));
+		var url = '<?=$baseurl?>/edit_profile/ajax_locator_region';
+		var pars = {regionID: region};
+		
+		var myAjax = new Ajax.Request(
+					url, 
+					 {
+						method: 'post', 
+						parameters: pars, 
+						onComplete: showResponseReg
+					 }
+					);
+	
+	 function showResponseReg(originalRequest)
+	{
+		var returned = originalRequest.responseText;
+		
+		$("SelectCity").insert({ top: returned });
+		$("SelectCity").insert({ top: "<option selected></option>" });
+	}		
+	}
+	
+</script>
+
+
+<script language="javascript" type="text/javascript">
 	function AttachValidators()
 	{
 		var oldPassword = document.getElementById("txtOldPassword");
@@ -20,7 +73,7 @@
 	{
 		var btnSave = document.getElementById("btnSave");
 		btnSave.click();
-	}
+	}	
     </script>
 	
     
@@ -159,15 +212,16 @@
 												<table>
 													<tr>
 														<td>{Country}</td>
-														<td><select></select></td>
+														<td>{SelectCountry}</td>
 													</tr>
 													<tr>
 														<td>{Region}</td>
-														<td><select></select></td>
+														<td>{SelectRegion}												
+														</td>
 													</tr>
 													<tr>
 														<td>{City}</td>
-														<td><select></select></td>
+														<td>{SelectCity}</td>
 													</tr>
 												</table>
                                             </td>
