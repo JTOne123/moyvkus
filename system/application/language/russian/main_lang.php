@@ -145,4 +145,14 @@ $lang['Subject'] = "Тема:";
 $lang['Text'] = "Сообщение:";
 $lang['Previous'] = "Предыдущие сообщение";
 
+//MyMessages
+$lang['MyMessages'] = "Мои сообщения";
+$lang['MessagesFilter'] = "Фильтр сообщений";
+$lang['MyMessagesCount'] = "У Вас {Number} сообщений";
+$lang['Sender'] = "Отправитель";
+$lang['Action'] = "Действия";
+$lang['Answer'] = "Ответ";
+$lang['Delete'] = "Удалить";
+$lang['MessageSubject'] = "Тема";
+
 ?>

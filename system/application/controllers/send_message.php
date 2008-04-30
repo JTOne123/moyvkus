@@ -76,6 +76,7 @@ class Send_Message extends Controller {
 	function _data_bind($data)
 	{
 		$send_to_id = $this->uri->segment(4);	
+		
 		$user_id = $this->userauthorization->get_loged_on_user_id();
 		
 		$btnSend = $this->input->post('btnSend');
@@ -88,8 +89,13 @@ class Send_Message extends Controller {
 				$friend_data = $this->usermanagment->GetUserData($send_to_id);
 				
 				if($friend != null)
-				{
-					$data['sended_to_id'] = $send_to_id;
+				{					
+					$answer_message_id = $this->uri->segment(7);
+					
+					if($answer_message_id != false)
+						$data['sended_to_id'] = $send_to_id . '/answer/id/' . $answer_message_id;
+					else
+						$data['sended_to_id'] = $send_to_id;
 					
 					$data['UserFullName'] = $user->first_name . ' ' . $user->last_name;
 					$data['FriendFullName'] = $friend->first_name . ' ' . $friend->last_name;
@@ -115,6 +121,11 @@ class Send_Message extends Controller {
 				$txtText = $this->input->post('txtText');
 				
 				$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
+				
+				$answer_message_id = $this->uri->segment(7);
+				
+				if($answer_message_id != false)
+					$this->message->DeleteMessage($answer_message_id, $user_id);
 				
 				redirect('', 'refresh');
 			}
