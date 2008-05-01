@@ -10,6 +10,7 @@ class Register extends Controller {
 		
 		$this->load->library('captcha');
 		$this->load->library('validation');
+		$this->load->library('session');
 		
 		$this->load->library('usermanagment');
 		$this->load->library('notification');
@@ -102,12 +103,10 @@ class Register extends Controller {
 					$this->validation->email = $user->friend_email;	
 				
 				//Создание сессия для инвайта START
-			    $this->session->sess_create();
-			    $new_sess_data = array(
-				'invite_id'     => $invite_id,
-				'user_id' => $user->user_id
-				);
-				$this->session->set_userdata($new_sess_data);
+
+				$this->session->set_userdata('invite_id', $invite_id);
+				$this->session->set_userdata('user_id', $user->user_id);
+				
 				//Создание сессия для инвайта END		
 				
 			}
@@ -124,16 +123,19 @@ class Register extends Controller {
 			$new_user_id = $this->usermanagment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
 			
+			$invite_id = $this->session->flashdata('invite_id');
+			$user_id = $this->session->flashdata('user_id');
+
 			//Вроде исправил, но не могу понять почему этот код здесь. Он должен быть по идее ниже, если это для постбеков. Эта функция выполняется если валидация прошла успешно...
-			if($this->session->userdata('invite_id')!='' && $this->session->userdata('invite_id')!=null)
+			if($invite_id != '' && $invite_id != false)
 			{
 				$invite_id = $this->session->userdata('invite_id');
 				$user_id = $this->session->userdata('user_id');
 				$this->myfriendslib->AddFriend($user_id, $new_user_id);
 				$this->delete_from_invite($invite_id);
 				
-				$array_items = array('invite_id' => '', 'user_id' => '');
-				$this->session->unset_userdata($array_items);
+				$this->session->set_userdata('invite_id', '');
+				$this->session->set_userdata('user_id', '');
 			}
 			$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
 		}
