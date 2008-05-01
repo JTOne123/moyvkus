@@ -421,6 +421,7 @@ a
 .Message
 {
 	text-align: left;
+	width: 100%;
 }
 
 .LabelTextMessage
@@ -504,4 +505,11 @@ a
 .MessageAvatarTd
 {
 	width: 170px;
+}
+
+/* Get Message */
+
+.GetMessageButtonsTable
+{
+	margin-left: auto;
 }

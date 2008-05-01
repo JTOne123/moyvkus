@@ -10,6 +10,7 @@ class Send_Message extends Controller {
 		$this->load->library('message');
 		$this->load->library('myfriendslib');
 		
+		$this->load->helper('typography');
 		$this->load->library('validation');
 		
 		$this->load->helper('date');
@@ -117,8 +118,8 @@ class Send_Message extends Controller {
 		{
 			if($this->can_send($user_id, $send_to_id))
 			{
-				$txtSubject = $this->input->post('txtSubject');
-				$txtText = $this->input->post('txtText');
+				$txtSubject = auto_typography($this->input->post('txtSubject'));
+				$txtText = auto_typography($this->input->post('txtText'));
 				
 				$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
 				

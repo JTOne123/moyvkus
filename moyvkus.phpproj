@@ -64,6 +64,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\get_message.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\index.html"
     {
     "ProjRelPath" = "T"
@@ -200,6 +204,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\views\\get_message.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\views\\header.php"
     {
     "ProjRelPath" = "T"
@@ -209,6 +217,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\invite.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\locator_drop_down.php"
     {
     "ProjRelPath" = "T"
     }

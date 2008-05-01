@@ -20,6 +20,14 @@ class Message {
 		$this->ci->db->query("INSERT INTO message(from_id, to_id, subject, text, date) VALUES('$from_id', '$to_id', '$subject', '$text', '$now')");
 	}
 	
+	function GetMessage($user_id, $message_id)
+	{
+		$query = $this->ci->db->query("SELECT from_id, subject, text, id, date FROM message WHERE to_id = $user_id AND id = $message_id");
+		$row = $query->row();
+		
+		return $row;
+	}
+	
 	function GetMessages($user_id, $filter)
 	{
 		if($filter == "")
@@ -45,17 +53,17 @@ class Message {
 		$query = $this->ci->db->query("SELECT id, message_count FROM message_spam_filter WHERE user_id = $user_id and date = '$now'");
 		
 		$row = $query->row();
-
-		$message_id = $row->id;
-		$message_count = $row->message_count;
 		
-		if($message_count == false)
+		if($row == false)
 		{
 			$return_value = true;
 			$this->ci->db->query("INSERT INTO message_spam_filter (user_id, message_count, date) VALUES ($user_id, 1, '$now')");
 		}
 		else	
 		{
+			$message_id = $row->id;
+			$message_count = $row->message_count;
+			
 			if($message_count > 20 )
 				$return_value = false;
 			else
@@ -73,6 +81,16 @@ class Message {
 	function DeleteFromSpamFilterTable($now)
 	{
 		$this->ci->db->query("DELETE FROM message_spam_filter WHERE date < '$now'");
+	}
+	
+	function SoftTransfer($str)
+	{
+		$return_str = "";
+		
+		for($i = 0; $i < strlen($str); $i++)
+			$return_str = $return_str . $str[$i] . '<wbr>';
+		
+		return $return_str;
 	}
 	
 	function GetMessageListBuilderHTML()

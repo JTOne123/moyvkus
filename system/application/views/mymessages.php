@@ -1,10 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Untitled Page</title>
-    <link rel="stylesheet" href="file:///C:/moyvkus/default.css" type="text/css" />
-</head>
-<body>
     <div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile Friends">
             <tr>
@@ -47,5 +40,3 @@
             </tr>
         </table>
     </div>
-</body>
-</html>

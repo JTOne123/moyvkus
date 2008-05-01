@@ -10,7 +10,7 @@ class Edit_Profile extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('location');
-		$this->load->library('ajax');
+		//$this->load->library('ajax');
 		
 		$this->load->helper('date');
 		$this->load->helper('form');

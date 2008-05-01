@@ -103,7 +103,7 @@ CREATE TABLE `message` (
   `from_id` int(11) DEFAULT NULL,
   `to_id` int(11) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
-  `text` varchar(2000) DEFAULT NULL,
+  `text` text DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime DEFAULT NULL,
   UNIQUE KEY `id` (`id`)

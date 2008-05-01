@@ -40,6 +40,8 @@
 |
 */
 
+$route['get_message/message/id/:num/delete'] = "get_message";
+$route['get_message/message/id/:num'] = "get_message";
 $route['mymessages/delete/id/:num'] = "mymessages";
 $route['send_message/send_to/id/:num/answer/id/:num'] = "send_message";
 $route['send_message/send_to/id/:num'] = "send_message";

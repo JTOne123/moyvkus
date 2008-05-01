@@ -1,9 +1,9 @@
-    <div class="MainDivProfile">
-        <form id="MessageForm" method="POST" action="/send_message/send_to/id/{sended_to_id}">
+ <div class="MainDivProfile">
+        <form id="MessageForm" method="POST" action="/message">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile Friends">
             <tr>
                 <td class="UserStatus">
-                    {NewMessage}
+                    {GetMessage}
                 </td>
             </tr>
             <tr>
@@ -11,7 +11,7 @@
                     <table>
                         <tr>
                             <td colspan="2" class="MessageTitle">
-                                {NewMessage}
+                                {GetMessage}
                             </td>
                         </tr>
                         <tr>
@@ -19,7 +19,7 @@
                                 <img src="{AvatarUrl}" title="{FriendFullName}" class="MessageAvatar" />
                             </td>
                             <td class="MessageTd">
-                                <table class="Message" style="width:100%;height:100%">
+                                <table class="Message">
                                     <tr>
                                         <td class="LabelText LabelTextMessage">
                                             {From}
@@ -41,7 +41,7 @@
                                             {Subject}
                                         </td>
                                         <td class="LableValue LabelValueMessage">
-                                            <input id="txtSubject" name="txtSubject" type="text" size="35" maxlength="50" class="MessageSubject" />
+                                            {SubjectValue}
                                         </td>
                                     </tr>
                                     <tr>
@@ -49,35 +49,36 @@
                                             {Text}
                                         </td>
                                         <td class="LableValue LabelValueMessage">
-                                            <textarea id="txtText" name="txtText" class="MessageSubject" rows="6"></textarea>
+                                            {TextValue}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <table class="GetMessageButtonsTable">
+                                                <tr>
+                                                    <td>
+                                                        <a href="{AnswerUrl}" id="lnkAnswer" name="lnkAnswer">
+                                                            <div class="Login_submit">
+                                                                {Answer}
+                                                            </div>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{MessageDeleteUrl}" id="lnkDelete" name="lnkDelete">
+                                                            <div class="Login_submit">
+                                                                {Delete}
+                                                            </div>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
-						<tr>
-							<td colspan="2">
-					          <table class="MessageButtons">
-                                        <tr>
-                                            <td>
-                                                <a href="#" id="lnkSend" name="lnkSend" onclick="document.forms['MessageForm'].btnSend.click();">
-                                                    <div class="Login_submit">
-                                                        {Send}
-                                                    </div>
-                                                </a>
-												<input id="btnSend" name="btnSend" type="submit" value="true" style="display: none;"/>
-                                            </td>
-                                            <td>
-                                                <a href="javascript:history.back(1)" id="lnkCancel" name="lnkCancel">
-                                                    <div class="Login_submit">
-                                                        {Cancel}
-                                                    </div>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-							</td>
-						</tr>
                     </table>
                 </td>
             </tr>

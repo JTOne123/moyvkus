@@ -155,4 +155,7 @@ $lang['Answer'] = "Ответ";
 $lang['Delete'] = "Удалить";
 $lang['MessageSubject'] = "Тема";
 
+//Get Message
+$lang['GetMessage'] = "Мои сообщения";
+
 ?>
