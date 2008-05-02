@@ -25,11 +25,21 @@ class Usermanagment {
 	}
 	
 	/*
-	Проверка существует ли юзер с заданым email'ом
+	Проверка существует ли юзер
 	*/
 	function IsUserExits($email)
 	{	
 		$query = $this->ci->db->query("SELECT id FROM users WHERE email = '$email'");
+		
+		if($query->num_rows()==0)
+			return false;
+		else 
+			return true;
+	}
+	
+		function IsUserExists_by_id($id)
+	{	
+		$query = $this->ci->db->query("SELECT id FROM users WHERE id = '$id'");
 		
 		if($query->num_rows()==0)
 			return false;
