@@ -71,7 +71,7 @@ class MyFriends extends Controller {
 		$current_user_id = $this->userauthorization->get_loged_on_user_id();
 		$action_type = $this->uri->segment(2);
 		$user_id = $this->uri->segment(3);		
-
+		
 		if($user_id != null)
 		switch($action_type)
 		{
@@ -163,15 +163,22 @@ class MyFriends extends Controller {
 			$friend_current = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $row->friend_id, $friend_current);
 			
 			if($is_confirmed)
-				if($this->myfriendslib->IsTheyFriends($user_id, $row->friend_id))
-				{
-					$friend_current = str_replace("{DeleteFriend}", $this->lang->line('DeleteFriend'), $friend_current);
-					$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $row->friend_id, $friend_current);
-				}
+				if($user_id != $row->friend_id)
+					if($this->myfriendslib->IsTheyFriends($user_id, $row->friend_id))
+					{
+						$friend_current = str_replace("{DeleteFriend}", $this->lang->line('DeleteFriend'), $friend_current);
+						$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $row->friend_id, $friend_current);
+					}
+					else
+					{
+						$friend_current = str_replace("{DeleteFriend}", $this->lang->line('AddToFriends'), $friend_current);
+						$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/add_friend/friend_id/' . $row->friend_id, $friend_current);				
+					}
 				else
 				{
-					$friend_current = str_replace("{DeleteFriend}", $this->lang->line('AddToFriends'), $friend_current);
-					$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/add_friend/friend_id/' . $row->friend_id, $friend_current);				
+					$friend_current = str_replace("{DeleteFriend}", '', $friend_current);
+					$friend_current = str_replace("{DeleteFriendUrl}", '', $friend_current);
+					$friend_current = str_replace("{DeleteFriendShow}", 'none', $friend_current);				
 				}
 			else
 			{

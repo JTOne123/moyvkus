@@ -164,7 +164,7 @@ class MyFriendsLib {
 				</tr>
 				<tr>
 				<td>
-				<a href=\"{DeleteFriendUrl}\" id=\"DeleteFriend\" name=\"DeleteFriend\">
+				<a href=\"{DeleteFriendUrl}\" id=\"DeleteFriend\" name=\"DeleteFriend\" style=\"display:{DeleteFriendShow}\">
 				<div class=\"Login_submit\">
 				{DeleteFriend}
 				</div>
