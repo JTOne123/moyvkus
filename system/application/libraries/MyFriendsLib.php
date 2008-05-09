@@ -105,6 +105,20 @@ class MyFriendsLib {
 		return $query;
 	}
 	
+	/*
+	Количество новых друзей
+	*/
+	function GetNewFriendsCount($user_id, $friend_id)
+	{
+		$query1 = $this->ci->db->query("SELECT COUNT(1) AS c FROM myfriends WHERE user_id = $user_id AND friend_id = $friend_id AND is_confirmed = 0");			
+		$row1 = $query1->row();
+		
+		$query2 = $this->ci->db->query("SELECT COUNT(1) AS c FROM myfriends WHERE friend_id = $user_id AND user_id = $friend_id AND is_confirmed = 0");			
+		$row2 = $query2->row();		
+		
+		return $row1->c + $row2->c;
+	}
+	
 	function GetFriendsBuilderHTML()
 	{
 		return "<div id=\"FriendsItem\" class=\"FriendsItem\">

@@ -78,12 +78,12 @@ last_activity int(10) unsigned DEFAULT 0 NOT NULL,
 PRIMARY KEY (session_id)
 );
 
-
 /*Table structure for table `myfriends` */
 
 CREATE TABLE `myfriends` (
   `user_id` int(11) DEFAULT NULL,
-  `friend_id` int(11) DEFAULT NULL
+  `friend_id` int(11) DEFAULT NULL,
+  `is_confirmed` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 /*Table structure for table `invite` */
