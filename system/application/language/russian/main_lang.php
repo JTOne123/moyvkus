@@ -67,7 +67,7 @@ $lang['InviteEmailMessage'] = "<html>
 $lang['Prifile'] = "Профайл";
 $lang['Edit'] = "Редактировать";
 $lang['Avatar'] = "Аватар";
-$lang['MyFriendsHeader'] = "Мои друзья";
+$lang['MyFriendsHeader'] = "Функции";
 $lang['MyData'] = "Личная информация";
 $lang['FirstNameText'] = "Имя:";
 $lang['LastNameText'] = "Фамилия:";
@@ -88,6 +88,9 @@ $lang['Contacts'] = "Контактная информация";
 $lang['MyRatingTextHeader'] = "Рейтинги";
 $lang['Man'] = "Мужской";
 $lang['Woman'] = "Женский";
+$lang['AddToFriends'] = "Добавить в друзья";
+$lang['DeleteFromFriends'] = "Убрать из друзей";
+$lang['Friends'] = "Просмотреть друзей";
 
 //Edit profile
 $lang['EditProfile'] = "Редактирование профайла";
@@ -114,6 +117,8 @@ $lang['MyFriends'] = "Мои друзья";
 $lang['FriendsFilter'] = "Фильтр друзей";
 $lang['Search'] = "Поиск";
 $lang['MyFriendsCount'] = "У Вас {Number} друзей";
+$lang['MyFriendsCountNew'] = "У Вас {Number} друзей <span style=\"color:red;\"> + {NewFriendsNumber} новых</span>";
+
 $lang['SendMessage'] = "Отправить сообщение";
 $lang['FriendFriends'] = "Его(ее) друзья";
 $lang['DeleteFriend'] = "Убрать из друзей";
@@ -122,6 +127,9 @@ $lang['DeleteFriend'] = "Убрать из друзей";
 $lang['MessageBoxTitleFriendDelete'] = "Убрать из друзей";
 $lang['MessageBoxTitle'] = "Удаление из списка друзей";
 $lang['MessageBoxText'] = 'Вы точно хотите удалить участника(цу) <a href="{FriendUrl}">{FriendFullName}</a> из списка друзей?';
+
+$lang['MessageBoxTextAddFriend'] = 'Вы точно хотите добавить участника(цу) <a href="{FriendUrl}">{FriendFullName}</a> в список ваших друзей?';
+
 $lang['Yes'] = "Удалить";
 $lang['No'] = "Отмена";
 $lang['SpamWarning'] = "Вы не можете отправить более чем 20 сообщений в сутки, пользователям которые не входят в список ваших друзей";

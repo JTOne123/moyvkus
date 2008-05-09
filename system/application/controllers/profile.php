@@ -10,11 +10,43 @@ class Profile extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('location');
+		$this->load->library('myfriendslib');
 		
 		$this->load->helper('date');
 	}
 	
+	function _remap($method) {
+		//страницы, доступные без авторизации
+		$allowedPages = array();
+		$pars = $this->uri->segment_array();
+		unset($pars[1]);
+		unset($pars[2]);
+		
+		
+		if (($method != null) &&
+				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+			call_user_func_array(array($this, $method), $pars);
+		}
+		else
+			redirect('/login/', 'refresh');
+	}
+	
 	function index()
+	{
+		
+		$data = $this->_load_headers();
+		
+		$data = $this->_load_resource($data);
+		
+		$data = $this->_data_bind($data);
+		
+		$data['body']= $this->parser->parse('profile', $data);
+		
+		$this->parser->parse('main_tpl', $data);
+	}
+	
+	
+	function _load_headers()
 	{
 		$data['title'] = $this->lang->line('Prifile');
 		$data['keywords'] = $this->lang->line('keywords');
@@ -23,23 +55,13 @@ class Profile extends Controller {
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
 		$data['login']='';
-		$user_id_from_uri = $this->uri->segment(3);
-		if($user_id_from_uri==false) $user_id_from_uri=$this->userauthorization->get_loged_on_user_id();
 		
-	    //Показывать ли ссылку РЕДАКТИРОВАТЬ
-		if($user_id_from_uri===$this->userauthorization->get_loged_on_user_id())
-		{
-		$data['EditProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/edit_profile';
-		$data['Edit'] = $this->lang->line('Edit');
-		}
-		else 
-		{
-			$data['EditProfileUrl']='';
-			$data['Edit'] = '';
-		}
-		
+		return $data;
+	}
+	
+	function _load_resource($data)
+	{
 		// Локализация надписей
-		//$data['Edit'] = $this->lang->line('Edit');
 		$data['Avatar'] = $this->lang->line('Avatar');
 		$data['MyFriendsHeader'] = $this->lang->line('MyFriendsHeader');
 		$data['MyData'] = $this->lang->line('MyData');
@@ -60,6 +82,70 @@ class Profile extends Controller {
 		$data['MyRecipes'] = $this->lang->line('MyRecipes');
 		$data['Contacts'] = $this->lang->line('Contacts');
 		$data['MyRatingTextHeader'] = $this->lang->line('MyRatingTextHeader');
+		$data['Friends'] = $this->lang->line('Friends');
+		$data['SendMessage'] = $this->lang->line('SendMessage');
+		$data['AddToFriends'] = $this->lang->line('AddToFriends');
+		$data['DeleteFromFriends'] = $this->lang->line('DeleteFromFriends');
+		
+		return $data;
+	}
+	
+	function _data_bind($data)
+	{
+		$user_id_from_uri = $this->uri->segment(3);
+		$user_id = $this->userauthorization->get_loged_on_user_id();
+		
+		if($user_id_from_uri == false) 
+			$user_id_from_uri = $user_id;
+		
+		$user_id_to_view = $user_id;
+		
+		if($user_id_from_uri != $user_id_to_view)
+		{
+			if($this->usermanagment->IsUserExists_by_id($user_id_from_uri) === true)
+				$user_id_to_view = $user_id_from_uri; 
+			else 
+				redirect('profile', 'refresh');
+		}
+		
+		//Показывать ли ссылки
+		if($user_id_to_view === $user_id)
+		{
+			$data['EditProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/edit_profile';
+			$data['Edit'] = $this->lang->line('Edit');
+			
+			$data['SendMessageUrl'] = '';
+			$data['AddToFriendsUrl'] = '';
+			$data['DeleteFromFriendsUrl'] = '';
+			
+			$data['SendMessageShow'] = 'none';
+			$data['AddToFriendsShow'] = 'none';
+			$data['DeleteFromFriendsShow'] = 'none';
+		}
+		else 
+		{
+			$data['SendMessageShow'] = '';
+			$data['SendMessageUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $user_id_to_view;
+			
+			//Проверка или просматриветься профиль друга
+			if($this->myfriendslib->IsTheyFriends($user_id, $user_id_to_view))
+			{
+				$data['DeleteFromFriendsShow'] = '';
+				$data['DeleteFromFriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $user_id_to_view;
+				
+				$data['AddToFriendsShow'] = 'none';
+			}
+			else
+			{
+				$data['AddToFriendsShow'] = '';
+				$data['AddToFriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/add_friend/friend_id/' . $user_id_to_view;
+				
+				$data['DeleteFromFriendsShow'] = 'none';
+			}
+			
+			$data['EditProfileUrl']='';
+			$data['Edit'] = '';
+		}
 		
 		$month = array(
 				'01'  => 'Январь',
@@ -75,23 +161,8 @@ class Profile extends Controller {
 				'11' => 'Ноябрь',
 				'12' => 'Декабрь',
 				);
-				
+		
 		//Получение данных юзера и заполнение их
-		$user_id_from_session=$this->userauthorization->get_loged_on_user_id();
-		
-		if($user_id_from_uri==$user_id_from_session)
-		{
-			$user_id_to_view=$user_id_from_session;
-		}
-		else 
-		{
-			if($this->usermanagment->IsUserExists_by_id($user_id_from_uri)===true)
-			{ $user_id_to_view=$user_id_from_uri; }
-			else 
-			redirect('profile', 'refresh');
-		}
-		
-		
 		$users = $this->usermanagment->GetUser($user_id_to_view);
 		$user_data = $this->usermanagment->GetUserData($user_id_to_view);
 		if($users != null)
@@ -101,6 +172,8 @@ class Profile extends Controller {
 			$data['FirstName'] = $users->first_name;
 			$data['LastName'] = $users->last_name;
 			$data['Sex'] = $this->GetSex($users->sex);
+			
+			$data['FriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $user_id_to_view;
 			
 			$day_string =  mdate("%d", mysql_to_unix($users->birthday));
 			$month_string =  mdate("%m", mysql_to_unix($users->birthday));
@@ -156,11 +229,9 @@ class Profile extends Controller {
 			
 		}
 		
-		
-		$data['body']= $this->parser->parse('profile', $data);
-		
-		$this->parser->parse('main_tpl', $data);
+		return $data;
 	}
+	
 	
 	function GetSex($SexID)
 	{

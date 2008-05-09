@@ -7,7 +7,7 @@
             </tr>
             <tr>
                 <td class="FriendsFilter">
-                    <form id="FriendsFilterForm" method="POST" action="/myfriends" class="FriendsFilterForm">
+                    <form id="FriendsFilterForm" method="POST" action="/myfriends/id/{UserID}" class="FriendsFilterForm">
 						<table>
 							<tr>
 								<td>

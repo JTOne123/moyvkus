@@ -94,6 +94,31 @@ class MessageBox extends Controller {
 					$data['No'] = $this->lang->line('No');
 					
 					break;
+					
+				case 'add_friend':
+					$friend_id = $this->uri->segment(5);
+					
+					$data['Type'] = $action_type;
+					$data['Item'] = "friend_id";
+					$data['ItemId'] = $friend_id;
+					
+					$data['MessageBoxTitle'] = $this->lang->line('AddToFriends');
+					
+					$friend = $this->usermanagment->GetUser($friend_id);
+					
+					$message = $this->lang->line('MessageBoxTextAddFriend');
+					$message = str_replace("{FriendFullName}", $friend->first_name . ' ' . $friend->last_name, $message);
+					$message = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $friend_id, $message);
+					
+					$data['MessageBoxText'] = $message;
+					
+					$data['DisplayYes'] = 'block';
+					$data['DisplayNo'] = 'block';
+					
+					$data['Yes'] = $this->lang->line('AddToFriends');
+					$data['No'] = $this->lang->line('Cancel');
+					
+					break;
 				
 				case 'warning':
 					$warning_type = $this->uri->segment(4);
@@ -139,7 +164,15 @@ class MessageBox extends Controller {
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;
-				
+					
+				case 'add_friend':
+					$friend_id = $this->uri->segment(5);
+					$user_id = $this->userauthorization->get_loged_on_user_id();
+					$this->myfriendslib->AddFriend($user_id, $friend_id);
+					redirect('/myfriends/id/' . $user_id, 'refresh');
+					
+					break;
+					
 				case 'warning':
 					redirect('', 'refresh');
 					

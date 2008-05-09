@@ -1,11 +1,17 @@
 <div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile">
             <tr>
-                <td colspan="2" class="UserStatus">
-                    {UserStatus}
-                </td>
-                <td class="UserStatus UserStatusEdit">
-                    <a href="{EditProfileUrl}">{Edit}</a>
+                <td colspan="3" class="UserStatus">
+					<table class="ProfileHeaderTable">
+						<tr>
+							<td class="UserStatusInHeaderTable">
+								{UserStatus}
+							</td>
+							<td class="UserStatusInHeaderTable UserStatusEdit">
+								<a href="{EditProfileUrl}" >{Edit}</a>
+							</td>
+						</tr>
+					</table>
                 </td>
             </tr>
             <tr>
@@ -29,7 +35,44 @@
                             </tr>
                             <tr>
                                 <td>
-                                    {MyFriends}
+									<table class="MyFunctionsTable">
+										<tr style="display:{SendMessageShow}">
+											<td>
+												<a href="{SendMessageUrl}">
+													<div class="Login_submit">
+														{SendMessage}
+													</div>
+												</a>
+											</td>
+										</tr>
+										<tr style="display:{AddToFriendsShow}">
+											<td>
+												<a href="{AddToFriendsUrl}">
+													<div class="Login_submit">
+														{AddToFriends}
+													</div>
+												</a>
+											</td>
+										</tr>
+										<tr style="display:{DeleteFromFriendsShow}">
+											<td>
+												<a href="{DeleteFromFriendsUrl}">
+													<div class="Login_submit">
+														{DeleteFromFriends}
+													</div>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<a href="{FriendsUrl}">
+													<div class="Login_submit">
+														{Friends}
+													</div>
+												</a>
+											</td>
+										</tr>
+									</table>
                                 </td>
                             </tr>
                         </table>
