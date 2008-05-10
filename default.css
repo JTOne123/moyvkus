@@ -299,6 +299,7 @@ a
 	width: 140px;
 	font-size: 14px;
 	line-height: 16px;
+	vertical-align: top;
 }
 
 .LableValue, .LableValueFriends
@@ -322,7 +323,8 @@ a
 /* Редоктирование профайлера */
 .LabelValueEdit
 {
-	height: 30px;
+	margin-bottom: 3px;
+	width:200px;
 }
 
 .FileAvatarUpload
@@ -350,6 +352,21 @@ a
 	color: Red;
 	font-size: 14px;
 	line-height: 16px;
+}
+
+.TableWithSelects
+{
+	width: 100%;
+}
+
+#SelectDay, #SelectMonth, #SelectYear, #SelectCountry, #SelectRegion, #SelectCity
+{
+	width: 150px;
+}
+
+.LabelValueEditProfile
+{
+	width: 50px;
 }
 
 /* Друзья */

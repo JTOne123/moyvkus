@@ -13,6 +13,7 @@ class Profile extends Controller {
 		$this->load->library('myfriendslib');
 		
 		$this->load->helper('date');
+		$this->load->helper('typography');
 	}
 	
 	function _remap($method) {
@@ -207,9 +208,9 @@ class Profile extends Controller {
 		{
 			$data['WebSite'] = $user_data->website;
 			$data['InstantMessager'] = $user_data->phone;
-			$data['Activities'] = $user_data->activities;
-			$data['Interests'] = $user_data->interests;
-			$data['About'] = $user_data->about;
+			$data['Activities'] = auto_typography($user_data->activities);
+			$data['Interests'] = auto_typography($user_data->interests);
+			$data['About'] = auto_typography($user_data->about);
 			
 			if($user_data->avatar_name != null)
 				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;

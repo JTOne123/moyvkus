@@ -118,8 +118,8 @@ class Send_Message extends Controller {
 		{
 			if($this->can_send($user_id, $send_to_id))
 			{
-				$txtSubject = auto_typography($this->input->post('txtSubject'));
-				$txtText = auto_typography($this->input->post('txtText'));
+				$txtSubject = $this->input->post('txtSubject');
+				$txtText = $this->input->post('txtText');
 				
 				$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
 				

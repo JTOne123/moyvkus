@@ -161,6 +161,7 @@ class MyFriends extends Controller {
 			$friend_current = str_replace("{FriendFullName}", $friend_full_name, $friend_item);
 			$friend_current = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $row->friend_id, $friend_current);
 			$friend_current = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $row->friend_id, $friend_current);
+			$friend_current = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $row->friend_id, $friend_current);
 			
 			if($is_confirmed)
 				if($user_id != $row->friend_id)

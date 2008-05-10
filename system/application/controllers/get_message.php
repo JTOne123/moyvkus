@@ -12,6 +12,7 @@ class Get_Message extends Controller {
 		$this->load->library('message');
 		
 		$this->load->helper('date');
+		$this->load->helper('typography');
 	}
 	
 	function _remap($method) {
@@ -94,7 +95,7 @@ class Get_Message extends Controller {
 				$data['UserFullName'] = $user->first_name . ' ' . $user->last_name;
 				$data['FriendFullName'] = $friend->first_name . ' ' . $friend->last_name;
 				$data['SubjectValue'] = $message->subject;
-				$data['TextValue'] = $message->text;
+				$data['TextValue'] = auto_typography($message->text);
 				
 				if($friend_data->avatar_name != null)
 					$avatar_url = '/uploads/user_avatars/'.$friend_data->avatar_name;

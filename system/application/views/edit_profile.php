@@ -52,7 +52,7 @@
 
 
 <script language="javascript" type="text/javascript">
-/*	function AttachValidators()
+	function AttachValidators()
 	{
 		var oldPassword = document.getElementById("txtOldPassword");
 
@@ -74,18 +74,23 @@
 		var btnSave = document.getElementById("btnSave");
 		btnSave.click();
 	}	
-*/	
     </script>
 	
     
 	<div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile">
             <tr>
-                <td colspan="2" class="UserStatus">
-                    {UserStatus}
-                </td>
-                <td class="UserStatus UserStatusEdit">
-                    <a href="#" id="lnkSave" onclick="btnSaveClick()">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>
+                <td colspan="3" class="UserStatus">
+					<table class="ProfileHeaderTable">
+						<tr>
+							<td class="UserStatusInHeaderTable">
+								{UserStatus}
+							</td>
+							<td class="UserStatusInHeaderTable UserStatusEdit">
+								<a href="#" id="lnkSave" onclick="btnSaveClick()">{Save}</a>&nbsp;<a href="{ProfileUrl}">{Cancel}</a>							
+							</td>
+						</tr>
+					</table>
                 </td>
             </tr>
             <tr>
@@ -108,15 +113,18 @@
 								<?=form_open_multipart('edit_profile/do_upload'); ?>
 								<input type="file" name="userfile" size="15" />
 
-								<br />
-
-								<input type="submit" value="{Upload}" />
-								<br />
-								{Error}
+			                    <a href="#"  onclick="document.getElementById('btnUpload').click();">
+                                    <div class="Login_submit">
+                                       {Upload}
+                                    </div>
+                                </a>
+								<input id="btnUpload" type="submit" value="{Upload}" style="display:none;"/>
+								
+								{AvatarUploadError}
 								</form>	
 						
 								
-<form id="EditProfile" name="EditProfile" method="POST" action="/edit_profile/">									
+								<form id="EditProfile" name="EditProfile" method="POST" action="/edit_profile/">									
                                 </td>
                             </tr>
                             <tr>
@@ -126,23 +134,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <table cellpadding="0" cellspacing="0" class="SettingsTable">
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" />{MySettings1}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" />{MySettings2}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" />{MySettings3}
-                                            </td>
-                                        </tr>
-                                    </table>
+
                                 </td>
                             </tr>
                         </table>
@@ -163,23 +155,23 @@
                                             <td class="LabelText">
                                                 {FirstNameText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtFirstName" name="txtFirstName" value="{FirstName}"/>
+                                            <td class="LableValue">
+                                                <input type="text" id="txtFirstName" name="txtFirstName" value="{FirstName}" class="LabelValueEdit"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="LabelText">
                                                 {LastNameText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtLastName" name="txtLastName" value="{LastName}"/>
+                                            <td class="LableValue">
+                                                <input type="text" id="txtLastName" name="txtLastName" value="{LastName}" class="LabelValueEdit"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="LabelText">
                                                 {SexText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
+                                            <td class="LableValue">
                                                 <input type="radio" id="txtSexMan" name="txtSex" value="txtSexMan" {txtSexManCHECKED}/>{Man}&nbsp;
                                                 <input type="radio" id="txtSexWoman" name="txtSex" value="txtSexWoman" {txtSexWomanCHECKED}/>{Woman}
                                             </td>
@@ -188,18 +180,18 @@
                                             <td class="LabelText">
                                                 {BirthdayText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-												<table>
+                                            <td class="LableValue">
+												<table class="TableWithSelects">
 													<tr>
-														<td>{Day}</td>
+														<td class="LabelValueEditProfile">{Day}</td>
 														<td>{SelectDay}</td>
 													</tr>
 													<tr>
-														<td>{Month}</td>
+														<td class="LabelValueEditProfile">{Month}</td>
 														<td>{SelectMonth}</td>
 													</tr>
 													<tr>
-														<td>{Year}</td>
+														<td class="LabelValueEditProfile">{Year}</td>
 														<td>{SelectYear}</td>
 													</tr>
 												</table>
@@ -209,19 +201,19 @@
                                             <td class="LabelText">
                                                 {LoctionText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-												<table>
+                                            <td class="LableValue">
+												<table class="TableWithSelects">
 													<tr>
-														<td>{Country}</td>
+														<td class="LabelValueEditProfile">{Country}</td>
 														<td>{SelectCountry}</td>
 													</tr>
 													<tr>
-														<td>{Region}</td>
+														<td class="LabelValueEditProfile">{Region}</td>
 														<td>{SelectRegion}												
 														</td>
 													</tr>
 													<tr>
-														<td>{City}</td>
+														<td class="LabelValueEditProfile">{City}</td>
 														<td>{SelectCity}</td>
 													</tr>
 												</table>
@@ -242,16 +234,16 @@
                                             <td class="LabelText">
                                                 {WebSiteText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtWebSite" name="txtWebSite" value="{WebSite}" />
+                                            <td class="LableValue">
+                                                <input type="text" id="txtWebSite" name="txtWebSite" value="{WebSite}" class="LabelValueEdit"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="LabelText">
                                                 {InstantMessagerText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtPhone" name="txtPhone" value="{InstantMessager}" />
+                                            <td class="LableValue">
+                                                <input type="text" id="txtPhone" name="txtPhone" value="{InstantMessager}" class="LabelValueEdit"/>
                                             </td>
                                         </tr>
                                     </table>
@@ -269,24 +261,24 @@
                                             <td class="LabelText">
                                                 {ActivitiesText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtActivities" name="txtActivities" value="{Activities}"/>
+                                            <td class="LableValue">
+                                                <textarea type="text" id="txtActivities" name="txtActivities" rows="4" class="LabelValueEdit">{Activities}</textarea>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="LabelText">
                                                 {InterestsText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtInterests" name="txtInterests" value="{Interests}"/>
+                                            <td class="LableValue">
+                                                <textarea type="text" id="txtInterests" name="txtInterests" rows="4" class="LabelValueEdit">{Interests}</textarea>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="LabelText">
                                                 {AboutText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
-                                                <input type="text" id="txtAbout" name="txtAbout" value="{About}"/>
+                                            <td class="LableValue">
+                                                <textarea type="text" id="txtAbout" name="txtAbout" rows="4" class="LabelValueEdit">{About}</textarea>
                                             </td>
                                         </tr>
                                     </table>
@@ -312,11 +304,11 @@
                                             <td class="LabelText">
                                                 {OldPasswordText}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
+                                            <td class="LableValue">
 												<table cellpadding="0" cellspacing="0">
 													<tr>
 														<td>
-															<input type="password" id="txtOldPassword" name="txtOldPassword" onblur="AttachValidators();"/>
+															<input type="password" id="txtOldPassword" name="txtOldPassword" onblur="AttachValidators();" class="LabelValueEdit"/>
 														</td>
 														<td>
 															<div id="errorDivOldPassword" class="Login_validator" style="display:{OldPasswordError}">
@@ -331,11 +323,11 @@
                                             <td class="LabelText">
                                                 {NewPassword}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
+                                            <td class="LableValue">
 												<table cellpadding="0" cellspacing="0">
 													<tr>
 														<td>
-															<input type="password" id="txtNewPassword" name="txtNewPassword" />
+															<input type="password" id="txtNewPassword" name="txtNewPassword" class="LabelValueEdit"/>
 															<?php
 															        if(isset($this->validation->txtNewPassword_error))
 																	echo $this->validation->txtNewPassword_error;
@@ -354,11 +346,11 @@
                                             <td class="LabelText">
                                                 {ReNewPassword}
                                             </td>
-                                            <td class="LableValue LabelValueEdit">
+                                            <td class="LableValue">
 												<table cellpadding="0" cellspacing="0">
 													<tr>
 														<td>
-															<input type="password" id="txtReNewPassword" name="txtReNewPassword" />
+															<input type="password" id="txtReNewPassword" name="txtReNewPassword" class="LabelValueEdit"/>
 														</td>
 														<td>
 															<div id="errorDivReNewPassword" class="Login_validator">
@@ -381,10 +373,9 @@
                                             </td>
                                             <td class="SaveButtonTD">
                                                 <div align="right">
-                                                   <!-- <a href="#" id="Save" name="Save" onclick="btnSaveClick()"> -->
+                                                   <a href="#" id="Save" name="Save" onclick="btnSaveClick()">
                                                         <div class="Login_submit">
                                                             {Save}
-                                                            <input type="submit" name="btnSave" value="{Save}" />
                                                         </div>
                                                     </a>
                                                 </div>

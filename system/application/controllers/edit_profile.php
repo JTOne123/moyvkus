@@ -10,12 +10,10 @@ class Edit_Profile extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('location');
-		//$this->load->library('ajax');
 		
 		$this->load->helper('date');
 		$this->load->helper('form');
 		$this->load->helper('url');
-		
 	}
 	
 	function _remap($method) {
@@ -46,11 +44,11 @@ class Edit_Profile extends Controller {
 		if($this->input->post('btnSave') == "true")
 		{
 			$this->update_user($this->userauthorization->get_loged_on_user_id());
-			if($this->update_password($this->userauthorization->get_loged_on_user_id()))
+			//if($this->update_password($this->userauthorization->get_loged_on_user_id()))
 			redirect('/profile/', 'refresh');
 		}
 		
-		$data['Error'] = '';
+		$data['AvatarUploadError'] = '';
 		$data['body']= $this->parser->parse('edit_profile', $data);
 		
 		$this->parser->parse('main_tpl', $data);
@@ -257,7 +255,7 @@ class Edit_Profile extends Controller {
 		
 		if ( ! $this->upload->do_upload())
 		{
-			$data['Error'] = $this->upload->display_errors();
+			$data['AvatarUploadError'] = '<div class="Registraion_validator" style="display:block; height:50px;">' . $this->upload->display_errors() . '</div>';
 			$data['body']= $this->parser->parse('edit_profile', $data);
 		    $this->parser->parse('main_tpl', $data);
 		}	
@@ -307,6 +305,7 @@ class Edit_Profile extends Controller {
 		
 		$phone = $this->input->post('txtPhone');
 		$website = $this->input->post('txtWebSite');
+
 		$activities = $this->input->post('txtActivities');
 		$interests = $this->input->post('txtInterests');
 		$about = $this->input->post('txtAbout');
