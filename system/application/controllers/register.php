@@ -50,12 +50,14 @@ class Register extends Controller {
 		$data['first_name'] = $this->lang->line('first_name');
 		$data['last_name'] = $this->lang->line('last_name');
 		$data['password'] = $this->lang->line('password');
+		$data['repassword'] = $this->lang->line('repassword');
 		$data['sign_up'] = $this->lang->line('sign_up');
 		//Сообщения от JavaScript-валидатора
 		$data['Error_email'] = $this->lang->line('Error_email');
 		$data['Error_firstname'] = $this->lang->line('Error_firstname');
 		$data['Error_lastname'] = $this->lang->line('Error_lastname');
 		$data['Error_password'] = $this->lang->line('Error_password');
+		$data['Error_repassword'] = $this->lang->line('Error_repassword');
 		$data['Error_captcha'] = $this->lang->line('Error_captcha');
 		
 		//Форма END

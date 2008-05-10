@@ -13,6 +13,8 @@
 
     addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vg");
 	
+	addValidatorCompare("repassword", "password", "errorDivRePassword", "vg");
+	
 	addValidatorRegEx("captcha", "errorDivCaptcha", "^.{4}$", "vg");
 
     addSubmitButton("send", "vg");
@@ -68,7 +70,14 @@
                             <input id="password" name="password" " value="<?=$this->validation->password;?>" type="password" class="Registration_input" />
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <td class="Registration_text">
+                            {repassword}
+                        </td>
+                        <td>
+                            <input id="repassword" name="repassword" " type="password" class="Registration_input" />
+                        </td>
+                    </tr>
                     <tr>
                         <td class="Registration_text">
                             {image}
@@ -100,6 +109,9 @@
                             </div>
 							<div id="errorDivPassword" class="Registraion_validator">
                             {Error_password}
+                            </div>
+							<div id="errorDivRePassword" class="Registraion_validator">
+                            {Error_repassword}
                             </div>
 							<div id="errorDivCaptcha" class="Registraion_validator">
                             {Error_captcha}
