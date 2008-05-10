@@ -138,7 +138,7 @@ class Usermanagment {
 	function NewPassword($UserID, $NewPassword)
 	{
 		$NewPassword=md5($NewPassword.'secret_message'); //md5 кодирует строку с паролем 
-		$query = $this->ci->db->query("UPDATE users SET password = '$NewPassword' WHERE ID = '$UserID'");
+		$query = $this->ci->db->query("UPDATE users SET password = '$NewPassword' WHERE ID = $UserID");
 	}
 	
 	/*

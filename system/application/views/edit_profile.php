@@ -74,6 +74,13 @@
 		var btnSave = document.getElementById("btnSave");
 		btnSave.click();
 	}	
+	
+	function imposeMaxLength(object, MaxLen)
+	{
+	if(object.value.length > MaxLen)
+	   object.value = object.value.substring(0, MaxLen);
+	}
+	
     </script>
 	
     
@@ -156,7 +163,7 @@
                                                 {FirstNameText}
                                             </td>
                                             <td class="LableValue">
-                                                <input type="text" id="txtFirstName" name="txtFirstName" value="{FirstName}" class="LabelValueEdit"/>
+                                                <input type="text" id="txtFirstName" name="txtFirstName" value="{FirstName}" class="LabelValueEdit" maxlength="100"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -164,7 +171,7 @@
                                                 {LastNameText}
                                             </td>
                                             <td class="LableValue">
-                                                <input type="text" id="txtLastName" name="txtLastName" value="{LastName}" class="LabelValueEdit"/>
+                                                <input type="text" id="txtLastName" name="txtLastName" value="{LastName}" class="LabelValueEdit" maxlength="100"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -235,7 +242,7 @@
                                                 {WebSiteText}
                                             </td>
                                             <td class="LableValue">
-                                                <input type="text" id="txtWebSite" name="txtWebSite" value="{WebSite}" class="LabelValueEdit"/>
+                                                <input type="text" id="txtWebSite" name="txtWebSite" value="{WebSite}" class="LabelValueEdit" maxlength="100"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -243,7 +250,7 @@
                                                 {InstantMessagerText}
                                             </td>
                                             <td class="LableValue">
-                                                <input type="text" id="txtPhone" name="txtPhone" value="{InstantMessager}" class="LabelValueEdit"/>
+                                                <input type="text" id="txtPhone" name="txtPhone" value="{InstantMessager}" class="LabelValueEdit" maxlength="15"/>
                                             </td>
                                         </tr>
                                     </table>
@@ -262,7 +269,7 @@
                                                 {ActivitiesText}
                                             </td>
                                             <td class="LableValue">
-                                                <textarea type="text" id="txtActivities" name="txtActivities" rows="4" class="LabelValueEdit">{Activities}</textarea>
+                                                <textarea type="text" id="txtActivities" name="txtActivities" rows="4" class="LabelValueEdit" onkeypress="return imposeMaxLength(this, 2000);">{Activities}</textarea>
                                             </td>
                                         </tr>
                                         <tr>
@@ -270,7 +277,7 @@
                                                 {InterestsText}
                                             </td>
                                             <td class="LableValue">
-                                                <textarea type="text" id="txtInterests" name="txtInterests" rows="4" class="LabelValueEdit">{Interests}</textarea>
+                                                <textarea type="text" id="txtInterests" name="txtInterests" rows="4" class="LabelValueEdit" onkeypress="return imposeMaxLength(this, 2000);">{Interests}</textarea>
                                             </td>
                                         </tr>
                                         <tr>
@@ -278,7 +285,7 @@
                                                 {AboutText}
                                             </td>
                                             <td class="LableValue">
-                                                <textarea type="text" id="txtAbout" name="txtAbout" rows="4" class="LabelValueEdit">{About}</textarea>
+                                                <textarea type="text" id="txtAbout" name="txtAbout" rows="4" class="LabelValueEdit" onkeypress="return imposeMaxLength(this, 2000);">{About}</textarea>
                                             </td>
                                         </tr>
                                     </table>
@@ -328,10 +335,7 @@
 													<tr>
 														<td>
 															<input type="password" id="txtNewPassword" name="txtNewPassword" class="LabelValueEdit"/>
-															<?php
-															        if(isset($this->validation->txtNewPassword_error))
-																	echo $this->validation->txtNewPassword_error;
-															?>
+															{ErrorNewPassword}
 														</td>
 														<td>
 															<div id="errorDivNewPassword" class="Login_validator">

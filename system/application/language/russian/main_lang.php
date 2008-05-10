@@ -113,6 +113,7 @@ $lang['MySettings'] = "Мои настройки";
 $lang['Cancel'] = "Отмена";
 $lang['Region'] = "Регион";
 $lang['txtNewPassword'] = "Пароль должен быть не менее 6 символов";
+$lang['ErrorNewPassword'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Вы ввели не верные пароли</div><br/>";
 
 //My friends
 $lang['MyFriends'] = "Мои друзья";

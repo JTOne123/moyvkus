@@ -273,7 +273,7 @@ class CI_Input {
 			}
 		}
 
-		return $_POST[$index];
+		return addslashes($_POST[$index]);
 	}
 	
 	// --------------------------------------------------------------------

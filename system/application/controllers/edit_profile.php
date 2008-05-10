@@ -8,6 +8,7 @@ class Edit_Profile extends Controller {
 		
 		$this->load->library('validation');
 		
+		$this->load->library('security');
 		$this->load->library('usermanagment');
 		$this->load->library('location');
 		
@@ -22,14 +23,14 @@ class Edit_Profile extends Controller {
 		$pars = $this->uri->segment_array();
 		unset($pars[1]);
 		unset($pars[2]);
-
-
+		
+		
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
-		redirect('/login/', 'refresh');
+			redirect('/login/', 'refresh');
 	}
 	
 	
@@ -44,8 +45,10 @@ class Edit_Profile extends Controller {
 		if($this->input->post('btnSave') == "true")
 		{
 			$this->update_user($this->userauthorization->get_loged_on_user_id());
-			//if($this->update_password($this->userauthorization->get_loged_on_user_id()))
-			redirect('/profile/', 'refresh');
+			if($this->update_password($this->userauthorization->get_loged_on_user_id()))
+				redirect('/profile/', 'refresh');
+			else
+				$data['ErrorNewPassword'] = $this->lang->line('ErrorNewPassword');
 		}
 		
 		$data['AvatarUploadError'] = '';
@@ -119,6 +122,8 @@ class Edit_Profile extends Controller {
 		$data['ProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile';
 		$data['OldPasswordError'] = "none";
 		
+		$data['ErrorNewPassword'] = '';
+		
 		//Получение данных юзера и заполнение их
 		$users = $this->usermanagment->GetUser($this->userauthorization->get_loged_on_user_id());
 		$user_data = $this->usermanagment->GetUserData($this->userauthorization->get_loged_on_user_id());
@@ -173,7 +178,7 @@ class Edit_Profile extends Controller {
 			$data['SelectDay'] = form_dropdown('SelectDay', $day, $selectedDay);
 			$data['SelectMonth'] = form_dropdown('SelectMonth', $month, $selectedMonth);
 			$data['SelectYear'] = form_dropdown('SelectYear', $year, $selectedYear);
-
+			
 			$country=$this->location->GetCountryNames();
 			$nulled=array();
 			$data['SelectCountry'] = form_dropdown('SelectCountry',$country,'', "onChange='ajax_locator_country()'");
@@ -219,21 +224,21 @@ class Edit_Profile extends Controller {
 		
 		if(isset($countryID))
 		{
-		  	$region=$this->location->GetRegions($countryID);
-		  	$data['regions']=$region;
-		  	$this->load->view('locator_drop_down', $data);
+			$region=$this->location->GetRegions($countryID);
+			$data['regions']=$region;
+			$this->load->view('locator_drop_down', $data);
 		}
 	}
 	
 	function ajax_locator_region(){
-	
+		
 		$regionID=$this->input->post('regionID');
 		
 		if(isset($regionID))
 		{
-		  	$citys=$this->location->GetCitys($regionID);
-		  	$data['citys']=$citys;
-		  	$this->load->view('locator_drop_down', $data);
+			$citys=$this->location->GetCitys($regionID);
+			$data['citys']=$citys;
+			$this->load->view('locator_drop_down', $data);
 		}
 		
 	}
@@ -257,7 +262,7 @@ class Edit_Profile extends Controller {
 		{
 			$data['AvatarUploadError'] = '<div class="Registraion_validator" style="display:block; height:50px;">' . $this->upload->display_errors() . '</div>';
 			$data['body']= $this->parser->parse('edit_profile', $data);
-		    $this->parser->parse('main_tpl', $data);
+			$this->parser->parse('main_tpl', $data);
 		}	
 		else //успешная загрузка
 		{
@@ -273,7 +278,7 @@ class Edit_Profile extends Controller {
 			$this->image_lib->initialize($config);
 			$this->image_lib->resize();
 			
-	        $this->write_avatar_name_to_db($upl_arr['file_ext']);
+			$this->write_avatar_name_to_db($upl_arr['file_ext']);
 			unlink('./uploads/user_avatars/stack/'.$upl_arr['raw_name'].$upl_arr['file_ext']);
 			redirect('/edit_profile/', 'refresh');
 		}		
@@ -292,20 +297,19 @@ class Edit_Profile extends Controller {
 		$first_name = $this->input->post('txtFirstName');
 		$last_name = $this->input->post('txtLastName');
 		
-		$SelectDay = $this->input->post('SelectDay');
-		$SelectMonth = $this->input->post('SelectMonth');
-		$SelectYear = $this->input->post('SelectYear');
+		$SelectDay = addslashes($this->input->post('SelectDay'));
+		$SelectMonth = addslashes($this->input->post('SelectMonth'));
+		$SelectYear = addslashes($this->input->post('SelectYear'));
 		
-		$SelectCountry = $this->input->post('SelectCountry');
-		$SelectRegion = $this->input->post('SelectRegion');
-		$SelectCity = $this->input->post('SelectCity');
+		$SelectCountry = addslashes($this->input->post('SelectCountry'));
+		$SelectRegion = addslashes($this->input->post('SelectRegion'));
+		$SelectCity = addslashes($this->input->post('SelectCity'));
 		
-		
-		$sexValue = $this->input->post('txtSex');
+		$sexValue = addslashes($this->input->post('txtSex'));
 		
 		$phone = $this->input->post('txtPhone');
 		$website = $this->input->post('txtWebSite');
-
+		
 		$activities = $this->input->post('txtActivities');
 		$interests = $this->input->post('txtInterests');
 		$about = $this->input->post('txtAbout');
@@ -328,37 +332,31 @@ class Edit_Profile extends Controller {
 		
 		$fields['txtNewPassword'] = $this->lang->line('txtNewPassword');
 		$this->validation->set_fields($fields);
+		$this->validation->txtNewPassword_error;
 		
 		$old_password = $this->input->post('txtOldPassword');
-		$new_password=$this->input->post('txtNewPassword');
-		$txtReNewPassword=$this->input->post('txtReNewPassword');
+		$new_password = $this->input->post('txtNewPassword');
+		$txtReNewPassword = $this->input->post('txtReNewPassword');
 		
 		if($old_password!='')
 		{
-		  if ($this->validation->run() == TRUE && $new_password==$txtReNewPassword) 
-		  {
-		  	$this->usermanagment->NewPassword($UserID, $new_password);
-			return true;
-		  }
-		  else 
-		   return false;
+			if ($this->validation->run() == TRUE && $new_password == $txtReNewPassword) 
+			{				
+				$this->usermanagment->NewPassword($UserID, $new_password);
+				return true;
+			}
+			else 
+				return false;
 		}
 		else 
-		 return false;
+			return true;
 	}
 	
 	function check_old_password($old_password)
 	{
 		$ID=$this->userauthorization->get_loged_on_user_id();
-		$old_password_md5=md5($old_password.'secret_message');
-		$returned=$this->usermanagment->IsPasswordValidByID($ID, $old_password_md5);
-		if($returned==true)
-		{
-		return true;
-		}
-		else 
-		return false;
 		
+		return $this->usermanagment->IsPasswordValidByID($ID, $old_password);	
 	}
 	
 	
