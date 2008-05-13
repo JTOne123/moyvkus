@@ -11,6 +11,7 @@ class Profile extends Controller {
 		$this->load->library('usermanagment');
 		$this->load->library('location');
 		$this->load->library('myfriendslib');
+		$this->load->library('receipesmanagement');
 		
 		$this->load->helper('date');
 		$this->load->helper('typography');
@@ -211,6 +212,9 @@ class Profile extends Controller {
 			$data['Activities'] = auto_typography($user_data->activities);
 			$data['Interests'] = auto_typography($user_data->interests);
 			$data['About'] = auto_typography($user_data->about);
+			$arr=$this->receipesmanagement->getbestrecipe();
+			$best_recipe=$arr[0]['name'];
+			$data['MyBestRecipe'] = $best_recipe;
 			
 			if($user_data->avatar_name != null)
 				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;
@@ -229,6 +233,7 @@ class Profile extends Controller {
 			$data['AvatarUrl'] = "../../images/noavatar.gif";
 			
 		}
+		
 		
 		return $data;
 	}

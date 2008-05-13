@@ -223,7 +223,7 @@
                                                 {MyBestRecipesText}
                                             </td>
                                             <td class="LableValue">
-                                                {MyBestRecipes}
+                                                <a href="#">{MyBestRecipe}</a>
                                             </td>
                                         </tr>
                                     </table>

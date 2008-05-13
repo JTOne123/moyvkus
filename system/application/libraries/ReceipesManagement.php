@@ -55,6 +55,13 @@ class Receipesmanagement {
 		$arr = $query->result_array();
 		return $arr;
 	}
+	
+	function GetBestRecipe()
+	{
+	  $query = $this->ci->db->query("SELECT id, name, rating FROM recipes GROUP BY rating DESC");
+	  $arr = $query->result_array();
+	  return $arr;
+	}
 
 }
 ?>
