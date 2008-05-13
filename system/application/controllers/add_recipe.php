@@ -170,7 +170,7 @@ class Add_recipe extends Controller {
 			{
 
 				$upl_arr=$this->upload->data();
-
+				
 				$this->load->helper('date');
 				$datestring = "%Y-%m-%d %G:%i:%s";
 				$time = time();
@@ -183,7 +183,10 @@ class Add_recipe extends Controller {
 				$query=$this->db->query("SELECT id FROM recipes WHERE timestamp='$tst'");
 				$row = $query->row();
 				$recipe_id=$row->id;
-
+				
+                @unlink('./uploads/recipe_photos/big_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
+                @unlink('./uploads/recipe_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
+                
 				$config['image_library'] = 'GD2';
 				$config['new_image'] = './uploads/recipe_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext'];
 				$config['source_image'] = './uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext'];
