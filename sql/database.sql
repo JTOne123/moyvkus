@@ -118,3 +118,125 @@ CREATE TABLE `message_spam_filter` (
   `date` datetime DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+
+
+CREATE TABLE IF NOT EXISTS `recipes` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(300) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `kitchen_id` int(11) NOT NULL,
+  `portions` int(3) NOT NULL,
+  `ingredients` varchar(2000) NOT NULL,
+  `recipe_text` varchar(3000) NOT NULL,
+  `photo_name` varchar(200) NOT NULL,
+  `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `user_id` int(10) NOT NULL,
+  `rating` int(10) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=44 ;
+        
+
+CREATE TABLE `categorys` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(70) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=23 ;
+
+INSERT INTO `categorys` VALUES (2, 'Холодные закуски');
+INSERT INTO `categorys` VALUES (3, 'Салаты');
+INSERT INTO `categorys` VALUES (4, 'Горячие закуски');
+INSERT INTO `categorys` VALUES (5, 'Супы');
+INSERT INTO `categorys` VALUES (6, 'Основные блюда');
+INSERT INTO `categorys` VALUES (7, 'Гарниры');
+INSERT INTO `categorys` VALUES (8, 'Десерты');
+INSERT INTO `categorys` VALUES (9, 'Выпечка');
+INSERT INTO `categorys` VALUES (10, 'Соусы');
+INSERT INTO `categorys` VALUES (11, 'Вегетарианские рецепты');
+INSERT INTO `categorys` VALUES (12, 'Диетическое питание');
+INSERT INTO `categorys` VALUES (13, 'Постные блюда');
+INSERT INTO `categorys` VALUES (14, 'Рецепты красоты');
+INSERT INTO `categorys` VALUES (15, 'Для будущих мам');
+INSERT INTO `categorys` VALUES (16, 'Для кормящих мам');
+INSERT INTO `categorys` VALUES (17, 'Для самых маленьких');
+INSERT INTO `categorys` VALUES (18, 'Для микроволновой печи');
+INSERT INTO `categorys` VALUES (19, 'Рецепты для любви');
+INSERT INTO `categorys` VALUES (20, 'Напитки и Коктейли');
+INSERT INTO `categorys` VALUES (21, 'Консервируем сами');
+INSERT INTO `categorys` VALUES (22, 'Разное');
+
+
+CREATE TABLE IF NOT EXISTS `kitchens` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(70) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=69 ;
+
+INSERT INTO `kitchens` VALUES (1, 'Домашняя');
+INSERT INTO `kitchens` VALUES (2, 'Абхазская');
+INSERT INTO `kitchens` VALUES (3, 'Австралийская');
+INSERT INTO `kitchens` VALUES (4, 'Австрийская');
+INSERT INTO `kitchens` VALUES (5, 'Азербайджанская');
+INSERT INTO `kitchens` VALUES (6, 'Американская');
+INSERT INTO `kitchens` VALUES (7, 'Английская');
+INSERT INTO `kitchens` VALUES (8, 'Арабская');
+INSERT INTO `kitchens` VALUES (9, 'Аргентинская');
+INSERT INTO `kitchens` VALUES (10, 'Армянская');
+INSERT INTO `kitchens` VALUES (11, 'Африканская');
+INSERT INTO `kitchens` VALUES (12, 'Белорусская');
+INSERT INTO `kitchens` VALUES (13, 'Бельгийская');
+INSERT INTO `kitchens` VALUES (14, 'Болгарская');
+INSERT INTO `kitchens` VALUES (15, 'Бразильская');
+INSERT INTO `kitchens` VALUES (16, 'Бурятская');
+INSERT INTO `kitchens` VALUES (17, 'Валлийская');
+INSERT INTO `kitchens` VALUES (18, 'Венгерская');
+INSERT INTO `kitchens` VALUES (19, 'Вьетнамская');
+INSERT INTO `kitchens` VALUES (20, 'Гавайская');
+INSERT INTO `kitchens` VALUES (21, 'Голландская');
+INSERT INTO `kitchens` VALUES (22, 'Греческая');
+INSERT INTO `kitchens` VALUES (23, 'Грузинская');
+INSERT INTO `kitchens` VALUES (24, 'Датская');
+INSERT INTO `kitchens` VALUES (25, 'Еврейская');
+INSERT INTO `kitchens` VALUES (26, 'Египетская');
+INSERT INTO `kitchens` VALUES (27, 'Индийская');
+INSERT INTO `kitchens` VALUES (28, 'Иракская');
+INSERT INTO `kitchens` VALUES (29, 'Ирландская');
+INSERT INTO `kitchens` VALUES (30, 'Испанская');
+INSERT INTO `kitchens` VALUES (31, 'Итальянская');
+INSERT INTO `kitchens` VALUES (32, 'Кавказская');
+INSERT INTO `kitchens` VALUES (33, 'Казахская');
+INSERT INTO `kitchens` VALUES (34, 'Калмыцкая');
+INSERT INTO `kitchens` VALUES (35, 'Китайская');
+INSERT INTO `kitchens` VALUES (36, 'Коми');
+INSERT INTO `kitchens` VALUES (37, 'Корейская');
+INSERT INTO `kitchens` VALUES (38, 'Кубинская');
+INSERT INTO `kitchens` VALUES (39, 'Кухня Магриба');
+INSERT INTO `kitchens` VALUES (40, 'Латышская');
+INSERT INTO `kitchens` VALUES (41, 'Литовская');
+INSERT INTO `kitchens` VALUES (42, 'Малайзийская');
+INSERT INTO `kitchens` VALUES (43, 'Марокканская');
+INSERT INTO `kitchens` VALUES (44, 'Мексиканская');
+INSERT INTO `kitchens` VALUES (45, 'Молдавская');
+INSERT INTO `kitchens` VALUES (46, 'Монгольская');
+INSERT INTO `kitchens` VALUES (47, 'Немецкая');
+INSERT INTO `kitchens` VALUES (48, 'Норвежская');
+INSERT INTO `kitchens` VALUES (49, 'Польская');
+INSERT INTO `kitchens` VALUES (50, 'Португальская');
+INSERT INTO `kitchens` VALUES (51, 'Румынская');
+INSERT INTO `kitchens` VALUES (52, 'Русская');
+INSERT INTO `kitchens` VALUES (53, 'Сирийская');
+INSERT INTO `kitchens` VALUES (54, 'Тайская');
+INSERT INTO `kitchens` VALUES (55, 'Тунисская');
+INSERT INTO `kitchens` VALUES (56, 'Турецкая');
+INSERT INTO `kitchens` VALUES (57, 'Узбекская');
+INSERT INTO `kitchens` VALUES (58, 'Украинская');
+INSERT INTO `kitchens` VALUES (59, 'Уральская');
+INSERT INTO `kitchens` VALUES (60, 'Финская');
+INSERT INTO `kitchens` VALUES (61, 'Французская');
+INSERT INTO `kitchens` VALUES (62, 'Чешская');
+INSERT INTO `kitchens` VALUES (63, 'Шведская');
+INSERT INTO `kitchens` VALUES (64, 'Швейцарская');
+INSERT INTO `kitchens` VALUES (65, 'Шотландская');
+INSERT INTO `kitchens` VALUES (66, 'Эстонская');
+INSERT INTO `kitchens` VALUES (67, 'Югославская');
+INSERT INTO `kitchens` VALUES (68, 'Японская');
+

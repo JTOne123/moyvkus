@@ -34,7 +34,6 @@ class Main extends Controller {
 
 	$data['menu']=$this->Menu->buildmenu();
 	$data['login']=$this->Loginform->build_login_form();
-	
 
 	var_dump($this->userauthorization->is_logged_in());
 	

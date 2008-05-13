@@ -51,6 +51,7 @@ $route['myfriends/id/:num'] = "myfriends";
 $route['myfriends/confirm_friend_id/:num'] = "myfriends";
 $route['myfriends/reject_friend_id/:num'] = "myfriends";
 $route['profile/id/:num'] = "profile";
+$route['edit_recipe/id/:num'] = "add_recipe";
 $route['default_controller'] = "main";
 $route['register/wrong_captcha'] = "register";
 $route['scaffolding_trigger'] = "";

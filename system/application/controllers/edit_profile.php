@@ -7,8 +7,6 @@ class Edit_Profile extends Controller {
 		parent::Controller();
 		
 		$this->load->library('validation');
-		
-		$this->load->library('security');
 		$this->load->library('usermanagment');
 		$this->load->library('location');
 		

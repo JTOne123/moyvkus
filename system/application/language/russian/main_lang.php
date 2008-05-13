@@ -169,4 +169,16 @@ $lang['MessageSubject'] = "Тема";
 //Get Message
 $lang['GetMessage'] = "Мои сообщения";
 
+
+//Add recipe
+$lang['AddRecipe'] = "Добавить новый рецепт";
+$lang['NameOfRecipe'] = "Название блюда";
+$lang['CategoryOfRecipe'] = "Категория";
+$lang['KitchenOfRecipe'] = "Кухня";
+$lang['PortionsOfRecipe'] = "Порции";
+$lang['PortionsQttyOfRecipe'] = "шт.";
+$lang['IngredientsOfRecipe'] = "Составляющие рецепта";
+$lang['TextOfRecipe'] = "Рецепт";
+
+
 ?>
