@@ -60,6 +60,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\add_recipe.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\edit_profile.php"
     {
     "ProjRelPath" = "T"
@@ -176,6 +180,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\receipesmanagement.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\security.php"
     {
     "ProjRelPath" = "T"
@@ -201,6 +209,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\models\\menu.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\add_recipe.php"
     {
     "ProjRelPath" = "T"
     }

@@ -32,14 +32,26 @@ CREATE TABLE `captcha` (
 -- Структура таблицы `menu`
 -- 
 
+/*Table structure for table `menu` */
+
 CREATE TABLE `menu` (
-  `ID` int(11) NOT NULL auto_increment,
-  `text` varchar(50) default NULL,
-  `url` varchar(200) default NULL,
-  `img_url` varchar(200) default NULL,
-  `tooltip` varchar(200) default NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `text` varchar(50) DEFAULT NULL,
+  `url` varchar(200) DEFAULT NULL,
+  `img_url` varchar(200) DEFAULT NULL,
+  `tooltip` varchar(200) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
   UNIQUE KEY `id` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=cp1251;
+
+/*Data for the table `menu` */
+
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (3,'Главная','~/profile','~/images/main.gif','Главная',0);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Мои сообщения','~/mymessages','~/images/mymessages.gif','Мои сообщения',2);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецпты','~/myreciepts','~/images/myreciepts.gif','Мои рецпты',3);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Мой поиск','~/search','~/images/search.gif','Мой поиск',4);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (7,'Выход','~/logout','~/images/logout.gif','Выход',5);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Мои друзья','~/myfriends','~/images/myfriends.gif','Мои друзья',1);
 
 /*Table structure for table `user_data` */
 

@@ -70,29 +70,34 @@ class MyFriends extends Controller {
 	{
 		$current_user_id = $this->userauthorization->get_loged_on_user_id();
 		$action_type = $this->uri->segment(2);
-		$user_id = $this->uri->segment(3);		
+		$user_id = $this->uri->segment(3);
 		
-		if($user_id != null)
-		switch($action_type)
+		if($action_type != null)
 		{
-			case 'id':
-				$data = $this->show_friends($user_id, $data);
-				break;
-			
-			case 'confirm_friend_id':
-				$this->myfriendslib->ConfirmFriend($current_user_id, $user_id);
-				redirect('/myfriends/id/' . $current_user_id, 'refresh');
-				break;
-			
-			case 'reject_friend_id':
-				$this->myfriendslib->DeleteFriend($current_user_id, $user_id);
-				redirect('/myfriends/id/' . $current_user_id, 'refresh');
-				break;
-			
-			default:
-				redirect('', 'refresh');
-				break;
+			if($user_id != null)
+			switch($action_type)
+			{
+				case 'id':
+					$data = $this->show_friends($user_id, $data);
+					break;
+				
+				case 'confirm_friend_id':
+					$this->myfriendslib->ConfirmFriend($current_user_id, $user_id);
+					redirect('/myfriends/id/' . $current_user_id, 'refresh');
+					break;
+				
+				case 'reject_friend_id':
+					$this->myfriendslib->DeleteFriend($current_user_id, $user_id);
+					redirect('/myfriends/id/' . $current_user_id, 'refresh');
+					break;
+				
+				default:
+					redirect('/myfriends/id/' . $current_user_id, 'refresh');
+					break;
+			}
 		}
+		else
+			redirect('/myfriends/id/' . $current_user_id, 'refresh');
 		
 		return $data;
 	}
