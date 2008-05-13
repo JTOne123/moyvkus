@@ -212,9 +212,12 @@ class Profile extends Controller {
 			$data['Activities'] = auto_typography($user_data->activities);
 			$data['Interests'] = auto_typography($user_data->interests);
 			$data['About'] = auto_typography($user_data->about);
+			
 			$arr=$this->receipesmanagement->getbestrecipe();
-			$best_recipe=$arr[0]['name'];
-			$data['MyBestRecipe'] = $best_recipe;
+			$data['MyBestRecipe'] = $arr[0]['name'];
+			
+			$arr=$this->receipesmanagement->getuserrecipes($this->userauthorization->get_loged_on_user_id(), 0,5);
+			$data['UserRecipes']=$arr;
 			
 			if($user_data->avatar_name != null)
 				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;

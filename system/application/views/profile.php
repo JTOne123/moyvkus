@@ -237,6 +237,8 @@
                             <tr>
                                 <td>
                                     {UserRecipes}
+                                    {id} - {name} <br>
+								    {/UserRecipes}
                                 </td>
                             </tr>
                         </table>
