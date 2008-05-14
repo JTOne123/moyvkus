@@ -96,6 +96,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\my_recipes.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\myfriends.php"
     {
     "ProjRelPath" = "T"
@@ -257,6 +261,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\messagebox.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\my_recipes.php"
     {
     "ProjRelPath" = "T"
     }

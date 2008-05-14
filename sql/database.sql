@@ -48,7 +48,7 @@ CREATE TABLE `menu` (
 
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (3,'Главная','~/profile','~/images/main.gif','Главная',0);
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Мои сообщения','~/mymessages','~/images/mymessages.gif','Мои сообщения',2);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецепты','~/myreciepts','~/images/myreciepts.gif','Мои рецпты',3);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецепты','~/my_recipes','~/images/myreciepts.gif','Мои рецпты',3);
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Мой поиск','~/search','~/images/search.gif','Мой поиск',4);
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (7,'Выход','~/logout','~/images/logout.gif','Выход',5);
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Мои друзья','~/myfriends','~/images/myfriends.gif','Мои друзья',1);
