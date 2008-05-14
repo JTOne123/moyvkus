@@ -37,6 +37,8 @@
             <tr>
                 <td class="FriendsBuilder">
                     {RecipesBuilder}
+                    
+                    <div align="center">{paginator}</div>
                 </td>
             </tr>
         </table>

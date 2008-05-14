@@ -132,7 +132,7 @@ CREATE TABLE `message_spam_filter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 
-CREATE TABLE IF NOT EXISTS `recipes` (
+CREATE TABLE `recipes` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(300) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -140,12 +140,13 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `portions` int(3) NOT NULL,
   `ingredients` varchar(2000) NOT NULL,
   `recipe_text` varchar(3000) NOT NULL,
-  `photo_name` varchar(200) NOT NULL,
+  `photo_name` varchar(200) default NULL,
   `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
   `rating` int(10) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=44 ;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=48 ;
+        
         
 
 CREATE TABLE `categorys` (

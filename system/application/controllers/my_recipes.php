@@ -9,13 +9,14 @@ class My_recipes extends Controller {
 		$this->load->library('validation');
 		$this->load->library('receipesmanagement');
 		$this->load->library('usermanagment');
+		$this->load->library('pagination');
 		
 		$this->load->helper('form');
 		$this->load->helper('typography');
 		$this->load->helper('text');
 	}
 
-	function _remap($method) {
+	/*function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
 		$pars = $this->uri->segment_array();
@@ -29,7 +30,7 @@ class My_recipes extends Controller {
 		}
 		else
 		redirect('/login/', 'refresh');
-	}
+	}*/
 
 	function index()
 	{
@@ -100,8 +101,32 @@ class My_recipes extends Controller {
 		$recipe_list='';
 		$recipe_item = $this->receipesmanagement->recipesbuilder();
 		
+		$config['base_url'] = base_url().'/my_recipes/page/';
+		$config['total_rows'] = $RecipesCount;
+		$config['per_page'] = '5';
+		$config['uri_segment'] = 3;
+		$config['first_link'] = 'Начало';
+	    $config['last_link'] = 'Конец';
+		$this->pagination->initialize($config);
 		
-		$get_user_recipes=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,0);
+		$cur_page = $this->uri->segment(3);
+		var_dump($cur_page);
+		if($cur_page==null)
+     	{
+     		$from_limit=0;
+     		$to_limit=$config['per_page'];
+     		
+     	}
+     	else 
+     	{
+     		$from_limit=$cur_page;
+     		$to_limit=$config['per_page'];
+     	}
+     	
+		
+		$data['paginator']=$this->pagination->create_links();
+		
+		$get_user_recipes=$this->receipesmanagement->getuserrecipes($user_id_to_view, $from_limit,$to_limit);
 		if($get_user_recipes[0]['id']!=='')
 		foreach ($get_user_recipes as $row):
 		

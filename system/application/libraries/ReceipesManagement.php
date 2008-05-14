@@ -35,12 +35,12 @@ class Receipesmanagement {
 	{
 		if($update_or_insert=='insert')
 		{
-			$query = $this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, rating, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', '$rating', null)");
+			$query = $this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', null)");
 		}
 
 		if ($update_or_insert=='update' && $id_of_recipe!=='')
 		{
-			$query = $this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', rating='$rating', timestamp=null WHERE id='$id_of_recipe'");
+			$query = $this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', timestamp=null WHERE id='$id_of_recipe'");
 		}
 	}
 
