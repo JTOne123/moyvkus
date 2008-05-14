@@ -156,7 +156,12 @@ class Add_recipe extends Controller {
 			$user_id=$this->userauthorization->get_loged_on_user_id();
 			$rating='';
 
-			$this->receipesmanagement->savereceipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $update_or_insert, $id_of_recipe);
+			$this->load->helper('date');
+			$datestring = "%Y-%m-%d %G:%i:%s";
+			$time = time();
+			$now = mdate($datestring, $time);
+			
+			$this->receipesmanagement->savereceipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $update_or_insert, $id_of_recipe, $now);
 
 			//upload
 			$this->load->library('image_lib');
@@ -171,18 +176,16 @@ class Add_recipe extends Controller {
 
 				$upl_arr=$this->upload->data();
 				
-				$this->load->helper('date');
-				$datestring = "%Y-%m-%d %G:%i:%s";
-				$time = time();
-				$now = mdate($datestring, $time);
-
 				$query=$this->db->query("SELECT max(timestamp) FROM recipes");
 				$arr = $query->result_array();
 				$tst=$arr[0]['max(timestamp)'];
 
-				$query=$this->db->query("SELECT id FROM recipes WHERE timestamp='$tst'");
+				//$query=$this->db->query("SELECT id FROM recipes WHERE timestamp='$tst'");
+				$query=$this->db->query("SELECT id FROM recipes ORDER BY timestamp DESC");
+				
 				$row = $query->row();
-				$recipe_id=$row->id;
+				$recipe_id=$row->id; 
+				//var_dump($recipe_id);
 				
                 @unlink('./uploads/recipe_photos/big_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
                 @unlink('./uploads/recipe_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
@@ -219,11 +222,11 @@ class Add_recipe extends Controller {
 				$this->image_lib->initialize($config);
 				$this->image_lib->watermark();
 
-				$this->receipesmanagement->savephoto($recipe_id, 'recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
+				$this->receipesmanagement->savephoto($recipe_id, 'recipe_photo_id'.$recipe_id.$upl_arr['file_ext'], $now);
 				unlink('./uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext']);
 			}
 			//
-			redirect('profile', 'refresh'); //потом перенастроим редирект на страницу МОИ РЕЦЕПТЫ
+			redirect('my_recipes', 'refresh');
 		}
 		return $data;
 	}

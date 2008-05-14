@@ -113,7 +113,6 @@ class Usermanagment {
 	{
 		$query = $this->ci->db->query("SELECT phone, website, activities, interests, about, avatar_name FROM user_data WHERE user_id = $UserID");
 		$row = $query->row();
-		
 		return $row;
 	}
 	

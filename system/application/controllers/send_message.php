@@ -128,7 +128,7 @@ class Send_Message extends Controller {
 				if($answer_message_id != false)
 					$this->message->DeleteMessage($answer_message_id, $user_id);
 				
-				redirect('', 'refresh');
+				redirect('mymessages', 'refresh');
 			}
 			else
 				redirect('/messagebox/type/warning/spam', 'refresh');

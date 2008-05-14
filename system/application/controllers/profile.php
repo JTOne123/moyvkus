@@ -167,6 +167,7 @@ class Profile extends Controller {
 		//Получение данных юзера и заполнение их
 		$users = $this->usermanagment->GetUser($user_id_to_view);
 		$user_data = $this->usermanagment->GetUserData($user_id_to_view);
+		//var_dump($user_data);
 		if($users != null)
 		{
 			$data['UserStatus'] = $users->first_name . ' ' . $users->last_name;
@@ -213,10 +214,12 @@ class Profile extends Controller {
 			$data['Interests'] = auto_typography($user_data->interests);
 			$data['About'] = auto_typography($user_data->about);
 			
-			$arr=$this->receipesmanagement->getbestrecipe();
+			$arr=$this->receipesmanagement->getbestrecipe($user_id_to_view);
+			
 			$data['MyBestRecipe'] = $arr[0]['name'];
 			
-			$arr=$this->receipesmanagement->getuserrecipes($this->userauthorization->get_loged_on_user_id(), 0,5);
+			$arr=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,5);
+			
 			$data['UserRecipes']=$arr;
 			
 			if($user_data->avatar_name != null)

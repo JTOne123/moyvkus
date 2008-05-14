@@ -195,6 +195,7 @@ class MyFriends extends Controller {
 				$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/reject_friend_id/' . $row->friend_id, $friend_current);
 			}
 			
+			
 			if($friend_data->avatar_name != null)
 				$avatar_url = '/uploads/user_avatars/'.$friend_data->avatar_name;
 			else

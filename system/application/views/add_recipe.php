@@ -27,12 +27,11 @@
 <img id="photo" src="{photo}"/>
 <br>
 <input type="file" name="userfile" size="15" />
-
+{update_or_insert}
+{id_of_recipe}
 <br>
 <br>
 <input type="submit" value="{Save}" name="submit">
-{update_or_insert}
-{id_of_recipe}
 </form>
 
 <?=$this->validation->portions_error; ?>

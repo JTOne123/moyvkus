@@ -93,6 +93,8 @@ $lang['Woman'] = "Женский";
 $lang['AddToFriends'] = "Добавить в друзья";
 $lang['DeleteFromFriends'] = "Убрать из друзей";
 $lang['Friends'] = "Просмотреть друзей";
+$lang['NoRecipes'] = "Не было добавлено ни одного рецепта";
+
 
 //Edit profile
 $lang['EditProfile'] = "Редактирование профайла";
@@ -179,6 +181,15 @@ $lang['PortionsOfRecipe'] = "Порции";
 $lang['PortionsQttyOfRecipe'] = "шт.";
 $lang['IngredientsOfRecipe'] = "Составляющие рецепта";
 $lang['TextOfRecipe'] = "Рецепт";
+
+//My recipes
+$lang['MyRecipes'] = "Мои рецепты";
+$lang['RecipesFilter'] = "Фильтр";
+$lang['YouHave'] = "У Вас";
+$lang['Recipes'] = "рецептов";
+$lang['Total'] = "Всего:";
+$lang['AddToFavorites'] = "В избранное";
+$lang['Comments'] = "Комментарии";
 
 
 ?>
