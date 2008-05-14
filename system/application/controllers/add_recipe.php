@@ -67,6 +67,7 @@ class Add_recipe extends Controller {
 		$data['IngredientsOfRecipe'] = $this->lang->line('IngredientsOfRecipe');
 		$data['TextOfRecipe'] = $this->lang->line('TextOfRecipe');
 		$data['Save'] = $this->lang->line('Save');
+		$data['NewRecipeTitle'] = $this->lang->line('AddRecipe');
 
 		return $data;
 	}

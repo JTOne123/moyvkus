@@ -559,3 +559,19 @@ a
 {
 	margin-left: auto;
 }
+
+/* Add recipe */
+.RecipeInput, #category, #kitchens
+{
+	width:98%;
+}
+
+.RecipeInputPortions
+{
+	width:90%;
+}
+
+.LableValueAddRecipe
+{
+	width: 350px;
+}
