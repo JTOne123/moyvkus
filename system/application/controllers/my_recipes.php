@@ -79,7 +79,6 @@ class My_recipes extends Controller {
 		$user_id_from_uri = $user_id;
 
 		$user_id_to_view = $user_id;
-
 		if($user_id_from_uri != $user_id_to_view)
 		{
 			if($this->usermanagment->IsUserExists_by_id($user_id_from_uri) === true)
@@ -87,7 +86,7 @@ class My_recipes extends Controller {
 				$user_id_to_view = $user_id_from_uri;
 			}
 			else
-			redirect('my_recipes', 'refresh');
+			redirect('my_recipes', 'refresh'); 
 		}
 
 		$RecipesCount = $this->receipesmanagement->recipecount($user_id_to_view);
@@ -110,7 +109,7 @@ class My_recipes extends Controller {
 		$this->pagination->initialize($config);
 		
 		$cur_page = $this->uri->segment(3);
-		var_dump($cur_page);
+		//var_dump($cur_page);
 		if($cur_page==null)
      	{
      		$from_limit=0;
@@ -142,20 +141,20 @@ class My_recipes extends Controller {
 			$return_str = $return_str.$recipe_text_from_db[$i] . '<wbr>';
 			//<wbr> END
 			$recipe_current = str_replace("{RecipeText}", $return_str, $recipe_current);
-			
 			if($row['photo_name']!=='')
 			{
 			 $photo_url = '/uploads/recipe_photos/'.$row['photo_name'];
 			}
-			else 
+			else
+			{ 
 			 $photo_url = '../../../images/nophoto.gif';
+			}
+			
 			$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);
 			
+
 			if($user_id_to_view==$this->userauthorization->get_loged_on_user_id())
-		   {
-		   	$user_data = $this->usermanagment->getuser($user_id_to_view);
-		   	$data['NameOfAuthor'] = $user_data->first_name.' '.$user_data->last_name;
-		   	
+		   {   	
 			$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);
 			$recipe_current = str_replace("{EditRecipe}", $this->lang->line('Edit'), $recipe_current);
 			$EditRecipeUrl = '/edit_recipe/id/'.$row['id'];
@@ -177,7 +176,10 @@ class My_recipes extends Controller {
 		   
 			$recipe_list=$recipe_list.$recipe_current;
 		endforeach;
-		
+
+		$user_data = $this->usermanagment->getuser($user_id_to_view);
+		$data['NameOfAuthor'] = $user_data->first_name.' '.$user_data->last_name;
+
 		$data['RecipesBuilder']=$recipe_list;
 		return $data;
 	}
