@@ -123,9 +123,21 @@ class Profile extends Controller {
 			$data['SendMessageShow'] = 'none';
 			$data['AddToFriendsShow'] = 'none';
 			$data['DeleteFromFriendsShow'] = 'none';
+			
+			$data['AddRecipeShow'] = '';
+			$data['AddRecipe'] = $this->lang->line('AddRecipe');
+			$data['AddRecipeUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/add_recipe';
+			
+			$data['MyRecipies'] = $this->lang->line('MyRecipes');
+			$data['MyRecipiesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes';
 		}
 		else 
 		{
+			$data['AddRecipeShow'] = 'none';
+			
+			$data['MyRecipies'] = $this->lang->line('HisRecipes');
+			$data['MyRecipiesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes/id/' . $user_id_to_view;
+			
 			$data['SendMessageShow'] = '';
 			$data['SendMessageUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $user_id_to_view;
 			

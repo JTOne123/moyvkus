@@ -72,6 +72,24 @@
 												</a>
 											</td>
 										</tr>
+										<tr style="display:{AddRecipeShow}">
+											<td>
+												<a href="{AddRecipeUrl}">
+													<div class="Login_submit">
+														{AddRecipe}
+													</div>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<a href="{MyRecipiesUrl}">
+													<div class="Login_submit">
+														{MyRecipies}
+													</div>
+												</a>
+											</td>
+										</tr>
 									</table>
                                 </td>
                             </tr>

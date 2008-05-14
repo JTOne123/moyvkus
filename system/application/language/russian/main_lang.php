@@ -94,6 +94,7 @@ $lang['AddToFriends'] = "Добавить в друзья";
 $lang['DeleteFromFriends'] = "Убрать из друзей";
 $lang['Friends'] = "Просмотреть друзей";
 $lang['NoRecipes'] = "Не было добавлено ни одного рецепта";
+$lang['HisRecipes'] = "Его(ее) рецепты";
 
 
 //Edit profile
