@@ -101,7 +101,7 @@ class My_recipes extends Controller {
 		$recipe_item = $this->receipesmanagement->recipesbuilder();
 		
 		
-		$get_user_recipes=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,300);
+		$get_user_recipes=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,0);
 		if($get_user_recipes[0]['id']!=='')
 		foreach ($get_user_recipes as $row):
 		

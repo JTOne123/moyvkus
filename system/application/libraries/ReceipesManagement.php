@@ -31,11 +31,11 @@ class Receipesmanagement {
 		return $rows;
 	}
 
-	function SaveReceipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $update_or_insert, $id_of_recipe, $timastamp)
+	function SaveReceipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $update_or_insert, $id_of_recipe)
 	{
 		if($update_or_insert=='insert')
 		{
-			$query = $this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, rating, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', '$rating')");
+			$query = $this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, rating, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', '$rating', null)");
 		}
 
 		if ($update_or_insert=='update' && $id_of_recipe!=='')
@@ -72,12 +72,13 @@ class Receipesmanagement {
 	{
 		if($limit_to!==0)
 		{
-			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' LIMIT $limit_from, $limit_to");
+			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' GROUP BY timestamp DESC LIMIT $limit_from, $limit_to");
 		}
-		else
+		if($limit_to==0)
 		{
-			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id'");
+			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' GROUP BY timestamp DESC");
 		}
+		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
