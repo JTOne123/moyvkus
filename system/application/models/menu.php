@@ -35,13 +35,13 @@ class Menu extends Model {
 	function get_menu($url, $text, $img_url, $tooltip)
 	{
 		if($img_url!="")
-			return "<a href=\"$url\" class=\"Menu\" title=\"$tooltip\">
+			return "<a href=\"$url\" class=\"Menu\" title=\"$tooltip\" onclick = \"window.location.href = '$url'\">
 					<table class=\"MenuTable\" cellpadding=\"2\" cellspacing=\"0\">
 					<tr><td><img src=\"$img_url\"/ class=\"MenuImage\"></td>
 					<td>$text</td></tr>
 					</table></a>";
 		else
-			return "<a href=\"$url\" class=\"Menu\" title=\"$tooltip\">
+			return "<a href=\"$url\" class=\"Menu\" title=\"$tooltip\" onclick = \"window.location.href = '$url'\">
 					<table class=\"MenuTable\" cellpadding=\"2\" cellspacing=\"0\">
 					<tr><td>$text</td></tr>
 					</table></a>";	
