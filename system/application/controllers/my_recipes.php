@@ -86,7 +86,10 @@ class My_recipes extends Controller {
 				$user_id_to_view = $user_id_from_uri;
 			}
 			else
-			redirect('my_recipes', 'refresh'); 
+			{
+			 if(is_numeric($user_id_from_uri))
+			 redirect('my_recipes', 'refresh'); 
+			}
 		}
 
 		$RecipesCount = $this->receipesmanagement->recipecount($user_id_to_view);
@@ -100,15 +103,15 @@ class My_recipes extends Controller {
 		$recipe_list='';
 		$recipe_item = $this->receipesmanagement->recipesbuilder();
 		
-		$config['base_url'] = base_url().'/my_recipes/page/';
+		$config['base_url'] = base_url().'/my_recipes/view/page/';
 		$config['total_rows'] = $RecipesCount;
-		$config['per_page'] = '5';
-		$config['uri_segment'] = 3;
+		$config['per_page'] = '10';
+		$config['uri_segment'] = 4;
 		$config['first_link'] = 'Начало';
 	    $config['last_link'] = 'Конец';
 		$this->pagination->initialize($config);
-		
-		$cur_page = $this->uri->segment(3);
+		$data['paginator']=$this->pagination->create_links();
+		$cur_page = $this->uri->segment(4);
 		//var_dump($cur_page);
 		if($cur_page==null)
      	{
@@ -121,9 +124,6 @@ class My_recipes extends Controller {
      		$from_limit=$cur_page;
      		$to_limit=$config['per_page'];
      	}
-     	
-		
-		$data['paginator']=$this->pagination->create_links();
 		
 		$get_user_recipes=$this->receipesmanagement->getuserrecipes($user_id_to_view, $from_limit,$to_limit);
 		if($get_user_recipes[0]['id']!=='')

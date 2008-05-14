@@ -52,6 +52,7 @@ $route['myfriends/confirm_friend_id/:num'] = "myfriends";
 $route['myfriends/reject_friend_id/:num'] = "myfriends";
 $route['profile/id/:num'] = "profile";
 $route['my_recipes/id/:num'] = "my_recipes";
+$route['my_recipes/view/:any'] = "my_recipes";
 $route['edit_recipe/id/:num'] = "add_recipe";
 $route['default_controller'] = "main";
 $route['register/wrong_captcha'] = "register";
