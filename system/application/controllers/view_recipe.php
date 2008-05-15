@@ -123,6 +123,9 @@ class View_recipe extends Controller {
 		  $data['KitchenNameLabel'] = $this->lang->line('KitchenOfRecipe');
 		  $kitchen_returned=$this->receipesmanagement->getnameofkitchen($recipe_obj_from_db->kitchen_id);
 		  $data['KitchenNameValue'] = $kitchen_returned->name;
+		  
+		  $data['UpArrowImgUrl'] = '/images/rate_plus.png';
+		  $data['DownArrowImgUrl'] = '/images/rate_minus.png';
 		}
 		else //Рецепта с таким id не существует
 		redirect('my_recipes', 'refresh');
