@@ -338,7 +338,7 @@ a
 .LabelValueEdit
 {
 	margin-bottom: 3px;
-	width:200px;
+	width: 200px;
 }
 
 .FileAvatarUpload
@@ -577,15 +577,21 @@ a
 /* Add recipe */
 .RecipeInput, #category, #kitchens
 {
-	width:98%;
+	width: 98%;
 }
 
 .RecipeInputPortions
 {
-	width:90%;
+	width: 90%;
 }
 
 .LableValueAddRecipe
 {
 	width: 350px;
+}
+
+.ButtonAddRecipeWidth
+{
+	margin-left:auto;
+	width: 150px;
 }

@@ -104,7 +104,7 @@
 				{update_or_insert}
 				{id_of_recipe}
 			</td>
-			<td class="LableValue LableValueAddRecipe">
+			<td class="LableValue LableValueAddRecipe ButtonAddRecipeWidth">
 				<a href="#" id="lnkSave" onclick="document.getElementById('btnSave').click();">
 					<div class="Login_submit">
 						{Save}
