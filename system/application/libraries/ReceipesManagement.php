@@ -78,7 +78,7 @@ class Receipesmanagement {
 		{
 			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' GROUP BY timestamp DESC");
 		}
-		
+
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -101,7 +101,7 @@ class Receipesmanagement {
 				<table cellpadding=\"0\" cellspacing=\"0\" class=\"FriendsItemTable\">
 				<tr>
 				<td valign=\"top\" class=\"FriendAvatarTD\">
-				<a href=\"{FriendUrl}\">
+				<a href=\"{ViewRecipeUrl}\">
 				<img src=\"{FriendAvatarUrl}\" title=\"{RecipeName}\" class=\"FriendAvatar\"/></a>
 				</td>
 				<td valign=\"top\">
@@ -144,7 +144,7 @@ class Receipesmanagement {
 				</table>
 				</div>";
 	}
-	
+
 	function ButtonEdit()
 	{
 		return  "
@@ -158,7 +158,7 @@ class Receipesmanagement {
 				</td>
 				</tr>";
 	}
-	
+
 	function ButtonFavorites()
 	{
 		return "
@@ -171,7 +171,56 @@ class Receipesmanagement {
 				</a>
 				</td>
 				</tr>";
-	}
 
+
+	}
+  
+	function GetRecipeById($user_id)
+	{
+		$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$user_id'");
+		return $query->result_array();
+	}
+	
+	function GetOneRecipeByRecipeId($recipe_id)
+	{
+		$query = $this->ci->db->query("SELECT * FROM recipes WHERE id='$recipe_id'");
+		return $query->row();
+	}
+	
+	function IsExistRecipeId($id_of_recipe)
+	{
+		$query = $this->ci->db->query("SELECT name FROM recipes WHERE id='$id_of_recipe'");
+		if($query->num_rows()!==0)
+		{
+			return TRUE;
+		}
+		else 
+			return FALSE;
+	}
+	
+	function IsUserIsAuthorOfRecipe($id_of_recipe, $logened_user_id)
+	{
+		$query = $this->ci->db->query("SELECT user_id FROM recipes WHERE id='$id_of_recipe'");
+		$row = $query->row();
+		if($row->user_id==$logened_user_id)
+		{
+			return true;
+		}
+		else 
+			return false;
+	}
+	
+	function GetNameOfCategory($category_id)
+	{
+		$query = $this->ci->db->query("SELECT name FROM categorys WHERE id='$category_id'");
+		return $query->row();
+	}
+	
+		function GetNameOfKitchen($kitchen_id)
+	{
+		$query = $this->ci->db->query("SELECT name FROM kitchens WHERE id='$kitchen_id'");
+		return $query->row();
+	}
+	
 }
 ?>

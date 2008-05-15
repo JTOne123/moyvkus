@@ -16,7 +16,7 @@ class My_recipes extends Controller {
 		$this->load->helper('text');
 	}
 
-	/*function _remap($method) {
+	function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
 		$pars = $this->uri->segment_array();
@@ -30,7 +30,7 @@ class My_recipes extends Controller {
 		}
 		else
 		redirect('/login/', 'refresh');
-	}*/
+	}
 
 	function index()
 	{
@@ -151,6 +151,7 @@ class My_recipes extends Controller {
 			}
 			
 			$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);
+			$recipe_current = str_replace("{ViewRecipeUrl}", '/view_recipe/id/'.$row['id'], $recipe_current);
 			
 
 			if($user_id_to_view==$this->userauthorization->get_loged_on_user_id())

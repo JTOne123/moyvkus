@@ -192,5 +192,10 @@ $lang['Total'] = "Всего:";
 $lang['AddToFavorites'] = "В избранное";
 $lang['Comments'] = "Комментарии";
 
+//View_recipe
+$lang['SomeRecipe'] = "Рецепт";
+$lang['AddedDateLabel'] = "Добавлено";
+$lang['RatingLabel'] = "Рейтинг";
+$lang['IngredientsText'] = "Составляющие рецепта";
 
 ?>
