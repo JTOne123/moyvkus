@@ -143,6 +143,20 @@ a
 	height: 15px;
 }
 
+.Registraion_validator_more_height
+{
+	margin-top: 5px;
+	background: #FFEBE8 none repeat scroll 0% 50%;
+	border: 1px solid #DD3C10;
+	height: 0px;
+	line-height: 15px;
+	margin: 10px 0pt 0pt;
+	overflow: hidden;
+	padding: 7px 0pt;
+	text-align: center;
+	display: none;
+	height: 25px;
+}
 /* Стиль формы для логина */
 
 .Login_input

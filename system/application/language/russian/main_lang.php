@@ -182,6 +182,12 @@ $lang['PortionsOfRecipe'] = "Порции";
 $lang['PortionsQttyOfRecipe'] = "шт.";
 $lang['IngredientsOfRecipe'] = "Составляющие рецепта";
 $lang['TextOfRecipe'] = "Рецепт";
+$lang['RecipeImgText'] = "Изображение рецепта:";
+$lang['errorDivName'] = "Введите пожайлуста корректное название, не мение 5 символов";
+$lang['errorDivPortions'] = "Введите пожалуйста, количество порций";
+$lang['errorDivIngredients'] = "Введите пожалуйста, ингридиенты рецепта, не мение 25 символов";
+$lang['errorDivRecipeText'] = "Введите пожалуйста, способ приготовление рецепта, не мение 100 символов";
+
 
 //My recipes
 $lang['MyRecipes'] = "Мои рецепты";
