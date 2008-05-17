@@ -1,5 +1,4 @@
  <script language="javascript" type="text/javascript">
- /*
     window.onload = function() {
     addButton("btnSave" ,"vgAddRecipe");
 
@@ -10,8 +9,7 @@
 
     addSubmitButton("lnkSave", "vgAddRecipe");
     }
-    */
-  </script>
+ </script>
 
 <div class="MainDivProfile">
 	<table cellpadding="0" cellspacing="0" class="MainTableProfile">
