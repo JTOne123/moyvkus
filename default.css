@@ -595,3 +595,16 @@ a
 	margin-left:auto;
 	width: 150px;
 }
+
+
+/* View Recipe */
+
+.ViewRecipeTD
+{
+	width:400px;
+}
+
+.LableValueViewRecipe
+{
+	width: 100px;
+}
