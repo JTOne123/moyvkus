@@ -90,7 +90,7 @@
 						<td class="LabelText LabelValueMessage LabelValueEdit">
 						</td>
 						<td class="LableValue LableValueAddRecipe">
-							<img id="photo" src="{photo}"/>
+							<img id="photo" src="{photo}" style="display:{ShowPhoto}"/>
 						</td>
 					</tr>
 					<tr>
