@@ -1,4 +1,5 @@
  <script language="javascript" type="text/javascript">
+ /*
     window.onload = function() {
     addButton("btnSave" ,"vgAddRecipe");
 
@@ -9,6 +10,7 @@
 
     addSubmitButton("lnkSave", "vgAddRecipe");
     }
+    */
   </script>
 
 <div class="MainDivProfile">

@@ -141,7 +141,7 @@ class My_recipes extends Controller {
 			$return_str = $return_str.$recipe_text_from_db[$i] . '<wbr>';
 			//<wbr> END
 			$recipe_current = str_replace("{RecipeText}", $return_str, $recipe_current);
-			if($row['photo_name']!=='')
+			if($row['photo_name']!=='' and $row['photo_name']!==NULL)
 			{
 			 $photo_url = '/uploads/recipe_photos/'.$row['photo_name'];
 			}

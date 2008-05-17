@@ -139,6 +139,8 @@ class Add_recipe extends Controller {
 		if($this->uri->segment(1)=='add_new_recipe')
 		{
 			$this->session->set_userdata('update_or_insert', 'insert');
+			
+			$data['ShowPhoto'] = 'none';
 		}
 		
 		$rules['name'] = "required|min_length[5]|max_length[300]";
