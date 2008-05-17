@@ -30,7 +30,7 @@ class Userauthorization {
 		'password' => $password_of_user_by_email_md5
 		);
 		
-		$expire_time_for_cookies=86500;
+		$expire_time_for_cookies=86500000;
 		
 		$new_cookie_data_ID = array(
 		'name'   => 'userid',
