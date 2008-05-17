@@ -238,13 +238,21 @@ function isValidRegEx(checkedInputId, regExStr)
     var re = new RegExp(regExStr);
 
     var checkedElement = document.getElementById(checkedInputId);
-
-    if(checkedElement.value.match(re))
+    var st =  changeParagraph(checkedElement.value);
+    if(st.match(re))
         returnValue = true;
     else
         returnValue = false;
         
     return returnValue;
+}
+
+//Change paragraph
+function changeParagraph(text)
+{
+    text = text.replace(/(\r\n|\r|\n|\t)/g, ' ');
+    
+    return text;
 }
 
 //Show error div
