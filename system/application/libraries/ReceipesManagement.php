@@ -31,22 +31,27 @@ class Receipesmanagement {
 		return $rows;
 	}
 
-	function SaveReceipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $update_or_insert, $id_of_recipe)
+	function SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
 	{
-		if($update_or_insert=='insert')
-		{
-			$query = $this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', null)");
-		}
-
-		if ($update_or_insert=='update' && $id_of_recipe!=='')
-		{
-			$query = $this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', timestamp=null WHERE id='$id_of_recipe'");
-		}
+		$this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', null)");
+		
+		//возвращаем айди, по которому находится только-что вставленный рецепт
+		$query=$this->ci->db->query("SELECT id FROM recipes WHERE id=last_insert_id()");
+		$row = $query->row();
+		return $row->id;
+		
 	}
-
-	function SavePhoto($id, $photo_name, $timestamp)
+	
+		function UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
 	{
-		$query = $this->ci->db->query("UPDATE recipes set photo_name='$photo_name', timestamp='$timestamp' WHERE id=$id");
+		$this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', timestamp=null WHERE id='$id_of_recipe'");	
+	}
+	
+	
+
+	function SavePhoto($id, $photo_name)
+	{
+		$query = $this->ci->db->query("UPDATE recipes set photo_name='$photo_name' WHERE id=$id");
 	}
 
 	function GetDataForEdit($id)
@@ -174,19 +179,19 @@ class Receipesmanagement {
 
 
 	}
-  
+
 	function GetRecipeById($user_id)
 	{
 		$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$user_id'");
 		return $query->result_array();
 	}
-	
+
 	function GetOneRecipeByRecipeId($recipe_id)
 	{
 		$query = $this->ci->db->query("SELECT * FROM recipes WHERE id='$recipe_id'");
 		return $query->row();
 	}
-	
+
 	function IsExistRecipeId($id_of_recipe)
 	{
 		$query = $this->ci->db->query("SELECT name FROM recipes WHERE id='$id_of_recipe'");
@@ -194,10 +199,10 @@ class Receipesmanagement {
 		{
 			return TRUE;
 		}
-		else 
-			return FALSE;
+		else
+		return FALSE;
 	}
-	
+
 	function IsUserIsAuthorOfRecipe($id_of_recipe, $logened_user_id)
 	{
 		$query = $this->ci->db->query("SELECT user_id FROM recipes WHERE id='$id_of_recipe'");
@@ -206,21 +211,21 @@ class Receipesmanagement {
 		{
 			return true;
 		}
-		else 
-			return false;
+		else
+		return false;
 	}
-	
+
 	function GetNameOfCategory($category_id)
 	{
 		$query = $this->ci->db->query("SELECT name FROM categorys WHERE id='$category_id'");
 		return $query->row();
 	}
-	
-		function GetNameOfKitchen($kitchen_id)
+
+	function GetNameOfKitchen($kitchen_id)
 	{
 		$query = $this->ci->db->query("SELECT name FROM kitchens WHERE id='$kitchen_id'");
 		return $query->row();
 	}
-	
+
 }
 ?>

@@ -1,5 +1,4 @@
  <script language="javascript" type="text/javascript">
-
     window.onload = function() {
     addButton("btnSave" ,"vgAddRecipe");
 
@@ -104,8 +103,6 @@
 					</tr>
 					<tr>
 						<td class="LabelText LabelValueMessage LabelValueEdit">
-							{update_or_insert}
-							{id_of_recipe}
 						</td>
 						<td class="LableValue LableValueAddRecipe ButtonAddRecipeWidth">
 							<a href="#" id="lnkSave" onclick="document.getElementById('btnSave').click();">

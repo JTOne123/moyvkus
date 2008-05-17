@@ -96,15 +96,20 @@ class Add_recipe extends Controller {
 			$data['portions'] = $arr[0]['portions'];
 			$data['ingredients'] = $arr[0]['ingredients'];
 			$data['recipe_text'] = $arr[0]['recipe_text'];
-			$data['update_or_insert'] = form_hidden('update_or_insert', 'update');
-			$data['id_of_recipe'] = form_hidden('id_of_recipe', $id_of_recipe_from_uri);
+			//Создаем сессию для временного храниния между постбеками переменных
+			$options = array(
+                   'update_or_insert'  => 'update',
+                   'id_of_recipe'     => $id_of_recipe_from_uri,
+               );
+             $this->session->set_userdata($options);
+
 			$data['photo'] = '/uploads/recipe_photos/'.$arr[0]['photo_name'];
 			
-			$categorys=$this->receipesmanagement->getcategorys();
+			$categorys=$this->receipesmanagement->GetCategorys();
 			
 			$data['categorys']=form_dropdown('category', $categorys, $arr[0]['category_id']); // id=22 - Разное
 
-			$kitchens=$this->receipesmanagement->getkitchens();
+			$kitchens=$this->receipesmanagement->GetKitchens();
 			$data['kitchens']=form_dropdown('kitchens', $kitchens, $arr[0]['kitchen_id']);
 			
 		}
@@ -114,14 +119,12 @@ class Add_recipe extends Controller {
 			$data['portions'] = '';
 			$data['ingredients'] = '';
 			$data['recipe_text'] = '';
-			$data['update_or_insert'] = form_hidden('update_or_insert', 'insert');
-			$data['id_of_recipe'] = form_hidden('id_of_recipe', '');
 			$data['photo'] = '';
 			
-			$categorys=$this->receipesmanagement->getcategorys();
+			$categorys=$this->receipesmanagement->GetCategorys();
 			$data['categorys']=form_dropdown('category', $categorys, '22'); // id=22 - Разное
 
-			$kitchens=$this->receipesmanagement->getkitchens();
+			$kitchens=$this->receipesmanagement->GetKitchens();
 			$data['kitchens']=form_dropdown('kitchens', $kitchens, '');
 		}
 
@@ -133,6 +136,11 @@ class Add_recipe extends Controller {
 	function _data_bind($data)
 	{
 
+		if($this->uri->segment(1)=='add_new_recipe')
+		{
+			$this->session->set_userdata('update_or_insert', 'insert');
+		}
+		
 		$rules['name'] = "required|min_length[5]|max_length[300]";
 		$rules['portions'] = "required|numeric";
 		$rules['ingredients'] = "required|min_length[25]|max_length[2000]";
@@ -155,21 +163,30 @@ class Add_recipe extends Controller {
 			$category_id = $this->input->post('category');
 			$ingredients = $this->input->post('ingredients');
 			$recipe_text = $this->input->post('receipe_text');
-
-			$update_or_insert = $this->input->post('update_or_insert');
-			$id_of_recipe = $this->input->post('id_of_recipe');
+			//берем значения с сессии
+			$update_or_insert=$this->session->userdata('update_or_insert');
+			$id_of_recipe = $this->session->userdata('id_of_recipe');
 
 			$photo_name='';
 			$user_id=$this->userauthorization->get_loged_on_user_id();
 			$rating='';
 
-			$this->load->helper('date');
-			$datestring = "%Y-%m-%d %G:%i:%s";
-			$time = time();
-			$now = mdate($datestring, $time);
+		
+			//Сохраняем рецепт *****
+			if($update_or_insert=='insert')
+			{
+			$last_inserted_id=$this->receipesmanagement->SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
+			}
+			if($update_or_insert=='update')
+			{
+				$this->receipesmanagement->UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
+				$last_inserted_id=$id_of_recipe;
+			}
 			
-			$this->receipesmanagement->savereceipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $update_or_insert, $id_of_recipe, $now);
-
+			//Убиваем сессию
+			$this->session->unset_userdata('update_or_insert');
+			$this->session->unset_userdata('id_of_recipe');
+			
 			//upload
 			$this->load->library('image_lib');
 
@@ -182,23 +199,12 @@ class Add_recipe extends Controller {
 			{
 
 				$upl_arr=$this->upload->data();
-				
-				$query=$this->db->query("SELECT max(timestamp) FROM recipes");
-				$arr = $query->result_array();
-				$tst=$arr[0]['max(timestamp)'];
-
-				//$query=$this->db->query("SELECT id FROM recipes WHERE timestamp='$tst'");
-				$query=$this->db->query("SELECT id FROM recipes ORDER BY timestamp DESC");
-				
-				$row = $query->row();
-				$recipe_id=$row->id; 
-				//var_dump($recipe_id);
-				
-                @unlink('./uploads/recipe_photos/big_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
-                @unlink('./uploads/recipe_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext']);
+								
+                @unlink('./uploads/recipe_photos/big_photos/recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext']);
+                @unlink('./uploads/recipe_photos/recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext']);
                 
 				$config['image_library'] = 'GD2';
-				$config['new_image'] = './uploads/recipe_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext'];
+				$config['new_image'] = './uploads/recipe_photos/recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext'];
 				$config['source_image'] = './uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext'];
 				$config['quality'] = '90%';
 				$config['width'] = 300;
@@ -207,7 +213,7 @@ class Add_recipe extends Controller {
 				$this->image_lib->resize();
 
 
-				$config['new_image'] = './uploads/recipe_photos/big_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext'];
+				$config['new_image'] = './uploads/recipe_photos/big_photos/recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext'];
 				$config['source_image'] = './uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext'];
 				$config['quality'] = '90%';
 				$config['width'] = 500;
@@ -216,7 +222,7 @@ class Add_recipe extends Controller {
 				$this->image_lib->resize();
 
 				//watermark
-				$config['source_image'] = './uploads/recipe_photos/big_photos/recipe_photo_id'.$recipe_id.$upl_arr['file_ext'];
+				$config['source_image'] = './uploads/recipe_photos/big_photos/recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext'];
 				$config['wm_text'] = '©MoyVkus.ru';
 				$config['wm_type'] = 'text';
 				$config['wm_font_path'] = './system/fonts/Arial-Black.ttf';
@@ -228,8 +234,11 @@ class Add_recipe extends Controller {
 
 				$this->image_lib->initialize($config);
 				$this->image_lib->watermark();
-
-				$this->receipesmanagement->savephoto($recipe_id, 'recipe_photo_id'.$recipe_id.$upl_arr['file_ext'], $now);
+				
+                //Сохраняем фото
+				$this->receipesmanagement->SavePhoto($last_inserted_id, 'recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext']);
+				
+				//Удаляем загруженную юзером фотку со стековой папки
 				unlink('./uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext']);
 			}
 			//

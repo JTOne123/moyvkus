@@ -54,6 +54,7 @@ $route['profile/id/:num'] = "profile";
 $route['my_recipes/id/:num'] = "my_recipes";
 $route['my_recipes/view/:any'] = "my_recipes";
 $route['edit_recipe/id/:num'] = "add_recipe";
+$route['add_new_recipe'] = "add_recipe";
 $route['view_recipe/id/:num'] = "view_recipe";
 $route['default_controller'] = "main";
 $route['register/wrong_captcha'] = "register";

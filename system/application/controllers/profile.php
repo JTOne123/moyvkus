@@ -126,7 +126,7 @@ class Profile extends Controller {
 			
 			$data['AddRecipeShow'] = '';
 			$data['AddRecipe'] = $this->lang->line('AddRecipe');
-			$data['AddRecipeUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/add_recipe';
+			$data['AddRecipeUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/add_new_recipe';
 			
 			$data['MyRecipies'] = $this->lang->line('MyRecipes');
 			$data['MyRecipiesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes';
