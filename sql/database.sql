@@ -253,3 +253,12 @@ INSERT INTO `kitchens` VALUES (66, 'Эстонская');
 INSERT INTO `kitchens` VALUES (67, 'Югославская');
 INSERT INTO `kitchens` VALUES (68, 'Японская');
 
+
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL auto_increment,
+  `text` varchar(1500) NOT NULL,
+  `recipe_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
