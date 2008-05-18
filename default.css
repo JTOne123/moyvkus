@@ -630,3 +630,12 @@ a
 {
 	text-align: right;
 }
+
+.FullSizePhotoDiv
+{
+	background: #FFFFFF none repeat scroll 0%;
+	border: 10px solid #DAE2E8;
+	padding: 1px;
+	position:absolute;
+	display:none;
+}

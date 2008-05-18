@@ -1,4 +1,44 @@
- <div class="MainDivProfile">
+<script language="javascript" type="text/javascript">
+	function ShowFullSizePhotoDiv(show, e)
+	{
+				
+	var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
+	
+	if (document.all) 
+		{
+			X = event.clientX;
+			Y = event.clientY;
+		}
+	else 
+		{
+			X = e.pageX + "px";
+			Y = e.pageY + "px";
+		}
+
+		if(show == 1)
+			{
+				FullSizePhotoDiv.style.left = X;
+				FullSizePhotoDiv.style.top = Y;
+				
+				FullSizePhotoDiv.style.display = "block";
+				
+			}
+		else
+			{
+				setTimeout("hideFullSizePhotoDiv()", 1000);
+			}
+		
+	}
+	
+	function hideFullSizePhotoDiv()
+	{
+		var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
+		FullSizePhotoDiv.style.display = "none";
+	}
+
+</script>
+	 
+<div class="MainDivProfile">
        <table cellpadding="0" cellspacing="0" class="MainTableProfile">
            <tr>
                <td colspan="2" class="UserStatus">
@@ -17,8 +57,8 @@
 						 </td>
 				   </tr>
 				   <tr>
-					   <td class="ViewRecipeTD">
-						   <img src="{RecipeImgUrl}" class="RecipeImg"/>
+					   <td class="ViewRecipeTD" >
+						   <img src="{RecipeImgUrl}" class="RecipeImg"  onmousemove="ShowFullSizePhotoDiv(1, event)" onmouseout="ShowFullSizePhotoDiv(0, event)"/>
 					   </td>
 					   <td class="ViewRecipeTD">
 						   <table cellpadding="0" cellspacing="0" class="UserTable">
@@ -121,3 +161,18 @@
 		</tr>
 	</table>
    </div>
+
+	<div id="FullSizePhotoDiv" class="FullSizePhotoDiv">
+		<table>
+			<tr>
+				<td class="UserStatus">
+					{FullSizePhotoDivTitle}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="{RecipeImgUrl}"/>
+				</td>
+			</tr>
+		</table>
+	</div>
