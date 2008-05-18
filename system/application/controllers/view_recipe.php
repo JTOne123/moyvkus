@@ -64,6 +64,9 @@ class View_recipe extends Controller {
 		$data['NameOfRecipe'] = $this->lang->line('NameOfRecipe');
 		$data['YourComment'] = $this->lang->line('YourComment');
 		$data['SubmitCommentForm'] = $this->lang->line('SubmitCommentForm');
+		$data['RecipePhoto'] = $this->lang->line('RecipePhoto');
+		$data['MainData'] = $this->lang->line('MainData');
+		$data['FullSizePhotoDivTitle'] = $this->lang->line('FullSizePhotoDivTitle');
 
 
 		return $data;

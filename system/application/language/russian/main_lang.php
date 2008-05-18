@@ -203,9 +203,13 @@ $lang['SomeRecipe'] = "Рецепт";
 $lang['AddedDateLabel'] = "Добавлено";
 $lang['RatingLabel'] = "Рейтинг";
 $lang['IngredientsText'] = "Составляющие рецепта";
+$lang['RecipePhoto'] = "Фото рецепта";
+$lang['MainData'] = "Информация о рецепте";
+$lang['FullSizePhotoDivTitle'] = "Полноразмерное фото рецепта";
 
 //Comments
 $lang['YourComment'] = "Ваш комментарий";
 $lang['SubmitCommentForm'] = "Оставить комментарий";
+$lang['WordCensorError'] = "Пожалуйста, излагайте свои мысли без применения нецензурных слов.";
 
 ?>
