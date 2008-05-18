@@ -103,7 +103,16 @@
 					   </td>
 				   </tr>
 				   <tr>
-					   <td colspan="2">
+					   <td colspan="2">		
+					   
+					   		{YourComment}:<br>
+					   	   <form method="POST" action="/comments/new_comment/">
+					       <textarea rows="2" name="comment" cols="20"></textarea>
+					       <input type="hidden" name="recipe_id" value="{recipe_id}" />
+					       <br>
+					       <input type="submit" value="{SubmitCommentForm}" name="Submit">
+					       </form>
+					   		
 						   {CommentsBuilder}
 					   </td>
 				   </tr>

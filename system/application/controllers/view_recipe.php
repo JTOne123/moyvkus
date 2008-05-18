@@ -62,6 +62,8 @@ class View_recipe extends Controller {
 		// Ћокализаци€ надписей
 
 		$data['NameOfRecipe'] = $this->lang->line('NameOfRecipe');
+		$data['YourComment'] = $this->lang->line('YourComment');
+		$data['SubmitCommentForm'] = $this->lang->line('SubmitCommentForm');
 
 
 		return $data;
@@ -87,6 +89,8 @@ class View_recipe extends Controller {
 			//явл€етс€ ли просмаривающий страницу юзер, автором рецепта END
 			
 		  $recipe_obj_from_db=$this->receipesmanagement->getonerecipebyrecipeid($recipe_id_from_uri);
+		  
+		  $data['recipe_id'] = $recipe_id_from_uri;
 		  
 		  $data['RecipeImgUrl'] = '/uploads/recipe_photos/big_photos/'.$recipe_obj_from_db->photo_name;
 		  $data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
