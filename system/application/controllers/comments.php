@@ -7,7 +7,8 @@ class Comments extends Controller {
 		parent::Controller();
 
 		$this->load->library('validation');
-		$this->load->helper('text');
+		$this->load->library('commentsmanagement');
+		$this->load->library('usermanagment');
 	}
 
 	function _remap($method) {
@@ -68,6 +69,7 @@ class Comments extends Controller {
 	{
 		$comment = $this->input->post('comment');
 		$recipe_id = $this->input->post('recipe_id');
+		$user_id = $this->userauthorization->get_loged_on_user_id();
 
 		$rules['comment']	= "trim|required|min_length[5]|max_length[1500]|xss_clean|callback_word_censor";
 		$rules['recipe_id']	= "required|numeric";
@@ -81,7 +83,7 @@ class Comments extends Controller {
 		
 		if ($this->validation->run() !== FALSE)
 		{
-			//echo 'OK';
+			$this->commentsmanagement->SaveComment($comment, $recipe_id, $user_id);
 			
 			redirect('view_recipe/id/'.$recipe_id, 'refresh');
 		}
@@ -94,17 +96,16 @@ class Comments extends Controller {
 	
 	function word_censor($comment)
 	{
-		$disallowed = array('darn', 'shucks', 'golly', 'phooey');
-
-		$comment = word_censor($comment, $disallowed, 'beep');
-        $beep = preg_replace("/(beep)/","",$comment);		
-		if($beep==' ')
+		$disallowed = $this->commentsmanagement->GetCensorWords();
+		foreach ($disallowed as $row):	
+        $beep = strstr($comment, $row);
+		if($beep!==FALSE)
 		{
 		 $this->validation->set_message('word_censor', $this->lang->line('WordCensorError'));
 		 return false;
+		 break;
 		}
-		else 
-		return true;
+		endforeach;
 		
 	}
 

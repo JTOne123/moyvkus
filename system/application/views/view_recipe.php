@@ -56,10 +56,10 @@
 				<table>
 				   <tr>
 				         <td class="Headers">
-							{RecipePhoto}
+							{RecipePhoto}:
 						 </td>
 						 <td class="Headers">
-							{MainData}
+							{MainData}:
 						 </td>
 				   </tr>
 				   <tr>

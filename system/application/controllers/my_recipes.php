@@ -8,6 +8,7 @@ class My_recipes extends Controller {
 
 		$this->load->library('validation');
 		$this->load->library('receipesmanagement');
+		$this->load->library('commentsmanagement');
 		$this->load->library('usermanagment');
 		$this->load->library('pagination');
 		
@@ -153,7 +154,9 @@ class My_recipes extends Controller {
 			$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);
 			$recipe_current = str_replace("{ViewRecipeUrl}", '/view_recipe/id/'.$row['id'], $recipe_current);
 			
-
+			$number_of_comments = $this->commentsmanagement->GetNumberOfComments($row['id']);
+			$recipe_current = str_replace("{number_of_comments}", $number_of_comments, $recipe_current);
+			
 			if($user_id_to_view==$this->userauthorization->get_loged_on_user_id())
 		   {   	
 			$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);

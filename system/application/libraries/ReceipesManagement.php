@@ -135,9 +135,9 @@ class Receipesmanagement {
 				
 				<tr>
 				<td>
-				<a href=\"{AddToFavoritesUrl}\" id=\"Comments\" name=\"Comments\">
+				<a href=\"{ViewRecipeUrl}#comments\" id=\"Comments\" name=\"Comments\">
 				<div class=\"Login_submit\">
-				{Comments}(0)
+				{Comments}({number_of_comments})
 				</div>
 				</a>
 				</td>

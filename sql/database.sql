@@ -262,3 +262,27 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `word_censor` (
+  `id` int(11) NOT NULL auto_increment,
+  `word` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=12 ;
+
+-- 
+-- Дамп данных таблицы `word_censor`
+-- 
+
+INSERT INTO `word_censor` VALUES (1, 'хуй');
+INSERT INTO `word_censor` VALUES (2, 'сука');
+INSERT INTO `word_censor` VALUES (3, 'хуев');
+INSERT INTO `word_censor` VALUES (4, 'блядь');
+INSERT INTO `word_censor` VALUES (5, 'блять');
+INSERT INTO `word_censor` VALUES (7, 'дерьмо');
+INSERT INTO `word_censor` VALUES (8, 'гамно');
+INSERT INTO `word_censor` VALUES (9, 'гавно');
+INSERT INTO `word_censor` VALUES (10, 'fuck');
+INSERT INTO `word_censor` VALUES (11, 'suck');
