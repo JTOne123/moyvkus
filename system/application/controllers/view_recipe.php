@@ -11,6 +11,7 @@ class View_recipe extends Controller {
 		$this->load->library('usermanagment');
 
 		$this->load->helper('form');
+		$this->load->helper('typography');
 	}
 
 	function _remap($method) {
@@ -105,16 +106,18 @@ class View_recipe extends Controller {
 		  $data['RatingValue'] = $recipe_obj_from_db->rating;
 		  
 		  $data['IngredientsText'] = $this->lang->line('IngredientsText');
-		  $return_str='';
-		  for($i = 0; $i < strlen($recipe_obj_from_db->ingredients); $i++)
-		  $return_str = $return_str.$recipe_obj_from_db->ingredients[$i] . '<wbr>';
-		  $data['IngredientsValue'] = $return_str;
+		  //$return_str='';
+		  //for($i = 0; $i < strlen($recipe_obj_from_db->ingredients); $i++)
+		  //$return_str = $return_str.$recipe_obj_from_db->ingredients[$i] . '<wbr>';
+		  $return_str = $recipe_obj_from_db->ingredients;
+		  $data['IngredientsValue'] = auto_typography($return_str);
 		  
 		  $data['RecipeText'] = $this->lang->line('TextOfRecipe');
-		  $return_str='';
-		  for($i = 0; $i < strlen($recipe_obj_from_db->recipe_text); $i++)
-		  $return_str = $return_str.$recipe_obj_from_db->recipe_text[$i] . '<wbr>';
-		  $data['RecipeValue'] = $return_str;
+		  //$return_str='';
+		  //for($i = 0; $i < strlen($recipe_obj_from_db->recipe_text); $i++)
+		  //$return_str = $return_str.$recipe_obj_from_db->recipe_text[$i] . '<wbr>';
+		  $return_str = $recipe_obj_from_db->recipe_text;
+		  $data['RecipeValue'] = auto_typography($return_str);
 		  
 		  $data['CategoryNameLabel'] = $this->lang->line('CategoryOfRecipe');
 		  $category_returned=$this->receipesmanagement->getnameofcategory($recipe_obj_from_db->category_id);
