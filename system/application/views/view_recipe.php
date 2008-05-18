@@ -18,52 +18,60 @@
 				   </tr>
 				   <tr>
 					   <td class="ViewRecipeTD">
-						   <img src="{RecipeImgUrl}" />
+						   <img src="{RecipeImgUrl}" class="RecipeImg"/>
 					   </td>
 					   <td class="ViewRecipeTD">
-						   <table>
+						   <table cellpadding="0" cellspacing="0" class="UserTable">
 							   <tr>
 								   <td colspan="2">
-									   <a href="{LinkToUserProfile}"><img src="{UserImgUrl}" /></a>
-									   <br>
-									   <a href="{LinkToUserProfile}">{NameOfAuthor}</a>
+								         <table cellpadding="0" cellspacing="0" class="UserTable">
+											<tr>
+												<td>
+													<a href="{LinkToUserProfile}">
+													<img src="{UserImgUrl}" class="FriendAvatar"/></a>
+												</td>
+												<td class="LinkToUser">
+													<a href="{LinkToUserProfile}">{NameOfAuthor}</a>
+												</td>
+											</tr>
+										</table>
 								   </td>
 							   </tr>
 							   <tr>
-								   <td class="LabelText LableValueViewRecipe">
+								   <td class="LabelText LableTextViewRecipe">
 									   {AddedDateLabel}:
 								   </td>
-								   <td class="LableValue">
+								   <td class="LableValue LableValueViewRecipe">
 									   {AddedDateValue}
 								   </td>
 							   </tr>
 							   <tr>
-								   <td class="LabelText LableValueViewRecipe">
+								   <td class="LabelText LableTextViewRecipe">
 									   {CategoryNameLabel}:
 								   </td>
-								   <td class="LableValue">
+								   <td class="LableValue LableValueViewRecipe">
 									   {CategoryNameValue}
 								   </td>
 							   </tr>
 							   <tr>
-								   <td class="LabelText LableValueViewRecipe">
+								   <td class="LabelText LableTextViewRecipe">
 									   {KitchenNameLabel}:
 								   </td>
-								   <td class="LableValue">
+								   <td class="LableValue LableValueViewRecipe">
 									   {KitchenNameValue}
 								   </td>
 							   </tr>
 							   <tr>
-								   <td class="LabelText LableValueViewRecipe">
+								   <td class="LabelText LableTextViewRecipe">
 									   {RatingLabel}:
 								   </td>
-								   <td class="LableValue">
+								   <td class="LableValue LableValueViewRecipe">
 									   {RatingValue}
 								   </td>
 							   </tr>
 							   <tr>
 								   <td colspan="2">
-									   <table>
+									   <table class="ViewRecipeTableArrow">
 										   <tr>
 											   <td>
 												   <img src="{UpArrowImgUrl}" />
@@ -87,10 +95,10 @@
 					   </td>
 				   </tr>
 				   <tr>
-					   <td>
+					   <td class="ViewRecipeTD">
 						   {IngredientsValue}
 					   </td>
-					   <td>
+					   <td class="ViewRecipeTD">
 						   {RecipeValue}
 					   </td>
 				   </tr>

@@ -531,7 +531,7 @@ a
 	font-size: 12px;
 }
 
-.InvateMainTable
+.InvateMainTable, .ViewRecipeTableArrow
 {
 	margin-left: auto;
 	margin-right: auto;
@@ -592,7 +592,7 @@ a
 
 .ButtonAddRecipeWidth
 {
-	margin-left:auto;
+	margin-left: auto;
 	width: 150px;
 }
 
@@ -601,10 +601,32 @@ a
 
 .ViewRecipeTD
 {
-	width:400px;
+	width: 300px;
+	vertical-align: top;
+	font-size:14px;
+}
+
+.LableTextViewRecipe
+{
+	width: 100px;
 }
 
 .LableValueViewRecipe
 {
-	width: 100px;
+	width: auto;
+}
+
+.RecipeImg
+{
+	width: 100%;
+}
+
+.UserTable
+{
+	width: 100%;
+}
+
+.LinkToUser
+{
+	text-align: right;
 }
