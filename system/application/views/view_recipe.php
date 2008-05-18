@@ -35,6 +35,12 @@
 		var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
 		FullSizePhotoDiv.style.display = "none";
 	}
+	
+	function showYourCommentDiv()
+	{
+		var FullSizePhotoDiv = document.getElementById("YourCommentDiv");
+		FullSizePhotoDiv.style.display = "block";
+	}
 
 </script>
 	 
@@ -144,15 +150,25 @@
 				   </tr>
 				   <tr>
 					   <td colspan="2">		
-					   
-					   		{YourComment}:<br>
-					   	   <form method="POST" action="/comments/new_comment/">
-					       <textarea rows="2" name="comment" cols="20"></textarea>
-					       <input type="hidden" name="recipe_id" value="{recipe_id}" />
-					       <br>
-					       <input type="submit" value="{SubmitCommentForm}" name="Submit">
-					       </form>
-					   		
+					   		<a href="javascript:showYourCommentDiv()">{YourComment}</a>
+							<div id="YourCommentDiv" class="YourCommentDiv">
+								<table>
+									<tr>
+										<td>
+					   					   <form method="POST" action="/comments/new_comment/">
+										   <textarea rows="2" name="comment" cols="20"></textarea>
+										   <input type="hidden" name="recipe_id" value="{recipe_id}" />
+										</td>
+								   </tr>
+								   <tr>
+										<td>
+										   <input type="submit" value="{SubmitCommentForm}" name="Submit">
+										   </form>
+										</td>
+								   </tr>
+					   			</table>
+							</div>
+							<br/>
 						   {CommentsBuilder}
 					   </td>
 				   </tr>

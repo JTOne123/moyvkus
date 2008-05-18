@@ -639,3 +639,9 @@ a
 	position:absolute;
 	display:none;
 }
+
+.YourCommentDiv
+{
+	width:100%;
+	display:none;
+}
