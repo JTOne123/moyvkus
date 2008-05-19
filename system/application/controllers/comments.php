@@ -79,37 +79,51 @@ class Comments extends Controller {
 		$fields['recipe_id'] = 'recipe_id';
 		$this->validation->set_fields($fields);
 
-		
-		
+
+
 		if ($this->validation->run() !== FALSE)
 		{
 			$this->commentsmanagement->SaveComment($comment, $recipe_id, $user_id);
-			
+
 			redirect('view_recipe/id/'.$recipe_id, 'refresh');
 		}
-		
+
 		$data = $this->_load_headers();
 		$data = $this->_load_resource($data);
 		$data['body']= $this->parser->parse('new_comment', $data);
 		$this->parser->parse('main_tpl', $data);
 	}
-	
+
 	function word_censor($comment)
 	{
 		$disallowed = $this->commentsmanagement->GetCensorWords();
-		foreach ($disallowed as $row):	
-        $beep = strstr($comment, $row);
+		foreach ($disallowed as $row):
+		$beep = strstr($comment, $row);
 		if($beep!==FALSE)
 		{
-		 $this->validation->set_message('word_censor', $this->lang->line('WordCensorError'));
-		 return false;
-		 break;
+			$this->validation->set_message('word_censor', $this->lang->line('WordCensorError'));
+			return false;
+			break;
 		}
 		endforeach;
-		
+
 	}
 
-
+	function delete_comment()
+	{
+		$id_of_comment = $this->uri->segment(4);
+		$id_of_recipe = $this->uri->segment(6);
+		$id_of_logened_user = $this->userauthorization->get_loged_on_user_id();
+		$IsUserIsCommentAuthor = $this->commentsmanagement->IsUserIsCommentAuthor($id_of_comment, $id_of_logened_user);
+		if($IsUserIsCommentAuthor==TRUE)
+		{
+			$this->commentsmanagement->DeleteComment($id_of_comment);
+			redirect('/view_recipe/id/'.$id_of_recipe, 'refresh');
+		}
+		else 
+		redirect('/view_recipe/id/'.$id_of_recipe, 'refresh');
+		
+	}
 
 
 	function _data_bind($data)

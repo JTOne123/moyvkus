@@ -208,8 +208,11 @@ $lang['MainData'] = "Информация о рецепте";
 $lang['FullSizePhotoDivTitle'] = "Полноразмерное фото рецепта";
 
 //Comments
-$lang['YourComment'] = "Ваш комментарий";
+$lang['YourComment'] = "Оставить комментарий";
 $lang['SubmitCommentForm'] = "Оставить комментарий";
 $lang['WordCensorError'] = "Пожалуйста, излагайте свои мысли без применения нецензурных слов.";
+$lang['DeleteRecipeLinkText'] = "Удалить";
+$lang['WriteOn'] = "написал";
+$lang['SendMessageToCommentAuthorText'] = "Сообщение";
 
 ?>

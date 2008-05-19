@@ -176,10 +176,8 @@ class Receipesmanagement {
 				</a>
 				</td>
 				</tr>";
-
-
 	}
-
+	
 	function GetRecipeById($user_id)
 	{
 		$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$user_id'");

@@ -127,6 +127,9 @@
 											   </td>
 										   </tr>
 									   </table>
+									   			<div align="center">
+											   {ButtonEdit}
+											   </div>
 								   </td>
 							   </tr>
 						   </table>
@@ -155,7 +158,7 @@
 								<table>
 									<tr>
 										<td>
-					   					   <form method="POST" action="/comments/new_comment/">
+					   					   <form name="comment_form" method="POST" action="/comments/new_comment/">
 										   <textarea rows="2" name="comment" cols="20"></textarea>
 										   <input type="hidden" name="recipe_id" value="{recipe_id}" />
 										</td>
