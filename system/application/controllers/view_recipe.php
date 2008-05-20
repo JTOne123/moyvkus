@@ -159,7 +159,7 @@ class View_recipe extends Controller {
 			foreach ($returned_comments_arr as $row):
 
 			$text = parse_smileys($row['text'], "/images/smileys/");
-			//$text = auto_typography($text);
+			$text = auto_typography($text);
 			$comment_current = str_replace("{CommentText}", $text, $returned_html);
 
 			$user_info_obj=$this->usermanagment->GetUser($row['user_id']);

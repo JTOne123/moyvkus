@@ -64,7 +64,7 @@
 				   </tr>
 				   <tr>
 					   <td class="ViewRecipeTD" >
-						   <img src="{RecipeImgUrl}" class="RecipeImg"  onmousemove="ShowFullSizePhotoDiv(1, event)" onmouseout="ShowFullSizePhotoDiv(0, event)"/>
+						   <img src="{RecipeImgUrl}" class="RecipeImg" onmousemove="ShowFullSizePhotoDiv(1, event)" onmouseout="ShowFullSizePhotoDiv(0, event)"/>
 					   </td>
 					   <td class="ViewRecipeTD">
 						   <table cellpadding="0" cellspacing="0" class="UserTable">
