@@ -212,7 +212,7 @@ $lang['YourComment'] = "Оставить комментарий";
 $lang['SubmitCommentForm'] = "Оставить комментарий";
 $lang['WordCensorError'] = "Пожалуйста, излагайте свои мысли без применения нецензурных слов.";
 $lang['DeleteRecipeLinkText'] = "Удалить";
-$lang['WriteOn'] = "написал";
+$lang['WriteOn'] = "написал(а)";
 $lang['SendMessageToCommentAuthorText'] = "Сообщение";
 
 ?>
