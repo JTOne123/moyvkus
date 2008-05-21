@@ -629,7 +629,7 @@ a
 .UserTable
 {
 	width: 100%;
-	height:100%;
+	height: 100%;
 }
 
 .LinkToUser
@@ -662,4 +662,10 @@ a
 .bttAddCommentTD
 {
 	width: 200px;
+}
+
+.AdditionalText
+{
+	font-weight: normal;
+	font-size: 10px;
 }

@@ -81,8 +81,10 @@ class Commentsmanagement {
 				<a href=\"{AuthorProfileUrl}\">
 				<b>{AuthorFirstLastName}</b>
 				</a>
+				<span class=\"AdditionalText\">
 				{WriteOn}
 				{DateOfPost}
+				</span>
 				</td>
 				</tr>
 				
@@ -93,8 +95,10 @@ class Commentsmanagement {
 				</tr>
 				<tr>
 				<td>
+				<span class=\"AdditionalText\">
 				<a href=\"{DeleteRecipeLink}\">{DeleteRecipeLinkText}</a>
 				<a href=\"{SendMessageToCommentAuthor}\">{SendMessageToCommentAuthorText}</a>
+				</span>
 				</td>
 				</tr>
 				
