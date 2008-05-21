@@ -70,6 +70,7 @@ class View_recipe extends Controller {
 		$data['RecipePhoto'] = $this->lang->line('RecipePhoto');
 		$data['MainData'] = $this->lang->line('MainData');
 		$data['FullSizePhotoDivTitle'] = $this->lang->line('FullSizePhotoDivTitle');
+		$data['errorDivComment'] = $this->lang->line('errorDivComment');
 
 
 		return $data;

@@ -120,6 +120,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\search.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\send_message.php"
     {
     "ProjRelPath" = "T"
@@ -293,6 +297,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\register.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\search.php"
     {
     "ProjRelPath" = "T"
     }

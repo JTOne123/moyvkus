@@ -214,5 +214,7 @@ $lang['WordCensorError'] = "Пожалуйста, излагайте свои мысли без применения неце
 $lang['DeleteRecipeLinkText'] = "Удалить";
 $lang['WriteOn'] = "написал(а)";
 $lang['SendMessageToCommentAuthorText'] = "Сообщение";
+$lang['errorDivComment'] = "Длина поля Оставить комментарий должна быть не менее 5 символов.";
+
 
 ?>

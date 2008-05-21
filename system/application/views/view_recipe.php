@@ -1,4 +1,9 @@
+ <script language="javascript" type="text/javascript">
+
+ </script>
+
 <script language="javascript" type="text/javascript">
+    
 	function ShowFullSizePhotoDiv(show, e)
 	{
 				
@@ -40,6 +45,14 @@
 	{
 		var FullSizePhotoDiv = document.getElementById("YourCommentDiv");
 		FullSizePhotoDiv.style.display = "block";
+	}
+	
+	window.onload = function() {
+    addButton("btnAddComment" ,"vgViewRecipe");
+
+	addValidatorRegEx("comment", "errorDivComment", "^.{5,1500}$", "vgViewRecipe");
+
+    addSubmitButton("lnkAddComment", "vgViewRecipe");
 	}
 
 </script>
@@ -158,21 +171,30 @@
                     </tr>
                     <tr>
                         <td colspan="2">
+							<a name="comments"></a>
                             <a href="javascript:showYourCommentDiv()">{YourComment}</a>
                             <div id="YourCommentDiv" class="YourCommentDiv">
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
                                             <form name="comment_form" method="POST" action="/comments/new_comment/">
-                                            <textarea rows="2" name="comment" cols="20" class="CommentsTextBox"></textarea>
+                                            <textarea id ="comment" name="comment" rows="2" cols="20" class="CommentsTextBox"></textarea>
                                             <input type="hidden" name="recipe_id" value="{recipe_id}" />
+
                                         </td>
                                     </tr>
+									<tr>
+										<td colspan="2">
+											<div id="errorDivComment" class="Registraion_validator">
+												{errorDivComment}
+											</div>
+										</td>
+									</tr>
                                     <tr>
                                         <td>
                                         </td>
                                         <td class="bttAddCommentTD">
-                                            <a href="#" id="Save" name="Save" onclick="document.getElementById('btnAddComment').click();">
+                                            <a href="#" id="lnkAddComment" name="lnkAddComment" onclick="document.getElementById('btnAddComment').click();">
                                                 <div class="Login_submit">
                                                     {SubmitCommentForm}
                                                 </div>

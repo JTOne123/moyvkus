@@ -652,15 +652,21 @@ a
 	display: none;
 }
 
-.CommentsTextBox
+.CommentsTextBox, .CommentsTextBoxNewComments
 {
 	padding: 5px;
 	height: 80px;
 	width: 98%;
 }
 
+.CommentsNewComments
+{
+	width:600px;
+}
+
 .bttAddCommentTD
 {
+	text-align:right;
 	width: 200px;
 }
 
