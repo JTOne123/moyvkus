@@ -97,8 +97,13 @@ class View_recipe extends Controller {
 			$recipe_obj_from_db=$this->receipesmanagement->getonerecipebyrecipeid($recipe_id_from_uri);
 
 			$data['recipe_id'] = $recipe_id_from_uri;
-
+			if($recipe_obj_from_db->photo_name !==NULL)
+			{
 			$data['RecipeImgUrl'] = '/uploads/recipe_photos/big_photos/'.$recipe_obj_from_db->photo_name;
+			}
+			else 
+			$data['RecipeImgUrl'] = '../../../images/nophoto_big.gif';
+			
 			$data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
 
 			$returned_row_userdata=$this->usermanagment->getuserdata($recipe_obj_from_db->user_id);
@@ -157,13 +162,16 @@ class View_recipe extends Controller {
 			$returned_comments_arr = $this->commentsmanagement->GetComments($recipe_id_from_uri);
 			$comment_list = '';
 			foreach ($returned_comments_arr as $row):
-
-			$text = parse_smileys($row['text'], "/images/smileys/");
-			//$text = auto_typography($text);
-			$return_str='';
+			
+			$returned_str='';
+			$text=$row['text'];
+			//$text = parse_smileys($row['text'], "/images/smileys/");
 			for($i = 0; $i < strlen($text); $i++)
-			$return_str = $return_str.$recipe_obj_from_db->recipe_text[$i] . '<wbr>';
-			$text = $return_str;
+			$returned_str = $returned_str.$text[$i] . '<wbr>';
+			$text = $returned_str; 
+			$text = str_replace("\n", "<br>", $text);
+			$text = parse_smileys($text, "/images/smileys/");
+			
 			$comment_current = str_replace("{CommentText}", $text, $returned_html);
 
 			$user_info_obj=$this->usermanagment->GetUser($row['user_id']);

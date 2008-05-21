@@ -42,7 +42,7 @@ class Comments extends Controller {
 
 	function _load_headers()
 	{
-		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('AddRecipe');
+		$data['title'] = $this->lang->line('title');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();
@@ -84,7 +84,7 @@ class Comments extends Controller {
 		if ($this->validation->run() !== FALSE)
 		{
 			$this->commentsmanagement->SaveComment($comment, $recipe_id, $user_id);
-
+			
 			redirect('view_recipe/id/'.$recipe_id, 'refresh');
 		}
 
