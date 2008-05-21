@@ -152,16 +152,11 @@ class Receipesmanagement {
 
 	function ButtonEdit()
 	{
-		return  "
-	    		<tr>
-				<td>
-				<a href=\"{EditRecipeUrl}\" id=\"EditRecipe\" name=\"EditRecipe\">
-				<div class=\"Login_submit\">
-				{EditRecipe}
-				</div>
-				</a>
-				</td>
-				</tr>";
+		return  "<a href=\"{EditRecipeUrl}\" id=\"EditRecipe\" name=\"EditRecipe\">
+					 <div class=\"Login_submit\">
+						{EditRecipe}
+					 </div>
+				 </a>";
 	}
 
 	function ButtonFavorites()

@@ -418,13 +418,18 @@ a
 	width: 606px;
 }
 
-.FriendsItem, .FriendsItemNotConfirmed
+.FriendsItem, .FriendsItemNotConfirmed, .CommentsItem
 {
 	background: #FFFFFF none repeat scroll 0%;
 	border: 1px solid #CCCCCC;
 	margin-bottom: 5px;
 	padding: 5px 4px 4px;
 	width: 100%;
+}
+
+.CommentsItem
+{
+	width: auto;
 }
 
 .FriendsItemNotConfirmed
@@ -603,7 +608,7 @@ a
 {
 	width: 300px;
 	vertical-align: top;
-	font-size:14px;
+	font-size: 14px;
 }
 
 .LableTextViewRecipe
@@ -618,12 +623,13 @@ a
 
 .RecipeImg
 {
-	width: 100%;
+	width: 300px;
 }
 
 .UserTable
 {
 	width: 100%;
+	height:100%;
 }
 
 .LinkToUser
@@ -636,12 +642,24 @@ a
 	background: #FFFFFF none repeat scroll 0%;
 	border: 10px solid #DAE2E8;
 	padding: 1px;
-	position:absolute;
-	display:none;
+	position: absolute;
+	display: none;
 }
 
 .YourCommentDiv
 {
-	width:100%;
-	display:none;
+	width: 100%;
+	display: none;
+}
+
+.CommentsTextBox
+{
+	padding: 5px;
+	height: 80px;
+	width: 98%;
+}
+
+.bttAddCommentTD
+{
+	width: 200px;
 }

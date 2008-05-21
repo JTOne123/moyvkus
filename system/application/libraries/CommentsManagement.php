@@ -66,7 +66,7 @@ class Commentsmanagement {
 
 	function ViewCommentsBuilder()
 	{
-		return "<div id=\"FriendsItemNotConfirmed\" class=\"FriendsItem\">
+		return "<div id=\"FriendsItemNotConfirmed\" class=\"CommentsItem\">
 				<table cellpadding=\"0\" cellspacing=\"0\" class=\"FriendsItemTable\">
 				<tr>
 				<td valign=\"top\" class=\"FriendAvatarTD\">
@@ -89,7 +89,10 @@ class Commentsmanagement {
 				<tr>
 				<td class=\"LabelTextFriends\">
 				{CommentText}
-				<br>
+				</td>
+				</tr>
+				<tr>
+				<td>
 				<a href=\"{DeleteRecipeLink}\">{DeleteRecipeLinkText}</a>
 				<a href=\"{SendMessageToCommentAuthor}\">{SendMessageToCommentAuthorText}</a>
 				</td>

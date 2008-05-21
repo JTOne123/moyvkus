@@ -64,6 +64,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\comments.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\edit_profile.php"
     {
     "ProjRelPath" = "T"
@@ -172,6 +176,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\commentsmanagement.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\location.php"
     {
     "ProjRelPath" = "T"
@@ -273,6 +281,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\mymessages.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\new_comment.php"
     {
     "ProjRelPath" = "T"
     }
