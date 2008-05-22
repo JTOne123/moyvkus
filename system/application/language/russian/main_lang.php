@@ -214,7 +214,7 @@ $lang['WordCensorError'] = "<div class = \"Registraion_validator\" style=\"displ
 $lang['DeleteRecipeLinkText'] = "Удалить";
 $lang['WriteOn'] = "написал(а)";
 $lang['SendMessageToCommentAuthorText'] = "Сообщение";
-$lang['errorDivComment'] = "Длина поля Оставить комментарий должна быть не менее 5 символов.";
+$lang['errorDivComment'] = "Длина поля Оставить комментарий должна быть не менее 5 символов";
 
 //Избранное
 $lang['Favorites'] = "Избранные рецепты";
