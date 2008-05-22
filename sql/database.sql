@@ -287,3 +287,11 @@ INSERT INTO `word_censor` VALUES (8, 'гамно');
 INSERT INTO `word_censor` VALUES (9, 'гавно');
 INSERT INTO `word_censor` VALUES (10, 'fuck');
 INSERT INTO `word_censor` VALUES (11, 'suck');
+
+
+CREATE TABLE `favorites` (
+`id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+`recipe_id` INT( 11 ) NOT NULL ,
+`who_add_user_id` INT( 11 ) NOT NULL ,
+PRIMARY KEY ( `id` )
+);

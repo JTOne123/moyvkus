@@ -102,8 +102,12 @@ class Add_recipe extends Controller {
                    'id_of_recipe'     => $id_of_recipe_from_uri,
                );
              $this->session->set_userdata($options);
-
+			if($arr[0]['photo_name'] !== '')
+			{
 			$data['photo'] = '/uploads/recipe_photos/'.$arr[0]['photo_name'];
+			}
+			else 
+			$data['photo'] = '';
 			
 			$categorys=$this->receipesmanagement->GetCategorys();
 			
@@ -119,7 +123,8 @@ class Add_recipe extends Controller {
 			$data['portions'] = '';
 			$data['ingredients'] = '';
 			$data['recipe_text'] = '';
-			$data['photo'] = '';
+			
+			$data['photo'] = '/uploads/recipe_photos/one_pixel.gif';
 			
 			$categorys=$this->receipesmanagement->GetCategorys();
 			$data['categorys']=form_dropdown('category', $categorys, '22'); // id=22 - Разное
@@ -184,7 +189,6 @@ class Add_recipe extends Controller {
 				$this->receipesmanagement->UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
 				$last_inserted_id=$id_of_recipe;
 			}
-			
 			//Убиваем сессию
 			$this->session->unset_userdata('update_or_insert');
 			$this->session->unset_userdata('id_of_recipe');
@@ -244,7 +248,7 @@ class Add_recipe extends Controller {
 				unlink('./uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext']);
 			}
 			//
-			redirect('my_recipes', 'refresh');
+			redirect('view_recipe/id/'.$last_inserted_id, 'refresh');
 		}
 		return $data;
 	}

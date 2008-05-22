@@ -106,6 +106,7 @@ class View_recipe extends Controller {
 			$data['RecipeImgUrl'] = '../../../images/nophoto_big.gif';
 			
 			$data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
+			
 
 			$returned_row_userdata=$this->usermanagment->getuserdata($recipe_obj_from_db->user_id);
 			$avatar_name=$returned_row_userdata->avatar_name;
@@ -122,18 +123,20 @@ class View_recipe extends Controller {
 			$data['RatingValue'] = $recipe_obj_from_db->rating;
 
 			$data['IngredientsText'] = $this->lang->line('IngredientsText');
-			//$return_str='';
-			//for($i = 0; $i < strlen($recipe_obj_from_db->ingredients); $i++)
-			//$return_str = $return_str.$recipe_obj_from_db->ingredients[$i] . '<wbr>';
-			$return_str = $recipe_obj_from_db->ingredients;
-			$data['IngredientsValue'] = auto_typography($return_str);
+			$return_str='';
+			for($i = 0; $i < strlen($recipe_obj_from_db->ingredients); $i++)
+			$return_str = $return_str.$recipe_obj_from_db->ingredients[$i] . '<wbr>';
+			$return_str = str_replace("\n", "<br>", $return_str);
+			$data['IngredientsValue'] = $return_str;
+			
+			//var_dump($return_str);
 
 			$data['RecipeText'] = $this->lang->line('TextOfRecipe');
-			//$return_str='';
-			//for($i = 0; $i < strlen($recipe_obj_from_db->recipe_text); $i++)
-			//$return_str = $return_str.$recipe_obj_from_db->recipe_text[$i] . '<wbr>';
-			$return_str = $recipe_obj_from_db->recipe_text;
-			$data['RecipeValue'] = auto_typography($return_str);
+			$return_str='';
+			for($i = 0; $i < strlen($recipe_obj_from_db->recipe_text); $i++)
+			$return_str = $return_str.$recipe_obj_from_db->recipe_text[$i] . '<wbr>';
+			$return_str = str_replace("\n", "<br>", $return_str);
+			$data['RecipeValue'] = $return_str;
 
 			$data['CategoryNameLabel'] = $this->lang->line('CategoryOfRecipe');
 			$category_returned=$this->receipesmanagement->getnameofcategory($recipe_obj_from_db->category_id);
@@ -172,7 +175,6 @@ class View_recipe extends Controller {
 			$text = $returned_str; 
 			$text = str_replace("\n", "<br>", $text);
 			$text = parse_smileys($text, "/images/smileys/");
-			
 			$comment_current = str_replace("{CommentText}", $text, $returned_html);
 
 			$user_info_obj=$this->usermanagment->GetUser($row['user_id']);

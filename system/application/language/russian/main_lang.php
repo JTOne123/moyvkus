@@ -216,5 +216,10 @@ $lang['WriteOn'] = "написал(а)";
 $lang['SendMessageToCommentAuthorText'] = "Сообщение";
 $lang['errorDivComment'] = "Длина поля Оставить комментарий должна быть не менее 5 символов.";
 
+//Избранное
+$lang['Favorites'] = "Избранные рецепты";
+$lang['HisFavorites'] = "Его(ее) избранные рецепты";
+$lang['Delete'] = "Удалить";
+
 
 ?>

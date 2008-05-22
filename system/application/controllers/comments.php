@@ -85,7 +85,7 @@ class Comments extends Controller {
 		{
 			$this->commentsmanagement->SaveComment($comment, $recipe_id, $user_id);
 			
-			redirect('view_recipe/id/'.$recipe_id, 'refresh');
+			redirect('view_recipe/id/'.$recipe_id.'#comments', 'refresh');
 		}
 
 		$data = $this->_load_headers();

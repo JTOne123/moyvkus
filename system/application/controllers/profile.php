@@ -128,18 +128,24 @@ class Profile extends Controller {
 			$data['AddRecipe'] = $this->lang->line('AddRecipe');
 			$data['AddRecipeUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/add_new_recipe';
 			
-			$data['MyRecipies'] = $this->lang->line('MyRecipes');
-			$data['MyRecipiesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes';
+			$data['MyRecipes'] = $this->lang->line('MyRecipes');
+			$data['MyRecipesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes';
+			
+			$data['Favorites'] = $this->lang->line('Favorites');
+			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
 		}
 		else 
 		{
 			$data['AddRecipeShow'] = 'none';
 			
-			$data['MyRecipies'] = $this->lang->line('HisRecipes');
-			$data['MyRecipiesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes/id/' . $user_id_to_view;
+			$data['MyRecipes'] = $this->lang->line('HisRecipes');
+			$data['MyRecipesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes/id/' . $user_id_to_view;
 			
 			$data['SendMessageShow'] = '';
 			$data['SendMessageUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $user_id_to_view;
+			
+			$data['Favorites'] = $this->lang->line('HisFavorites');
+			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
 			
 			//Проверка или просматриветься профиль друга
 			if($this->myfriendslib->IsTheyFriends($user_id, $user_id_to_view))

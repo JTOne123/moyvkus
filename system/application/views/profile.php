@@ -72,6 +72,7 @@
 												</a>
 											</td>
 										</tr>
+										
 										<tr style="display:{AddRecipeShow}">
 											<td>
 												<a href="{AddRecipeUrl}">
@@ -81,15 +82,26 @@
 												</a>
 											</td>
 										</tr>
+										
 										<tr>
 											<td>
-												<a href="{MyRecipiesUrl}">
+												<a href="{MyRecipesUrl}">
 													<div class="Login_submit">
-														{MyRecipies}
+														{MyRecipes}
 													</div>
 												</a>
 											</td>
 										</tr>
+										<tr>
+											<td>
+												<a href="{FavoritesUrl}">
+													<div class="Login_submit">
+														{Favorites}
+													</div>
+												</a>
+											</td>
+										</tr>
+										
 									</table>
                                 </td>
                             </tr>

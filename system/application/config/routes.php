@@ -51,11 +51,19 @@ $route['myfriends/id/:num'] = "myfriends";
 $route['myfriends/confirm_friend_id/:num'] = "myfriends";
 $route['myfriends/reject_friend_id/:num'] = "myfriends";
 $route['profile/id/:num'] = "profile";
+
 $route['my_recipes/id/:num'] = "my_recipes";
 $route['my_recipes/view/:any'] = "my_recipes";
+
 $route['edit_recipe/id/:num'] = "add_recipe";
 $route['add_new_recipe'] = "add_recipe";
 $route['view_recipe/id/:num'] = "view_recipe";
+
+$route['favorites/id/:num'] = "favorites";
+$route['favorites/add/id/:num'] = "favorites/add/";
+$route['favorites/delete/id/:num'] = "favorites/delete/";
+$route['favorites/view/:any'] = "favorites";
+
 $route['default_controller'] = "main";
 $route['register/wrong_captcha'] = "register";
 $route['scaffolding_trigger'] = "";

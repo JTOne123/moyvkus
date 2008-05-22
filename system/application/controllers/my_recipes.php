@@ -162,19 +162,20 @@ class My_recipes extends Controller {
 			$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);
 			$recipe_current = str_replace("{EditRecipe}", $this->lang->line('Edit'), $recipe_current);
 			$EditRecipeUrl = '/edit_recipe/id/'.$row['id'];
-			$recipe_current = str_replace("{EditRecipeUrl}", $EditRecipeUrl, $recipe_current);
+			$recipe_current = str_replace("{EditRecipeUrl}", $EditRecipeUrl, $recipe_current);	
 			
-			
-			$recipe_current = str_replace("{ButtonFavorites}", $this->receipesmanagement->buttonfavorites(), $recipe_current);
-			$recipe_current = str_replace("{AddToFavorites}", $this->lang->line('AddToFavorites'), $recipe_current);
-			$AddToFavoritesUrl = '/favorites/add/id/'.$row['id'];
-			$recipe_current = str_replace("{AddToFavoritesUrl}", $AddToFavoritesUrl, $recipe_current);
-			
+			$recipe_current = str_replace("{ButtonFavorites}", '', $recipe_current);
+			$recipe_current = str_replace("{AddToFavorites}", '', $recipe_current);
+			$recipe_current = str_replace("{AddToFavoritesUrl}", '', $recipe_current);
 		   }
 		   else
 		   { 
 		   $recipe_current = str_replace("{ButtonEdit}", '', $recipe_current);
-		   $recipe_current = str_replace("{ButtonFavorites}", '', $recipe_current);
+		   
+		   	$recipe_current = str_replace("{ButtonFavorites}", $this->receipesmanagement->buttonfavorites(), $recipe_current);
+			$recipe_current = str_replace("{AddToFavorites}", $this->lang->line('AddToFavorites'), $recipe_current);
+			$AddToFavoritesUrl = '/favorites/add/id/'.$row['id'];
+			$recipe_current = str_replace("{AddToFavoritesUrl}", $AddToFavoritesUrl, $recipe_current);
 		   }
 		   
 		   
