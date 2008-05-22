@@ -191,10 +191,10 @@
 										</td>
 									</tr>
                                     <tr>
-                                        <td>
+                                        <td class="ViewRecipeCommentTD">
                                         </td>
-                                        <td class="bttAddCommentTD">
-                                            <a href="#" id="lnkAddComment" name="lnkAddComment" onclick="document.getElementById('btnAddComment').click();">
+                                        <td class="btnAddCommentTD">
+                                            <a href="#comments" id="lnkAddComment" name="lnkAddComment" onclick="document.getElementById('btnAddComment').click();">
                                                 <div class="Login_submit">
                                                     {SubmitCommentForm}
                                                 </div>

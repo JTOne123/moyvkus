@@ -664,7 +664,7 @@ a
 	width:600px;
 }
 
-.bttAddCommentTD
+.btnAddCommentTD
 {
 	text-align:right;
 	width: 200px;
@@ -674,4 +674,9 @@ a
 {
 	font-weight: normal;
 	font-size: 10px;
+}
+
+.ViewRecipeCommentTD
+{
+	width:70%;
 }

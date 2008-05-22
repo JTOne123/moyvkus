@@ -18,7 +18,7 @@
 					<tr>
 						<td>
 						</td>
-						<td class="bttAddCommentTD">
+						<td class="btnAddCommentTD">
 							<a href="#" id="Save" name="Save" onclick="document.getElementById('btnAddComment').click();">
 								<div class="Login_submit">
 									{SubmitCommentForm}
