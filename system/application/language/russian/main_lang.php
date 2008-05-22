@@ -210,7 +210,7 @@ $lang['FullSizePhotoDivTitle'] = "Полноразмерное фото рецепта";
 //Comments
 $lang['YourComment'] = "Оставить комментарий";
 $lang['SubmitCommentForm'] = "Оставить комментарий";
-$lang['WordCensorError'] = "Пожалуйста, излагайте свои мысли без применения нецензурных слов.";
+$lang['WordCensorError'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пожалуйста, излагайте свои мысли без применения нецензурных слов</div>";
 $lang['DeleteRecipeLinkText'] = "Удалить";
 $lang['WriteOn'] = "написал(а)";
 $lang['SendMessageToCommentAuthorText'] = "Сообщение";
