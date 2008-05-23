@@ -194,7 +194,7 @@
                     <tr>
                         <td colspan="2">
 							<a name="comments"></a>
-                            <a href="javascript:showYourCommentDiv()">{YourComment}</a>
+                            <a href="javascript:showYourCommentDiv()"><b>{YourComment}</b></a>
                             <div id="YourCommentDiv" class="YourCommentDiv">
                                 <table width="100%">
                                     <tr>

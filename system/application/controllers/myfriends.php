@@ -82,7 +82,7 @@ class MyFriends extends Controller {
 					break;
 				
 				case 'confirm_friend_id':
-					$this->myfriendslib->ConfirmFriend($current_user_id, $user_id);
+					$this->myfriendslib->ConfirmFriend($user_id, $current_user_id);
 					redirect('/myfriends/id/' . $current_user_id, 'refresh');
 					break;
 				
