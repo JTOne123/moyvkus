@@ -156,10 +156,10 @@
                                         <table class="ViewRecipeTableArrow">
                                             <tr>
                                                 <td>
-                                                  <a href="#"><img src="{UpArrowImgUrl}" onclick="ajax_vote('+', '{recipe_id}')"/></a>
+                                                  <a href="#"><img src="{UpArrowImgUrl}" onclick="ajax_vote('+', '{recipe_id}')" class="ArrowImgLink"/></a>
                                                 </td>
                                                 <td>
-                                                  <a href="#"><img src="{DownArrowImgUrl}" onclick="ajax_vote('-', '{recipe_id}')"/></a>
+                                                  <a href="#"><img src="{DownArrowImgUrl}" onclick="ajax_vote('-', '{recipe_id}')" class="ArrowImgLink"/></a>
                                                 </td>
                                             </tr>
                                         </table>

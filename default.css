@@ -661,12 +661,12 @@ a
 
 .CommentsNewComments
 {
-	width:600px;
+	width: 600px;
 }
 
 .btnAddCommentTD
 {
-	text-align:right;
+	text-align: right;
 	width: 200px;
 }
 
@@ -678,5 +678,10 @@ a
 
 .ViewRecipeCommentTD
 {
-	width:70%;
+	width: 70%;
+}
+
+.ArrowImgLink
+{
+	border-width: 0px;
 }
