@@ -295,3 +295,10 @@ CREATE TABLE `favorites` (
 `who_add_user_id` INT( 11 ) NOT NULL ,
 PRIMARY KEY ( `id` )
 );
+
+CREATE TABLE IF NOT EXISTS `rating_act_desk` (
+  `id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
+  `recipe_id` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;

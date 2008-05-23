@@ -77,7 +77,7 @@ class Receipesmanagement {
 	{
 		if($limit_to!==0)
 		{
-			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' GROUP BY timestamp DESC LIMIT $limit_from, $limit_to");
+			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' GROUP BY id LIMIT $limit_from, $limit_to");
 		}
 		if($limit_to==0)
 		{

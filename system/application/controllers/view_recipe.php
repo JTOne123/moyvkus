@@ -98,7 +98,7 @@ class View_recipe extends Controller {
 			$recipe_obj_from_db=$this->receipesmanagement->getonerecipebyrecipeid($recipe_id_from_uri);
 
 			$data['recipe_id'] = $recipe_id_from_uri;
-			if($recipe_obj_from_db->photo_name !==NULL)
+			if($recipe_obj_from_db->photo_name !==NULL and $recipe_obj_from_db->photo_name !== '')
 			{
 			$data['RecipeImgUrl'] = '/uploads/recipe_photos/big_photos/'.$recipe_obj_from_db->photo_name;
 			}

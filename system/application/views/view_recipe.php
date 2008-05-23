@@ -1,6 +1,28 @@
- <script language="javascript" type="text/javascript">
+<script src="<?=$baseurl?>js/prototype.js"></script>
 
- </script>
+<script>
+	function ajax_vote(marker, recipe_id)
+	{
+		//var country = escape($F("SelectCountry"));
+		var url = '<?=$baseurl?>ratings/act';
+		var pars = {marker: marker, recipe_id:recipe_id};
+		var myAjax = new Ajax.Request(
+					url, 
+					 {
+						method: 'post', 
+						parameters: pars, 
+						onComplete: showResponse
+					 }
+					);
+	
+	 function showResponse(originalRequest)
+	{
+		var returned = originalRequest.responseText;
+		$(recipe_id).update(returned).addClassName('highlight')
+	}		
+	}
+		
+</script>
 
 <script language="javascript" type="text/javascript">
     
@@ -126,7 +148,7 @@
                                         {RatingLabel}:
                                     </td>
                                     <td class="LableValue LableValueViewRecipe">
-                                        {RatingValue}
+                                        <div id="{recipe_id}">{RatingValue}</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -134,10 +156,10 @@
                                         <table class="ViewRecipeTableArrow">
                                             <tr>
                                                 <td>
-                                                    <img src="{UpArrowImgUrl}" />
+                                                  <a href="#"><img src="{UpArrowImgUrl}" onclick="ajax_vote('+', '{recipe_id}')"/></a>
                                                 </td>
                                                 <td>
-                                                    <img src="{DownArrowImgUrl}" />
+                                                  <a href="#"><img src="{DownArrowImgUrl}" onclick="ajax_vote('-', '{recipe_id}')"/></a>
                                                 </td>
                                             </tr>
                                         </table>

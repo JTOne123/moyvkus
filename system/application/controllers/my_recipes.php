@@ -126,7 +126,7 @@ class My_recipes extends Controller {
      		$to_limit=$config['per_page'];
      	}
 		
-		$get_user_recipes=$this->receipesmanagement->getuserrecipes($user_id_to_view, $from_limit,$to_limit);
+		$get_user_recipes=$this->receipesmanagement->GetUserRecipes($user_id_to_view, $from_limit,$to_limit);
 		if($get_user_recipes[0]['id']!=='')
 		foreach ($get_user_recipes as $row):
 		

@@ -15,14 +15,14 @@ class Location {
 	*/
 		function GetCity($CityID)
 	{
-		$query = $this->ci->db->query("SELECT * FROM city WHERE city_id = '$CityID'");
+		$query = $this->ci->db->query("SELECT * FROM city WHERE city_id = $CityID");
 		$row = $query->row();
 		return $row;
 	}
 	
 	function GetCitys($CityID)
 	{
-		 $query = $this->ci->db->query("SELECT * FROM city WHERE region_id = '$CityID'");
+		 $query = $this->ci->db->query("SELECT * FROM city WHERE region_id = $CityID");
 		 foreach ($query->result_array() as $row)
 		 {
 		 	$rows[$row['city_id']]=$row['name'];
@@ -34,7 +34,7 @@ class Location {
 	*/
 	function GetRegions($CountryID)
 	{
-		$query = $this->ci->db->query("SELECT * FROM region WHERE country_id = '$CountryID'");
+    	$query = $this->ci->db->query("SELECT * FROM region WHERE country_id = $CountryID");
 		 foreach ($query->result_array() as $row)
 		 {
 		 	$rows[$row['region_id']]=$row['name'];
@@ -46,7 +46,7 @@ class Location {
 	
 		function GetRegion($RegionID)
 	{
-		$query = $this->ci->db->query("SELECT * FROM region WHERE region_id = '$RegionID'");
+		$query = $this->ci->db->query("SELECT * FROM region WHERE region_id = $RegionID");
 		$row = $query->row();
 		
 		return $row;
@@ -69,7 +69,7 @@ class Location {
 	
 		function GetCountry($CountryID)
 	{
-		$query = $this->ci->db->query("SELECT * FROM country WHERE country_id = '$CountryID'");
+		$query = $this->ci->db->query("SELECT * FROM country WHERE country_id = $CountryID");
 		$row = $query->row();
 		
 		return $row;
