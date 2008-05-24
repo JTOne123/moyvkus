@@ -1,47 +1,55 @@
 <script src="<?=$baseurl?>js/prototype.js"></script>
-<script language="javascript" type="text/javascript">
-    
-    function ShowSearchUsers()
-    {
-        var SearchUsers = document.getElementById("SearchUsers");
-        if(SearchUsers.style.display != "block")
-            SearchUsers.style.display = "block";
-        else
-            SearchUsers.style.display = "none";
+	 <script>
+	function ajax_locator_country()
+	{
+		var country = escape($F("SelectCountry"));
+		var url = '<?=$baseurl?>/search/ajax_locator_country';
+		var pars = {countryID: country};
+		
+		var myAjax = new Ajax.Request(
+					url, 
+					 {
+						method: 'post', 
+						parameters: pars, 
+						onComplete: showResponse
+					 }
+					);
+	
+	 function showResponse(originalRequest)
+	{
+		var returned = originalRequest.responseText;
+		
+		$("SelectRegion").insert({ top: returned });
+	    //$("SelectRegion").insert({ top: "<option selected></option>" });
+	}		
+	}
+	
+	function ajax_locator_region()
+	{
+		var region = escape($F("SelectRegion"));
+		var url = '<?=$baseurl?>/search/ajax_locator_region';
+		var pars = {regionID: region};
+		
+		var myAjax = new Ajax.Request(
+					url, 
+					 {
+						method: 'post', 
+						parameters: pars, 
+						onComplete: showResponseReg
+					 }
+					);
+	
+	 function showResponseReg(originalRequest)
+	{
+		var returned = originalRequest.responseText;
+		
+		$("SelectCity").insert({ top: returned });
+		//$("SelectCity").insert({ top: "<option selected></option>" });
+	}		
+	}
+	
+</script>
 
-    }
-    
-    function ShowAdvancedSearchUsers()
-    {
-        var AdvancedSearchUsers = document.getElementById("AdvancedSearchUsers");
-        if(AdvancedSearchUsers.style.display != "block")
-            AdvancedSearchUsers.style.display = "block";
-        else
-            AdvancedSearchUsers.style.display = "none";
-
-    }
-    
-    function ShowSearchRecipies()
-    {
-        var SearchRecipies = document.getElementById("SearchRecipies");
-        if(SearchRecipies.style.display != "block")
-            SearchRecipies.style.display = "block";
-        else
-            SearchRecipies.style.display = "none";
-
-    }
-    
-    function ShowAdvancedSearchRecipies()
-    {
-        var AdvancedSearchRecipies = document.getElementById("AdvancedSearchRecipies");
-        if(AdvancedSearchRecipies.style.display != "block")
-            AdvancedSearchRecipies.style.display = "block";
-        else
-            AdvancedSearchRecipies.style.display = "none";
-    }
-    
-    </script>
-	 
 <div class="MainDivProfile">
         <table cellpadding="0" cellspacing="0" class="MainTableProfile Friends">
             <tr>
@@ -57,11 +65,10 @@
                                 {SearchOption}
                             </td>
                             <td class="LabelValueSearchType">
-                                <input id="SearchUsersType" name="SearchType" type="radio" onclick="ShowSearchUsers();ShowSearchRecipies();"
-                                    checked />{SearchUsers}
+                                <input id="SearchUsersType" name="SearchType" type="radio" onclick="ShowSearch();" checked />{SearchUsers}
                             </td>
                             <td class="LabelValueSearchType">
-                                <input id="SearchRecipiesType" name="SearchType" type="radio" onclick="ShowSearchRecipies();ShowSearchUsers();" />{SearchRecipies}
+                                <input id="SearchRecipiesType" name="SearchType" type="radio" onclick="ShowSearch();" />{SearchRecipies}
                             </td>
                         </tr>
                     </table>
@@ -76,8 +83,18 @@
                                     {SimpleSearch}
                                 </td>
                                 <td>
-                                    <input type="text" name="InputFriendsFilter" id="InputFriendsFilter" class="LabelValueSearch" />
-                                    <span class="SimpleSearchDescription">{SimpleSearchDescriptionUser}</span>
+									<table cellpadding="0" cellspacing="0">
+										<tr>
+											<td>
+												<input type="text" name="txtSimpleSearchUsers" id="txtSimpleSearchUsers" class="LabelValueSearch" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="SimpleSearchDescription">{SimpleSearchDescriptionUser}</span>
+											</td>
+										</tr>
+									</table>
                                 </td>
                                 <td class="SearchText">
                                     <form id="SearchUsersForm" method="POST" action="/search/users">
@@ -146,7 +163,7 @@
                                 </tr>
                                 <tr>
                                     <td class="LabelText">
-                                        {LoctionText}
+                                        {LocationText}
                                     </td>
                                     <td class="LableValue">
                                         <table class="TableWithSelects">
@@ -201,11 +218,21 @@
                                     {SimpleSearch}
                                 </td>
                                 <td>
-                                    <input type="text" name="InputFriendsFilter" id="Text1" class="LabelValueSearch" />
-                                    <span class="SimpleSearchDescription">{SimpleSearchDescriptionUser}</span>
+									<table cellpadding="0" cellspacing="0">
+										<tr>
+											<td>
+												<input type="text" name="txtSimpleSearchRecipies" id="txtSimpleSearchRecipies" class="LabelValueSearch" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="SimpleSearchDescription">{SimpleSearchDescriptionRecipies}</span>
+											</td>
+										</tr>
+									</table>
                                 </td>
                                 <td class="SearchText">
-                                    <form id="SearchRecipiesForm" method="POST" action="/search/resipies">
+                                    <form id="SearchRecipiesForm" method="POST" action="/search/recipes">
                                     </form>
                                     <a href="#" id="A1" name="FriendFilterSubmit" onclick="document.forms['SearchRecipiesForm'].submit();">
                                         <div class="Login_submit">
@@ -237,7 +264,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        {NoteSearchAnswerUsers}
+                                                        {NoteSearchAnswerRecipies}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -246,7 +273,7 @@
                                 </tr>
                                 <tr>
                                     <td class="LabelText">
-                                        {RecipeName}
+                                        {RecipeName}:
                                     </td>
                                     <td class="LableValue">
                                         <input type="text" name="txtRecipeName" class="LabelValueSearch" />
@@ -295,3 +322,50 @@
             </tr>
         </table>
     </div>
+	
+	<script language="javascript" type="text/javascript">
+    	
+	window.onload = function(){
+		ShowSearch()
+	};
+	
+    function ShowSearch()
+    {
+		var SearchUsersType = document.getElementById("SearchUsersType");
+        var SearchUsers = document.getElementById("SearchUsers");
+		var SearchRecipies = document.getElementById("SearchRecipies");
+
+		if(SearchUsersType.checked)
+		{
+            SearchUsers.style.display = "block";
+		    SearchRecipies.style.display = "none";
+		}
+        else
+		{
+            SearchUsers.style.display = "none";
+			SearchRecipies.style.display = "block";
+		}
+
+
+    }
+	
+    function ShowAdvancedSearchUsers()
+    {
+        var AdvancedSearchUsers = document.getElementById("AdvancedSearchUsers");
+        if(AdvancedSearchUsers.style.display != "block")
+            AdvancedSearchUsers.style.display = "block";
+        else
+            AdvancedSearchUsers.style.display = "none";
+
+    }
+    
+    function ShowAdvancedSearchRecipies()
+    {
+        var AdvancedSearchRecipies = document.getElementById("AdvancedSearchRecipies");
+        if(AdvancedSearchRecipies.style.display != "block")
+            AdvancedSearchRecipies.style.display = "block";
+        else
+            AdvancedSearchRecipies.style.display = "none";
+    }
+    
+    </script>

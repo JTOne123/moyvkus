@@ -129,17 +129,21 @@ class Receipesmanagement {
 				
 				<td valign=\"top\">
 				<table class=\"GetMessageButtonsTable\">
-				
-				{ButtonEdit}
-				{ButtonFavorites}
-				
 				<tr>
 				<td>
+				{ButtonEdit}
+				{ButtonFavorites}
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<div class=\"MyRecipeButtonDiv\">
 				<a href=\"{ViewRecipeUrl}#comments\" id=\"Comments\" name=\"Comments\">
 				<div class=\"Login_submit\">
 				{Comments}({number_of_comments})
 				</div>
 				</a>
+				</div>
 				</td>
 				</tr>
 				
@@ -152,11 +156,13 @@ class Receipesmanagement {
 
 	function ButtonEdit()
 	{
-		return  "<a href=\"{EditRecipeUrl}\" id=\"EditRecipe\" name=\"EditRecipe\">
-					 <div class=\"Login_submit\">
-						{EditRecipe}
-					 </div>
-				 </a>";
+		return  "<div class=\"MyRecipeButtonDiv\">
+					<a href=\"{EditRecipeUrl}\" id=\"EditRecipe\" name=\"EditRecipe\">
+						<div class=\"Login_submit\">
+							{EditRecipe}
+						</div>
+					</a>
+				</div>";
 	}
 
 	function ButtonFavorites()

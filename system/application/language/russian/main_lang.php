@@ -221,5 +221,22 @@ $lang['Favorites'] = "Избранные рецепты";
 $lang['HisFavorites'] = "Его(ее) избранные рецепты";
 $lang['Delete'] = "Удалить";
 
+//Search
+$lang['Search'] = "Поиск";
+$lang['SearchOption'] = "Тип поиск";
+$lang['SearchUsers'] = " Поиск людей";
+$lang['SearchRecipies'] = " Поиск рецептов";
+$lang['SimpleSearch'] = "Простой поиск";
+$lang['SearchButton'] = "Искать";
+$lang['SimpleSearchDescriptionUser'] = "В простом поиске можно указывать имена и фамилии";
+$lang['SimpleSearchDescriptionRecipies'] = "В простом поиске можно указывать названия блюд";
+$lang['AdvancedSearch'] = "Расширенный поиск";
+$lang['NoteSearch'] = "Что такое расширенный поиск?";
+$lang['NoteSearchAnswerUsers'] = "Расширенный поиск позволяет найти друзей с помощью точных запросов.";
+$lang['NoteSearchAnswerRecipies'] = "Расширенный поиск позволяет найти рецепты с помощью точных запросов.";
+$lang['Indigridients'] = "Ингридиенты:";
+$lang['RecipeText'] = "Приготовление:";
+$lang['SearchUsersResultsText'] = "Найдено {SearchResultsCount} человек";
+$lang['SearchRecipesResultsText'] = "Найдено {SearchResultsCount} рецептов";
 
 ?>
