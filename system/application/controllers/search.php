@@ -611,7 +611,7 @@ class Search extends Controller {
 		return $row->c;
 	}
 	
-	function search_recipes_do_query($query_string, $limit_from, $limit_to)
+	function search_recipes_do_query($query_string, $limit_from, $limit_to) 
 	{
 		$query = null;
 		
