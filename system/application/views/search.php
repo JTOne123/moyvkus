@@ -86,7 +86,9 @@
 									<table cellpadding="0" cellspacing="0">
 										<tr>
 											<td>
+											    <form id="SearchSimpleUsersForm" method="POST" action="/search/users_simple">
 												<input type="text" name="txtSimpleSearchUsers" id="txtSimpleSearchUsers" class="LabelValueSearch" />
+												</form>
 											</td>
 										</tr>
 										<tr>
@@ -97,9 +99,8 @@
 									</table>
                                 </td>
                                 <td class="SearchText">
-                                    <form id="SearchUsersForm" method="POST" action="/search/users">
-                                    </form>
-                                    <a href="#" id="FriendFilterSubmit" name="FriendFilterSubmit" onclick="document.forms['SearchUsersForm'].submit();">
+
+                                    <a href="#" id="FriendFilterSubmit" name="FriendFilterSubmit" onclick="document.forms['SearchSimpleUsersForm'].submit();">
                                         <div class="Login_submit">
                                             {SearchButton}
                                         </div>
@@ -117,98 +118,100 @@
                             </tr>
                         </table>
                         <div id="AdvancedSearchUsers" class="SearchHiddenDiv">
-                            <table class="AdvancedSearchTable">
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <div class="Note NoteSearchWidth">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <b>{NoteSearch}</b>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        {NoteSearchAnswerUsers}
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {FirstName}
-                                    </td>
-                                    <td class="LableValue">
-                                        <input type="text" name="txtFirstName" id="Text2" class="LabelValueSearch" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {LastName}
-                                    </td>
-                                    <td class="LableValue">
-                                        <input type="text" name="txtLastName" id="Text3" class="LabelValueSearch" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {Sex}
-                                    </td>
-                                    <td class="LableValue">
-                                        <input type="radio" id="txtSexMan" name="txtSex" value="txtSexMan" />{Man}&nbsp;
-                                        <input type="radio" id="txtSexWoman" name="txtSex" value="txtSexWoman" />{Woman}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {LocationText}
-                                    </td>
-                                    <td class="LableValue">
-                                        <table class="TableWithSelects">
-                                            <tr>
-                                                <td class="LabelValueEditProfile">
-                                                    {Country}
-                                                </td>
-                                                <td>
-                                                    {SelectCountry}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="LabelValueEditProfile">
-                                                    {Region}
-                                                </td>
-                                                <td>
-                                                    {SelectRegion}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="LabelValueEditProfile">
-                                                    {City}
-                                                </td>
-                                                <td>
-                                                    {SelectCity}
-                                                </td>
-                                            </tr>
-                                        </table>
-                                </tr>
-                                <tr>
-                                    <td class="SeparateTD" colspan="2">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <div class="SearchButtonDiv">
-                                            <a href="#" id="A2" name="FriendFilterSubmit" onclick="document.forms['SearchUsersForm'].submit();">
-                                                <div class="Login_submit">
-                                                    {SearchButton}
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+							<form id="SearchAdvancedUsersForm" method="POST" action="/search/users_advanced">
+								<table class="AdvancedSearchTable">
+									<tr>
+										<td colspan="2" align="center">
+											<div class="Note NoteSearchWidth">
+												<table>
+													<tr>
+														<td>
+															<b>{NoteSearch}</b>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															{NoteSearchAnswerUsers}
+														</td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{FirstName}
+										</td>
+										<td class="LableValue">
+											<input type="text" name="txtFirstName" id="Text2" class="LabelValueSearch" />
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{LastName}
+										</td>
+										<td class="LableValue">
+											<input type="text" name="txtLastName" id="Text3" class="LabelValueSearch" />
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{Sex}
+										</td>
+										<td class="LableValue">
+											<input type="radio" id="txtSexMan" name="txtSex" value="0" />{Man}&nbsp;
+											<input type="radio" id="txtSexWoman" name="txtSex" value="1" />{Woman}
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{LocationText}
+										</td>
+										<td class="LableValue">
+											<table class="TableWithSelects">
+												<tr>
+													<td class="LabelValueEditProfile">
+														{Country}
+													</td>
+													<td>
+														{SelectCountry}
+													</td>
+												</tr>
+												<tr>
+													<td class="LabelValueEditProfile">
+														{Region}
+													</td>
+													<td>
+														{SelectRegion}
+													</td>
+												</tr>
+												<tr>
+													<td class="LabelValueEditProfile">
+														{City}
+													</td>
+													<td>
+														{SelectCity}
+													</td>
+												</tr>
+											</table>
+									</tr>
+									<tr>
+										<td class="SeparateTD" colspan="2">
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center">
+											<div class="SearchButtonDiv">
+												<a href="#" id="A2" name="FriendFilterSubmit" onclick="document.forms['SearchAdvancedUsersForm'].submit();">
+													<div class="Login_submit">
+														{SearchButton}
+													</div>
+												</a>
+											</div>
+										</td>
+									</tr>
+								</table>
+						</form>
                         </div>
                     </div>
                     <div id="SearchRecipies" class="SearchHiddenDiv">
@@ -221,7 +224,9 @@
 									<table cellpadding="0" cellspacing="0">
 										<tr>
 											<td>
-												<input type="text" name="txtSimpleSearchRecipies" id="txtSimpleSearchRecipies" class="LabelValueSearch" />
+											    <form id="SearchSimpleRecipesForm" method="POST" action="/search/recipes_simple">
+													<input type="text" name="txtSimpleSearchRecipies" id="txtSimpleSearchRecipies" class="LabelValueSearch" />
+											    </form>
 											</td>
 										</tr>
 										<tr>
@@ -232,9 +237,7 @@
 									</table>
                                 </td>
                                 <td class="SearchText">
-                                    <form id="SearchRecipiesForm" method="POST" action="/search/recipes">
-                                    </form>
-                                    <a href="#" id="A1" name="FriendFilterSubmit" onclick="document.forms['SearchRecipiesForm'].submit();">
+                                    <a href="#" id="A1" name="FriendFilterSubmit" onclick="document.forms['SearchSimpleRecipesForm'].submit();">
                                         <div class="Login_submit">
                                             {SearchButton}
                                         </div>
@@ -252,61 +255,63 @@
                             </tr>
                         </table>
                         <div id="AdvancedSearchRecipies" class="SearchHiddenDiv">
-                            <table class="AdvancedSearchTable">
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <div class="Note NoteSearchWidth">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <b>{NoteSearch}</b>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        {NoteSearchAnswerRecipies}
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {RecipeName}:
-                                    </td>
-                                    <td class="LableValue">
-                                        <input type="text" name="txtRecipeName" class="LabelValueSearch" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {Indigridients}
-                                    </td>
-                                    <td class="LableValue">
-                                        <input type="text" name="txtIndigridients" class="LabelValueSearch" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="LabelText">
-                                        {RecipeText}
-                                    </td>
-                                    <td class="LableValue">
-                                        <input type="text" name="txtRecipeText" id="Text6" class="LabelValueSearch" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <div class="SearchButtonDiv">
-                                            <a href="#" id="A3" name="FriendFilterSubmit" onclick="document.forms['SearchRecipiesForm'].submit();">
-                                                <div class="Login_submit">
-                                                    {SearchButton}
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+							<form id="SearchAdvancedRecipesForm" method="POST" action="/search/recipes_advanced">
+								<table class="AdvancedSearchTable">
+									<tr>
+										<td colspan="2" align="center">
+											<div class="Note NoteSearchWidth">
+												<table>
+													<tr>
+														<td>
+															<b>{NoteSearch}</b>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															{NoteSearchAnswerRecipies}
+														</td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{RecipeName}:
+										</td>
+										<td class="LableValue">
+											<input type="text" name="txtRecipeName" class="LabelValueSearch" />
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{Indigridients}
+										</td>
+										<td class="LableValue">
+											<input type="text" name="txtIndigridients" class="LabelValueSearch" />
+										</td>
+									</tr>
+									<tr>
+										<td class="LabelText">
+											{RecipeText}
+										</td>
+										<td class="LableValue">
+											<input type="text" name="txtRecipeText" id="Text6" class="LabelValueSearch" />
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center">
+											<div class="SearchButtonDiv">
+												<a href="#" id="A3" name="FriendFilterSubmit" onclick="document.forms['SearchAdvancedRecipesForm'].submit();">
+													<div class="Login_submit">
+														{SearchButton}
+													</div>
+												</a>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</form>
                         </div>
                 </td>
             </tr>
@@ -320,6 +325,11 @@
                     {SearchItemsListBuilder}
                 </td>
             </tr>
+			<tr>
+				<td>
+					<div align="center">{paginator}</div>
+				</td>
+			</tr>
         </table>
     </div>
 	

@@ -70,7 +70,6 @@ class My_recipes extends Controller {
 		return $data;
 	}
 	
-	
 	function _data_bind($data)
 	{
 		$user_id_from_uri = $this->uri->segment(3); //23

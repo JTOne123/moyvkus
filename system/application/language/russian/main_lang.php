@@ -222,6 +222,8 @@ $lang['HisFavorites'] = "Его(ее) избранные рецепты";
 $lang['Delete'] = "Удалить";
 
 //Search
+$lang['first_link'] = "Начало";
+$lang['last_link'] = "Конец";
 $lang['Search'] = "Поиск";
 $lang['SearchOption'] = "Тип поиск";
 $lang['SearchUsers'] = " Поиск людей";

@@ -8,8 +8,10 @@ class Search extends Controller {
 		
 		$this->load->library('validation');
 		$this->load->library('usermanagment');
+		$this->load->library('myfriendslib');
 		$this->load->library('location');
 		$this->load->library('receipesmanagement');
+		$this->load->library('commentsmanagement');
 		$this->load->library('pagination');
 		
 		$this->load->helper('form');
@@ -24,6 +26,24 @@ class Search extends Controller {
 		
 		$data = $this->_data_bind($data);
 		
+		$data['body']= $this->parser->parse('search', $data);
+		
+		$this->parser->parse('main_tpl', $data);
+	}
+	
+	function _init()
+	{
+		$data = $this->_load_headers();
+		
+		$data = $this->_load_resource($data);
+		
+		$data = $this->_data_bind($data);
+		
+		return $data;
+	}
+	
+	function _render($data)
+	{
 		$data['body']= $this->parser->parse('search', $data);
 		
 		$this->parser->parse('main_tpl', $data);
@@ -83,68 +103,453 @@ class Search extends Controller {
 		$data['SelectRegion'] = form_dropdown('SelectRegion',$nulled,'',"onChange='ajax_locator_region()'");
 		$data['SelectCity'] = form_dropdown('SelectCity');
 		
+		$data['SearchResultCount'] = '';
+		$data['SearchItemsListBuilder'] = '';
+		
+		$data['paginator']='';
+		
 		return $data;
 	}
 	
-	function users()
-	{
+	function users_simple()
+	{		
+		$data = $this->_init();
 		
+		$simple_search = $this->input->post('txtSimpleSearchUsers');
+		$page_view = $this->uri->segment(3);
+		
+		$config['first_link'] = 'Начало';
+		$config['last_link'] = 'Конец';
+		
+		$config['per_page'] = '10';
+		$config['uri_segment'] = 4;
+		
+		$config['base_url'] = base_url() . "/search/users_simple/page/";
+		
+		if($page_view == 'page')
+		{	
+			$simple_search_from_session = $this->session->userdata('txtSimpleSearchUsers');
+			
+			if($simple_search_from_session != '')
+			{
+				$query_string = $this->search_users_simple($simple_search_from_session);
+				
+				$result_count = $this->search_users_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				$query = $this->search_users_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_users($query, $result_count, $data);
+			}
+		}
+		else
+		{
+			if($simple_search != '')
+			{
+				$this->session->set_userdata('txtSimpleSearchUsers', $simple_search);
+				
+				$query_string = $this->search_users_simple($simple_search);
+				
+				$result_count = $this->search_users_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				
+				$query = $this->search_users_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_users($query, $result_count, $data);
+			}
+		}
+		
+		$this->_render($data);
 	}
 	
-	function recipes()
+	function users_advanced()
 	{
+		$data = $this->_init();
 		
+		$first_name = $this->input->post('txtFirstName');
+		$last_name = $this->input->post('txtLastName');
+		$sex = $this->input->post('txtSex');
+		
+		$SelectCountry = $this->input->post('SelectCountry');
+		$SelectRegion = $this->input->post('SelectRegion');
+		$SelectCity = $this->input->post('SelectCity');
+		
+		$page_view = $this->uri->segment(3);
+		
+		$config['first_link'] = 'Начало';
+		$config['last_link'] = 'Конец';
+		
+		$config['per_page'] = '10';
+		$config['uri_segment'] = 4;
+		
+		$config['base_url'] = base_url() . "/search/users_advanced/page/";
+		
+		if($page_view == 'page')
+		{
+			$first_name_from_session = $this->session->userdata('txtFirstName');
+			$last_name_from_session = $this->session->userdata('txtLastName');
+			$sex_from_session = $this->session->userdata('txtSex');
+			
+			$SelectCountry_from_session = $this->session->userdata('SelectCountry');
+			$SelectRegion_from_session = $this->session->userdata('SelectRegion');
+			$SelectCity_from_session = $this->session->userdata('SelectCity');
+			
+			$query_string = $this->search_users_advanced($first_name_from_session, $last_name_from_session, $sex_from_session, $SelectCountry_from_session, $SelectRegion_from_session, $SelectCity_from_session);
+			
+			if($query_string != '')
+			{
+				$result_count = $this->search_users_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				$query = $this->search_users_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_users($query, $result_count, $data);
+			}
+		}
+		else
+		{
+			$query_string = $this->search_users_advanced($first_name, $last_name, $sex, $SelectCountry, $SelectRegion, $SelectCity);
+			
+			if($query_string != '')
+			{
+				$this->session->set_userdata('txtFirstName', $first_name);
+				$this->session->set_userdata('txtLastName', $last_name);
+				$this->session->set_userdata('txtSex', $sex);
+				
+				$this->session->set_userdata('SelectCountry', $SelectCountry);
+				$this->session->set_userdata('SelectRegion', $SelectRegion);
+				$this->session->set_userdata('SelectCity', $SelectCity);
+				
+				$result_count = $this->search_users_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				$query = $this->search_users_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_users($query, $result_count, $data);
+				
+			}
+		}
+		
+		$this->_render($data);
 	}
 	
-	function search_users_simple($data, $limit_from, $limit_to)
-	{
-		$query = $this->db->query("SELECT id FROM users WHERE first_name LIKE %$data% OR last_name LIKE %$data% LIMIT $limit_from, $limit_to");
+	function recipes_simple()
+	{	
+		$data = $this->_init();
 		
-		return $query;
+		$simple_search = $this->input->post('txtSimpleSearchRecipies');
+		$page_view = $this->uri->segment(3);
+		
+		$config['first_link'] = 'Начало';
+		$config['last_link'] = 'Конец';
+		
+		$config['per_page'] = '10';
+		$config['uri_segment'] = 4;
+		
+		$config['base_url'] = base_url() . "/search/recipes_simple/page/";
+		
+		if($page_view == 'page')
+		{	
+			$simple_search_from_session = $this->session->userdata('txtSimpleSearchRecipies');
+			
+			if($simple_search_from_session != '')
+			{
+				$query_string = $this->search_recipes_simple($simple_search_from_session);
+				
+				$result_count = $this->search_recipes_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				$query = $this->search_recipes_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_recipes($query, $result_count, $data);
+			}
+		}
+		else
+		{
+			if($simple_search != '')
+			{
+				$this->session->set_userdata('txtSimpleSearchRecipies', $simple_search);
+				
+				$query_string = $this->search_recipes_simple($simple_search);
+				
+				$result_count = $this->search_recipes_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				
+				$query = $this->search_recipes_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_recipes($query, $result_count, $data);
+			}
+		}
+		
+		$this->_render($data);
 	}
 	
-	function search_users_advanced($first_name, $last_name, $sex, $country, $region, $city, $limit_from, $limit_to)
+	function recipes_advanced()
+	{
+		
+		$data = $this->_init();
+		
+		$recipe_name = $this->input->post('txtRecipeName');
+		$indigridients = $this->input->post('txtIndigridients');
+		$recipe_text = $this->input->post('txtRecipeText');
+		
+		$page_view = $this->uri->segment(3);
+		
+		$config['first_link'] = 'Начало';
+		$config['last_link'] = 'Конец';
+		
+		$config['per_page'] = '10';
+		$config['uri_segment'] = 4;
+		
+		$config['base_url'] = base_url() . "/search/recipes_advanced/page/";
+		
+		if($page_view == 'page')
+		{
+			$recipe_name_from_session = $this->session->userdata('txtRecipeName');
+			$indigridients_from_session = $this->session->userdata('txtIndigridients');
+			$recipe_text_session = $this->session->userdata('txtRecipeText');
+			
+			$query_string = $this->search_recipes_advanced($recipe_name_from_session, $indigridients_from_session, $recipe_text_session);
+			
+			if($query_string != '')
+			{
+				$result_count = $this->search_recipes_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				$query = $this->search_recipes_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_recipes($query, $result_count, $data);
+			}
+		}
+		else
+		{
+			$query_string = $this->search_recipes_advanced($recipe_name, $indigridients, $recipe_text);
+			
+			if($query_string != '')
+			{
+				$this->session->set_userdata('txtRecipeName', $recipe_name);
+				$this->session->set_userdata('txtIndigridients', $indigridients);
+				$this->session->set_userdata('txtRecipeText', $recipe_text);
+				
+				$result_count = $this->search_recipes_count($query_string);
+				
+				$config['total_rows'] = $result_count;
+				
+				$this->pagination->initialize($config);
+				
+				$data['paginator']=$this->pagination->create_links();
+				
+				$cur_page = $this->uri->segment(4);
+				
+				if($cur_page==null)
+				{
+					$from_limit=0;
+					$to_limit=$config['per_page'];
+					
+				}
+				else 
+				{
+					$from_limit=$cur_page;
+					$to_limit=$config['per_page'];
+				}
+				
+				$query = $this->search_recipes_do_query($query_string, $from_limit, $to_limit);
+				
+				$data = $this->show_recipes($query, $result_count, $data);
+				
+			}
+		}
+		
+		$this->_render($data);
+	}
+	
+	function search_users_simple($data)
+	{	
+		return "first_name LIKE '%$data%' OR last_name LIKE '%$data%'";
+	}
+	
+	function search_users_advanced($first_name, $last_name, $sex, $country, $region, $city)
 	{
 		$query_string = "";
 		
 		if($first_name != '')
-			$query_string = $query_string . "first_name LIKE %'$first_name'% ";
+			$query_string = $query_string . "first_name LIKE '%$first_name%' ";
 		
 		if($last_name != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
-			$query_string = $query_string . "last_name LIKE %'$last_name'% ";
+			$query_string = $query_string . "last_name LIKE '%$last_name%' ";
 		}
 		
 		if($sex != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
 			$query_string = $query_string . "sex = $sex ";
 		}
 		
 		if($country != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
 			$query_string = $query_string . "country = $country ";
 		}
 		
 		if($region != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
 			$query_string = $query_string . "region = $region ";
 		}
 		
 		if($city != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
 			$query_string = $query_string . "city = $city ";	
 		}
 		
+		return $query_string;
+	}
+	
+	function search_users_do_query($query_string, $limit_from, $limit_to)
+	{
 		$query = null;
 		
 		if($query_string != '')
@@ -157,34 +562,57 @@ class Search extends Controller {
 		return $query;
 	}
 	
-	function search_recipes_simple($data, $limit_from, $limit_to)
+	function search_users_count($query_string)
 	{
-		$query = $this->db->query("SELECT id FROM recipes WHERE name LIKE %$data% OR ingredients LIKE %$data% LIMIT $limit_from, $limit_to");
+		$query = $this->db->query("SELECT COUNT(1) AS c FROM users WHERE " . $query_string);
+		$row = $query->row();
 		
-		return $query;
+		return $row->c;
 	}
 	
-	function search_recipes_advanced($name, $ingredients, $recipe_text, $limit_from, $limit_to)
+	function search_recipes_simple($data)
+	{
+		return "name LIKE '%$data%' OR ingredients LIKE '%$data%'";
+	}
+	
+	function search_recipes_advanced($name, $ingredients, $recipe_text)
 	{
 		$query_string = "";
 		
 		if($name != '')
-			$query_string = $name . "name LIKE %'$name'% ";
+		{
+			$query_string = $this->check_querty_string_empty($query_string);
+			
+			$query_string = $query_string . "name LIKE '%$name%' ";
+		}
 		
 		if($ingredients != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
-			$query_string = $query_string . "ingredients LIKE %'$ingredients'% ";
+			$query_string = $query_string . "ingredients LIKE '%$ingredients%' ";
 		}
 		
 		if($recipe_text != '')
 		{
-			$query_string = check_querty_string_empty($query_string);
+			$query_string = $this->check_querty_string_empty($query_string);
 			
-			$query_string = $query_string . "recipe_text LIKE %'$recipe_text'% ";
+			$query_string = $query_string . "recipe_text LIKE '%$recipe_text%' ";
 		}
 		
+		return $query_string;
+	}
+	
+	function search_recipes_count($query_string)
+	{
+		$query = $this->db->query("SELECT COUNT(1) AS c FROM recipes WHERE " . $query_string);
+		$row = $query->row();
+		
+		return $row->c;
+	}
+	
+	function search_recipes_do_query($query_string, $limit_from, $limit_to)
+	{
 		$query = null;
 		
 		if($query_string != '')
@@ -232,9 +660,9 @@ class Search extends Controller {
 	}
 	//Работа с Ajax-загрузчиком городов END
 	
-	function show_users($query_users, $data)
+	function show_users($query_users, $result_count, $data)
 	{			
-		$users_counts = str_replace("{SearchResultsCount}", $query_users->num_rows(), $this->lang->line('SearchUsersResultsText'));
+		$users_counts = str_replace("{SearchResultsCount}", $result_count, $this->lang->line('SearchUsersResultsText'));
 		
 		$data['SearchResultCount'] = $users_counts;
 		
@@ -243,7 +671,7 @@ class Search extends Controller {
 		return $data;
 	}
 	
-	function friends_builder($query)
+	function users_builder($query)
 	{	
 		$friend_item = $this->myfriendslib->GetFriendsBuilderHTML();
 		
@@ -274,7 +702,7 @@ class Search extends Controller {
 				$user_id = $this->userauthorization->get_loged_on_user_id();
 				
 				if($user_id != $row->id)
-					if($this->myfriendslib->IsTheyFriends($user_id, $row->friend_id))
+					if($this->myfriendslib->IsTheyFriends($user_id, $row->id))
 					{
 						$friend_current = str_replace("{DeleteFriend}", $this->lang->line('DeleteFriend'), $friend_current);
 						$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $row->id, $friend_current);
@@ -312,9 +740,9 @@ class Search extends Controller {
 		return $friends_list;
 	}
 	
-	function show_recipes($query_recipes, $data)
+	function show_recipes($query_recipes, $result_count, $data)
 	{			
-		$recipes_counts = str_replace("{SearchResultsCount}", $query_recipes->num_rows(), $this->lang->line('SearchRecipesResultsText'));
+		$recipes_counts = str_replace("{SearchResultsCount}", $result_count, $this->lang->line('SearchRecipesResultsText'));
 		
 		$data['SearchResultCount'] = $recipes_counts;
 		
@@ -326,6 +754,8 @@ class Search extends Controller {
 	function recipes_buider($query)
 	{
 		$recipe_item = $this->receipesmanagement->recipesbuilder();
+		
+		$recipe_list = "";
 		
 		foreach ($query->result() as $row)
 		{
