@@ -15,6 +15,8 @@ class Profile extends Controller {
 		
 		$this->load->helper('date');
 		$this->load->helper('typography');
+		
+		$this->load->model('Recommend');
 	}
 	
 	function _remap($method) {
@@ -81,7 +83,7 @@ class Profile extends Controller {
 		$data['MyRatingLevelText'] = $this->lang->line('MyRatingLevelText');
 		$data['MyBestRecipesText'] = $this->lang->line('MyBestRecipesText');
 		$data['MyInfo'] = $this->lang->line('MyInfo');
-		$data['MyRecipes'] = $this->lang->line('MyRecipes');
+		$data['RecomendedRecipes'] = $this->lang->line('RecomendedRecipes');
 		$data['Contacts'] = $this->lang->line('Contacts');
 		$data['MyRatingTextHeader'] = $this->lang->line('MyRatingTextHeader');
 		$data['Friends'] = $this->lang->line('Friends');
@@ -233,12 +235,14 @@ class Profile extends Controller {
 			$data['About'] = auto_typography($user_data->about);
 			
 			$arr=$this->receipesmanagement->getbestrecipe($user_id_to_view);
-			
 			$data['MyBestRecipe'] = $arr[0]['name'];
+			
+			$arr=$this->usermanagment->GetUserRating($user_id_to_view);
+			$data['MyRating'] = $arr;
 			
 			$arr=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,5);
 			
-			$data['UserRecipes']=$arr;
+			$data['Recommend_recipes'] = $this->Recommend->Build();
 			
 			if($user_data->avatar_name != null)
 				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;

@@ -95,6 +95,7 @@ $lang['DeleteFromFriends'] = "Убрать из друзей";
 $lang['Friends'] = "Просмотреть друзей";
 $lang['NoRecipes'] = "Не было добавлено ни одного рецепта";
 $lang['HisRecipes'] = "Его(ее) рецепты";
+$lang['RecomendedRecipes'] = "Возможно, эти рецепты Вам будут интересны";
 
 
 //Edit profile
@@ -244,4 +245,7 @@ $lang['SearchRecipesResultsText'] = "Найдено {SearchResultsCount} рецептов";
 //Catalog
 $lang['Catalog'] = "Каталог рецептов";
 
+//Pager
+$lang['Start'] = "Начало";
+$lang['End'] = "Конец";
 ?>

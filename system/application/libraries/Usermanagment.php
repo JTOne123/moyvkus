@@ -147,5 +147,12 @@ class Usermanagment {
 	{
 		$this->ci->db->query("UPDATE user_data set avatar_name='a_$user_id$file_ext' WHERE user_id=$user_id");
 	}
+	
+	function GetUserRating($user_id)
+	{
+		$query = $this->ci->db->query("SELECT rating FROM user_data WHERE user_id=$user_id");
+		$row = $query->row();
+		return $row->rating;
+	}
 }
 ?>

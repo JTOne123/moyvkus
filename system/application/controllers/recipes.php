@@ -40,7 +40,7 @@ class Recipes extends Controller {
 
 		$data = $this->_build__category_list($data);
 
-		$data['body']= $this->parser->parse('recipes_categories', $data);
+		$data['body']= $this->parser->parse('recipes', $data);
 
 		$this->parser->parse('main_tpl', $data);
 	}
@@ -119,8 +119,8 @@ class Recipes extends Controller {
 			$config['total_rows'] = $RecipesCount;
 			$config['per_page'] = '10';
 			$config['uri_segment'] = 6;
-			$config['first_link'] = 'Начало';
-			$config['last_link'] = 'Конец';
+			$config['first_link'] = $this->lang->line('Start');
+			$config['last_link'] = $this->lang->line('End');
 			$this->pagination->initialize($config);
 			$data['paginator']=$this->pagination->create_links();
 			$cur_page = $this->uri->segment(6);

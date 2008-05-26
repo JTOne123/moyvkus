@@ -240,14 +240,7 @@
                                                 {MyRating}
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="LabelText">
-                                                {MyRatingLevelText}
-                                            </td>
-                                            <td class="LableValue">
-                                                {MyRatingLevel}
-                                            </td>
-                                        </tr>
+
                                         <tr>
                                             <td class="LabelText">
                                                 {MyBestRecipesText}
@@ -261,14 +254,12 @@
                             </tr>
                             <tr>
                                 <td class="Headers">
-                                    {MyRecipes}
+                                    {RecomendedRecipes}:
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    {UserRecipes}
-                                    {id} - {name} <br>
-								    {/UserRecipes}
+								    {Recommend_recipes}
                                 </td>
                             </tr>
                         </table>
