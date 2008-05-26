@@ -92,7 +92,27 @@ class Receipesmanagement {
 		return array(array('id'=>'', 'name'=>''));
 	}
 
+	
+	function GetRecipesByCategoryId($category_id, $limit_from, $limit_to)
+	{
+		if($limit_to!==0)
+		{
+			$query = $this->ci->db->query("SELECT * FROM recipes WHERE category_id='$category_id' LIMIT $limit_from, $limit_to");
+		}
+		if($limit_to==0)
+		{
+			$query = $this->ci->db->query("SELECT * FROM recipes WHERE category_id='$category_id' GROUP BY id DESC");
+		}
 
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		return array(array('id'=>'', 'name'=>''));
+	}
+
+	
 	function RecipeCount($user_id)
 	{
 		$query = $this->ci->db->query("SELECT id FROM recipes WHERE user_id='$user_id'");
@@ -226,5 +246,23 @@ class Receipesmanagement {
 		return $query->row();
 	}
 
+	//Есть ли рецепты в категории
+	function IsCategoryIsEmpty($category_id)
+	{
+		$query = $this->ci->db->query("SELECT id FROM recipes WHERE category_id='$category_id'");
+		if($query->num_rows()==0)
+		{
+			return TRUE;
+		}
+		else
+		return FALSE;
+	}
+	
+	//Колличество рецептов в категории
+	function GetNumberOfRecipesInCategory($category_id)
+	{
+		$query = $this->ci->db->query("SELECT id FROM recipes WHERE category_id='$category_id'");
+		return $query->num_rows();
+	}
 }
 ?>

@@ -241,4 +241,7 @@ $lang['RecipeText'] = "Приготовление:";
 $lang['SearchUsersResultsText'] = "Найдено {SearchResultsCount} человек";
 $lang['SearchRecipesResultsText'] = "Найдено {SearchResultsCount} рецептов";
 
+//Catalog
+$lang['Catalog'] = "Каталог рецептов";
+
 ?>

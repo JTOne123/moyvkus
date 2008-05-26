@@ -64,6 +64,10 @@ $route['favorites/add/id/:num'] = "favorites/add/";
 $route['favorites/delete/id/:num'] = "favorites/delete/";
 $route['favorites/view/:any'] = "favorites";
 
+$route['recipes/category/id'] = "recipes";
+$route['recipes/category/id/:num'] = "recipes";
+$route['recipes/category/id/:num/:any'] = "recipes";
+
 $route['default_controller'] = "main";
 $route['register/wrong_captcha'] = "register";
 $route['scaffolding_trigger'] = "";
