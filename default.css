@@ -746,7 +746,7 @@ a
 .AdvancedSearchTD
 {
     text-align: center;
-}
+}ut
 
 .NoteSearchWidth
 {
@@ -759,6 +759,7 @@ a
 }
 
 /* Recipes */
+
 .RecipesTable
 {
 	width:100%;
@@ -767,4 +768,11 @@ a
 .RecipesTD
 {
 	vertical-align:top;
+}
+
+/* Forget password */
+
+.ForgetPasswordEmail
+{
+	width:100%;
 }

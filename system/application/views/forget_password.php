@@ -1,11 +1,11 @@
     <script language="javascript" type="text/javascript">
 
     window.onload = function() {
-    addButton("btnSend" ,"vgInvite");
+    addButton("btnSend" ,"vgForgetPassword");
 
-    addValidatorRegEx("txtEmail", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vgInvite");
+    addValidatorRegEx("txtEmail", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vgForgetPassword");
 	
-    addSubmitButton("lnkSend", "vgInvite");
+    addSubmitButton("lnkSend", "vgForgetPassword");
     }
 
 	function btnSendClick()
@@ -19,16 +19,16 @@
             <table cellpadding="0" cellspacing="0" class="MainTableProfile Friends">
                 <tr>
                     <td class="UserStatus">
-                        {Invite}
+                        {ForgetPassword}
                     </td>
                 </tr>
                 <tr>
                     <td class="Dialog Message">
-						<form id="InviteForm" name="InviteForm" method="POST" action="/invite/">
+						<form id="ForgetPasswordForm" name="ForgetPasswordForm" method="POST" action="/forget_password/">
 							<table class="InvateMainTable">
 								<tr>
 									<td class="MessageTitle">
-										{Information}
+										{InformationForgetPassword}
 									</td>
 								</tr>
 								<tr>
@@ -36,12 +36,12 @@
 										<table>
 											<tr>
 												<td>
-													<b>{Note}</b>
+													<b>{NoteForgetPassword}</b>
 												</td>
 											</tr>
 											<tr>
 												<td>
-													{NoteAnswer}
+													{NoteAnswerForgetPassword}
 												</td>
 											</tr>
 										</table>
@@ -51,11 +51,11 @@
 									<td>
 										<table class="Message">
 											<tr>
-												<td class="LabelText LabelTextMessage">
+												<td class="LabelText ForgetPasswordEmail">
 													{Email}
 												</td>
-												<td class="LableValue LabelValueMessage">
-													<input id="txtEmail" name="txtEmail" type="text" size="35" class="MessageSubject" />
+												<td class="LableValue">
+													<input id="txtEmail" name="txtEmail" type="text" size="35" class="MessageSubject ForgetPasswordEmail" />
 													<?=$this->validation->txtEmail_error;?>
 												</td>
 												<td>
@@ -65,33 +65,13 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="LabelText LabelTextMessage">
-													{FirstName}
-												</td>
-												<td class="LableValue LabelValueMessage" colspan="2">
-													<input id="txtFirstName" name="txtFirstName" type="text" size="35" class="MessageSubject" />
-													<?=$this->validation->txtFirstName_error;?>
-												</td>
-											</tr>
-											<tr>
-												<td class="LabelText LabelTextMessage">
-													{LastName}
-												</td>
-												<td class="LableValue LabelValueMessage" colspan="2">
-													<input id="txtLastName" name="txtLastName" type="text" size="35" class="MessageSubject" />
-													<?=$this->validation->txtLastName_error;?>
-												</td>
-											</tr>
-											<tr>
-												<td>
-												</td>
-												<td>
-													<table>
+												<td colspan="3">
+													<table class="InvateMainTable">
 														<tr>
 															<td>
 																<a href="#" id="lnkSend" name="lnkSend" onclick="btnSendClick();">
 																	<div class="Login_submit">
-																		{Send}
+																		{SendForgetPassword}
 																	</div>
 																</a>
 																<input id="btnSend" name="btnSend" type="submit" value="true" style="display: none;"/>

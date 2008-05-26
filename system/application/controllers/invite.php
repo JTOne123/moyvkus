@@ -78,9 +78,9 @@ class Invite extends Controller {
 		$rules['txtEmail'] = "required|min_length[6]|max_length[100]|valid_email";
 		$this->validation->set_rules($rules);
 		
-		$fields['txtFirstName'] = $this->lang->line('Error_email');
-		$fields['txtLastName'] = $this->lang->line('Error_firstname');
-		$fields['txtEmail'] = $this->lang->line('Error_lastname');
+		$fields['txtFirstName'] = $this->lang->line('Error_firstname');
+		$fields['txtLastName'] = $this->lang->line('Error_lastname');
+		$fields['txtEmail'] = $this->lang->line('Error_email');
 		$this->validation->set_fields($fields);
 		
 		if($this->input->post('btnSend') != false)

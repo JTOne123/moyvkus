@@ -248,4 +248,26 @@ $lang['Catalog'] = "Каталог рецептов";
 //Pager
 $lang['Start'] = "Начало";
 $lang['End'] = "Конец";
+
+//Forget password
+$lang['ForgetPassword'] = "Восстановление пароля";
+$lang['InformationForgetPassword'] = "Восстановление пароля";
+$lang['NoteForgetPassword'] = "Как восстановить пароль?";
+$lang['NoteAnswerForgetPassword'] = "Введи ваш email, и мы вышлем вам новый пароль";
+$lang['SendForgetPassword'] = "Прислать пароль";
+$lang['ForgetPasswordRequestSubject'] = "Запрос на новый пароль";
+$lang['ForgetPasswordRequestMessage'] = "<html>
+		<body>
+		<p>Уважаемый {UserFullName}</p>
+		<br/>
+		<p>Вы запросили новый пароль, для сайта вкусных блюд - Мой Вкус.ru(http://www.moyvkus.ru)</p>
+		<br/>
+		<p>Для замены пароля перейдите по данной ссылке {NewPasswordRequestUrl}</p>
+		<br/>
+		<p>Если вы не запрашивали новый пароль для вашей учетной записи на сайте - Мой Вкус.ru(http://www.moyvkus.ru), просто удалите это письмо</p>
+		<br/>
+		<p>С уважаением администарация проекта Мой Вкус.ru <a href=\"http://www.moyvkus.ru\">http://www.moyvkus.ru</a></p>
+		</body>
+		</html>";
+
 ?>

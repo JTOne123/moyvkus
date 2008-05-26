@@ -50,5 +50,24 @@ class Notification {
 		
 		$this->ci->email->send();
 	}
+	
+	function Forget_password($user_id, $user_code)
+	{	
+		$user = $this->ci->usermanagment->GetUser($user_id);
+		
+		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));
+		$this->ci->email->to($user->email);
+		
+		$this->ci->email->subject($this->ci->lang->line('ForgetPasswordRequestSubject'));
+		
+		$message_text = $this->ci->lang->line('ForgetPasswordRequestMessage');
+		
+		$message_text = str_replace("{UserFullName}", $user->first_name . ' ' . $user->last_name, $message_text);
+		$message_text = str_replace("{NewPasswordRequestUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/new_password_request/' . $user_code, $message_text);
+		
+		$this->ci->email->message($message_text);
+		
+		$this->ci->email->send();
+	}
 }
 ?>
