@@ -61,15 +61,17 @@ insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (11,'Пр
 
 /*Table structure for table `user_data` */
 
-CREATE TABLE `user_data` (
+DROP TABLE IF EXISTS `user_data`;
+CREATE TABLE IF NOT EXISTS `user_data` (
   `user_id` int(11) NOT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `website` varchar(100) DEFAULT NULL,
-  `activities` varchar(2000) DEFAULT NULL,
-  `interests` varchar(2000) DEFAULT NULL,
-  `about` varchar(2000) DEFAULT NULL,
-  `avatar_name` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+  `phone` varchar(15) default NULL,
+  `website` varchar(100) default NULL,
+  `activities` varchar(2000) default NULL,
+  `interests` varchar(2000) default NULL,
+  `about` varchar(2000) default NULL,
+  `avatar_name` varchar(200) default NULL,
+  `rating` int(10) default '0'
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 /*Table structure for table `users` */
 
