@@ -34,25 +34,28 @@ CREATE TABLE `captcha` (
 
 /*Table structure for table `menu` */
 
-CREATE TABLE `menu` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(50) DEFAULT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  `img_url` varchar(200) DEFAULT NULL,
-  `tooltip` varchar(200) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE IF NOT EXISTS `menu` (
+  `ID` int(11) NOT NULL auto_increment,
+  `text` varchar(50) default NULL,
+  `url` varchar(200) default NULL,
+  `img_url` varchar(200) default NULL,
+  `tooltip` varchar(200) default NULL,
+  `sort` int(11) NOT NULL,
   UNIQUE KEY `id` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=10 ;
 
-/*Data for the table `menu` */
+-- 
+-- Дамп данных таблицы `menu`
+-- 
 
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (3,'Главная','~/profile','~/images/main.gif','Главная',0);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Мои сообщения','~/mymessages','~/images/mymessages.gif','Мои сообщения',2);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Мой поиск','~/search','~/images/search.gif','Мой поиск',5);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (7,'Выход','~/logout','~/images/logout.gif','Выход',6);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Мои друзья','~/myfriends','~/images/myfriends.gif','Мои друзья',1);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецепты','~/my_recipes','~/images/myrecipes.gif','Мои рецепты',3);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (9,'Мой каталог','~/my_catalog','~/images/mycatalog.gif','Мой каталог',4);
+INSERT INTO `menu` VALUES (3, 'Главная', '~/profile', '~/images/main.gif', 'Главная', 0);
+INSERT INTO `menu` VALUES (4, 'Мои сообщения', '~/mymessages', '~/images/mymessages.gif', 'Мои сообщения', 2);
+INSERT INTO `menu` VALUES (6, 'Мой поиск', '~/search', '~/images/search.gif', 'Мой поиск', 5);
+INSERT INTO `menu` VALUES (7, 'Выход', '~/logout', '~/images/logout.gif', 'Выход', 6);
+INSERT INTO `menu` VALUES (8, 'Мои друзья', '~/myfriends', '~/images/myfriends.gif', 'Мои друзья', 1);
+INSERT INTO `menu` VALUES (5, 'Мои рецепты', '~/my_recipes', '~/images/myrecipes.gif', 'Мои рецепты', 3);
+INSERT INTO `menu` VALUES (9, 'Рецепты', '~/recipes', '~/images/mycatalog.gif', 'Мой каталог', 4);
 
 /*Table structure for table `user_data` */
 
