@@ -49,13 +49,15 @@ CREATE TABLE IF NOT EXISTS `menu` (
 -- Дамп данных таблицы `menu`
 -- 
 
-INSERT INTO `menu` VALUES (3, 'Главная', '~/profile', '~/images/main.gif', 'Главная', 0);
-INSERT INTO `menu` VALUES (4, 'Мои сообщения', '~/mymessages', '~/images/mymessages.gif', 'Мои сообщения', 2);
-INSERT INTO `menu` VALUES (6, 'Мой поиск', '~/search', '~/images/search.gif', 'Мой поиск', 5);
-INSERT INTO `menu` VALUES (7, 'Выход', '~/logout', '~/images/logout.gif', 'Выход', 6);
-INSERT INTO `menu` VALUES (8, 'Мои друзья', '~/myfriends', '~/images/myfriends.gif', 'Мои друзья', 1);
-INSERT INTO `menu` VALUES (5, 'Мои рецепты', '~/my_recipes', '~/images/myrecipes.gif', 'Мои рецепты', 3);
-INSERT INTO `menu` VALUES (9, 'Рецепты', '~/recipes', '~/images/mycatalog.gif', 'Мой каталог', 4);
+
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецепты','~/my_recipes','~/images/myrecipes.gif','Мои рецепты',3);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Мой поиск','~/search','~/images/search.gif','Мой поиск',5);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Мои друзья','~/myfriends','~/images/myfriends.gif','Мои друзья',1);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (9,'Рецепты','~/recipes','~/images/mycatalog.gif','Мой каталог',4);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (7,'Выход','~/logout','~/images/logout.gif','Выход',7);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Мои сообщения','~/mymessages','~/images/mymessages.gif','Мои сообщения',2);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (3,'Главная','~/profile','~/images/main.gif','Главная',0);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (11,'Пригласить друга','~/invite','~/images/invite.gif','Пригласить друга',6);
 
 /*Table structure for table `user_data` */
 
