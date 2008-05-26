@@ -242,7 +242,7 @@ class Profile extends Controller {
 			
 			$arr=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,5);
 			
-			$data['Recommend_recipes'] = $this->Recommend->Build();
+			$data['Recommend_recipes'] = $this->Recommend->Build($user_id_to_view);
 			
 			if($user_data->avatar_name != null)
 				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;

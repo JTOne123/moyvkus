@@ -12,6 +12,7 @@ class MyMessages extends Controller {
 		$this->load->library('message');
 		
 		$this->load->helper('date');
+		$this->load->helper('smiley');
 	}
 	
 	function _remap($method) {
@@ -104,7 +105,14 @@ class MyMessages extends Controller {
 			$message_current = str_replace("{AuthorFullName}", $friend->first_name . ' ' . $friend->last_name, $message_item);
 			$message_current = str_replace("{AuthorUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $row->from_id, $message_current);
 			$message_current = str_replace("{MessageSubject}", substr($row->subject, 0, 30), $message_current);
-			$message_current = str_replace("{MessageShortText}", substr($row->text, 0, 30), $message_current);
+			
+			$return_str = '';
+			$MessageShortText = substr($row->text, 0, 30);
+			for($i = 0; $i < strlen($MessageShortText); $i++)
+			$return_str = $return_str.$MessageShortText[$i] . '<wbr>';
+			$return_str = parse_smileys($return_str, "/images/smileys/");
+			$message_current = str_replace("{MessageShortText}", $return_str, $message_current);
+			
 			$message_current = str_replace("{MessageDate}", $row->date, $message_current);
 			$message_current = str_replace("{AnswerUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $row->from_id . '/answer/id/' . $row->id , $message_current);
 			$message_current = str_replace("{MessageDeleteUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $row->id , $message_current);
