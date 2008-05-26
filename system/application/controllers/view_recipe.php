@@ -100,17 +100,26 @@ class View_recipe extends Controller {
 			$data['recipe_id'] = $recipe_id_from_uri;
 			if($recipe_obj_from_db->photo_name !==NULL and $recipe_obj_from_db->photo_name !== '')
 			{
-			$data['RecipeImgUrl'] = '/uploads/recipe_photos/big_photos/'.$recipe_obj_from_db->photo_name;
+				$data['RecipeImgUrl'] = '/uploads/recipe_photos/big_photos/'.$recipe_obj_from_db->photo_name;
 			}
-			else 
+			else
 			$data['RecipeImgUrl'] = '../../../images/nophoto_big.gif';
-			
+
 			$data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
-			
+
 
 			$returned_row_userdata=$this->usermanagment->getuserdata($recipe_obj_from_db->user_id);
-			$avatar_name=$returned_row_userdata->avatar_name;
-			$data['UserImgUrl']='/uploads/user_avatars/'.$avatar_name;
+			//$avatar_name=$returned_row_userdata->avatar_name;
+
+			if($returned_row_userdata->avatar_name!=='' and $returned_row_userdata->avatar_name!==NULL)
+			{
+				$avatar_name = base_url().'uploads/user_avatars/'.$returned_row_userdata->avatar_name;
+			}
+			else
+			{
+				$avatar_name = base_url().'images/nophoto.gif';
+			}
+			$data['UserImgUrl'] = $avatar_name;
 
 			$returned_row_user=$this->usermanagment->getuser($recipe_obj_from_db->user_id);
 			$data['LinkToUserProfile']='/profile/id/'.$recipe_obj_from_db->user_id;
@@ -128,7 +137,7 @@ class View_recipe extends Controller {
 			$return_str = $return_str.$recipe_obj_from_db->ingredients[$i] . '<wbr>';
 			$return_str = str_replace("\n", "<br>", $return_str);
 			$data['IngredientsValue'] = $return_str;
-			
+
 			//var_dump($return_str);
 
 			$data['RecipeText'] = $this->lang->line('TextOfRecipe');
@@ -166,13 +175,13 @@ class View_recipe extends Controller {
 			$returned_comments_arr = $this->commentsmanagement->GetComments($recipe_id_from_uri);
 			$comment_list = '';
 			foreach ($returned_comments_arr as $row):
-			
+
 			$returned_str='';
 			$text=$row['text'];
 			//$text = parse_smileys($row['text'], "/images/smileys/");
 			for($i = 0; $i < strlen($text); $i++)
 			$returned_str = $returned_str.$text[$i] . '<wbr>';
-			$text = $returned_str; 
+			$text = $returned_str;
 			$text = str_replace("\n", "<br>", $text);
 			$text = parse_smileys($text, "/images/smileys/");
 			$comment_current = str_replace("{CommentText}", $text, $returned_html);
@@ -183,7 +192,7 @@ class View_recipe extends Controller {
 			$First_Last_Name = $user_info_obj->first_name.' '.$user_info_obj->last_name;
 			$comment_current = str_replace("{AuthorFirstLastName}", $First_Last_Name, $comment_current);
 
-			$comment_current = str_replace("{AvatarUrl}", '/uploads/user_avatars/'.$user_data_info_obj->avatar_name, $comment_current);
+			$comment_current = str_replace("{AvatarUrl}", base_url().'uploads/user_avatars/'.$user_data_info_obj->avatar_name, $comment_current);
 
 			$comment_current = str_replace("{DateOfPost}", $row['timestamp'], $comment_current);
 
