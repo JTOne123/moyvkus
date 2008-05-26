@@ -757,3 +757,14 @@ a
 {
     width: 150px;
 }
+
+/* Recipes */
+.RecipesTable
+{
+	width:100%;
+}
+
+.RecipesTD
+{
+	vertical-align:top;
+}

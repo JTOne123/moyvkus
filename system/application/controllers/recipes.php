@@ -73,7 +73,7 @@ class Recipes extends Controller {
 		$returned_arr = $this->receipesmanagement->GetCategorys();
 		$how_mach_elements_in_arr =  count($returned_arr);
 
-		$floor =  floor($how_mach_elements_in_arr/2)-1; //делим без остатка
+		$floor =  floor($how_mach_elements_in_arr/2); //делим без остатка
 		$stack='';
 		$i=0;
 		foreach ($returned_arr as $key => $row):

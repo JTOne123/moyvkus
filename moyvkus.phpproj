@@ -72,6 +72,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\favorites.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\get_message.php"
     {
     "ProjRelPath" = "T"
@@ -113,6 +117,14 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\controllers\\profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\controllers\\ratings.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\controllers\\recipes.php"
     {
     "ProjRelPath" = "T"
     }
@@ -184,6 +196,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\libraries\\favoritesmanagement.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\libraries\\location.php"
     {
     "ProjRelPath" = "T"
@@ -197,6 +213,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\libraries\\notification.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\libraries\\rating.php"
     {
     "ProjRelPath" = "T"
     }
@@ -233,6 +253,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\edit_profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\favorites.php"
     {
     "ProjRelPath" = "T"
     }
@@ -293,6 +317,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\profile.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\recipes_categories.php"
     {
     "ProjRelPath" = "T"
     }
