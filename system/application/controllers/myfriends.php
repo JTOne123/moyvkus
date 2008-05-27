@@ -210,8 +210,16 @@ class MyFriends extends Controller {
 		$friend_current = str_replace("{FriendRating}", $value, $friend_current);
 		
 		$arr=$this->receipesmanagement->getbestrecipe($row->friend_id);
-		$friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);
-		$friend_current = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_current);
+		if($arr[0]['name'] !=='')
+		{
+		 $friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);
+		 $friend_current = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_current);
+		}
+		else 
+		{
+		 $friend_current = str_replace("{FriendBestRecipe}", '', $friend_current);
+		 $friend_current = str_replace("{FriendBestRecipeId}", '', $friend_current);	
+		}
 			
 			$friends_list = $friends_list . $friend_current;
 		}
