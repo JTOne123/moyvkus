@@ -311,3 +311,8 @@ CREATE TABLE IF NOT EXISTS `rating_act_desk` (
   `recipe_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
+CREATE TABLE `forget_password` (
+  `user_id` int(11) DEFAULT NULL,
+  `user_code` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
