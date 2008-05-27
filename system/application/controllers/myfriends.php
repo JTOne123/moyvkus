@@ -150,13 +150,7 @@ class MyFriends extends Controller {
 		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
 		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
 			
-		$value=$this->usermanagment->GetUserRating($user_id);
-		$friend_item = str_replace("{FriendRating}", $value, $friend_item);
-		
-		$arr=$this->receipesmanagement->getbestrecipe($user_id);
-		$friend_item = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_item);
-		$friend_item = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_item);
-		
+	
 		$friend_item = str_replace("{FriendBestRecipeText}", $this->lang->line('MyBestRecipesText'), $friend_item);
 		$friend_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $friend_item);
 		$friend_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $friend_item);
@@ -211,6 +205,13 @@ class MyFriends extends Controller {
 				$avatar_url = "../../../images/noavatar.gif";
 			
 			$friend_current = str_replace("{FriendAvatarUrl}", $avatar_url, $friend_current);
+			
+		$value=$this->usermanagment->GetUserRating($row->friend_id);
+		$friend_current = str_replace("{FriendRating}", $value, $friend_current);
+		
+		$arr=$this->receipesmanagement->getbestrecipe($row->friend_id);
+		$friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);
+		$friend_current = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_current);
 			
 			$friends_list = $friends_list . $friend_current;
 		}
