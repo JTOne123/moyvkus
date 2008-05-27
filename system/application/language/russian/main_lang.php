@@ -245,6 +245,7 @@ $lang['Indigridients'] = "Ингридиенты:";
 $lang['RecipeText'] = "Приготовление:";
 $lang['SearchUsersResultsText'] = "Найдено {SearchResultsCount} человек";
 $lang['SearchRecipesResultsText'] = "Найдено {SearchResultsCount} рецептов";
+$lang['SearchDescriptionMain'] = "Введите ключевое слово для поиска";
 
 //Catalog
 $lang['Catalog'] = "Каталог рецептов";

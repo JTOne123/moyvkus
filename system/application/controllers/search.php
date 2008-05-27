@@ -691,7 +691,7 @@ class Search extends Controller {
 			$friend_full_name = $friend->first_name . ' ' . $friend->last_name;
 			if(strlen($friend_full_name) > 30)
 			$friend_full_name =	substr($friend_full_name, 0, 30) . '...';
-
+//
 			$value=$this->usermanagment->GetUserRating($row->id);
 			$friend_item = str_replace("{FriendRating}", $value, $friend_item);
 

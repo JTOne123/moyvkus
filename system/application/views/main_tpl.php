@@ -16,7 +16,6 @@
 <!-- Top Sidebar END-->
 
 <!-- Left Sidebar START -->
-{login}
 <!-- Left Sidebar END -->
 
 <!-- Page Body START -->

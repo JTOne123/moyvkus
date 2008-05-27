@@ -19,7 +19,10 @@ class Recommend extends Model {
 		$returned_recipes_arr = $this->get_ids_of_relevant_recipes($row->user_id, $quantity_rec, $user_id_to_view);
 
 		foreach ($returned_recipes_arr as $recipe_obj):
+		if($this->receipesmanagement->IsExistRecipeId($recipe_obj->recipe_id))
+		{
 		$html_stack =  $html_stack.$this->GetHtml($recipe_obj->recipe_id);
+		}
 		endforeach;
 
 		endforeach;

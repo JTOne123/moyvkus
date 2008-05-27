@@ -5,6 +5,7 @@ class Main extends Controller {
 	function Main()
 	{
 		parent::Controller();
+		$this->load->model('Register_form');
 	}
 
 	function _remap($method) {
@@ -34,9 +35,16 @@ class Main extends Controller {
 
 	$data['menu']=$this->Menu->buildmenu();
 	$data['login']=$this->Loginform->build_login_form();
-
-	var_dump($this->userauthorization->is_logged_in());
 	
+	$data['register'] = $this->Register_form->build_register_form();
+	
+	$data['search_recipe'] = $this->load->view('search_recipe_form', $data, true);
+	
+	$data['Search'] = $this->lang->line('Search');
+	$data['SearchDescriptionMain'] = $this->lang->line('SearchDescriptionMain');
+	
+	//var_dump($this->userauthorization->is_logged_in());
+	$data['body'] = $this->parser->parse('main', $data);
     $this->parser->parse('main_tpl', $data);
 	
 	}

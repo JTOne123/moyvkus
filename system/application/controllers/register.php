@@ -139,7 +139,9 @@ class Register extends Controller {
 				$this->session->set_userdata('invite_id', '');
 				$this->session->set_userdata('user_id', '');
 			}
-			$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
+			//$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
+			
+			redirect('main', 'refresh');
 		}
 		//Прошли валидацию - записываем данные из полей в БД END
 		
