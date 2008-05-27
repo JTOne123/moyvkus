@@ -235,8 +235,16 @@ class Profile extends Controller {
 			$data['About'] = auto_typography($user_data->about);
 			
 			$arr=$this->receipesmanagement->getbestrecipe($user_id_to_view);
+			if($arr[0]['name'] !=='')
+			{
 			$data['MyBestRecipe'] = $arr[0]['name'];
 			$data['MyBestRecipeID'] = $arr[0]['id'];
+			}
+			else
+			{ 
+			$data['MyBestRecipe'] = '';
+			$data['MyBestRecipeID'] = '';
+			}
 			
 			$arr=$this->usermanagment->GetUserRating($user_id_to_view);
 			$data['MyRating'] = $arr;
