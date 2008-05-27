@@ -51,14 +51,14 @@
 									<td>
 										<table class="Message">
 											<tr>
-												<td class="LabelText ForgetPasswordEmail">
+												<td class="LabelText ForgetPasswordEmailTD">
 													{Email}
 												</td>
-												<td class="LableValue">
+												<td>
 													<input id="txtEmail" name="txtEmail" type="text" size="35" class="MessageSubject ForgetPasswordEmail" />
 													<?=$this->validation->txtEmail_error;?>
 												</td>
-												<td>
+												<td class="ForgetPasswordErrorDiv">
 													<div id="errorDivEmail" class="Login_validator">
 														<img src="../../images/invalid.gif" />
 													</div>

@@ -142,6 +142,10 @@ $lang['No'] = "Отмена";
 $lang['SpamWarning'] = "Вы не можете отправить более чем 20 сообщений в сутки, пользователям которые не входят в список ваших друзей";
 $lang['MessageBoxTitleSpamWarrning'] = "Внимание";
 
+$lang['NewPasswordTitle'] = "Новый пароль";
+$lang['NewPasswordInformation'] = "Вам был выслан новый пароль на ваш email";
+$lang['Ok'] = "Ok";
+
 //Invite
 $lang['Invite'] = "Пригласить друга";
 $lang['Information'] = "Информация о Вашем друге";

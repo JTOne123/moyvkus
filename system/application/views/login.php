@@ -52,16 +52,18 @@
                     </tr>
                     <tr>
                         <td class="Login_space" colspan="2">
-                            <a href="#" id="login_sumbit" name="login_sumbit">
-                                <div class="Login_submit">
-                                    {log_in}
-                                </div>
-                            </a>
+							<div class="MyRecipeButtonDiv">
+								<a href="#" id="login_sumbit" name="login_sumbit">
+									<div class="Login_submit">
+										{log_in}
+									</div>
+								</a>
+							</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="Login_space" colspan="2">
-                            <a href="#">{forgot_password}</a>
+                            <a href="{ForgetPasswordUrl}">{forgot_password}</a>
                         </td>
                     </tr>
                          <tr>

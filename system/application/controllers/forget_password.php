@@ -71,7 +71,7 @@ class Forget_password extends Controller {
 			{
 				$user = $this->usermanagment->GetUserInfoByEmail($email);
 				
-				$user_code = $this->new_password_request($user->id);
+				$user_code = $this->usermanagment->new_password_request($user->id);
 				
 				$this->notification->Forget_password($user->id, $user_code);
 				
@@ -82,15 +82,6 @@ class Forget_password extends Controller {
 		return $data;
 	}
 	
-	function new_password_request($user_id)
-	{
-		$this->db->query("DELETE FROM forget_password WHERE user_id = $user_id");
-		
-		$user_code = random_string('alnum', 20);
-		
-		$this->db->query("INSERT INTO forget_password (user_id, user_code) VALUES ($user_id, '$user_code')");
-		
-		return $user_code;
-	}
+
 }
 ?>

@@ -8,6 +8,7 @@ class Usermanagment {
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();
+		$this->ci->load->helper('string');
 	}
 	
 	
@@ -37,7 +38,7 @@ class Usermanagment {
 			return true;
 	}
 	
-		function IsUserExists_by_id($id)
+	function IsUserExists_by_id($id)
 	{	
 		$query = $this->ci->db->query("SELECT id FROM users WHERE id = '$id'");
 		
@@ -123,10 +124,10 @@ class Usermanagment {
 	{
 		if($country!='' && $region!='' && $city!='')
 		{
-		$query = $this->ci->db->query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', birthday = '$birthday', sex = '$sex', city = '$city', region = '$region', country = '$country'  WHERE ID = '$UserID'");
+			$query = $this->ci->db->query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', birthday = '$birthday', sex = '$sex', city = '$city', region = '$region', country = '$country'  WHERE ID = '$UserID'");
 		}
 		else 
-		$query = $this->ci->db->query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', birthday = '$birthday', sex = '$sex'  WHERE ID = '$UserID'");
+			$query = $this->ci->db->query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', birthday = '$birthday', sex = '$sex'  WHERE ID = '$UserID'");
 		
 		$query = $this->ci->db->query("UPDATE user_data SET phone = '$phone', website = '$website', activities = '$activities', interests = '$interests', about = '$about' WHERE user_id = '$UserID'");
 	}
@@ -153,6 +154,41 @@ class Usermanagment {
 		$query = $this->ci->db->query("SELECT rating FROM user_data WHERE user_id=$user_id");
 		$row = $query->row();
 		return $row->rating;
+	}
+	
+	function new_password_request($user_id)
+	{
+		$this->ci->db->query("DELETE FROM forget_password WHERE user_id = $user_id");
+		
+		$user_code = random_string('alnum', 20);
+		
+		$this->ci->db->query("INSERT INTO forget_password (user_id, user_code) VALUES ($user_id, '$user_code')");
+		
+		return $user_code;
+	}
+	
+	function CheckUserCode($user_code)
+	{
+		$return_value['id'] = -1;
+		$return_value['password'] = -1;
+		
+		
+		$query = $this->ci->db->query("SELECT user_id FROM forget_password WHERE user_code = '$user_code'");
+		
+		$row = $query->row();
+		if($row != null)
+		{
+			$user_id = $row->user_id;
+			
+			$new_password = random_string('alnum', 7);
+			
+			$this->NewPassword($user_id, $new_password);
+			$return_value['id'] = $user_id;
+			$return_value['password'] = $new_password;
+			
+			$this->ci->db->query("DELETE FROM forget_password WHERE user_id = $user_id");
+		}
+		return $return_value;
 	}
 }
 ?>

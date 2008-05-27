@@ -63,7 +63,26 @@ class Notification {
 		$message_text = $this->ci->lang->line('ForgetPasswordRequestMessage');
 		
 		$message_text = str_replace("{UserFullName}", $user->first_name . ' ' . $user->last_name, $message_text);
-		$message_text = str_replace("{NewPasswordRequestUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/new_password_request/' . $user_code, $message_text);
+		$message_text = str_replace("{NewPasswordRequestUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/newpassword/' . $user_code, $message_text);
+		
+		$this->ci->email->message($message_text);
+		
+		$this->ci->email->send();
+	}
+	
+	function New_password($user_id, $new_password)
+	{	
+		$user = $this->ci->usermanagment->GetUser($user_id);
+		
+		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));
+		$this->ci->email->to($user->email);
+		
+		$this->ci->email->subject($this->ci->lang->line('NewPasswordRequestSubject'));
+		
+		$message_text = $this->ci->lang->line('NewPasswordRequestMessage');
+		
+		$message_text = str_replace("{UserFullName}", $user->first_name . ' ' . $user->last_name, $message_text);
+		$message_text = str_replace("{NewPassword}", $new_password, $message_text);
 		
 		$this->ci->email->message($message_text);
 		

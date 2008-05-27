@@ -8,7 +8,7 @@ class MessageBox extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('validation');
-		
+		$this->load->library('notification');
 		$this->load->library('myfriendslib');
 		
 		$this->load->helper('date');
@@ -94,7 +94,7 @@ class MessageBox extends Controller {
 					$data['No'] = $this->lang->line('No');
 					
 					break;
-					
+				
 				case 'add_friend':
 					$friend_id = $this->uri->segment(5);
 					
@@ -147,6 +147,34 @@ class MessageBox extends Controller {
 					
 					break;
 				
+				case 'newpassword':
+					$warning_type = $this->uri->segment(4);
+					
+					$data['Type'] = $action_type;
+					$data['Item'] = "";
+					$data['ItemId'] = "";
+					
+					$new_password_request = $this->usermanagment->CheckUserCode($warning_type);
+					
+					if($new_password_request['id'] != -1 && $new_password_request['password'] != -1)
+					{
+						$this->notification->New_password($new_password_request['id'], $new_password_request['password']);
+						
+						$data['MessageBoxTitle'] = $this->lang->line('NewPasswordTitle');
+						$data['MessageBoxText'] = $this->lang->line('NewPasswordInformation');
+						
+						$data['DisplayYes'] = 'block';
+						$data['DisplayNo'] = 'none';
+						
+						$data['Yes'] = $this->lang->line('Ok');
+					}
+					else
+					{
+						redirect('', 'refresh');
+					}
+					
+					break;
+				
 				default:
 					redirect('', 'refresh');
 					break;
@@ -164,7 +192,7 @@ class MessageBox extends Controller {
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;
-					
+				
 				case 'add_friend':
 					$friend_id = $this->uri->segment(5);
 					$user_id = $this->userauthorization->get_loged_on_user_id();
@@ -172,12 +200,17 @@ class MessageBox extends Controller {
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;
-					
+				
 				case 'warning':
 					redirect('', 'refresh');
 					
 					break;
 					
+				case 'newpassword':
+					redirect('', 'refresh');
+					
+					break;
+				
 				default:
 					redirect('', 'refresh');
 					break;

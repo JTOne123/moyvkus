@@ -774,5 +774,15 @@ a
 
 .ForgetPasswordEmail
 {
-	width:100%;
+	width:200px;
+}
+
+.ForgetPasswordErrorDiv
+{
+	width:14px;
+}
+
+.ForgetPasswordEmailTD
+{
+	width:auto;
 }

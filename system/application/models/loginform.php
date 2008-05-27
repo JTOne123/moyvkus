@@ -21,6 +21,7 @@ class Loginform extends Model {
 		$layot['password'] = $this->lang->line('password');
 	    $layot['log_in'] = $this->lang->line('log_in');
 	    $layot['forgot_password'] = $this->lang->line('forgot_password');
+		$layot['ForgetPasswordUrl'] = base_url() . 'forget_password/';
 	    $layot['checkbox_remember'] = $this->lang->line('checkbox_remember');
 		
 		$layot = $this->parser->parse('login_model', $layot);

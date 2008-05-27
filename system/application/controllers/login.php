@@ -24,6 +24,7 @@ class Login extends Controller {
 	    $data['password'] = $this->lang->line('password');
 	    $data['log_in'] = $this->lang->line('log_in');
 	    $data['forgot_password'] = $this->lang->line('forgot_password');
+		$data['ForgetPasswordUrl'] = base_url() . 'forget_password/';
 	    $data['checkbox_remember'] = $this->lang->line('checkbox_remember');
 	    
 	    ///валидатор
