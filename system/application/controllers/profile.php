@@ -236,6 +236,7 @@ class Profile extends Controller {
 			
 			$arr=$this->receipesmanagement->getbestrecipe($user_id_to_view);
 			$data['MyBestRecipe'] = $arr[0]['name'];
+			$data['MyBestRecipeID'] = $arr[0]['id'];
 			
 			$arr=$this->usermanagment->GetUserRating($user_id_to_view);
 			$data['MyRating'] = $arr;

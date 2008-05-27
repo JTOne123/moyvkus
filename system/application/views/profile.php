@@ -246,7 +246,7 @@
                                                 {MyBestRecipesText}
                                             </td>
                                             <td class="LableValue">
-                                                <a href="#">{MyBestRecipe}</a>
+                                                <a href="/view_recipe/id/{MyBestRecipeID}">{MyBestRecipe}</a>
                                             </td>
                                         </tr>
                                     </table>

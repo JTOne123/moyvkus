@@ -10,6 +10,7 @@ class MyFriends extends Controller {
 		
 		$this->load->library('usermanagment');
 		$this->load->library('myfriendslib');
+		$this->load->library('receipesmanagement');
 		
 		$this->load->helper('date');
 	}
@@ -148,6 +149,14 @@ class MyFriends extends Controller {
 		
 		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
 		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
+			
+		$value=$this->usermanagment->GetUserRating($user_id);
+		$friend_item = str_replace("{FriendRating}", $value, $friend_item);
+		
+		$arr=$this->receipesmanagement->getbestrecipe($user_id);
+		$friend_item = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_item);
+		$friend_item = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_item);
+		
 		$friend_item = str_replace("{FriendBestRecipeText}", $this->lang->line('MyBestRecipesText'), $friend_item);
 		$friend_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $friend_item);
 		$friend_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $friend_item);

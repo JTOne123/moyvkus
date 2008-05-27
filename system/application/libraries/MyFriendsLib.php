@@ -143,7 +143,7 @@ class MyFriendsLib {
 				{FriendRatingLevelText}
 				</td>
 				<td class=\"LableValueFriends\">
-				{FriendRatingLevel}
+				{FriendRating}
 				</td>
 				</tr>
 				<tr>
@@ -151,7 +151,7 @@ class MyFriendsLib {
 				{FriendBestRecipeText}
 				</td>
 				<td class=\"LableValueFriends\">
-				<a href=\"{FriendBestRecipesUrl}\">{FriendBestRecipe}</a>
+				<a href=\"/view_recipe/id/{FriendBestRecipeId}\">{FriendBestRecipe}</a>
 				</td>
 				</tr>
 				</table>
