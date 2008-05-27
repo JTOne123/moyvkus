@@ -192,7 +192,15 @@ class View_recipe extends Controller {
 			$First_Last_Name = $user_info_obj->first_name.' '.$user_info_obj->last_name;
 			$comment_current = str_replace("{AuthorFirstLastName}", $First_Last_Name, $comment_current);
 
-			$comment_current = str_replace("{AvatarUrl}", base_url().'uploads/user_avatars/'.$user_data_info_obj->avatar_name, $comment_current);
+			if($user_data_info_obj->avatar_name!=='' and $user_data_info_obj->avatar_name!==NULL)
+			{
+				$avatar_name = base_url().'uploads/user_avatars/'.$user_data_info_obj->avatar_name;
+			}
+			else
+			{
+				$avatar_name = base_url().'images/nophoto.gif';
+			}
+			$comment_current = str_replace("{AvatarUrl}", $avatar_name, $comment_current);
 
 			$comment_current = str_replace("{DateOfPost}", $row['timestamp'], $comment_current);
 
