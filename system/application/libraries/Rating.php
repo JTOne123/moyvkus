@@ -11,21 +11,21 @@ class Rating {
 	}
 
 
-	function vote($marker, $recipe_id, $user_id)
+	function vote($marker, $recipe_id, $loged_user_id, $author_user_id)
 	{
 		//Ğåãåñòğèğóåì ãîëîñ
-		$this->ci->db->query("INSERT INTO rating_act_desk (user_id, recipe_id) VALUES($user_id, $recipe_id)");
+		$this->ci->db->query("INSERT INTO rating_act_desk (user_id, recipe_id) VALUES($loged_user_id, $recipe_id)");
 		
 		//Îòäàåì ãîëîñ ğåöåïòó
 		$this->ci->db->query("UPDATE recipes SET rating=rating".$marker."1 WHERE id=$recipe_id");
 		
 		//Îòäàåì ãîëîñ àâòîğó ğóöåïòà	
-		$this->ci->db->query("UPDATE user_data SET rating=rating".$marker."1 WHERE user_id=$user_id");
+		$this->ci->db->query("UPDATE user_data SET rating=rating".$marker."1 WHERE user_id=$author_user_id");
 	}
 	
-	function is_user_voted_before($user_id, $recipe_id)
+	function is_user_voted_before($loged_user_id, $recipe_id)
 	{
-		$query = $this->ci->db->query("SELECT id FROM rating_act_desk WHERE user_id=$user_id and recipe_id=$recipe_id");
+		$query = $this->ci->db->query("SELECT id FROM rating_act_desk WHERE user_id=$loged_user_id and recipe_id=$recipe_id");
 		if($query->num_rows()>0)
 		{
 			return true;

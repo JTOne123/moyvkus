@@ -264,5 +264,12 @@ class Receipesmanagement {
 		$query = $this->ci->db->query("SELECT id FROM recipes WHERE category_id='$category_id'");
 		return $query->num_rows();
 	}
+	
+	function GetAuthorIdByRecipeId($recipe_id)
+	{
+		$query = $this->ci->db->query("SELECT user_id FROM recipes WHERE id=$recipe_id");
+		$row = $query->row();
+		return $row->user_id;
+	}
 }
 ?>

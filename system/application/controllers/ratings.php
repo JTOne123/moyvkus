@@ -37,13 +37,14 @@ class Ratings extends Controller {
 	{
 		$marker = $this->input->post('marker');
 		$recipe_id = $this->input->post('recipe_id');
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$loged_user_id = $this->userauthorization->get_loged_on_user_id();
+		$author_user_id = $this->receipesmanagement->GetAuthorIdByRecipeId($recipe_id);
 		
-		$IsUserIsAuthorOfRecipe = $this->receipesmanagement->IsUserIsAuthorOfRecipe($recipe_id, $user_id);
-		
-		if($this->rating->is_user_voted_before($user_id, $recipe_id) !== true and $IsUserIsAuthorOfRecipe !==true)
+		$IsUserIsAuthorOfRecipe = $this->receipesmanagement->IsUserIsAuthorOfRecipe($recipe_id, $loged_user_id);
+		//var_dump($this->rating->is_user_voted_before($loged_user_id, $recipe_id));
+		if($this->rating->is_user_voted_before($loged_user_id, $recipe_id) !== true and $IsUserIsAuthorOfRecipe !==true)
 		{
-		$this->rating->vote($marker, $recipe_id, $user_id);
+		$this->rating->vote($marker, $recipe_id, $loged_user_id, $author_user_id);
 		}
 		
 		echo $this->rating->get_recipe_rating($recipe_id);
