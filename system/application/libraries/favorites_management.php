@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Favoritesmanagement {
+class Favorites_management {
 
 	var $ci;
 
-	function Favoritesmanagement()
+	function Favorites_management()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();

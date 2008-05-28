@@ -5,7 +5,7 @@ class Main extends Controller {
 	function Main()
 	{
 		parent::Controller();
-		$this->load->model('Register_form');
+		$this->load->model('register_form');
 	}
 
 	function _remap($method) {
@@ -17,7 +17,7 @@ class Main extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else 
@@ -36,14 +36,14 @@ class Main extends Controller {
 	$data['menu']=$this->Menu->buildmenu();
 	$data['login']=$this->Loginform->build_login_form();
 	
-	$data['register'] = $this->Register_form->build_register_form();
+	$data['register'] = $this->register_form->build_register_form();
 	
 	$data['search_recipe'] = $this->load->view('search_recipe_form', $data, true);
 	
 	$data['Search'] = $this->lang->line('Search');
 	$data['SearchDescriptionMain'] = $this->lang->line('SearchDescriptionMain');
 	
-	//var_dump($this->userauthorization->is_logged_in());
+	//var_dump($this->user_authorization->is_logged_in());
 	$data['body'] = $this->parser->parse('main', $data);
     $this->parser->parse('main_tpl', $data);
 	

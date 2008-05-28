@@ -9,7 +9,7 @@ class Logout extends Controller {
 	
 	function index()
 	{
-      $this->userauthorization->logout();
+      $this->user_authorization->logout();
       redirect('/main/', 'refresh'); // редирект на главную страницу
 	}
 }

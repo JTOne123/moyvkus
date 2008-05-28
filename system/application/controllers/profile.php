@@ -8,10 +8,10 @@ class Profile extends Controller {
 		
 		$this->load->library('validation');
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('location');
-		$this->load->library('myfriendslib');
-		$this->load->library('receipesmanagement');
+		$this->load->library('my_friends_lib');
+		$this->load->library('receipes_management');
 		
 		$this->load->helper('date');
 		$this->load->helper('typography');
@@ -28,7 +28,7 @@ class Profile extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -97,7 +97,7 @@ class Profile extends Controller {
 	function _data_bind($data)
 	{
 		$user_id_from_uri = $this->uri->segment(3);
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$user_id = $this->user_authorization->get_loged_on_user_id();
 		
 		if($user_id_from_uri == false) 
 			$user_id_from_uri = $user_id;
@@ -106,7 +106,7 @@ class Profile extends Controller {
 		
 		if($user_id_from_uri != $user_id_to_view)
 		{
-			if($this->usermanagment->IsUserExists_by_id($user_id_from_uri) === true)
+			if($this->user_managment->IsUserExists_by_id($user_id_from_uri) === true)
 				$user_id_to_view = $user_id_from_uri; 
 			else 
 				redirect('profile', 'refresh');
@@ -150,7 +150,7 @@ class Profile extends Controller {
 			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
 			
 			//Проверка или просматриветься профиль друга
-			if($this->myfriendslib->IsTheyFriends($user_id, $user_id_to_view))
+			if($this->my_friends_lib->IsTheyFriends($user_id, $user_id_to_view))
 			{
 				$data['DeleteFromFriendsShow'] = '';
 				$data['DeleteFromFriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $user_id_to_view;
@@ -185,8 +185,8 @@ class Profile extends Controller {
 				);
 		
 		//Получение данных юзера и заполнение их
-		$users = $this->usermanagment->GetUser($user_id_to_view);
-		$user_data = $this->usermanagment->GetUserData($user_id_to_view);
+		$users = $this->user_managment->GetUser($user_id_to_view);
+		$user_data = $this->user_managment->GetUserData($user_id_to_view);
 		//var_dump($user_data);
 		if($users != null)
 		{
@@ -234,7 +234,7 @@ class Profile extends Controller {
 			$data['Interests'] = auto_typography($user_data->interests);
 			$data['About'] = auto_typography($user_data->about);
 			
-			$arr=$this->receipesmanagement->getbestrecipe($user_id_to_view);
+			$arr=$this->receipes_management->getbestrecipe($user_id_to_view);
 			if($arr[0]['name'] !=='')
 			{
 			$data['MyBestRecipe'] = $arr[0]['name'];
@@ -246,10 +246,10 @@ class Profile extends Controller {
 			$data['MyBestRecipeID'] = '';
 			}
 			
-			$arr=$this->usermanagment->GetUserRating($user_id_to_view);
+			$arr=$this->user_managment->GetUserRating($user_id_to_view);
 			$data['MyRating'] = $arr;
 			
-			$arr=$this->receipesmanagement->getuserrecipes($user_id_to_view, 0,5);
+			$arr=$this->receipes_management->getuserrecipes($user_id_to_view, 0,5);
 			
 			$data['Recommend_recipes'] = $this->Recommend->Build($user_id_to_view);
 			

@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Receipesmanagement {
+class receipes_management {
 
 	var $ci;
 
-	function Receipesmanagement()
+	function receipes_management()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();

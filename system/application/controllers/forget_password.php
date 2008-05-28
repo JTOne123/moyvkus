@@ -6,7 +6,7 @@ class Forget_password extends Controller {
 	{
 		parent::Controller();
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('notification');
 		
 		$this->load->library('validation');
@@ -67,11 +67,11 @@ class Forget_password extends Controller {
 		{
 			$email = $this->input->post('txtEmail');
 			
-			if($this->usermanagment->IsUserExits($email))
+			if($this->user_managment->IsUserExits($email))
 			{
-				$user = $this->usermanagment->GetUserInfoByEmail($email);
+				$user = $this->user_managment->GetUserInfoByEmail($email);
 				
-				$user_code = $this->usermanagment->new_password_request($user->id);
+				$user_code = $this->user_managment->new_password_request($user->id);
 				
 				$this->notification->Forget_password($user->id, $user_code);
 				

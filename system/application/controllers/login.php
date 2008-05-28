@@ -6,8 +6,8 @@ class Login extends Controller {
 	{
 		parent::Controller();
 		$this->load->library('validation');
-		$this->load->library('usermanagment');
-		$this->load->library('userauthorization');
+		$this->load->library('user_managment');
+		$this->load->library('user_authorization');
 		
 	}
 	
@@ -47,13 +47,13 @@ class Login extends Controller {
 			$checkbox_remember=$this->input->post('checkbox_remember');
 			
 			
-			$result_of_check = $this->usermanagment->IsPasswordValid($email, $password);
+			$result_of_check = $this->user_managment->IsPasswordValid($email, $password);
 			if($result_of_check==false) //если пароль не правильный, - редирект на страницу login
 			{
 			 redirect('/login/', 'refresh');
 			}
 			
-			$this->userauthorization->login($email, $checkbox_remember);
+			$this->user_authorization->login($email, $checkbox_remember);
 			redirect('/main/', 'refresh');
 			//$data['body'] = 'run';
 			$FormBuild=0;
@@ -73,7 +73,7 @@ class Login extends Controller {
 	//Проверка на наличие адреса email в БД START
 	function check_mail($email) //есть ли в БД такой юзер. Если нет - значит нехер логинится.
 	{
-		$returned_value = $this->usermanagment->IsUserExits($email);
+		$returned_value = $this->user_managment->IsUserExits($email);
 		if($returned_value == false)
 		{
 			$this->validation->set_message('check_mail', $this->lang->line('check_user_mail_exist'));

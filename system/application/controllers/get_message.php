@@ -8,7 +8,7 @@ class Get_Message extends Controller {
 
 		$this->load->library('validation');
 
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('message');
 
 		$this->load->helper('date');
@@ -25,7 +25,7 @@ class Get_Message extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -74,7 +74,7 @@ class Get_Message extends Controller {
 
 	function _data_bind($data)
 	{
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$user_id = $this->user_authorization->get_loged_on_user_id();
 
 		$message_id = $this->uri->segment(4);
 
@@ -89,9 +89,9 @@ class Get_Message extends Controller {
 
 			if($message != false)
 			{
-				$user = $this->usermanagment->GetUser($user_id);
-				$friend = $this->usermanagment->GetUser($message->from_id);
-				$friend_data = $this->usermanagment->GetUserData($message->from_id);
+				$user = $this->user_managment->GetUser($user_id);
+				$friend = $this->user_managment->GetUser($message->from_id);
+				$friend_data = $this->user_managment->GetUserData($message->from_id);
 
 				$data['UserFullName'] = $user->first_name . ' ' . $user->last_name;
 				$data['FriendFullName'] = $friend->first_name . ' ' . $friend->last_name;

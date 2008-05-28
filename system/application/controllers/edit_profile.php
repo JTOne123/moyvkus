@@ -7,7 +7,7 @@ class Edit_Profile extends Controller {
 		parent::Controller();
 		
 		$this->load->library('validation');
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('location');
 		
 		$this->load->helper('date');
@@ -24,7 +24,7 @@ class Edit_Profile extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -42,8 +42,8 @@ class Edit_Profile extends Controller {
 		
 		if($this->input->post('btnSave') == "true")
 		{
-			$this->update_user($this->userauthorization->get_loged_on_user_id());
-			if($this->update_password($this->userauthorization->get_loged_on_user_id()))
+			$this->update_user($this->user_authorization->get_loged_on_user_id());
+			if($this->update_password($this->user_authorization->get_loged_on_user_id()))
 				redirect('/profile/', 'refresh');
 			else
 				$data['ErrorNewPassword'] = $this->lang->line('ErrorNewPassword');
@@ -123,8 +123,8 @@ class Edit_Profile extends Controller {
 		$data['ErrorNewPassword'] = '';
 		
 		//ѕолучение данных юзера и заполнение их
-		$users = $this->usermanagment->GetUser($this->userauthorization->get_loged_on_user_id());
-		$user_data = $this->usermanagment->GetUserData($this->userauthorization->get_loged_on_user_id());
+		$users = $this->user_managment->GetUser($this->user_authorization->get_loged_on_user_id());
+		$user_data = $this->user_managment->GetUserData($this->user_authorization->get_loged_on_user_id());
 		
 		if($users != null)
 		{
@@ -268,7 +268,7 @@ class Edit_Profile extends Controller {
 			$upl_arr=$this->upload->data();
 			
 			$config['image_library'] = 'GD2';
-			$config['new_image'] = './uploads/user_avatars/a_'.$this->userauthorization->get_loged_on_user_id().$upl_arr['file_ext'];
+			$config['new_image'] = './uploads/user_avatars/a_'.$this->user_authorization->get_loged_on_user_id().$upl_arr['file_ext'];
 			$config['source_image'] = './uploads/user_avatars/stack/'.$upl_arr['raw_name'].$upl_arr['file_ext'];
 			$config['quality'] = '90%';
 			$config['width'] = 300;
@@ -284,8 +284,8 @@ class Edit_Profile extends Controller {
 	
 	function write_avatar_name_to_db($file_ext) //запись названи€ аватарки в базу
 	{
-		$user_id=$this->userauthorization->get_loged_on_user_id();
-		$this->usermanagment->UpdateAvatar($user_id, $file_ext);
+		$user_id=$this->user_authorization->get_loged_on_user_id();
+		$this->user_managment->UpdateAvatar($user_id, $file_ext);
 	}
 	
 	
@@ -319,7 +319,7 @@ class Edit_Profile extends Controller {
 		else
 			$sex = 1;
 		
-		$users = $this->usermanagment->UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $SelectCity, $SelectRegion, $SelectCountry, $phone, $website, $activities, $interests, $about);
+		$users = $this->user_managment->UpdateUser($UserID, $first_name, $last_name, $birthday, $sex, $SelectCity, $SelectRegion, $SelectCountry, $phone, $website, $activities, $interests, $about);
 	}
 	
 	function update_password($UserID)
@@ -340,7 +340,7 @@ class Edit_Profile extends Controller {
 		{
 			if ($this->validation->run() == TRUE && $new_password == $txtReNewPassword) 
 			{				
-				$this->usermanagment->NewPassword($UserID, $new_password);
+				$this->user_managment->NewPassword($UserID, $new_password);
 				return true;
 			}
 			else 
@@ -352,9 +352,9 @@ class Edit_Profile extends Controller {
 	
 	function check_old_password($old_password)
 	{
-		$ID=$this->userauthorization->get_loged_on_user_id();
+		$ID=$this->user_authorization->get_loged_on_user_id();
 		
-		return $this->usermanagment->IsPasswordValidByID($ID, $old_password);	
+		return $this->user_managment->IsPasswordValidByID($ID, $old_password);	
 	}
 	
 	

@@ -7,8 +7,8 @@ class Recipes extends Controller {
 		parent::Controller();
 
 		$this->load->library('validation');
-		$this->load->library('receipesmanagement');
-		$this->load->library('commentsmanagement');
+		$this->load->library('receipes_management');
+		$this->load->library('comments_management');
 		$this->load->library('pagination');
 
 		$this->load->helper('form');
@@ -23,7 +23,7 @@ class Recipes extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -70,7 +70,7 @@ class Recipes extends Controller {
 
 	function _build__category_list($data)
 	{
-		$returned_arr = $this->receipesmanagement->GetCategorys();
+		$returned_arr = $this->receipes_management->GetCategorys();
 		$how_mach_elements_in_arr =  count($returned_arr);
 
 		$floor =  floor($how_mach_elements_in_arr/2); //делим без остатка
@@ -78,8 +78,8 @@ class Recipes extends Controller {
 		$i=0;
 		foreach ($returned_arr as $key => $row):
 		$i++; //чтобы получить номер итерации
-		$recipes_in_category = $this->receipesmanagement->GetNumberOfRecipesInCategory($key);
-		if($this->receipesmanagement->IsCategoryIsEmpty($key) !== true)
+		$recipes_in_category = $this->receipes_management->GetNumberOfRecipesInCategory($key);
+		if($this->receipes_management->IsCategoryIsEmpty($key) !== true)
 		{
 			$prep_link='<a href="/recipes/category/id/'.$key.'">'.$row.' ('.$recipes_in_category.')'.'</a><br>';
 		}
@@ -105,8 +105,8 @@ class Recipes extends Controller {
 	function _category($data)
 	{
 		$category_id = $this->uri->segment(4);
-		$html = $this->receipesmanagement->RecipesBuilder();
-		$RecipesCount = $this->receipesmanagement->GetNumberOfRecipesInCategory($category_id);
+		$html = $this->receipes_management->RecipesBuilder();
+		$RecipesCount = $this->receipes_management->GetNumberOfRecipesInCategory($category_id);
 
 		if($category_id == FALSE)
 		{
@@ -137,7 +137,7 @@ class Recipes extends Controller {
 				$to_limit=$config['per_page'];
 			}
 			
-			$get_recipes=$this->receipesmanagement->GetRecipesByCategoryId($category_id, $from_limit, $to_limit);
+			$get_recipes=$this->receipes_management->GetRecipesByCategoryId($category_id, $from_limit, $to_limit);
 			$recipe_list = '';
 			if($get_recipes[0]['id']!=='')
 			foreach ($get_recipes as $row):
@@ -166,15 +166,15 @@ class Recipes extends Controller {
 			$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);
 			$recipe_current = str_replace("{ViewRecipeUrl}", '/view_recipe/id/'.$row['id'], $recipe_current);
 
-			$number_of_comments = $this->commentsmanagement->GetNumberOfComments($row['id']);
+			$number_of_comments = $this->comments_management->GetNumberOfComments($row['id']);
 			$recipe_current = str_replace("{number_of_comments}", $number_of_comments, $recipe_current);
 
-			$logened_user_id  = $this->userauthorization->get_loged_on_user_id();
-			$IsUserIsAuthorOfRecipe = $this->receipesmanagement->IsUserIsAuthorOfRecipe($row['id'], $logened_user_id);
+			$logened_user_id  = $this->user_authorization->get_loged_on_user_id();
+			$IsUserIsAuthorOfRecipe = $this->receipes_management->IsUserIsAuthorOfRecipe($row['id'], $logened_user_id);
 
 			if($IsUserIsAuthorOfRecipe == TRUE)
 			{
-				$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);
+				$recipe_current = str_replace("{ButtonEdit}", $this->receipes_management->buttonedit(), $recipe_current);
 				$recipe_current = str_replace("{EditRecipe}", $this->lang->line('Edit'), $recipe_current);
 				$EditRecipeUrl = '/edit_recipe/id/'.$row['id'];
 				$recipe_current = str_replace("{EditRecipeUrl}", $EditRecipeUrl, $recipe_current);
@@ -187,7 +187,7 @@ class Recipes extends Controller {
 			{
 				$recipe_current = str_replace("{ButtonEdit}", '', $recipe_current);
 
-				$recipe_current = str_replace("{ButtonFavorites}", $this->receipesmanagement->buttonfavorites(), $recipe_current);
+				$recipe_current = str_replace("{ButtonFavorites}", $this->receipes_management->buttonfavorites(), $recipe_current);
 				$recipe_current = str_replace("{AddToFavorites}", $this->lang->line('AddToFavorites'), $recipe_current);
 				$AddToFavoritesUrl = '/favorites/add/id/'.$row['id'];
 				$recipe_current = str_replace("{AddToFavoritesUrl}", $AddToFavoritesUrl, $recipe_current);

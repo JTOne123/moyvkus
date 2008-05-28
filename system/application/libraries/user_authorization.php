@@ -1,15 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Userauthorization {
+class User_authorization {
 	
 	var $ci;
 	
-	function Userauthorization()
+	function User_authorization()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();
 		
-		$this->ci->load->library('usermanagment');
+		$this->ci->load->library('user_managment');
 		$this->ci->load->helper('cookie');
 	}
 	
@@ -18,8 +18,8 @@ class Userauthorization {
 		$this->ci->session->sess_destroy(); //очищаем юзера от текущих сессий
 		$this->ci->session->sess_create();  //создаем сессию
 
-		$id_of_user_by_email=$this->ci->usermanagment->GetUserInfoByEmail($email)->id;
-		$password_of_user_by_email = $this->ci->usermanagment->GetUserInfoByEmail($email)->password;
+		$id_of_user_by_email=$this->ci->user_managment->GetUserInfoByEmail($email)->id;
+		$password_of_user_by_email = $this->ci->user_managment->GetUserInfoByEmail($email)->password;
 		
 		//дополнительно закодируем уже однажды закодированый пароль, добавив к нему секретную строку
 		$password_of_user_by_email_md5=md5($password_of_user_by_email.'alexJTcrew');
@@ -91,7 +91,7 @@ class Userauthorization {
 			//пароль с сесссии
 			$reencoded_password = $this->ci->session->userdata('password'); //пароль с сесссии
 			// пароль с базы
-			$password_of_user_by_email = $this->ci->usermanagment->GetUser($this->ci->session->userdata('user_id'))->password;
+			$password_of_user_by_email = $this->ci->user_managment->GetUser($this->ci->session->userdata('user_id'))->password;
 			// пароль с базы + повторный md5 с секретной строкой
 			$password_of_user_by_email_reencoded=md5($password_of_user_by_email.'alexJTcrew');
 			//если совпадают - сессия корректна
@@ -105,7 +105,7 @@ class Userauthorization {
 			if(get_cookie('userid') && get_cookie('userpassword'))
 			{
 			// пароль с базы
-			$password_of_user_by_email = $this->ci->usermanagment->GetUser(get_cookie('userid'))->password;
+			$password_of_user_by_email = $this->ci->user_managment->GetUser(get_cookie('userid'))->password;
 			// пароль с базы + повторный md5 с секретной строкой
 			$password_of_user_by_email_reencoded=md5($password_of_user_by_email.'alexJTcrew');
 			//если совпадают - сессия корректна

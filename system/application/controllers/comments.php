@@ -7,8 +7,8 @@ class Comments extends Controller {
 		parent::Controller();
 
 		$this->load->library('validation');
-		$this->load->library('commentsmanagement');
-		$this->load->library('usermanagment');
+		$this->load->library('comments_management');
+		$this->load->library('user_managment');
 	}
 
 	function _remap($method) {
@@ -20,7 +20,7 @@ class Comments extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -69,7 +69,7 @@ class Comments extends Controller {
 	{
 		$comment = $this->input->post('comment');
 		$recipe_id = $this->input->post('recipe_id');
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$user_id = $this->user_authorization->get_loged_on_user_id();
 
 		$rules['comment']	= "trim|required|min_length[5]|max_length[1500]|xss_clean|callback_word_censor";
 		$rules['recipe_id']	= "required|numeric";
@@ -83,7 +83,7 @@ class Comments extends Controller {
 
 		if ($this->validation->run() !== FALSE)
 		{
-			$this->commentsmanagement->SaveComment($comment, $recipe_id, $user_id);
+			$this->comments_management->SaveComment($comment, $recipe_id, $user_id);
 			
 			redirect('view_recipe/id/'.$recipe_id.'#comments', 'refresh');
 		}
@@ -96,7 +96,7 @@ class Comments extends Controller {
 
 	function word_censor($comment)
 	{
-		$disallowed = $this->commentsmanagement->GetCensorWords();
+		$disallowed = $this->comments_management->GetCensorWords();
 		foreach ($disallowed as $row):
 		$beep = strstr($comment, $row);
 		if($beep!==FALSE)
@@ -113,11 +113,11 @@ class Comments extends Controller {
 	{
 		$id_of_comment = $this->uri->segment(4);
 		$id_of_recipe = $this->uri->segment(6);
-		$id_of_logened_user = $this->userauthorization->get_loged_on_user_id();
-		$IsUserIsCommentAuthor = $this->commentsmanagement->IsUserIsCommentAuthor($id_of_comment, $id_of_logened_user);
+		$id_of_logened_user = $this->user_authorization->get_loged_on_user_id();
+		$IsUserIsCommentAuthor = $this->comments_management->IsUserIsCommentAuthor($id_of_comment, $id_of_logened_user);
 		if($IsUserIsCommentAuthor==TRUE)
 		{
-			$this->commentsmanagement->DeleteComment($id_of_comment);
+			$this->comments_management->DeleteComment($id_of_comment);
 			redirect('/view_recipe/id/'.$id_of_recipe, 'refresh');
 		}
 		else 

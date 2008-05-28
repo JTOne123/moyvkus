@@ -6,10 +6,10 @@ class MessageBox extends Controller {
 	{
 		parent::Controller();
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('validation');
 		$this->load->library('notification');
-		$this->load->library('myfriendslib');
+		$this->load->library('my_friends_lib');
 		
 		$this->load->helper('date');
 	}
@@ -23,7 +23,7 @@ class MessageBox extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -79,7 +79,7 @@ class MessageBox extends Controller {
 					
 					$data['MessageBoxTitle'] = $this->lang->line('MessageBoxTitle');
 					
-					$friend = $this->usermanagment->GetUser($friend_id);
+					$friend = $this->user_managment->GetUser($friend_id);
 					
 					$message = $this->lang->line('MessageBoxText');
 					$message = str_replace("{FriendFullName}", $friend->first_name . ' ' . $friend->last_name, $message);
@@ -104,7 +104,7 @@ class MessageBox extends Controller {
 					
 					$data['MessageBoxTitle'] = $this->lang->line('AddToFriends');
 					
-					$friend = $this->usermanagment->GetUser($friend_id);
+					$friend = $this->user_managment->GetUser($friend_id);
 					
 					$message = $this->lang->line('MessageBoxTextAddFriend');
 					$message = str_replace("{FriendFullName}", $friend->first_name . ' ' . $friend->last_name, $message);
@@ -154,7 +154,7 @@ class MessageBox extends Controller {
 					$data['Item'] = "";
 					$data['ItemId'] = "";
 					
-					$new_password_request = $this->usermanagment->CheckUserCode($warning_type);
+					$new_password_request = $this->user_managment->CheckUserCode($warning_type);
 					
 					if($new_password_request['id'] != -1 && $new_password_request['password'] != -1)
 					{
@@ -187,16 +187,16 @@ class MessageBox extends Controller {
 			{
 				case 'delete_friend':
 					$friend_id = $this->uri->segment(5);
-					$user_id = $this->userauthorization->get_loged_on_user_id();
-					$this->myfriendslib->DeleteFriend($user_id, $friend_id);
+					$user_id = $this->user_authorization->get_loged_on_user_id();
+					$this->my_friends_lib->DeleteFriend($user_id, $friend_id);
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;
 				
 				case 'add_friend':
 					$friend_id = $this->uri->segment(5);
-					$user_id = $this->userauthorization->get_loged_on_user_id();
-					$this->myfriendslib->AddFriend($user_id, $friend_id);
+					$user_id = $this->user_authorization->get_loged_on_user_id();
+					$this->my_friends_lib->AddFriend($user_id, $friend_id);
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;

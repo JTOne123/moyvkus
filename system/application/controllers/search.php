@@ -7,11 +7,11 @@ class Search extends Controller {
 		parent::Controller();
 
 		$this->load->library('validation');
-		$this->load->library('usermanagment');
-		$this->load->library('myfriendslib');
+		$this->load->library('user_managment');
+		$this->load->library('my_friends_lib');
 		$this->load->library('location');
-		$this->load->library('receipesmanagement');
-		$this->load->library('commentsmanagement');
+		$this->load->library('receipes_management');
+		$this->load->library('comments_management');
 		$this->load->library('pagination');
 
 		$this->load->helper('form');
@@ -673,7 +673,7 @@ class Search extends Controller {
 
 	function users_builder($query)
 	{
-		$friend_item = $this->myfriendslib->GetFriendsBuilderHTML();
+		$friend_item = $this->my_friends_lib->GetFriendsBuilderHTML();
 
 		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
 		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
@@ -685,17 +685,17 @@ class Search extends Controller {
 
 		foreach ($query->result() as $row)
 		{
-			$friend = $this->usermanagment->GetUser($row->id);
-			$friend_data = $this->usermanagment->GetUserData($row->id);
+			$friend = $this->user_managment->GetUser($row->id);
+			$friend_data = $this->user_managment->GetUserData($row->id);
 
 			$friend_full_name = $friend->first_name . ' ' . $friend->last_name;
 			if(strlen($friend_full_name) > 30)
 			$friend_full_name =	substr($friend_full_name, 0, 30) . '...';
 //
-			$value=$this->usermanagment->GetUserRating($row->id);
+			$value=$this->user_managment->GetUserRating($row->id);
 			$friend_item = str_replace("{FriendRating}", $value, $friend_item);
 
-			$arr=$this->receipesmanagement->getbestrecipe($row->id);
+			$arr=$this->receipes_management->getbestrecipe($row->id);
 			if($arr[0]['name'] !=='')
 			{
 			$friend_item = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_item);
@@ -712,12 +712,12 @@ class Search extends Controller {
 			$friend_current = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $row->id, $friend_current);
 			$friend_current = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $row->id, $friend_current);
 
-			if($this->userauthorization->is_logged_in())
+			if($this->user_authorization->is_logged_in())
 			{
-				$user_id = $this->userauthorization->get_loged_on_user_id();
+				$user_id = $this->user_authorization->get_loged_on_user_id();
 
 				if($user_id != $row->id)
-				if($this->myfriendslib->IsTheyFriends($user_id, $row->id))
+				if($this->my_friends_lib->IsTheyFriends($user_id, $row->id))
 				{
 					$friend_current = str_replace("{DeleteFriend}", $this->lang->line('DeleteFriend'), $friend_current);
 					$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $row->id, $friend_current);
@@ -768,7 +768,7 @@ class Search extends Controller {
 
 	function recipes_buider($query)
 	{
-		$recipe_item = $this->receipesmanagement->recipesbuilder();
+		$recipe_item = $this->receipes_management->recipesbuilder();
 
 		$recipe_list = "";
 
@@ -800,16 +800,16 @@ class Search extends Controller {
 			$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);
 			$recipe_current = str_replace("{ViewRecipeUrl}", '/view_recipe/id/' . $row->id, $recipe_current);
 
-			$number_of_comments = $this->commentsmanagement->GetNumberOfComments($row->id);
+			$number_of_comments = $this->comments_management->GetNumberOfComments($row->id);
 			$recipe_current = str_replace("{number_of_comments}", $number_of_comments, $recipe_current);
 
-			if($this->userauthorization->is_logged_in())
+			if($this->user_authorization->is_logged_in())
 			{
-				$user_id = $this->userauthorization->get_loged_on_user_id();
+				$user_id = $this->user_authorization->get_loged_on_user_id();
 
 				if($user_id == $row->user_id)
 				{
-					$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);
+					$recipe_current = str_replace("{ButtonEdit}", $this->receipes_management->buttonedit(), $recipe_current);
 					$recipe_current = str_replace("{EditRecipe}", $this->lang->line('Edit'), $recipe_current);
 					$EditRecipeUrl = '/edit_recipe/id/' . $row->id;
 					$recipe_current = str_replace("{EditRecipeUrl}", $EditRecipeUrl, $recipe_current);
@@ -822,7 +822,7 @@ class Search extends Controller {
 				{
 					$recipe_current = str_replace("{ButtonEdit}", '', $recipe_current);
 
-					$recipe_current = str_replace("{ButtonFavorites}", $this->receipesmanagement->buttonfavorites(), $recipe_current);
+					$recipe_current = str_replace("{ButtonFavorites}", $this->receipes_management->buttonfavorites(), $recipe_current);
 					$recipe_current = str_replace("{AddToFavorites}", $this->lang->line('AddToFavorites'), $recipe_current);
 					$AddToFavoritesUrl = '/favorites/add/id/' . $row->id;
 					$recipe_current = str_replace("{AddToFavoritesUrl}", $AddToFavoritesUrl, $recipe_current);
@@ -832,7 +832,7 @@ class Search extends Controller {
 			{
 				$recipe_current = str_replace("{ButtonEdit}", '', $recipe_current);
 
-				$recipe_current = str_replace("{ButtonFavorites}", $this->receipesmanagement->buttonfavorites(), $recipe_current);
+				$recipe_current = str_replace("{ButtonFavorites}", $this->receipes_management->buttonfavorites(), $recipe_current);
 				$recipe_current = str_replace("{AddToFavorites}", $this->lang->line('AddToFavorites'), $recipe_current);
 				$AddToFavoritesUrl = '/favorites/add/id/' . $row->id;
 				$recipe_current = str_replace("{AddToFavoritesUrl}", $AddToFavoritesUrl, $recipe_current);

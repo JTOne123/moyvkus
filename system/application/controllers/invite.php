@@ -6,7 +6,7 @@ class Invite extends Controller {
 	{
 		parent::Controller();
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('notification');
 		
 		$this->load->library('validation');
@@ -21,7 +21,7 @@ class Invite extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -85,14 +85,14 @@ class Invite extends Controller {
 		
 		if($this->input->post('btnSend') != false)
 		{
-			$user_id = $this->userauthorization->get_loged_on_user_id();
+			$user_id = $this->user_authorization->get_loged_on_user_id();
 			
 			$friend_email = $this->input->post('txtEmail');
 			$friend_first_name = $this->input->post('txtFirstName');
 			$friend_last_name = $this->input->post('txtLastName');
 			
 			if($this->validation->run())
-				if($this->usermanagment->IsUserExits($friend_email) == false)
+				if($this->user_managment->IsUserExits($friend_email) == false)
 				{
 					if($this->is_allready_sended($friend_email) == false)
 					{
@@ -102,7 +102,7 @@ class Invite extends Controller {
 				}
 				else
 				{
-					$friend = $this->usermanagment->GetUserInfoByEmail($friend_email);
+					$friend = $this->user_managment->GetUserInfoByEmail($friend_email);
 					redirect('/profile/id/' . $friend->id, 'refresh');	
 				}
 		}

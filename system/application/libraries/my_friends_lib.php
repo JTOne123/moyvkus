@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class MyFriendsLib {
+class My_friends_lib {
 	
 	var $ci;
 	
-	function MyFriendsLib()
+	function My_friends_lib()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();

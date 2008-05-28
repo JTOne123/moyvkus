@@ -12,7 +12,7 @@ class Menu extends Model {
 	{
 		$menu_html = '';
 		
-		if($this->userauthorization->is_logged_in())
+		if($this->user_authorization->is_logged_in())
 		{
 			$query = $this->get_menu_data();
 			

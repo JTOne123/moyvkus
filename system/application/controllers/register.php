@@ -12,9 +12,9 @@ class Register extends Controller {
 		$this->load->library('validation');
 		$this->load->library('session');
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('notification');
-		$this->load->library('myfriendslib');
+		$this->load->library('my_friends_lib');
 	}
 	
 	function index()
@@ -122,7 +122,7 @@ class Register extends Controller {
 		if ($this->validation->run() == TRUE) 
 		{
 			$FormBuild=0;
-			$new_user_id = $this->usermanagment->AddUser($email, $first_name, $last_name, $password);
+			$new_user_id = $this->user_managment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
 			
 			$invite_id = $this->session->flashdata('invite_id');
@@ -133,7 +133,7 @@ class Register extends Controller {
 			{
 				$invite_id = $this->session->userdata('invite_id');
 				$user_id = $this->session->userdata('user_id');
-				$this->myfriendslib->AddFriend($user_id, $new_user_id);
+				$this->my_friends_lib->AddFriend($user_id, $new_user_id);
 				$this->delete_from_invite($invite_id);
 				
 				$this->session->set_userdata('invite_id', '');
@@ -207,7 +207,7 @@ class Register extends Controller {
 	//CALLBACK: ѕровер€ем есть ли уже базе email, который хот€т зарегать START
 	function email_check($mail)
 	{
-		$returned_value = $this->usermanagment->IsUserExits($mail);
+		$returned_value = $this->user_managment->IsUserExits($mail);
 		if($returned_value)
 		{
 			$this->validation->set_message('email_check', $this->lang->line('email_check'));

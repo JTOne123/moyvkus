@@ -7,7 +7,7 @@ class Add_recipe extends Controller {
 		parent::Controller();
 
 		$this->load->library('validation');
-		$this->load->library('receipesmanagement');
+		$this->load->library('receipes_management');
 
 		$this->load->helper('form');
 	}
@@ -21,7 +21,7 @@ class Add_recipe extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -84,10 +84,10 @@ class Add_recipe extends Controller {
 		$id_of_recipe_from_uri=$this->uri->segment(3);
 		if($id_of_recipe_from_uri!=FALSE)
 		{
-			$arr=$this->receipesmanagement->getdataforedit($id_of_recipe_from_uri);
+			$arr=$this->receipes_management->getdataforedit($id_of_recipe_from_uri);
 
 			$user_id=$arr[0]['user_id'];
-			if($user_id!==$this->userauthorization->get_loged_on_user_id())
+			if($user_id!==$this->user_authorization->get_loged_on_user_id())
 			{
 				redirect('profile', 'refresh');
 			}
@@ -109,11 +109,11 @@ class Add_recipe extends Controller {
 			else 
 			$data['photo'] = '';
 			
-			$categorys=$this->receipesmanagement->GetCategorys();
+			$categorys=$this->receipes_management->GetCategorys();
 			
 			$data['categorys']=form_dropdown('category', $categorys, $arr[0]['category_id']); // id=22 - Разное
 
-			$kitchens=$this->receipesmanagement->GetKitchens();
+			$kitchens=$this->receipes_management->GetKitchens();
 			$data['kitchens']=form_dropdown('kitchens', $kitchens, $arr[0]['kitchen_id']);
 			
 		}
@@ -126,10 +126,10 @@ class Add_recipe extends Controller {
 			
 			$data['photo'] = '/uploads/recipe_photos/one_pixel.gif';
 			
-			$categorys=$this->receipesmanagement->GetCategorys();
+			$categorys=$this->receipes_management->GetCategorys();
 			$data['categorys']=form_dropdown('category', $categorys, '22'); // id=22 - Разное
 
-			$kitchens=$this->receipesmanagement->GetKitchens();
+			$kitchens=$this->receipes_management->GetKitchens();
 			$data['kitchens']=form_dropdown('kitchens', $kitchens, '');
 		}
 
@@ -175,18 +175,18 @@ class Add_recipe extends Controller {
 			$id_of_recipe = $this->session->userdata('id_of_recipe');
 
 			$photo_name='';
-			$user_id=$this->userauthorization->get_loged_on_user_id();
+			$user_id=$this->user_authorization->get_loged_on_user_id();
 			$rating='';
 
 		
 			//Сохраняем рецепт *****
 			if($update_or_insert=='insert')
 			{
-			$last_inserted_id=$this->receipesmanagement->SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
+			$last_inserted_id=$this->receipes_management->SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
 			}
 			if($update_or_insert=='update')
 			{
-				$this->receipesmanagement->UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
+				$this->receipes_management->UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
 				$last_inserted_id=$id_of_recipe;
 			}
 			//Убиваем сессию
@@ -242,7 +242,7 @@ class Add_recipe extends Controller {
 				$this->image_lib->watermark();
 				
                 //Сохраняем фото
-				$this->receipesmanagement->SavePhoto($last_inserted_id, 'recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext']);
+				$this->receipes_management->SavePhoto($last_inserted_id, 'recipe_photo_id'.$last_inserted_id.$upl_arr['file_ext']);
 				
 				//Удаляем загруженную юзером фотку со стековой папки
 				unlink('./uploads/recipe_photos/stacked/'.$upl_arr['raw_name'].$upl_arr['file_ext']);

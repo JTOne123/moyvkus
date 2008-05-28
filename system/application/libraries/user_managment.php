@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usermanagment {
+class User_managment {
 	
 	var $ci;
 	
-	function Usermanagment()
+	function User_managment()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();

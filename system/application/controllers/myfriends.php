@@ -8,9 +8,9 @@ class MyFriends extends Controller {
 		
 		$this->load->library('validation');
 		
-		$this->load->library('usermanagment');
-		$this->load->library('myfriendslib');
-		$this->load->library('receipesmanagement');
+		$this->load->library('user_managment');
+		$this->load->library('my_friends_lib');
+		$this->load->library('receipes_management');
 		
 		$this->load->helper('date');
 	}
@@ -24,7 +24,7 @@ class MyFriends extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -69,7 +69,7 @@ class MyFriends extends Controller {
 	
 	function _data_bind($data)
 	{
-		$current_user_id = $this->userauthorization->get_loged_on_user_id();
+		$current_user_id = $this->user_authorization->get_loged_on_user_id();
 		$action_type = $this->uri->segment(2);
 		$user_id = $this->uri->segment(3);
 		
@@ -83,12 +83,12 @@ class MyFriends extends Controller {
 					break;
 				
 				case 'confirm_friend_id':
-					$this->myfriendslib->ConfirmFriend($user_id, $current_user_id);
+					$this->my_friends_lib->ConfirmFriend($user_id, $current_user_id);
 					redirect('/myfriends/id/' . $current_user_id, 'refresh');
 					break;
 				
 				case 'reject_friend_id':
-					$this->myfriendslib->DeleteFriend($current_user_id, $user_id);
+					$this->my_friends_lib->DeleteFriend($current_user_id, $user_id);
 					redirect('/myfriends/id/' . $current_user_id, 'refresh');
 					break;
 				
@@ -107,12 +107,12 @@ class MyFriends extends Controller {
 	{
 		$data['UserID'] = $user_id;
 		
-		$query_friends =  $this->myfriendslib->GetFriends($user_id, $this->input->post('InputFriendsFilter'));
+		$query_friends =  $this->my_friends_lib->GetFriends($user_id, $this->input->post('InputFriendsFilter'));
 		
 		$new_friends_count = 0;
-		if($user_id == $this->userauthorization->get_loged_on_user_id())
+		if($user_id == $this->user_authorization->get_loged_on_user_id())
 		{
-			$query_not_confirmed_friends =  $this->myfriendslib->GetNewFriends($user_id, $this->input->post('InputFriendsFilter'));
+			$query_not_confirmed_friends =  $this->my_friends_lib->GetNewFriends($user_id, $this->input->post('InputFriendsFilter'));
 			$new_friends_count = $query_not_confirmed_friends->num_rows();
 		}
 		
@@ -140,12 +140,12 @@ class MyFriends extends Controller {
 	function friends_builder($query, $is_confirmed)
 	{
 		
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$user_id = $this->user_authorization->get_loged_on_user_id();
 		
 		if($is_confirmed)
-			$friend_item = $this->myfriendslib->GetFriendsBuilderHTML();
+			$friend_item = $this->my_friends_lib->GetFriendsBuilderHTML();
 		else
-			$friend_item = $this->myfriendslib->GetNotConfirmedFriendsBuilderHTML();
+			$friend_item = $this->my_friends_lib->GetNotConfirmedFriendsBuilderHTML();
 		
 		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
 		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
@@ -159,8 +159,8 @@ class MyFriends extends Controller {
 		
 		foreach ($query->result() as $row)
 		{	
-			$friend = $this->usermanagment->GetUser($row->friend_id);
-			$friend_data = $this->usermanagment->GetUserData($row->friend_id);
+			$friend = $this->user_managment->GetUser($row->friend_id);
+			$friend_data = $this->user_managment->GetUserData($row->friend_id);
 			
 			$friend_full_name = $friend->first_name . ' ' . $friend->last_name;
 			if(strlen($friend_full_name) > 30)
@@ -173,7 +173,7 @@ class MyFriends extends Controller {
 			
 			if($is_confirmed)
 				if($user_id != $row->friend_id)
-					if($this->myfriendslib->IsTheyFriends($user_id, $row->friend_id))
+					if($this->my_friends_lib->IsTheyFriends($user_id, $row->friend_id))
 					{
 						$friend_current = str_replace("{DeleteFriend}", $this->lang->line('DeleteFriend'), $friend_current);
 						$friend_current = str_replace("{DeleteFriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $row->friend_id, $friend_current);
@@ -206,10 +206,10 @@ class MyFriends extends Controller {
 			
 			$friend_current = str_replace("{FriendAvatarUrl}", $avatar_url, $friend_current);
 			
-		$value=$this->usermanagment->GetUserRating($row->friend_id);
+		$value=$this->user_managment->GetUserRating($row->friend_id);
 		$friend_current = str_replace("{FriendRating}", $value, $friend_current);
 		
-		$arr=$this->receipesmanagement->getbestrecipe($row->friend_id);
+		$arr=$this->receipes_management->getbestrecipe($row->friend_id);
 		if($arr[0]['name'] !=='')
 		{
 		 $friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);

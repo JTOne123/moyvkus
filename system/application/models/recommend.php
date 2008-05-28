@@ -19,7 +19,7 @@ class Recommend extends Model {
 		$returned_recipes_arr = $this->get_ids_of_relevant_recipes($row->user_id, $quantity_rec, $user_id_to_view);
 
 		foreach ($returned_recipes_arr as $recipe_obj):
-		if($this->receipesmanagement->IsExistRecipeId($recipe_obj->recipe_id))
+		if($this->receipes_management->IsExistRecipeId($recipe_obj->recipe_id))
 		{
 		$html_stack =  $html_stack.$this->GetHtml($recipe_obj->recipe_id);
 		}
@@ -33,7 +33,7 @@ class Recommend extends Model {
 	//передаем хтмл для одного рецепта
 	function GetHtml($recipe_id)
 	{
-		$returned_obj = $this->receipesmanagement->GetOneRecipeByRecipeId($recipe_id);
+		$returned_obj = $this->receipes_management->GetOneRecipeByRecipeId($recipe_id);
 
 		//<wbr> START
 		$return_str='';

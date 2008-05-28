@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Commentsmanagement {
+class Comments_management {
 
 	var $ci;
 
-	function Commentsmanagement()
+	function Comments_management()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();

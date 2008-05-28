@@ -7,9 +7,9 @@ class View_recipe extends Controller {
 		parent::Controller();
 
 		$this->load->library('validation');
-		$this->load->library('receipesmanagement');
-		$this->load->library('commentsmanagement');
-		$this->load->library('usermanagment');
+		$this->load->library('receipes_management');
+		$this->load->library('comments_management');
+		$this->load->library('user_managment');
 
 		$this->load->helper('form');
 		$this->load->helper('typography');
@@ -26,7 +26,7 @@ class View_recipe extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -89,13 +89,13 @@ class View_recipe extends Controller {
 	{
 
 		$recipe_id_from_uri=$this->uri->segment(3);
-		if($this->receipesmanagement->isexistrecipeid($recipe_id_from_uri)==true)
+		if($this->receipes_management->isexistrecipeid($recipe_id_from_uri)==true)
 		{
 			//явл€етс€ ли просмаривающий страницу юзер, автором рецепта START  // TRUE / FALSE
-			$is_user_is_author=$this->receipesmanagement->isuserisauthorofrecipe($recipe_id_from_uri, $this->userauthorization->get_loged_on_user_id());
+			$is_user_is_author=$this->receipes_management->isuserisauthorofrecipe($recipe_id_from_uri, $this->user_authorization->get_loged_on_user_id());
 			//явл€етс€ ли просмаривающий страницу юзер, автором рецепта END
 
-			$recipe_obj_from_db=$this->receipesmanagement->getonerecipebyrecipeid($recipe_id_from_uri);
+			$recipe_obj_from_db=$this->receipes_management->getonerecipebyrecipeid($recipe_id_from_uri);
 
 			$data['recipe_id'] = $recipe_id_from_uri;
 			if($recipe_obj_from_db->photo_name !==NULL and $recipe_obj_from_db->photo_name !== '')
@@ -108,7 +108,7 @@ class View_recipe extends Controller {
 			$data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
 
 
-			$returned_row_userdata=$this->usermanagment->getuserdata($recipe_obj_from_db->user_id);
+			$returned_row_userdata=$this->user_managment->getuserdata($recipe_obj_from_db->user_id);
 			//$avatar_name=$returned_row_userdata->avatar_name;
 
 			if($returned_row_userdata->avatar_name!=='' and $returned_row_userdata->avatar_name!==NULL)
@@ -121,7 +121,7 @@ class View_recipe extends Controller {
 			}
 			$data['UserImgUrl'] = $avatar_name;
 
-			$returned_row_user=$this->usermanagment->getuser($recipe_obj_from_db->user_id);
+			$returned_row_user=$this->user_managment->getuser($recipe_obj_from_db->user_id);
 			$data['LinkToUserProfile']='/profile/id/'.$recipe_obj_from_db->user_id;
 			$data['NameOfAuthor']=$returned_row_user->first_name.' '.$returned_row_user->last_name;
 
@@ -148,16 +148,16 @@ class View_recipe extends Controller {
 			$data['RecipeValue'] = $return_str;
 
 			$data['CategoryNameLabel'] = $this->lang->line('CategoryOfRecipe');
-			$category_returned=$this->receipesmanagement->getnameofcategory($recipe_obj_from_db->category_id);
+			$category_returned=$this->receipes_management->getnameofcategory($recipe_obj_from_db->category_id);
 			$data['CategoryNameValue'] = $category_returned->name;
 
 			$data['KitchenNameLabel'] = $this->lang->line('KitchenOfRecipe');
-			$kitchen_returned=$this->receipesmanagement->getnameofkitchen($recipe_obj_from_db->kitchen_id);
+			$kitchen_returned=$this->receipes_management->getnameofkitchen($recipe_obj_from_db->kitchen_id);
 			$data['KitchenNameValue'] = $kitchen_returned->name;
 
 			if ($is_user_is_author == TRUE)
 			{
-				$data['ButtonEdit'] = $this->receipesmanagement->ButtonEdit();
+				$data['ButtonEdit'] = $this->receipes_management->ButtonEdit();
 				$data['EditRecipe'] = $this->lang->line('Edit');
 				$data['EditRecipeUrl'] = '/edit_recipe/id/'.$recipe_id_from_uri;
 			}
@@ -171,8 +171,8 @@ class View_recipe extends Controller {
 
 
 			// омментарии START
-			$returned_html = $this->commentsmanagement->ViewCommentsBuilder();
-			$returned_comments_arr = $this->commentsmanagement->GetComments($recipe_id_from_uri);
+			$returned_html = $this->comments_management->ViewCommentsBuilder();
+			$returned_comments_arr = $this->comments_management->GetComments($recipe_id_from_uri);
 			$comment_list = '';
 			foreach ($returned_comments_arr as $row):
 
@@ -186,8 +186,8 @@ class View_recipe extends Controller {
 			$text = parse_smileys($text, "/images/smileys/");
 			$comment_current = str_replace("{CommentText}", $text, $returned_html);
 
-			$user_info_obj=$this->usermanagment->GetUser($row['user_id']);
-			$user_data_info_obj=$this->usermanagment->GetUserData($row['user_id']);
+			$user_info_obj=$this->user_managment->GetUser($row['user_id']);
+			$user_data_info_obj=$this->user_managment->GetUserData($row['user_id']);
 
 			$First_Last_Name = $user_info_obj->first_name.' '.$user_info_obj->last_name;
 			$comment_current = str_replace("{AuthorFirstLastName}", $First_Last_Name, $comment_current);
@@ -207,7 +207,7 @@ class View_recipe extends Controller {
 			$comment_current = str_replace("{AuthorProfileUrl}", '/profile/id/'.$row['user_id'], $comment_current);
 
 			//—сылка ”ƒјЋ»“№  ќћћ≈Ќ“
-			$is_user_is_comment_author=$this->commentsmanagement->IsUserIsCommentAuthor($row['id'],$this->userauthorization->get_loged_on_user_id()); //True / False
+			$is_user_is_comment_author=$this->comments_management->IsUserIsCommentAuthor($row['id'],$this->user_authorization->get_loged_on_user_id()); //True / False
 			if($is_user_is_comment_author == TRUE)
 			{
 				$comment_current = str_replace("{DeleteRecipeLink}", '/comments/delete_comment/id/'.$row['id'].'/recipe/'.$recipe_id_from_uri, $comment_current);

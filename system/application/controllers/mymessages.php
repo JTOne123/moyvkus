@@ -8,7 +8,7 @@ class MyMessages extends Controller {
 		
 		$this->load->library('validation');
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('message');
 		
 		$this->load->helper('date');
@@ -24,7 +24,7 @@ class MyMessages extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -69,7 +69,7 @@ class MyMessages extends Controller {
 	
 	function _data_bind($data)
 	{
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$user_id = $this->user_authorization->get_loged_on_user_id();
 		
 		$delete_message_id = $this->uri->segment(4);
 		
@@ -99,8 +99,8 @@ class MyMessages extends Controller {
 		
 		foreach ($query->result() as $row)
 		{	
-			$friend = $this->usermanagment->GetUser($row->from_id);
-			$friend_data = $this->usermanagment->GetUserData($row->from_id);
+			$friend = $this->user_managment->GetUser($row->from_id);
+			$friend_data = $this->user_managment->GetUserData($row->from_id);
 			
 			$message_current = str_replace("{AuthorFullName}", $friend->first_name . ' ' . $friend->last_name, $message_item);
 			$message_current = str_replace("{AuthorUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $row->from_id, $message_current);

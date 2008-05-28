@@ -6,10 +6,10 @@ class Favorites extends Controller {
 	{
 		parent::Controller();
 
-		$this->load->library('receipesmanagement');
-		$this->load->library('commentsmanagement');
-		$this->load->library('usermanagment');
-		$this->load->library('favoritesmanagement');
+		$this->load->library('receipes_management');
+		$this->load->library('comments_management');
+		$this->load->library('user_managment');
+		$this->load->library('favorites_management');
 		$this->load->library('pagination');
 
 		$this->load->helper('form');
@@ -27,7 +27,7 @@ class Favorites extends Controller {
 
 
 		if (($method != null) &&
-		(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -83,7 +83,7 @@ class Favorites extends Controller {
 	function _data_bind($data)
 	{
 		$user_id_from_uri = $this->uri->segment(3);
-		$user_id = $this->userauthorization->get_loged_on_user_id(); //22
+		$user_id = $this->user_authorization->get_loged_on_user_id(); //22
 
 		if($user_id_from_uri == false)
 		$user_id_from_uri = $user_id;
@@ -91,7 +91,7 @@ class Favorites extends Controller {
 		$user_id_to_view = $user_id;
 		if($user_id_from_uri != $user_id_to_view)
 		{
-			if($this->usermanagment->IsUserExists_by_id($user_id_from_uri) === true)
+			if($this->user_managment->IsUserExists_by_id($user_id_from_uri) === true)
 			{
 				$user_id_to_view = $user_id_from_uri;
 			}
@@ -102,10 +102,10 @@ class Favorites extends Controller {
 			}
 		}
 
-		$user_data = $this->usermanagment->getuser($user_id_to_view);
+		$user_data = $this->user_managment->getuser($user_id_to_view);
 
 		$config['base_url'] = base_url().'/favorites/view/page/';
-		$config['total_rows'] = $this->favoritesmanagement->RecipeCount($user_id_to_view);
+		$config['total_rows'] = $this->favorites_management->RecipeCount($user_id_to_view);
 		$config['per_page'] = '10';
 		$config['uri_segment'] = 4;
 		$config['first_link'] = 'Ќачало';
@@ -115,8 +115,8 @@ class Favorites extends Controller {
 		$cur_page = $this->uri->segment(4);
 
 
-		$recipe_item = $this->favoritesmanagement->RecipesBuilder();
-		$returned_ids = $this->favoritesmanagement->GetRecipesIDs($user_id_to_view);
+		$recipe_item = $this->favorites_management->RecipesBuilder();
+		$returned_ids = $this->favorites_management->GetRecipesIDs($user_id_to_view);
 
 		if($cur_page==null)
 		{
@@ -134,7 +134,7 @@ class Favorites extends Controller {
 
 		$recipe_list = '';
 		foreach ($returned_ids as $returned_item):
-		$returned_recipe = $this->receipesmanagement->GetOneRecipeByRecipeId($returned_item->recipe_id);
+		$returned_recipe = $this->receipes_management->GetOneRecipeByRecipeId($returned_item->recipe_id);
 
 		$recipe_current = str_replace("{RecipeName}", $returned_recipe->name, $recipe_item);
 
@@ -157,13 +157,13 @@ class Favorites extends Controller {
 		$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);
 		$recipe_current = str_replace("{ViewRecipeUrl}", '/view_recipe/id/'.$returned_recipe->id, $recipe_current);
 
-		$number_of_comments = $this->commentsmanagement->GetNumberOfComments($returned_recipe->id);
+		$number_of_comments = $this->comments_management->GetNumberOfComments($returned_recipe->id);
 		$recipe_current = str_replace("{number_of_comments}", $number_of_comments, $recipe_current);
 		$recipe_current = str_replace("{Comments}", $this->lang->line('Comments'), $recipe_current);
 
-		if($returned_recipe->id == $this->userauthorization->get_loged_on_user_id()) //просматривает хоз€ин
+		if($returned_recipe->id == $this->user_authorization->get_loged_on_user_id()) //просматривает хоз€ин
 		{
-			$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);
+			$recipe_current = str_replace("{ButtonEdit}", $this->receipes_management->buttonedit(), $recipe_current);
 			$recipe_current = str_replace("{EditRecipe}", $this->lang->line('Edit'), $recipe_current);
 			$EditRecipeUrl = '/edit_recipe/id/'.$returned_recipe->id;
 			$recipe_current = str_replace("{EditRecipeUrl}", $EditRecipeUrl, $recipe_current);
@@ -174,10 +174,10 @@ class Favorites extends Controller {
 		}
 		else //просматривает Ќ≈ хоз€ин рецепта
 		{
-			$logened_user_id = $this->userauthorization->get_loged_on_user_id();
-			if($this->favoritesmanagement->IsExist($returned_recipe->id, $logened_user_id) == FALSE and $this->receipesmanagement->IsUserIsAuthorOfRecipe($returned_recipe->id, $logened_user_id) == FALSE)
+			$logened_user_id = $this->user_authorization->get_loged_on_user_id();
+			if($this->favorites_management->IsExist($returned_recipe->id, $logened_user_id) == FALSE and $this->receipes_management->IsUserIsAuthorOfRecipe($returned_recipe->id, $logened_user_id) == FALSE)
 			{
-				$recipe_current = str_replace("{ButtonFavorites}", $this->receipesmanagement->buttonfavorites(), $recipe_current);
+				$recipe_current = str_replace("{ButtonFavorites}", $this->receipes_management->buttonfavorites(), $recipe_current);
 				$recipe_current = str_replace("{AddToFavorites}", $this->lang->line('AddToFavorites'), $recipe_current);
 				$AddToFavoritesUrl = '/favorites/add/id/'.$returned_recipe->id;
 				$recipe_current = str_replace("{AddToFavoritesUrl}", $AddToFavoritesUrl, $recipe_current);
@@ -187,9 +187,9 @@ class Favorites extends Controller {
 			$recipe_current = str_replace("{AddToFavorites}", '', $recipe_current);
 			$recipe_current = str_replace("{AddToFavoritesUrl}", '', $recipe_current);
 
-			if($this->receipesmanagement->IsUserIsAuthorOfRecipe($returned_recipe->id, $logened_user_id) == TRUE)
+			if($this->receipes_management->IsUserIsAuthorOfRecipe($returned_recipe->id, $logened_user_id) == TRUE)
 			{
-				$recipe_current = str_replace("{ButtonEdit}", $this->receipesmanagement->buttonedit(), $recipe_current);
+				$recipe_current = str_replace("{ButtonEdit}", $this->receipes_management->buttonedit(), $recipe_current);
 				$recipe_current = str_replace("{EditRecipe}", $this->lang->line('Edit'), $recipe_current);
 				$EditRecipeUrl = '/edit_recipe/id/'.$returned_recipe->id;
 				$recipe_current = str_replace("{EditRecipeUrl}", $EditRecipeUrl, $recipe_current);
@@ -202,7 +202,7 @@ class Favorites extends Controller {
 
 		if($logened_user_id == $user_id_from_uri) //≈сли это хоз€ин странички
 		{
-			$recipe_current = str_replace("{ButtonDelete}", $this->favoritesmanagement->ButtonDelete(), $recipe_current);
+			$recipe_current = str_replace("{ButtonDelete}", $this->favorites_management->ButtonDelete(), $recipe_current);
 			$recipe_current = str_replace("{Delete}", $this->lang->line('Delete'), $recipe_current);
 			$DeleteRecipeUrl = '/favorites/delete/id/'.$returned_recipe->id;
 			$recipe_current = str_replace("{DeleteUrl}", $DeleteRecipeUrl, $recipe_current);
@@ -219,7 +219,7 @@ class Favorites extends Controller {
 
 		$data['RecipesBuilder'] = $recipe_list;
 		$data['NameOfAuthor'] = $user_data->first_name.' '.$user_data->last_name;
-		$data['RecipesCount'] = $this->lang->line('Total').' '.$this->favoritesmanagement->RecipeCount($user_id_to_view).' '.$this->lang->line('Recipes');
+		$data['RecipesCount'] = $this->lang->line('Total').' '.$this->favorites_management->RecipeCount($user_id_to_view).' '.$this->lang->line('Recipes');
 
 
 		return $data;
@@ -229,12 +229,12 @@ class Favorites extends Controller {
 	function add()
 	{
 		$recipe_id_from_uri = $this->uri->segment(4);
-		$loged_on_user = $this->userauthorization->get_loged_on_user_id();
-		$is_user_is_author = $this->receipesmanagement->IsUserIsAuthorOfRecipe($recipe_id_from_uri, $loged_on_user);
-		$is_exist = $this->favoritesmanagement->IsExist($recipe_id_from_uri, $loged_on_user);
+		$loged_on_user = $this->user_authorization->get_loged_on_user_id();
+		$is_user_is_author = $this->receipes_management->IsUserIsAuthorOfRecipe($recipe_id_from_uri, $loged_on_user);
+		$is_exist = $this->favorites_management->IsExist($recipe_id_from_uri, $loged_on_user);
 		if($is_user_is_author !== TRUE and $is_exist !==TRUE)
 		{
-			$this->favoritesmanagement->Add($recipe_id_from_uri, $loged_on_user);
+			$this->favorites_management->Add($recipe_id_from_uri, $loged_on_user);
 			redirect('favorites', 'refresh');
 		}
 		else
@@ -244,12 +244,12 @@ class Favorites extends Controller {
 	function delete()
 	{
 		$recipe_id_from_uri = $this->uri->segment(4);
-		$loged_on_user = $this->userauthorization->get_loged_on_user_id();
-		$is_exist = $this->favoritesmanagement->IsExist($recipe_id_from_uri, $loged_on_user);
+		$loged_on_user = $this->user_authorization->get_loged_on_user_id();
+		$is_exist = $this->favorites_management->IsExist($recipe_id_from_uri, $loged_on_user);
 
-		if($is_exist == TRUE and $this->favoritesmanagement->IsUserHaveRecipeInFavorites($loged_on_user, $recipe_id_from_uri) == TRUE)
+		if($is_exist == TRUE and $this->favorites_management->IsUserHaveRecipeInFavorites($loged_on_user, $recipe_id_from_uri) == TRUE)
 		{
-			$this->favoritesmanagement->Delete($recipe_id_from_uri, $loged_on_user);
+			$this->favorites_management->Delete($recipe_id_from_uri, $loged_on_user);
 			redirect('favorites', 'refresh');
 		}
 		else

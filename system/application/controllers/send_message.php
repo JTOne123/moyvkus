@@ -6,9 +6,9 @@ class Send_Message extends Controller {
 	{
 		parent::Controller();
 		
-		$this->load->library('usermanagment');
+		$this->load->library('user_managment');
 		$this->load->library('message');
-		$this->load->library('myfriendslib');
+		$this->load->library('my_friends_lib');
 		
 		$this->load->helper('typography');
 		$this->load->library('validation');
@@ -25,7 +25,7 @@ class Send_Message extends Controller {
 		
 		
 		if (($method != null) &&
-				(($this->userauthorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
 			call_user_func_array(array($this, $method), $pars);
 		}
 		else
@@ -78,16 +78,16 @@ class Send_Message extends Controller {
 	{
 		$send_to_id = $this->uri->segment(4);	
 		
-		$user_id = $this->userauthorization->get_loged_on_user_id();
+		$user_id = $this->user_authorization->get_loged_on_user_id();
 		
 		$btnSend = $this->input->post('btnSend');
 		if($btnSend == false)
 		{	
 			if($send_to_id != false)
 			{
-				$user = $this->usermanagment->GetUser($user_id);
-				$friend = $this->usermanagment->GetUser($send_to_id);
-				$friend_data = $this->usermanagment->GetUserData($send_to_id);
+				$user = $this->user_managment->GetUser($user_id);
+				$friend = $this->user_managment->GetUser($send_to_id);
+				$friend_data = $this->user_managment->GetUserData($send_to_id);
 				
 				if($friend != null)
 				{					
@@ -141,7 +141,7 @@ class Send_Message extends Controller {
 	{
 		$return_value = false;
 		
-		if($this->myfriendslib->IsTheyFriends($from_id, $to_id))
+		if($this->my_friends_lib->IsTheyFriends($from_id, $to_id))
 			$return_value = true;
 		else
 		{
