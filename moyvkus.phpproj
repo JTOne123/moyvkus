@@ -148,10 +148,6 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\controllers\\welcome.php"
-    {
-    "ProjRelPath" = "T"
-    }
     "system\\application\\errors\\error_404.php"
     {
     "ProjRelPath" = "T"
@@ -196,11 +192,15 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\libraries\\commentsmanagement.php"
+    "system\\application\\libraries\\comments_management.php"
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\libraries\\favoritesmanagement.php"
+    "system\\application\\libraries\\favorites_management.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\libraries\\index.html"
     {
     "ProjRelPath" = "T"
     }
@@ -212,7 +212,7 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\libraries\\myfriendslib.php"
+    "system\\application\\libraries\\my_friends_lib.php"
     {
     "ProjRelPath" = "T"
     }
@@ -224,19 +224,15 @@
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\libraries\\receipesmanagement.php"
+    "system\\application\\libraries\\receipes_management.php"
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\libraries\\userauthorization.php"
+    "system\\application\\libraries\\user_authorization.php"
     {
     "ProjRelPath" = "T"
     }
-    "system\\application\\libraries\\usermanagment.php"
-    {
-    "ProjRelPath" = "T"
-    }
-    "system\\application\\libraries\\index.html"
+    "system\\application\\libraries\\user_managment.php"
     {
     "ProjRelPath" = "T"
     }
@@ -300,6 +296,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\views\\main.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\views\\main_tpl.php"
     {
     "ProjRelPath" = "T"
@@ -340,7 +340,15 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\views\\register_model.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\views\\search.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\search_recipe_form.php"
     {
     "ProjRelPath" = "T"
     }
