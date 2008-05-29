@@ -1,3 +1,14 @@
+-- phpMyAdmin SQL Dump
+-- version 2.6.1
+-- http://www.phpmyadmin.net
+-- 
+-- Хост: localhost
+-- Время создания: Май 29 2008 г., 22:46
+-- Версия сервера: 5.0.45
+-- Версия PHP: 5.2.4
+-- 
+-- БД: `moyvkus_db`
+-- 
 
 -- --------------------------------------------------------
 
@@ -5,7 +16,8 @@
 -- Структура таблицы `city`
 -- 
 
-CREATE TABLE `city` (
+DROP TABLE IF EXISTS `city`;
+CREATE TABLE IF NOT EXISTS `city` (
   `city_id` int(11) unsigned NOT NULL auto_increment,
   `country_id` int(11) unsigned NOT NULL default '0',
   `region_id` int(10) unsigned NOT NULL default '0',
@@ -13,7 +25,7 @@ CREATE TABLE `city` (
   PRIMARY KEY  (`city_id`),
   KEY `country_id` (`country_id`),
   KEY `region_id` (`region_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM AUTO_INCREMENT=15789521 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=15789521 ;
 
 -- 
 -- Дамп данных таблицы `city`
@@ -10995,13 +11007,14 @@ INSERT INTO `city` VALUES (11364, 11060, 11363, 'Кофу');
 -- Структура таблицы `country`
 -- 
 
-CREATE TABLE `country` (
+DROP TABLE IF EXISTS `country`;
+CREATE TABLE IF NOT EXISTS `country` (
   `country_id` int(11) unsigned NOT NULL auto_increment,
   `city_id` int(11) NOT NULL default '0',
   `name` varchar(128) NOT NULL default '',
   PRIMARY KEY  (`country_id`),
   KEY `city_id` (`city_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM AUTO_INCREMENT=7716094 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=7716094 ;
 
 -- 
 -- Дамп данных таблицы `country`
@@ -11120,7 +11133,8 @@ INSERT INTO `country` VALUES (11060, 0, 'Япония');
 -- Структура таблицы `region`
 -- 
 
-CREATE TABLE `region` (
+DROP TABLE IF EXISTS `region`;
+CREATE TABLE IF NOT EXISTS `region` (
   `region_id` int(10) unsigned NOT NULL auto_increment,
   `country_id` int(10) unsigned NOT NULL default '0',
   `city_id` int(10) unsigned NOT NULL default '0',
@@ -11128,7 +11142,7 @@ CREATE TABLE `region` (
   PRIMARY KEY  (`region_id`),
   KEY `country_id` (`country_id`),
   KEY `city_id` (`city_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM AUTO_INCREMENT=15789406 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=15789406 ;
 
 -- 
 -- Дамп данных таблицы `region`
@@ -12056,3 +12070,4 @@ INSERT INTO `region` VALUES (11340, 11060, 0, 'Эхиме');
 INSERT INTO `region` VALUES (11346, 11060, 0, 'Ямагата');
 INSERT INTO `region` VALUES (11354, 11060, 0, 'Ямагути');
 INSERT INTO `region` VALUES (11363, 11060, 0, 'Яманаси');
+        
