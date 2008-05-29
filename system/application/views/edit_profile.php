@@ -18,7 +18,7 @@
 	 function showResponse(originalRequest)
 	{
 		var returned = originalRequest.responseText;
-		
+		$('SelectRegion').innerHTML = ''
 		$("SelectRegion").insert({ top: returned });
 	    //$("SelectRegion").insert({ top: "<option selected></option>" });
 	}		
@@ -43,6 +43,7 @@
 	{
 		var returned = originalRequest.responseText;
 		
+		$('SelectCity').innerHTML = ''
 		$("SelectCity").insert({ top: returned });
 		//$("SelectCity").insert({ top: "<option selected></option>" });
 	}		
