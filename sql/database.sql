@@ -23,7 +23,7 @@ CREATE TABLE `captcha` (
   `word` varchar(20) NOT NULL,
   PRIMARY KEY  (`captcha_id`),
   KEY `word` (`word`)
-) ENGINE=MyISAM AUTO_INCREMENT=410 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=410 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 -- 
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `tooltip` varchar(200) default NULL,
   `sort` int(11) NOT NULL,
   UNIQUE KEY `id` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 -- 
 -- Дамп данных таблицы `menu`
@@ -63,6 +63,7 @@ insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (11,'Пр
 
 DROP TABLE IF EXISTS `user_data`;
 CREATE TABLE IF NOT EXISTS `user_data` (
+  `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
   `phone` varchar(15) default NULL,
   `website` varchar(100) default NULL,
@@ -70,8 +71,9 @@ CREATE TABLE IF NOT EXISTS `user_data` (
   `interests` varchar(2000) default NULL,
   `about` varchar(2000) default NULL,
   `avatar_name` varchar(200) default NULL,
-  `rating` int(10) default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
+  `rating` int(10) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 /*Table structure for table `users` */
 
@@ -87,7 +89,7 @@ CREATE TABLE `users` (
   `region` int(11) DEFAULT NULL,
   `country` int(11) DEFAULT NULL,
   UNIQUE KEY `UserID` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251;
 
 
 CREATE TABLE IF NOT EXISTS  `ci_sessions` (
@@ -154,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `user_id` int(10) NOT NULL,
   `rating` int(10) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1;
         
         
 
@@ -162,7 +164,7 @@ CREATE TABLE `categorys` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(70) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 INSERT INTO `categorys` VALUES (2, 'Холодные закуски');
 INSERT INTO `categorys` VALUES (3, 'Салаты');
@@ -191,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `kitchens` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(70) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=69 ;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 INSERT INTO `kitchens` VALUES (1, 'Домашняя');
 INSERT INTO `kitchens` VALUES (2, 'Абхазская');
@@ -271,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `user_id` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 
 
@@ -280,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `word_censor` (
   `id` int(11) NOT NULL auto_increment,
   `word` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 -- 
 -- Дамп данных таблицы `word_censor`

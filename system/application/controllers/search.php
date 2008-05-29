@@ -682,19 +682,20 @@ class Search extends Controller {
 		$friend_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $friend_item);
 
 		$friends_list = "";
-
 		foreach ($query->result() as $row)
 		{
+			$arr='';
+			$value='';
 			$friend = $this->user_managment->GetUser($row->id);
 			$friend_data = $this->user_managment->GetUserData($row->id);
 
 			$friend_full_name = $friend->first_name . ' ' . $friend->last_name;
 			if(strlen($friend_full_name) > 30)
 			$friend_full_name =	substr($friend_full_name, 0, 30) . '...';
-//
+
 			$value=$this->user_managment->GetUserRating($row->id);
 			$friend_item = str_replace("{FriendRating}", $value, $friend_item);
-
+			
 			$arr=$this->receipes_management->getbestrecipe($row->id);
 			if($arr[0]['name'] !=='')
 			{

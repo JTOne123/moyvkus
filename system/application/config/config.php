@@ -311,7 +311,7 @@ $config['rewrite_short_tags'] = FALSE;
 
 $config['protocol'] = 'sendmail';
 $config['mailpath'] = '/usr/sbin/sendmail';
-$config['charset'] = 'iso-8859-1';
+$config['charset'] = 'Windows-1251';
 $config['wordwrap'] = TRUE;
 
 ?>
