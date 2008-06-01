@@ -30,12 +30,7 @@
     </script>
 
 <div class="MainDivProfile">
-	<table cellpadding="0" cellspacing="5" class="MainTableProfile Friends">
-		<tr>
-			<td colspan="2">
-				{Logo}
-			</td>
-		</tr>
+	<table cellpadding="0" cellspacing="5" class="MainTableProfile Main">
 		<tr>
 			<td colspan="2" class="LittleDescriptionTD">
 				{LittleDescription}
@@ -97,7 +92,7 @@
 					</tr>
 					<tr>
 						<td>
-							{SomeImageHeight200px}
+							<img src="../../images/logo320x100.gif"/>
 						</td>
 					</tr>
 				</table>

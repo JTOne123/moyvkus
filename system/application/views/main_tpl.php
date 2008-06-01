@@ -10,16 +10,29 @@
 
 <body>
 
-	
+<table style="width:100%;height:100%;">
+	<tr>
+		<td>
+			<img src="../../images/top.gif" style="width:100%;"/>	
+		</td>
+	</tr>
 <!-- Top Sidebar START-->
-{menu}
+	<tr>
+		<td>
+			{menu}
+		</td>
+	</tr>
 <!-- Top Sidebar END-->
 
 <!-- Left Sidebar START -->
 <!-- Left Sidebar END -->
 
 <!-- Page Body START -->
-{body}
+	<tr>
+		<td>
+			{body}
+		</td>
+	</tr>
 <!-- Page Body END -->
 
 
@@ -28,6 +41,12 @@
 
 <!-- Counters START-->
 <!-- Counters END-->
+	<tr>
+		<td>
+			<img src="../../images/bottom.gif" style="width:100%;"/>	
+		</td>
+	</tr>
+</table>
 </body>
 
 

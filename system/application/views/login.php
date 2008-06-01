@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="emailLogin" name="emailLogin" value="<?=$this->validation->email;?>" type="text" class="Login_input" />
+                            <input id="emailLogin" name="emailLogin" value="<?=$this->validation->emailLogin;?>" type="text" class="Login_input" />
                         </td>
                         <td>
                             <div id="errorDivEmail" class="Login_validator">
@@ -68,8 +68,8 @@
                     </tr>
                          <tr>
                         <td colspan="2">
-							<?php echo $this->validation->email_error;?>
-							<?php echo $this->validation->password_error;?>
+							<?php echo $this->validation->emailLogin_error;?>
+							<?php echo $this->validation->passwordLogin_error;?>
                         </td>
                     </tr>
                 </table>

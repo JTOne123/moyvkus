@@ -832,3 +832,9 @@ ut .NoteSearchWidth
 	font-size: 18px;
 	color: #3B5998;
 }
+
+.Main
+{
+	border: 1px solid #EAEEF3;
+	width: 632px;
+}
