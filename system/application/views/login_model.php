@@ -1,18 +1,5 @@
-    <script language="javascript" type="text/javascript">
-
-    window.onload = function() {
-    	addForm("LoginForm" ,"vgLogin");
-
-    	addValidatorRegEx("email", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vgLogin");
-
-    	addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vgLogin");
-
-    	addSubmitButton("login_sumbit", "vgLogin");
-    }
-    </script>
-
     <div id="login">
-        <form id="LoginForm" method="POST" action="/login/">
+        <form id="LoginForm" method="POST" action="/login/" class="NormalForm">
             <div class="Login">
                 <table cellpadding="0" cellspacing="0">
                     <tr>
@@ -22,7 +9,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="email" name="email" type="text" class="Login_input" />
+                            <input id="emailLogin" name="emailLogin" type="text" class="Login_input" />
                         </td>
                         <td>
                             <div id="errorDivEmail" class="Login_validator">
@@ -37,7 +24,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="password" name="password" type="password" class="Login_input" />
+                            <input id="passwordLogin" name="passwordLogin" type="password" class="Login_input" />
                         </td>
                         <td>
                             <div id="errorDivPassword" class="Login_validator">

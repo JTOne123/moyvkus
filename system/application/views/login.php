@@ -3,9 +3,9 @@
     window.onload = function() {
     	addForm("LoginForm" ,"vgLogin");
 
-    	addValidatorRegEx("email", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vgLogin");
+    	addValidatorRegEx("emailLogin", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vgLogin");
 
-    	addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vgLogin");
+    	addValidatorRegEx("passwordLogin", "errorDivPassword", "^.{6,21}$", "vgLogin");
 
     	addSubmitButton("login_sumbit", "vgLogin");
     }
@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="email" name="email" value="<?=$this->validation->email;?>" type="text" class="Login_input" />
+                            <input id="emailLogin" name="emailLogin" value="<?=$this->validation->email;?>" type="text" class="Login_input" />
                         </td>
                         <td>
                             <div id="errorDivEmail" class="Login_validator">
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="password" name="password" type="password" class="Login_input" />
+                            <input id="passwordLogin" name="passwordLogin" type="password" class="Login_input" />
                         </td>
                         <td>
                             <div id="errorDivPassword" class="Login_validator">

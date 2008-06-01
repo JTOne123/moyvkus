@@ -2,23 +2,6 @@
         <!--Содержимое этой дивки и есть регистрация-->
 <script language="javascript" type="text/javascript">
 
-    window.onload = function() {
-    addForm("RegistForm" ,"vg");
-    
-    addValidatorRegEx("email", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vg");
-    
-    addValidatorRegEx("first_name", "errorDivFirstName", "^.{4,100}$", "vg");
-
-    addValidatorRegEx("last_name", "errorDivLastName", "^.{4,100}$", "vg");
-
-    addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vg");
-	
-	addValidatorCompare("repassword", "password", "errorDivRePassword", "vg");
-	
-	addValidatorRegEx("captcha", "errorDivCaptcha", "^.{4}$", "vg");
-
-    addSubmitButton("send", "vg");
-    }
 	
 </script>
 	

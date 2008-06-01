@@ -274,5 +274,13 @@ $lang['ForgetPasswordRequestMessage'] = "<html>
 		<p>С уважаением администарация проекта Мой Вкус.ru <a href=\"http://www.moyvkus.ru\">http://www.moyvkus.ru</a></p>
 		</body>
 		</html>";
+		
+//Main
+$lang['SimpleSearchRecipeMain'] = "Поиск рецептов";
+$lang['Info1'] = "Любите вкусно поесть?";
+$lang['Info2'] = "Любите приготовить что то?";
+$lang['Info3'] = "Любите пообщаться?";
+$lang['Info4'] = "Хотите найти новых друзей?";
+$lang['Info5'] = "Присоединяйтесь к клубу!";
 
 ?>

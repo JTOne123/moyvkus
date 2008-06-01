@@ -28,12 +28,12 @@ class Login extends Controller {
 	    $data['checkbox_remember'] = $this->lang->line('checkbox_remember');
 	    
 	    ///валидатор
-		$rules['email'] = "required|min_length[6]|max_length[100]|valid_email|callback_check_mail";
-		$rules['password'] = "required|min_length[6]|max_length[21]|alpha_numeric";
+		$rules['emailLogin'] = "required|min_length[6]|max_length[100]|valid_email|callback_check_mail";
+		$rules['passwordLogin'] = "required|min_length[6]|max_length[21]|alpha_numeric";
 		$this->validation->set_rules($rules);
 
-		$fields['email'] = $this->lang->line('email');
-		$fields['password'] = $this->lang->line('password');
+		$fields['emailLogin'] = $this->lang->line('email');
+		$fields['passwordLogin'] = $this->lang->line('password');
 		$this->validation->set_fields($fields);
 		
 		
@@ -42,8 +42,8 @@ class Login extends Controller {
 		
 	   if ($this->validation->run() == TRUE) 
 		{
-			$email=$this->input->post('email');
-			$password=$this->input->post('password');
+			$email=$this->input->post('emailLogin');
+			$password=$this->input->post('passwordLogin');
 			$checkbox_remember=$this->input->post('checkbox_remember');
 			
 			
