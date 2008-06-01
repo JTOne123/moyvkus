@@ -790,9 +790,9 @@ ut .NoteSearchWidth
 
 .SearchRecipePanel
 {
-	border-top:solid 1px Gray;
-	margin-top:10px;
-	padding-top:2px;
+	border-top: solid 1px Gray;
+	margin-top: 10px;
+	padding-top: 2px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -802,6 +802,8 @@ ut .NoteSearchWidth
 	font-size: 18px;
 	color: Gray;
 	display: inline;
+	vertical-align: top;
+	width: 270px;
 }
 
 .SearchTextMain
@@ -813,11 +815,20 @@ ut .NoteSearchWidth
 
 .NormalForm
 {
-	margin:0px;
+	margin: 0px;
 }
 
-.InfoTable
+.ScreenVideoDiv
 {
-	vertical-align:top;
-	width:270px;
+	width: 425px;
+	height: 355px;
+	background-color: black;
+	color: white;
+	margin-top: 10px;
+}
+
+.LittleDescriptionTD
+{
+	font-size: 18px;
+	color: #3B5998;
 }

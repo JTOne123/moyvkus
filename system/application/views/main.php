@@ -36,6 +36,11 @@
 				{Logo}
 			</td>
 		</tr>
+		<tr>
+			<td colspan="2" class="LittleDescriptionTD">
+				{LittleDescription}
+			</td>
+		</tr>
 			<tr>
 			<td valign="top">
 				<table>
@@ -75,7 +80,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<div style="width:425px;height:355px;background-color:black;color:white;">
+							<div class="ScreenVideoDiv">
 								{screen_video}
 							</div>
 						</td>
@@ -84,7 +89,19 @@
 
 			</td>
 			<td valign="top">
-				{register}
+				<table>
+					<tr>
+						<td>
+							{register}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{SomeImageHeight200px}
+						</td>
+					</tr>
+				</table>
+
 			</td>
 		</tr>
 		<tr>

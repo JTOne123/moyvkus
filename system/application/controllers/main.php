@@ -69,6 +69,8 @@ class Main extends Controller {
 		$data['SearchButton'] = $this->lang->line('SearchButton');
 		$data['SimpleSearchDescriptionRecipies'] = $this->lang->line('SimpleSearchDescriptionRecipies');
 		
+		$data['LittleDescription'] = $this->lang->line('LittleDescription');
+
 		return $data;
 	}
 	
