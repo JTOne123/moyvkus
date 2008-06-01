@@ -16,7 +16,7 @@ class Menu extends Model {
 		{
 			$query = $this->get_menu_data();
 			
-			$menu_html = '<table cellpadding="0" cellspacing="0"><tr>';
+			$menu_html = '<table cellpadding="0" cellspacing="0" class="MainMenuTable"><tr>';
 			
 			foreach ($query->result() as $row)
 			{

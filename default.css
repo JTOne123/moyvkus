@@ -17,44 +17,32 @@ a
 
 
 /* Стиль меню */
+.MainMenuTable
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .Menu
 {
-	background-color: Red;
-	text-align: center;
-	vertical-align: bottom;
-	border-color: Black;
-	border-style: solid;
-	border-width: 1px;
-	color: White;
-	cursor: hand;
-	float: left;
-	font-size: 10px;
+	color: gray;
+	padding: 3px;
+	padding-bottom: 5px;
 	text-decoration: none;
-	padding-right: 4px;
 }
 
 .Menu:Hover
 {
-	background-color: Blue;
-	text-align: center;
-	vertical-align: middle;
-	border-color: Black;
-	border-style: solid;
-	border-width: 1px;
-	color: White;
-	cursor: hand;
-	float: left;
-	text-decoration: none;
+	color: #3B5998;
+	text-decoration: underline;
+	cursor:pointer;
 }
 
 .MenuTable
 {
 	vertical-align: bottom;
-	color: White;
-	cursor: hand;
 	float: left;
-	font-size: 14px;
-	text-decoration: none;
+	font-size: 16px;
 }
 
 .MenuImage
