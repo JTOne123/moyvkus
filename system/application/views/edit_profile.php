@@ -106,7 +106,7 @@
                     <div class="LeftColumn">
                         <table cellpadding="0" cellspacing="5" class="LeftTableProfile">
                             <tr>
-                                <td class="Headers">
+                                <td class="Headers" align="center">
                                     {Avatar}
                                 </td>
                             </tr>

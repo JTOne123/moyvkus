@@ -12,8 +12,8 @@
 
 	<table style="width:100%;height:100%;">
 		<tr>
-			<td>
-				<img src="../../images/top.gif" style="width:100%;"/>	
+			<td align="center">
+				<img src="<?=base_url()?>images/top.jpg" style="width:632px;"/>	
 			</td>
 		</tr>
 	<!-- Top Sidebar START-->
@@ -42,8 +42,8 @@
 	<!-- Counters START-->
 	<!-- Counters END-->
 		<tr>
-			<td>
-				<img src="../../images/bottom.gif" style="width:100%;"/>	
+			<td align="center">
+				<img src="<?=base_url()?>images/bottom.jpg" style="width:632px;"/>	
 			</td>
 		</tr>
 	</table>

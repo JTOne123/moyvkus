@@ -31,8 +31,6 @@ class Main extends Controller {
 		
 		$data = $this->_load_resource($data);
 		
-		$data = $this->_data_bind($data);
-		
 		$data['body']= $this->parser->parse('main', $data);
 		
 		$this->parser->parse('main_tpl', $data);
@@ -74,10 +72,10 @@ class Main extends Controller {
 		return $data;
 	}
 	
-	function _data_bind($data)
+	function view_captcha()
 	{
 		
-		return $data;
+		echo 'Hellodddddddddddddddddd';
 	}
 }
 ?>
