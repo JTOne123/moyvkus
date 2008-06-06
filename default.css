@@ -35,7 +35,7 @@ a
 {
 	color: #3B5998;
 	text-decoration: underline;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .MenuTable
@@ -825,4 +825,52 @@ ut .NoteSearchWidth
 {
 	border: 1px solid #EAEEF3;
 	width: 632px;
+}
+
+/* Main_tpl */
+
+.ImageBottom
+{
+	margin-bottom: -3px;
+}
+
+.MainTable
+{
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	width: 750px;
+}
+
+.ImageHeaderTD
+{
+	border-top: 1px solid #EAEEF3;
+	border-left: 1px solid #EAEEF3;
+	border-right: 1px solid #EAEEF3;
+}
+
+.BodyTD
+{
+	border-left: 1px solid #EAEEF3;
+	border-right: 1px solid #EAEEF3;
+	margin-top: 5px;
+}
+
+.ImageBottomTD
+{
+	border-left: 1px solid #EAEEF3;
+	border-right: 1px solid #EAEEF3;
+	border-bottom: 1px solid #EAEEF3;
+	vertical-align: bottom;
+}
+
+.HeaderLinks
+{
+	border-width: 0px;
+}
+
+.LogoTD
+{
+	text-align:left;
+	width: 400px;
 }

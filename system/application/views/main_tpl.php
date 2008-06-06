@@ -1,53 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-<!-- PageHeader START -->
+	<!-- PageHeader START -->
    {header}
-<!-- PageHeader END -->
+	<!-- PageHeader END -->
 </head>
-
 <body>
-
-	<table style="width:100%;height:100%;">
+	<table class="MainTable" cellpadding="0" cellspacing="0">
 		<tr>
-			<td align="center">
-				<img src="<?=base_url()?>images/top.jpg" style="width:632px;"/>	
+			<td align="center" class="ImageHeaderTD">
+				<table>
+					<tr>
+						<td class="LogoTD">
+							<a href="<?=base_url()?>"><img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/></a>
+						</td>
+						<td>
+							<img src="<?=base_url()?>images/top_center_header.gif"/>
+						</td>
+						<td>
+							<a href="<?=base_url()?>logout"><img src="<?=base_url()?>images/top_logout.gif" class="HeaderLinks"/></a>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
-	<!-- Top Sidebar START-->
+		<!-- Top Sidebar START-->
 		<tr>
-			<td>
+			<td class="BodyTD">
 				{menu}
 			</td>
 		</tr>
-	<!-- Top Sidebar END-->
-
-	<!-- Left Sidebar START -->
-	<!-- Left Sidebar END -->
-
-	<!-- Page Body START -->
+		<!-- Top Sidebar END-->
+		<!-- Left Sidebar START -->
+		<!-- Left Sidebar END -->
+		<!-- Page Body START -->
 		<tr>
-			<td>
+			<td class="BodyTD">
 				{body}
 			</td>
 		</tr>
-	<!-- Page Body END -->
-
-
-	<!-- Body Footer START-->
-	<!-- Body Footer END -->
-
-	<!-- Counters START-->
-	<!-- Counters END-->
+		<!-- Page Body END -->
+		<!-- Body Footer START-->
+		<!-- Body Footer END -->
+		<!-- Counters START-->
+		<!-- Counters END-->
 		<tr>
-			<td align="center">
-				<img src="<?=base_url()?>images/bottom.jpg" style="width:632px;"/>	
+			<td align="center" class="ImageBottomTD">
+				<img src="<?=base_url()?>images/bottom.gif" class="ImageBottom"/>	
 			</td>
 		</tr>
 	</table>
 </body>
-
-
 </html>
