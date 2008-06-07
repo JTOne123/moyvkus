@@ -694,21 +694,22 @@ class Search extends Controller {
 				$friend_full_name =	substr($friend_full_name, 0, 30) . '...';
 			
 			$value=$this->user_managment->GetUserRating($row->id);
-			$friend_item = str_replace("{FriendRating}", $value, $friend_item);
+			$friend_current = str_replace("{FriendRating}", $value, $friend_item);
 			
-			$arr=$this->receipes_management->getbestrecipe($row->id);
+			$arr = $this->receipes_management->GetBestRecipe($row->id);
+
 			if($arr[0]['name'] !=='')
 			{
-				$friend_item = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_item);
-				$friend_item = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_item);
+				$friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);
+				$friend_current = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_current);
 			}
 			else 
 			{
-				$friend_item = str_replace("{FriendBestRecipe}", '', $friend_item);
-				$friend_item = str_replace("{FriendBestRecipeId}", '', $friend_item);	
+				$friend_current = str_replace("{FriendBestRecipe}", '', $friend_current);
+				$friend_current = str_replace("{FriendBestRecipeId}", '', $friend_current);	
 			}
 			
-			$friend_current = str_replace("{FriendFullName}", $friend_full_name, $friend_item);
+			$friend_current = str_replace("{FriendFullName}", $friend_full_name, $friend_current);
 			$friend_current = str_replace("{FriendUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $row->id, $friend_current);
 			$friend_current = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $row->id, $friend_current);
 			$friend_current = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $row->id, $friend_current);

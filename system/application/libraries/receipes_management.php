@@ -64,6 +64,7 @@ class receipes_management {
 	function GetBestRecipe($id)
 	{
 		$query = $this->ci->db->query("SELECT id, name, rating FROM recipes WHERE user_id=$id GROUP BY rating DESC LIMIT 1");
+
 		$arr = $query->result_array();
 		if ($query->num_rows() > 0)
 		{
