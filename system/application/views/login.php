@@ -11,7 +11,7 @@
     }
     </script>
 
-    <div id="login">
+    <div id="login" class="LoginMainDiv">
         <form id="LoginForm" method="POST" action="/login/">
             <div class="Login">
                 <table cellpadding="0" cellspacing="0">

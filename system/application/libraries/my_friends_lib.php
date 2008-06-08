@@ -216,7 +216,7 @@ class My_friends_lib {
 				{FriendRatingLevelText}
 				</td>
 				<td class=\"LableValueFriends\">
-				{FriendRatingLevel}
+				{FriendRating}
 				</td>
 				</tr>
 				<tr>

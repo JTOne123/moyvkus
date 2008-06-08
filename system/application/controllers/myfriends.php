@@ -149,8 +149,8 @@ class MyFriends extends Controller {
 		
 		$friend_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $friend_item);
 		$friend_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $friend_item);
-			
-	
+		
+		
 		$friend_item = str_replace("{FriendBestRecipeText}", $this->lang->line('MyBestRecipesText'), $friend_item);
 		$friend_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $friend_item);
 		$friend_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $friend_item);
@@ -206,20 +206,20 @@ class MyFriends extends Controller {
 			
 			$friend_current = str_replace("{FriendAvatarUrl}", $avatar_url, $friend_current);
 			
-		$value=$this->user_managment->GetUserRating($row->friend_id);
-		$friend_current = str_replace("{FriendRating}", $value, $friend_current);
-		
-		$arr=$this->receipes_management->getbestrecipe($row->friend_id);
-		if($arr[0]['name'] !=='')
-		{
-		 $friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);
-		 $friend_current = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_current);
-		}
-		else 
-		{
-		 $friend_current = str_replace("{FriendBestRecipe}", '', $friend_current);
-		 $friend_current = str_replace("{FriendBestRecipeId}", '', $friend_current);	
-		}
+			$value = $this->user_managment->GetUserRating($row->friend_id);
+			$friend_current = str_replace("{FriendRating}", $value, $friend_current);
+			
+			$arr=$this->receipes_management->GetBestRecipe($row->friend_id);
+			if($arr[0]['name'] !=='')
+			{
+				$friend_current = str_replace("{FriendBestRecipe}", $arr[0]['name'], $friend_current);
+				$friend_current = str_replace("{FriendBestRecipeId}", $arr[0]['id'], $friend_current);
+			}
+			else 
+			{
+				$friend_current = str_replace("{FriendBestRecipe}", '', $friend_current);
+				$friend_current = str_replace("{FriendBestRecipeId}", '', $friend_current);	
+			}
 			
 			$friends_list = $friends_list . $friend_current;
 		}

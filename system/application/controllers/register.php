@@ -125,23 +125,20 @@ class Register extends Controller {
 			$new_user_id = $this->user_managment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
 			
-			$invite_id = $this->session->flashdata('invite_id');
-			$user_id = $this->session->flashdata('user_id');
-
+			$invite_id = $this->session->userdata('invite_id');
+			$user_id = $this->session->userdata('user_id');
 			//Вроде исправил, но не могу понять почему этот код здесь. Он должен быть по идее ниже, если это для постбеков. Эта функция выполняется если валидация прошла успешно...
 			if($invite_id != '' && $invite_id != false)
 			{
-				$invite_id = $this->session->userdata('invite_id');
-				$user_id = $this->session->userdata('user_id');
 				$this->my_friends_lib->AddFriend($user_id, $new_user_id);
 				$this->delete_from_invite($invite_id);
 				
-				$this->session->set_userdata('invite_id', '');
-				$this->session->set_userdata('user_id', '');
+				$this->session->unset_userdata('invite_id');
+				$this->session->unset_userdata('user_id');
 			}
 			//$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
 			
-			redirect('main', 'refresh');
+			redirect('', 'refresh');
 		}
 		//Прошли валидацию - записываем данные из полей в БД END
 		

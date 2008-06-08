@@ -875,3 +875,8 @@ ut .NoteSearchWidth
 	text-align: left;
 	width: 400px;
 }
+
+.LoginMainDiv, .RegistrationMainDiv
+{
+	padding-left:10%;
+}

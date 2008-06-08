@@ -21,7 +21,7 @@
     }
 	
 </script>
-	
+	<div class="RegistrationMainDiv">
         <div id="Registration" class="Registration">
         <form method="POST" action="/register" id="RegistForm">
             <table cellpadding="2" cellspacing="0" class="Registration_table">
@@ -126,3 +126,4 @@
             </form>
         </div>
     </div>
+</div>
