@@ -135,7 +135,7 @@ class Register extends Controller {
 				}
 			}
 			
-			redirect('/login');
+			redirect('/login'); 
 			
 			$FormBuild=0;
 		}
