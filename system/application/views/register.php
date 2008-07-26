@@ -23,7 +23,7 @@
 </script>
 	<div class="RegistrationMainDiv">
         <div id="Registration" class="Registration">
-        <form method="POST" action="/register" id="RegistForm">
+        <form method="POST" action="/register/{InviteUrl}" id="RegistForm">
             <table cellpadding="2" cellspacing="0" class="Registration_table">
                 <tbody>
                     <tr>

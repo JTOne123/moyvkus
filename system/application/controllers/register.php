@@ -89,61 +89,57 @@ class Register extends Controller {
 		$fields['password'] = $this->lang->line('password');
 		$this->validation->set_fields($fields);
 		
-		$invite_id = $this->uri->segment(4);		
-		if($invite_id != false)
-		{
-			$user = $this->get_invited_user($invite_id);
-			if($user != null)
-			{
-				if($user->friend_first_name != null)
-					$this->validation->first_name = $user->friend_first_name;
-				
-				if($user->friend_last_name != null)
-					$this->validation->last_name = $user->friend_last_name;
-				
-				if($user->friend_email != null)
-					$this->validation->email = $user->friend_email;	
-				
-				//Создание сессия для инвайта START
-
-				$this->session->set_userdata('invite_id', $invite_id);
-				$this->session->set_userdata('user_id', $user->user_id);
-				
-				//Создание сессия для инвайта END		
-				
-			}
-			else
-				redirect('', 'refresh');
-		}
-
 		$FormBuild=1;  //Показывать форму. Если включится валидатор, он поставит FormBuild=0 и форма не покажется. :)
 		
 		//Прошли валидацию - записываем данные из полей в БД START
-		if ($this->validation->run() == TRUE) 
+		if ($this->validation->run() != TRUE)
 		{
-			$FormBuild=0;
+			$invite_id = $this->uri->segment(4);		
+			if($invite_id != false)
+			{
+				$data['InviteUrl'] = 'invite/id/' . $invite_id;
+				$user = $this->get_invited_user($invite_id);
+				if($user != null)
+				{
+					if($user->friend_first_name != null)
+						$this->validation->first_name = $user->friend_first_name;
+					
+					if($user->friend_last_name != null)
+						$this->validation->last_name = $user->friend_last_name;
+					
+					if($user->friend_email != null)
+						$this->validation->email = $user->friend_email;	
+				}
+				else
+					redirect('', 'refresh');
+			}
+			else
+			{
+				$data['InviteUrl'] = '';
+			}
+		}
+		else 
+		{
+			
 			$new_user_id = $this->user_managment->AddUser($email, $first_name, $last_name, $password);
 			$this->notification->AfterRegistration($email, $password);
 			
-			$invite_id = $this->session->userdata('invite_id');
-			$user_id = $this->session->userdata('user_id');
-			//Вроде исправил, но не могу понять почему этот код здесь. Он должен быть по идее ниже, если это для постбеков. Эта функция выполняется если валидация прошла успешно...
-			if($invite_id != '' && $invite_id != false)
-			{
-				$this->my_friends_lib->AddFriend($user_id, $new_user_id);
-				$this->delete_from_invite($invite_id);
-				
-				$this->session->unset_userdata('invite_id');
-				$this->session->unset_userdata('user_id');
+			$invite_id = $this->uri->segment(4);		
+			if($invite_id != false)
+			{		
+				$user = $this->get_invited_user($invite_id);
+				if($user != null)
+				{
+					$this->my_friends_lib->AddFriend($user->user_id, $new_user_id);
+					$this->delete_from_invite($invite_id);
+				}
 			}
-			//$data['body'] = 'РЕДИРЕКТ НА ГЛАВНУЮ ПРОФАЙЛА!';
 			
-			redirect('', 'refresh');
+			redirect('/login');
+			
+			$FormBuild=0;
 		}
 		//Прошли валидацию - записываем данные из полей в БД END
-		
-		
-		
 		
 		if ($FormBuild == 1)
 		{
