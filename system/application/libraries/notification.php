@@ -13,6 +13,10 @@ class Notification {
 	
 	function AfterRegistration($email, $password)
 	{
+		
+		$config['mailtype'] = 'html';
+		$this->ci->email->initialize($config);
+		
 		$returned_value = $this->ci->user_managment->GetUserInfoByEmail($email);
 		
 		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));
@@ -33,6 +37,10 @@ class Notification {
 	
 	function InviteFriend($user_id, $friend_id, $friend_email, $friend_first_name, $friend_last_name)
 	{	
+		
+		$config['mailtype'] = 'html';
+		$this->ci->email->initialize($config);
+		
 		$user = $this->ci->user_managment->GetUser($user_id);
 	
 		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));
@@ -53,6 +61,10 @@ class Notification {
 	
 	function Forget_password($user_id, $user_code)
 	{	
+		
+		$config['mailtype'] = 'html';
+		$this->ci->email->initialize($config);
+		
 		$user = $this->ci->user_managment->GetUser($user_id);
 		
 		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));

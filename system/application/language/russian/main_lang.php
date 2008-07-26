@@ -38,31 +38,19 @@ $lang['check_password'] = "<div class = \"Registraion_validator\" style=\"displa
 //Notification
 $lang['AfterRegistraionEmailFrom'] = "support@moyvkus.ru";
 $lang['AfterRegistraionEmailFromName'] = "Мой вкус - Поддержка";
-$lang['AfterRegistraionEmailSubject'] = "Регистрация аккауна";
-$lang['AfterRegistraionEmailMessage'] = "<html>
-										<body>
-										<p>Уважаемый(ая) {first_name} {last_name}</p>
-										<p>Ваша учетная запись активирована</p>
-										<p>Ваш пароль: {password}</p>
-								<p>С уважаением администарация проекта Мой Вкус.ru <a href=\"http://www.moyvkus.ru\">http://www.moyvkus.ru</a></p>
-		</body>
-										</html>";
-										
+$lang['AfterRegistraionEmailSubject'] = "Регистрация аккаунта";
+$lang['AfterRegistraionEmailMessage'] = "
+										Уважаемый(ая) {first_name} {last_name}
+										Ваша учетная запись активирована
+										Ваш пароль: {password}
+								        С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+
 $lang['InviteEmailSubject'] = "Приглашаем вас зарегистрироваться в нашем проекте Мой Вкус.ru http://www.moyvkus.ru";
-$lang['InviteEmailMessage'] = "<html>
-								<body>
-								<p>Уважаемый {InvetedUserFullName}</p>
-								<br/>
-								<p>Пользователь сети Мой Вкус.ru(http://www.moyvkus.ru), 
-								{UserFullName} желает вас пригласить и принять участие в проекте, который просвещенный вкусным блюдам.</p>
-								<br/>
-								<p>Для начала регистрации пройдите по этой ссылке {UrlForRegister}</p>
-								<br/>
-								<p>Если вы не хотите участвовать в проекте или вы не знакомы с данным пользователем, просто удалите это письмо.</p>
-								<br/>
-								<p>С уважаением администарация проекта Мой Вкус.ru <a href=\"http://www.moyvkus.ru\">http://www.moyvkus.ru</a></p>
-								</body>
-								</html>";
+$lang['InviteEmailMessage'] = "Уважаемый {InvetedUserFullName}
+								Пользователь сети Мой Вкус.ru(http://www.moyvkus.ru), {UserFullName} желает вас пригласить и принять участие в проекте, который просвещенный вкусным блюдам.
+								Для начала регистрации пройдите по этой ссылке {UrlForRegister}
+								Если вы не хотите участвовать в проекте или вы не знакомы с данным пользователем, просто удалите это письмо.
+								С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
 										
 //Profile
