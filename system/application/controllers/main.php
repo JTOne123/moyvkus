@@ -6,6 +6,7 @@ class Main extends Controller {
 	{
 		parent::Controller();
 		$this->load->model('register_form');
+		$this->load->model('best_recipes');
 	}
 	
 	function _remap($method) {
@@ -53,6 +54,7 @@ class Main extends Controller {
 
 		$data['login']=$this->Loginform->build_login_form();
 		$data['register'] = $this->register_form->build_register_form();
+		$data['best_recipe_builder'] = $this->best_recipes->build_best_recipes();
 		
 		$data['search_recipe'] = $this->load->view('search_recipe_form', $data, true);
 		
@@ -70,12 +72,6 @@ class Main extends Controller {
 		$data['LittleDescription'] = $this->lang->line('LittleDescription');
 
 		return $data;
-	}
-	
-	function view_captcha()
-	{
-		
-		echo 'Hellodddddddddddddddddd';
 	}
 }
 ?>
