@@ -52,7 +52,7 @@ class Profile extends Controller {
 	
 	function _load_headers()
 	{
-		$data['title'] = $this->lang->line('Prifile');
+		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('Prifile');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();

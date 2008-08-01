@@ -878,5 +878,12 @@ ut .NoteSearchWidth
 
 .LoginMainDiv, .RegistrationMainDiv
 {
-	padding-left:10%;
+	padding-left: 10%;
+}
+
+.About
+{
+	font-size: 14px;
+	line-height: 16px;
+	color: #3b5998;
 }

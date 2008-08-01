@@ -13,7 +13,7 @@
 				<table>
 					<tr>
 						<td class="LogoTD">
-							<a href="<?=base_url()?>"><img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/></a>
+							<img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/>
 						</td>
 						<td>
 							<img src="<?=base_url()?>images/top_center_header.gif"/>
@@ -46,10 +46,49 @@
 		<!-- Counters START-->
 		<!-- Counters END-->
 		<tr>
+			<td align="center" class="About">
+				<br/>
+				<br/>
+				(c)&nbsp;<a id="firstAuthorLink"></a>&nbsp;|&nbsp;
+				<a id="secondAuthorLink"></a>&nbsp;2008
+			</td>
+		</tr>
+		<tr>
 			<td align="center" class="ImageBottomTD">
 				<img src="<?=base_url()?>images/bottom.gif" class="ImageBottom"/>	
 			</td>
 		</tr>
 	</table>
 </body>
+
+    <script language="javascript" type="text/javascript">
+
+		var firstAuthorLink = document.getElementById('firstAuthorLink');
+		var secondAuthorLink = document.getElementById('secondAuthorLink');
+
+		var DatsyukName = "Дацюк Павел";
+		var DatsyukId = 2;
+		
+		var VerbovskyName = "Вербовский Александр";
+		var VerbovskyId = 1;
+		
+		if(Math.random()<0.5)
+		{
+			firstAuthorLink.innerHTML = DatsyukName;
+			secondAuthorLink.innerHTML = VerbovskyName;
+
+			firstAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
+			secondAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
+		}
+		else
+		{
+			firstAuthorLink.innerHTML = VerbovskyName;
+			secondAuthorLink.innerHTML = DatsyukName;
+
+			firstAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
+			secondAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
+		}
+	
+    </script>
+	
 </html>
