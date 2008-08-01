@@ -13,7 +13,7 @@
 				<table>
 					<tr>
 						<td class="LogoTD">
-							<img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/>
+							<a href="<?=base_url()?>profile"><img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/></a>
 						</td>
 						<td>
 							<img src="<?=base_url()?>images/top_center_header.gif"/>
