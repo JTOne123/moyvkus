@@ -74,12 +74,13 @@ class User_authorization {
 	//LogOff
 	function logout()
 	{
-		//убиваем сессию
-		$this->ci->session->sess_destroy();
 		//убиваем куки
 		delete_cookie('userid');
 		delete_cookie('userpassword');
 		delete_cookie('ci_session');
+
+		//убиваем сессию
+		$this->ci->session->sess_destroy();
 	}
 	
 	
