@@ -52,7 +52,7 @@ $lang['InviteEmailMessage'] = "Уважаемый {InvetedUserFullName}
 								Если вы не хотите участвовать в проекте или вы не знакомы с данным пользователем, просто удалите это письмо.
 								С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
 $lang['NewPasswordRequestMessage'] = "Уважаемый пользователь {UserFullName}, 
-Ваш новый пароль для входа в систему: {NewPassword}.
+Ваш новый пароль для входа в систему: {NewPassword}
 С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
 $lang['NewPasswordRequestSubject'] = "Ваш новый пароль";
 
