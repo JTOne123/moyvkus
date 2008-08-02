@@ -56,6 +56,28 @@ $lang['NewPasswordRequestMessage'] = "Уважаемый пользователь {UserFullName},
 С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
 $lang['NewPasswordRequestSubject'] = "Ваш новый пароль";
 
+
+$lang['NewMessageSubject']="Пользователь {UserFrom} оставил(а) Вам новое личное сообщение";
+$lang['NewMessageText']="{ToUserFullName},
+Вы получили новое личное сообщение.
+Просмотреть Ваши новые личные сообщения можно на странице: http://www.moyvkus.ru/mymessages
+С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+
+$lang['NewFriendSubject']="Пользователь {UserFrom} хочет добавить Вас в друзья";
+$lang['NewMessageText']="{ToUserFullName},
+Вы получили новый запрос на дружбу.
+Просмотреть список Ваших друзей и добавить новых можно на странице: http://www.moyvkus.ru/myfriends
+С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+
+
+$lang['NewCommentSubject']="Пользователь {UserFrom} оставил комментарий к Вашему рецепту";
+$lang['NewCommentText']="{ToUserFullName},
+К Вашему рецепту оставили новый комментарий.
+Просмотреть рецепт и комментарии к нему можно на странице: http://www.moyvkus.ru/view_recipe/id/{RecipeID}
+С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+
+
+
 										
 //Profile
 $lang['Prifile'] = "Профайл";

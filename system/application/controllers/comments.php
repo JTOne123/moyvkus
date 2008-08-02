@@ -8,7 +8,9 @@ class Comments extends Controller {
 
 		$this->load->library('validation');
 		$this->load->library('comments_management');
+		$this->load->library('receipes_management');
 		$this->load->library('user_managment');
+		$this->load->library('notification');
 	}
 
 	function _remap($method) {
@@ -84,6 +86,12 @@ class Comments extends Controller {
 		if ($this->validation->run() !== FALSE)
 		{
 			$this->comments_management->SaveComment($comment, $recipe_id, $user_id);
+			$author_id = $this->receipes_management->GetAuthorIdByRecipeId($recipe_id);
+			
+			if($author_id!=$user_id)
+			{
+			$this->notification->new_comment($author_id, $user_id, $recipe_id);
+			}
 			
 			redirect('view_recipe/id/'.$recipe_id.'#comments', 'refresh');
 		}

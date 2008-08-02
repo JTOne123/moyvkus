@@ -9,6 +9,7 @@ class Send_Message extends Controller {
 		$this->load->library('user_managment');
 		$this->load->library('message');
 		$this->load->library('my_friends_lib');
+		$this->load->library('notification');
 		
 		$this->load->helper('typography');
 		$this->load->library('validation');
@@ -122,6 +123,8 @@ class Send_Message extends Controller {
 				$txtText = $this->input->post('txtText');
 				
 				$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
+				$this->notification->new_massage($send_to_id, $user_id);
+				
 				
 				$answer_message_id = $this->uri->segment(7);
 				

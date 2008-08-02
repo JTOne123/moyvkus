@@ -197,6 +197,7 @@ class MessageBox extends Controller {
 					$friend_id = $this->uri->segment(5);
 					$user_id = $this->user_authorization->get_loged_on_user_id();
 					$this->my_friends_lib->AddFriend($user_id, $friend_id);
+					$this->notification->new_friend($friend_id, $user_id);
 					redirect('/myfriends/id/' . $user_id, 'refresh');
 					
 					break;
