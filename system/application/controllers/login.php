@@ -26,6 +26,7 @@ class Login extends Controller {
 	    $data['forgot_password'] = $this->lang->line('forgot_password');
 		$data['ForgetPasswordUrl'] = base_url() . 'forget_password/';
 	    $data['checkbox_remember'] = $this->lang->line('checkbox_remember');
+	    $data['login_text'] = $this->lang->line('login_text');
 	    
 	    ///валидатор
 		$rules['emailLogin'] = "required|min_length[6]|max_length[100]|valid_email|callback_check_mail";

@@ -18,6 +18,7 @@ $lang['captcha'] = "Код на картинке";
 $lang['log_in'] = "Войти";
 $lang['forgot_password'] = "забыли пароль?";
 $lang['checkbox_remember'] = "запомнить меня";
+$lang['login_text'] = "Для входа в систему, необходимо авторизироваться:";
 
 
 

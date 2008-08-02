@@ -1,81 +1,80 @@
 <script src="<?=$baseurl?>js/prototype.js"></script>
 
 <script>
-	function ajax_vote(marker, recipe_id)
+function ajax_vote(marker, recipe_id)
+{
+	//var country = escape($F("SelectCountry"));
+	var url = '<?=$baseurl?>ratings/act';
+	var pars = {marker: marker, recipe_id:recipe_id};
+	var myAjax = new Ajax.Request(
+	url,
 	{
-		//var country = escape($F("SelectCountry"));
-		var url = '<?=$baseurl?>ratings/act';
-		var pars = {marker: marker, recipe_id:recipe_id};
-		var myAjax = new Ajax.Request(
-					url, 
-					 {
-						method: 'post', 
-						parameters: pars, 
-						onComplete: showResponse
-					 }
-					);
-	
-	 function showResponse(originalRequest)
+		method: 'post',
+		parameters: pars,
+		onComplete: showResponse
+	}
+	);
+
+	function showResponse(originalRequest)
 	{
 		var returned = originalRequest.responseText;
 		$(recipe_id).update(returned).addClassName('highlight')
-	}		
 	}
-		
+}
 </script>
 
 <script language="javascript" type="text/javascript">
-    
-	function ShowFullSizePhotoDiv(show, e)
-	{
-				
-	var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
-	
-	if (document.all) 
-		{
-			X = event.clientX;
-			Y = event.clientY;
-		}
-	else 
-		{
-			X = e.pageX + "px";
-			Y = e.pageY + "px";
-		}
 
-		if(show == 1)
-			{
-				FullSizePhotoDiv.style.left = X;
-				FullSizePhotoDiv.style.top = Y;
-				
-				FullSizePhotoDiv.style.display = "block";
-				
-			}
-		else
-			{
-				setTimeout("hideFullSizePhotoDiv()", 1000);
-			}
-		
-	}
-	
-	function hideFullSizePhotoDiv()
+function ShowFullSizePhotoDiv(show, e)
+{
+
+	var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
+
+	if (document.all)
 	{
-		var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
-		FullSizePhotoDiv.style.display = "none";
+		X = event.clientX;
+		Y = event.clientY;
 	}
-	
-	function showYourCommentDiv()
+	else
 	{
-		var FullSizePhotoDiv = document.getElementById("YourCommentDiv");
+		X = e.pageX + "px";
+		Y = e.pageY + "px";
+	}
+
+	if(show == 1)
+	{
+		FullSizePhotoDiv.style.left = X;
+		FullSizePhotoDiv.style.top = Y;
+
 		FullSizePhotoDiv.style.display = "block";
+
 	}
-	
-	window.onload = function() {
-    addButton("btnAddComment" ,"vgViewRecipe");
+	else
+	{
+		setTimeout("hideFullSizePhotoDiv()", 1000);
+	}
+
+}
+
+function hideFullSizePhotoDiv()
+{
+	var FullSizePhotoDiv = document.getElementById("FullSizePhotoDiv");
+	FullSizePhotoDiv.style.display = "none";
+}
+
+function showYourCommentDiv()
+{
+	var FullSizePhotoDiv = document.getElementById("YourCommentDiv");
+	FullSizePhotoDiv.style.display = "block";
+}
+
+window.onload = function() {
+	addButton("btnAddComment" ,"vgViewRecipe");
 
 	addValidatorRegEx("comment", "errorDivComment", "^.{5,1500}$", "vgViewRecipe");
 
-    addSubmitButton("lnkAddComment", "vgViewRecipe");
-	}
+	addSubmitButton("lnkAddComment", "vgViewRecipe");
+}
 
 </script>
 
@@ -160,6 +159,11 @@
                                                 </td>
                                                 <td>
                                                   <a href="#"><img src="{DownArrowImgUrl}" onclick="ajax_vote('-', '{recipe_id}')" class="ArrowImgLink"/></a>
+                                                </td>
+                                                <td class="separatorTD">
+                                                </td>
+                                                <td>
+                                                  <a href="/favorites/add/id/{recipe_id}"><img src="{AddFavImgUrl}" class="ArrowImgLink"/></a>
                                                 </td>
                                             </tr>
                                         </table>

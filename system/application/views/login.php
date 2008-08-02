@@ -11,6 +11,8 @@
     }
     </script>
 
+    {login_text} <p>
+    
     <div id="login" class="LoginMainDiv">
         <form id="LoginForm" method="POST" action="/login/">
             <div class="Login">

@@ -526,10 +526,15 @@ a
 	text-align: left;
 }
 
-.InvateMainTable, .ViewRecipeTableArrow
+.InvateMainTable
 {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.ViewRecipeTableArrow
+{
+	margin-left: auto;
 }
 
 /* Message */
@@ -886,4 +891,9 @@ ut .NoteSearchWidth
 	font-size: 14px;
 	line-height: 16px;
 	color: #3b5998;
+}
+
+.separatorTD
+{
+width:50px;
 }
