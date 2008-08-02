@@ -16,7 +16,7 @@ class MessageBox extends Controller {
 	
 	function _remap($method) {
 		//ñòğàíèöû, äîñòóïíûå áåç àâòîğèçàöèè
-		$allowedPages = array();
+		$allowedPages = array('index');
 		$pars = $this->uri->segment_array();
 		unset($pars[1]);
 		unset($pars[2]);

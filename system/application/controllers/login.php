@@ -54,7 +54,7 @@ class Login extends Controller {
 			}
 			
 			$this->user_authorization->login($email, $checkbox_remember);
-			redirect('/main/', 'refresh');
+			redirect('/profile/', 'refresh');
 			//$data['body'] = 'run';
 			$FormBuild=0;
 		}
