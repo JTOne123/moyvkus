@@ -49,8 +49,7 @@
 			<td align="center" class="About">
 				<br/>
 				<br/>
-				(c)&nbsp;<a id="firstAuthorLink"></a>&nbsp;|&nbsp;
-				<a id="secondAuthorLink"></a>&nbsp;2008
+				(c)&nbsp;<a id="firstAuthorLink"></a>&nbsp;|&nbsp;<a id="secondAuthorLink"></a>&nbsp;2008
 			</td>
 		</tr>
 		<tr>
@@ -63,32 +62,32 @@
 
     <script language="javascript" type="text/javascript">
 
-		var firstAuthorLink = document.getElementById('firstAuthorLink');
-		var secondAuthorLink = document.getElementById('secondAuthorLink');
+    var firstAuthorLink = document.getElementById('firstAuthorLink');
+    var secondAuthorLink = document.getElementById('secondAuthorLink');
 
-		var DatsyukName = "Дацюк Павел";
-		var DatsyukId = 2;
-		
-		var VerbovskyName = "Вербовский Александр";
-		var VerbovskyId = 1;
-		
-		if(Math.random()<0.5)
-		{
-			firstAuthorLink.innerHTML = DatsyukName;
-			secondAuthorLink.innerHTML = VerbovskyName;
+    var DatsyukName = "Дацюк Павел";
+    var DatsyukId = 2;
 
-			firstAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
-			secondAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
-		}
-		else
-		{
-			firstAuthorLink.innerHTML = VerbovskyName;
-			secondAuthorLink.innerHTML = DatsyukName;
+    var VerbovskyName = "Вербовский Александр";
+    var VerbovskyId = 1;
 
-			firstAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
-			secondAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
-		}
-	
+    if(Math.random()<0.5)
+    {
+    	firstAuthorLink.innerHTML = DatsyukName;
+    	secondAuthorLink.innerHTML = VerbovskyName;
+
+    	firstAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
+    	secondAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
+    }
+    else
+    {
+    	firstAuthorLink.innerHTML = VerbovskyName;
+    	secondAuthorLink.innerHTML = DatsyukName;
+
+    	firstAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
+    	secondAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
+    }
+
     </script>
 	
 </html>
