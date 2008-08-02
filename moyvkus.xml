@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <icons>
-  <icon image="/images/pictures/pizza.gif" titre="Пицца" desc="�?тальянская кухня"/>
+  <icon image="images/pictures/pizza.gif" titre="Пицца" desc="�?тальянская кухня"/>
   <icon image="images/pictures/sushi.gif" titre="Суши" desc="Японская кухня"/>
   <icon image="images/pictures/borsh.gif" titre="Борщ украинский" desc="Украинская кухня"/>
   <icon image="images/pictures/pelmeni.gif" titre="Пельмени" desc="Русская кухня"/>
