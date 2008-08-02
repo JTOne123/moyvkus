@@ -15,7 +15,9 @@ class User_authorization {
 	
 	function login($email, $remember_me)
 	{
-		$this->ci->session->sess_destroy(); //очищаем юзера от текущих сессий
+		//$this->ci->session->sess_destroy(); //очищаем юзера от текущих сессий
+		$this->logout();
+		
 		$this->ci->session->sess_create();  //создаем сессию
 
 		$id_of_user_by_email=$this->ci->user_managment->GetUserInfoByEmail($email)->id;
