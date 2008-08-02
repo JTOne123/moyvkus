@@ -160,7 +160,7 @@ class View_recipe extends Controller {
 				$data['ButtonEdit'] = $this->receipes_management->ButtonEdit();
 				$data['EditRecipe'] = $this->lang->line('Edit');
 				$data['EditRecipeUrl'] = '/edit_recipe/id/'.$recipe_id_from_uri;
-				$data['AddFavImgUrl'] = '';
+				$data['AddFavImgUrl'] = '/images/pix.png';
 			}
 			else
 			{

@@ -101,7 +101,7 @@ class Notification {
 		$this->ci->email->send();
 	}
 	//****
-	function new_massage($to_user_id, $from_user_id)
+	function new_message($to_user_id, $from_user_id)
 	{
 		$to_user = $this->ci->user_managment->GetUser($to_user_id);
 		$from_user = $this->ci->user_managment->GetUser($from_user_id);

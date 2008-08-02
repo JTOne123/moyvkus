@@ -123,7 +123,7 @@ class Send_Message extends Controller {
 				$txtText = $this->input->post('txtText');
 				
 				$this->message->SendMessage($user_id, $send_to_id, $txtSubject, $txtText);
-				$this->notification->new_massage($send_to_id, $user_id);
+				$this->notification->new_message($send_to_id, $user_id);
 				
 				
 				$answer_message_id = $this->uri->segment(7);

@@ -65,7 +65,7 @@ $lang['NewMessageText']="{ToUserFullName},
 С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
 $lang['NewFriendSubject']="Пользователь {UserFrom} хочет добавить Вас в друзья";
-$lang['NewMessageText']="{ToUserFullName},
+$lang['NewFriendText']="{ToUserFullName},
 Вы получили новый запрос на дружбу.
 Просмотреть список Ваших друзей и добавить новых можно на странице: http://www.moyvkus.ru/myfriends
 С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";

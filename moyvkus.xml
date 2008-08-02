@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<icons>
+  <icon image="/images/pictures/pizza.gif" titre="Пицца" desc="�?тальянская кухня"/>
+  <icon image="images/pictures/sushi.gif" titre="Суши" desc="Японская кухня"/>
+  <icon image="images/pictures/borsh.gif" titre="Борщ украинский" desc="Украинская кухня"/>
+  <icon image="images/pictures/pelmeni.gif" titre="Пельмени" desc="Русская кухня"/>
+  <icon image="images/pictures/logo.gif" titre="Мой Вкус" desc="http://www.moyvkus.ru"/>
+  <icon image="images/pictures/chili.gif" titre="Чесночный суп" desc="�?спанская кухня"/>
+  <icon image="images/pictures/ylitka.gif" titre="Улитки по-бургундски" desc="Французская кухня"/>
+  <icon image="images/pictures/gluehwein.gif" titre="Глинтвейн" desc="Немецкая  кухня"/>
+  <icon image="images/pictures/pahlava.gif" titre="Пахлава" desc="Турецкая кухня"/>
+  <icon image="images/pictures/gamburger.gif" titre="Гамбургер" desc="Американская  кухня"/>
+</icons>
