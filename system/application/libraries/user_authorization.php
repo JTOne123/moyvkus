@@ -38,12 +38,14 @@ class User_authorization {
 		'name'   => 'userid',
 		'value'  => $id_of_user_by_email,
 		'expire' => $expire_time_for_cookies,
+		'domain' => base_url(),
 		);
 		
 		$new_cookie_data_PASSWORD = array(
 		'name'   => 'userpassword',
 		'value'  => $password_of_user_by_email_md5,
 		'expire' => $expire_time_for_cookies,
+		'domain' => base_url(),
 		);
 		
 		
@@ -76,10 +78,11 @@ class User_authorization {
 	//LogOff
 	function logout()
 	{
-		//убиваем куки
-		delete_cookie('userid');
-		delete_cookie('userpassword');
-		delete_cookie('ci_session');
+		//убиваем куки		
+		delete_cookie('userid', base_url());
+		delete_cookie('userpassword', base_url());
+		
+		//delete_cookie('ci_session');
 
 		//убиваем сессию
 		$this->ci->session->sess_destroy();

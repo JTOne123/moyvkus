@@ -9,7 +9,11 @@ class Main extends Controller {
 		$this->load->model('best_recipes');
 	}
 	
-	function _remap($method) {
+/*	function _remap($method) {
+		
+	    if($this->user_authorization->is_logged_in() == true)
+		redirect('/profile/', 'refresh');	
+		
 		//страницы, доступные без авторизации
 		$allowedPages = array('index');
 		$pars = $this->uri->segment_array();
@@ -23,11 +27,18 @@ class Main extends Controller {
 		}
 		else 
 			redirect('/login/', 'refresh');	
-	}
+	} */
 	
 	
 	function index()
 	{
+	    
+	    if($this->user_authorization->is_logged_in() == true)
+	    {
+		redirect('/profile/', 'refresh');
+	    }
+	    
+	    
 		$data = $this->_load_headers();
 		
 		$data = $this->_load_resource($data);

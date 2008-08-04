@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -308,7 +308,7 @@ class CI_Output {
 		fwrite($fp, $expire.'TS--->'.$output);
 		flock($fp, LOCK_UN);
 		fclose($fp);
-		@chmod($cache_path, 0777);
+		@chmod($cache_path, DIR_WRITE_MODE);
 
 		log_message('debug', "Cache file written: ".$cache_path);
 	}
@@ -321,10 +321,8 @@ class CI_Output {
 	 * @access	public
 	 * @return	void
 	 */	
-	function _display_cache(&$CFG, &$RTR)
+	function _display_cache(&$CFG, &$URI)
 	{
-		$URI =& load_class('URI');
-	
 		$cache_path = ($CFG->item('cache_path') == '') ? BASEPATH.'cache/' : $CFG->item('cache_path');
 			
 		if ( ! is_dir($cache_path) OR ! is_really_writable($cache_path))
@@ -383,4 +381,6 @@ class CI_Output {
 
 }
 // END Output Class
-?>
+
+/* End of file Output.php */
+/* Location: ./system/libraries/Output.php */

@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -108,14 +108,17 @@ class CI_Language {
 	 * Fetch a single line of text from the language array
 	 *
 	 * @access	public
-	 * @param	string	the language line
+	 * @param	string	$line 	the language line
 	 * @return	string
 	 */
 	function line($line = '')
 	{
-		return ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
+		$line = ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
+		return $line;
 	}
 
 }
 // END Language Class
-?>
+
+/* End of file Language.php */
+/* Location: ./system/libraries/Language.php */

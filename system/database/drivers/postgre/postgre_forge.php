@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -134,13 +134,21 @@ class CI_DB_postgre_forge extends CI_DB_forge {
 			$primary_keys = $this->db->_protect_identifiers($primary_keys);
 			$sql .= ",\n\tPRIMARY KEY (" . implode(', ', $primary_keys) . ")";
 		}
-
+		
 		if (is_array($keys) && count($keys) > 0)
 		{
-			$keys = $this->db->_protect_identifiers($keys);
 			foreach ($keys as $key)
 			{
-				$sql .= ",\n\tFOREIGN KEY ($key)";
+				if (is_array($key))
+				{
+					$key = $this->db->_protect_identifiers($key);	
+				}
+				else
+				{
+					$key = array($this->db->_protect_identifiers($key));
+				}
+				
+				$sql .= ",\n\tFOREIGN KEY (" . implode(', ', $key) . ")";
 			}
 		}
 
@@ -215,5 +223,26 @@ class CI_DB_postgre_forge extends CI_DB_forge {
 		
 	}
 
+	// --------------------------------------------------------------------
+
+	/**
+	 * Rename a table
+	 *
+	 * Generates a platform-specific query so that a table can be renamed
+	 *
+	 * @access	private
+	 * @param	string	the old table name
+	 * @param	string	the new table name
+	 * @return	string
+	 */
+	function _rename_table($table_name, $new_table_name)
+	{
+		$sql = 'ALTER TABLE '.$this->db->_protect_identifiers($table_name)." RENAME TO ".$this->db->_protect_identifiers($new_table_name);
+		return $sql;
+	}
+
+
 }
-?>
+
+/* End of file postgre_forge.php */
+/* Location: ./system/database/drivers/postgre/postgre_forge.php */

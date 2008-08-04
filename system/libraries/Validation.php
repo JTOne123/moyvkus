@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -117,7 +117,7 @@ class CI_Validation {
 			if ($rules == '')
 				return;
 				
-			$data[$data] = $rules;
+			$data = array($data => $rules);
 		}
 	
 		foreach ($data as $key => $val)
@@ -402,6 +402,7 @@ class CI_Validation {
 	 *
 	 * @access	public
 	 * @param	string
+	 * @param	field
 	 * @return	bool
 	 */
 	function matches($str, $field)
@@ -421,6 +422,7 @@ class CI_Validation {
 	 *
 	 * @access	public
 	 * @param	string
+	 * @param	value
 	 * @return	bool
 	 */	
 	function min_length($str, $val)
@@ -440,6 +442,7 @@ class CI_Validation {
 	 *
 	 * @access	public
 	 * @param	string
+	 * @param	value
 	 * @return	bool
 	 */	
 	function max_length($str, $val)
@@ -459,6 +462,7 @@ class CI_Validation {
 	 *
 	 * @access	public
 	 * @param	string
+	 * @param	value
 	 * @return	bool
 	 */	
 	function exact_length($str, $val)
@@ -483,6 +487,33 @@ class CI_Validation {
 	function valid_email($str)
 	{
 		return ( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+	}
+
+	// --------------------------------------------------------------------
+	
+	/**
+	 * Valid Emails
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	bool
+	 */	
+	function valid_emails($str)
+	{
+		if (strpos($str, ',') === FALSE)
+		{
+			return $this->valid_email(trim($str));
+		}
+		
+		foreach(explode(',', $str) as $email)
+		{
+			if (trim($email) != '' && $this->valid_email(trim($email)) === FALSE)
+			{
+				return FALSE;
+			}
+		}
+		
+		return TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -699,6 +730,8 @@ class CI_Validation {
 			{
 				$data[$key] = $this->prep_for_form($val);
 			}
+			
+			return $data;
 		}
 		
 		if ($this->_safe_form_data == FALSE OR $data == '')
@@ -778,4 +811,6 @@ class CI_Validation {
 
 }
 // END Validation Class
-?>
+
+/* End of file Validation.php */
+/* Location: ./system/libraries/Validation.php */

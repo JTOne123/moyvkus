@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -36,9 +36,6 @@ class CI_Log {
 	 * Constructor
 	 *
 	 * @access	public
-	 * @param	string	the log file path
-	 * @param	string	the error threshold
-	 * @param	string	the date formatting codes
 	 */
 	function CI_Log()
 	{
@@ -94,10 +91,10 @@ class CI_Log {
 		
 		if ( ! file_exists($filepath))
 		{
-			$message .= "<"."?php  if (!defined('BASEPATH')) exit('No direct script access allowed'); ?".">\n\n";
+			$message .= "<"."?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?".">\n\n";
 		}
 			
-		if ( ! $fp = @fopen($filepath, "a"))
+		if ( ! $fp = @fopen($filepath, FOPEN_WRITE_CREATE))
 		{
 			return FALSE;
 		}
@@ -109,10 +106,12 @@ class CI_Log {
 		flock($fp, LOCK_UN);
 		fclose($fp);
 	
-		@chmod($filepath, 0666); 		
+		@chmod($filepath, FILE_WRITE_MODE); 		
 		return TRUE;
 	}
 
 }
 // END Log Class
-?>
+
+/* End of file Log.php */
+/* Location: ./system/libraries/Log.php */

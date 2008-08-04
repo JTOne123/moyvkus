@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -53,40 +53,16 @@ class CI_DB_mysqli_forge extends CI_DB_forge {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Drop Table
+	 * Process Fields
 	 *
 	 * @access	private
-	 * @return	bool
+	 * @param	mixed	the fields
+	 * @return	string
 	 */
-	function _drop_table($table)
+	function _process_fields($fields)
 	{
-		return "DROP TABLE IF EXISTS ".$this->db->_escape_table($table);
-	}
-
-	// --------------------------------------------------------------------
-
-	/**
-	 * Create Table
-	 *
-	 * @access	private
-	 * @param	string	the table name
-	 * @param	array	the fields
-	 * @param	mixed	primary key(s)
-	 * @param	mixed	key(s)
-	 * @param	boolean	should 'IF NOT EXISTS' be added to the SQL
-	 * @return	bool
-	 */
-	function _create_table($table, $fields, $primary_keys, $keys, $if_not_exists)
-	{
-		$sql = 'CREATE TABLE ';
-		
-		if ($if_not_exists === TRUE)
-		{
-			$sql .= 'IF NOT EXISTS ';
-		}
-		
-		$sql .= $this->db->_escape_table($table)." (";
 		$current_field_count = 0;
+		$sql = '';
 
 		foreach ($fields as $field=>$attributes)
 		{
@@ -102,8 +78,16 @@ class CI_DB_mysqli_forge extends CI_DB_forge {
 				$attributes = array_change_key_case($attributes, CASE_UPPER);
 				
 				$sql .= "\n\t".$this->db->_protect_identifiers($field);
+
+				if (array_key_exists('NAME', $attributes))
+				{
+					$sql .= ' '.$this->db->_protect_identifiers($attributes['NAME']).' ';
+				}
 				
-				$sql .=  ' '.$attributes['TYPE'];
+				if (array_key_exists('TYPE', $attributes))
+				{
+					$sql .=  ' '.$attributes['TYPE'];
+				}
 	
 				if (array_key_exists('CONSTRAINT', $attributes))
 				{
@@ -120,13 +104,9 @@ class CI_DB_mysqli_forge extends CI_DB_forge {
 					$sql .= ' DEFAULT \''.$attributes['DEFAULT'].'\'';
 				}
 	
-				if (array_key_exists('NULL', $attributes) && $attributes['NULL'] === TRUE)
+				if (array_key_exists('NULL', $attributes))
 				{
-					$sql .= ' NULL';
-				}
-				else
-				{
-					$sql .= ' NOT NULL';			
+					$sql .= ($attributes['NULL'] === TRUE) ? ' NULL' : ' NOT NULL';
 				}
 	
 				if (array_key_exists('AUTO_INCREMENT', $attributes) && $attributes['AUTO_INCREMENT'] === TRUE)
@@ -141,25 +121,78 @@ class CI_DB_mysqli_forge extends CI_DB_forge {
 				$sql .= ',';
 			}
 		}
+		
+		return $sql;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Create Table
+	 *
+	 * @access	private
+	 * @param	string	the table name
+	 * @param	mixed	the fields
+	 * @param	mixed	primary key(s)
+	 * @param	mixed	key(s)
+	 * @param	boolean	should 'IF NOT EXISTS' be added to the SQL
+	 * @return	bool
+	 */
+	function _create_table($table, $fields, $primary_keys, $keys, $if_not_exists)
+	{
+		$sql = 'CREATE TABLE ';
+		
+		if ($if_not_exists === TRUE)
+		{
+			$sql .= 'IF NOT EXISTS ';
+		}
+		
+		$sql .= $this->db->_escape_table($table)." (";
+
+		$sql .= $this->_process_fields($fields);
 
 		if (count($primary_keys) > 0)
 		{
+			$key_name = $this->db->_protect_identifiers(implode('_', $primary_keys));
 			$primary_keys = $this->db->_protect_identifiers($primary_keys);
-			$sql .= ",\n\tPRIMARY KEY (" . implode(', ', $primary_keys) . ")";
+			$sql .= ",\n\tPRIMARY KEY ".$key_name." (" . implode(', ', $primary_keys) . ")";
 		}
 
 		if (is_array($keys) && count($keys) > 0)
 		{
-			$keys = $this->db->_protect_identifiers($keys);
 			foreach ($keys as $key)
 			{
-				$sql .= ",\n\tKEY ($key)";
+				if (is_array($key))
+				{
+					$key_name = $this->db->_protect_identifiers(implode('_', $key));
+					$key = $this->db->_protect_identifiers($key);	
+				}
+				else
+				{
+					$key_name = $this->db->_protect_identifiers($key);
+					$key = array($key_name);
+				}
+				
+				$sql .= ",\n\tKEY {$key_name} (" . implode(', ', $key) . ")";
 			}
 		}
 
 		$sql .= "\n) DEFAULT CHARACTER SET {$this->db->char_set} COLLATE {$this->db->dbcollat};";
 
 		return $sql;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Drop Table
+	 *
+	 * @access	private
+	 * @return	string
+	 */
+	function _drop_table($table)
+	{
+		return "DROP TABLE IF EXISTS ".$this->db->_escape_table($table);
 	}
 
 	// --------------------------------------------------------------------
@@ -173,45 +206,49 @@ class CI_DB_mysqli_forge extends CI_DB_forge {
 	 * @access	private
 	 * @param	string	the ALTER type (ADD, DROP, CHANGE)
 	 * @param	string	the column name
-	 * @param	string	the table name
-	 * @param	string	the column definition
-	 * @param	string	the default value
-	 * @param	boolean	should 'NOT NULL' be added
+	 * @param	array	fields
 	 * @param	string	the field after which we should add the new field
 	 * @return	object
 	 */
-	function _alter_table($alter_type, $table, $column_name, $column_definition = '', $default_value = '', $null = '', $after_field = '')
+	function _alter_table($alter_type, $table, $fields, $after_field = '')
 	{
-		$sql = 'ALTER TABLE '.$this->db->_protect_identifiers($table)." $alter_type ".$this->db->_protect_identifiers($column_name);
+		$sql = 'ALTER TABLE '.$this->db->_protect_identifiers($table)." $alter_type ";
 
 		// DROP has everything it needs now.
 		if ($alter_type == 'DROP')
 		{
-			return $sql;
+			return $sql.$this->db->_protect_identifiers($fields);
 		}
 
-		$sql .= " $column_definition";
-
-		if ($default_value != '')
-		{
-			$sql .= " DEFAULT \"$default_value\"";
-		}
-
-		if ($null === NULL)
-		{
-			$sql .= ' NULL';
-		}
-		else
-		{
-			$sql .= ' NOT NULL';
-		}
+		$sql .= $this->_process_fields($fields);
 
 		if ($after_field != '')
 		{
 			$sql .= ' AFTER ' . $this->db->_protect_identifiers($after_field);
 		}
 		
-		return $sql;		
+		return $sql;
 	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Rename a table
+	 *
+	 * Generates a platform-specific query so that a table can be renamed
+	 *
+	 * @access	private
+	 * @param	string	the old table name
+	 * @param	string	the new table name
+	 * @return	string
+	 */
+	function _rename_table($table_name, $new_table_name)
+	{
+		$sql = 'ALTER TABLE '.$this->db->_protect_identifiers($table_name)." RENAME TO ".$this->db->_protect_identifiers($new_table_name);
+		return $sql;
+	}
+
 }
-?>
+
+/* End of file mysqli_forge.php */
+/* Location: ./system/database/drivers/mysqli/mysqli_forge.php */

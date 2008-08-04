@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -135,10 +135,21 @@ class CI_DB_oci8_forge extends CI_DB_forge {
 			$sql .= ",\n\tPRIMARY KEY (" . implode(', ', $primary_keys) . ")";
 		}
 
-		if (count($keys) > 0)
+		if (is_array($keys) && count($keys) > 0)
 		{
-			$keys = $this->db->_protect_identifiers($keys);
-			$sql .= ",\n\tUNIQUE COLUMNS (" . implode(', ', $keys) . ")";
+			foreach ($keys as $key)
+			{
+				if (is_array($key))
+				{
+					$key = $this->db->_protect_identifiers($key);	
+				}
+				else
+				{
+					$key = array($this->db->_protect_identifiers($key));
+				}
+				
+				$sql .= ",\n\tUNIQUE COLUMNS (" . implode(', ', $key) . ")";
+			}
 		}
 		
 		$sql .= "\n)";
@@ -212,5 +223,26 @@ class CI_DB_oci8_forge extends CI_DB_forge {
 		
 	}
 
+	// --------------------------------------------------------------------
+
+	/**
+	 * Rename a table
+	 *
+	 * Generates a platform-specific query so that a table can be renamed
+	 *
+	 * @access	private
+	 * @param	string	the old table name
+	 * @param	string	the new table name
+	 * @return	string
+	 */
+	function _rename_table($table_name, $new_table_name)
+	{
+		$sql = 'ALTER TABLE '.$this->db->_protect_identifiers($table_name)." RENAME TO ".$this->db->_protect_identifiers($new_table_name);
+		return $sql;
+	}
+
+
 }
-?>
+
+/* End of file oci8_forge.php */
+/* Location: ./system/database/drivers/oci8/oci8_forge.php */
