@@ -816,7 +816,6 @@ ut .NoteSearchWidth
 {
 	width: 425px;
 	height: 355px;
-	background-color: black;
 	color: white;
 	margin-top: 10px;
 }
@@ -896,4 +895,11 @@ ut .NoteSearchWidth
 .separatorTD
 {
 width:50px;
+}
+
+
+.LoginMessage
+{
+font-size:14px;
+line-height:16px;color:gray;
 }

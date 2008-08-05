@@ -93,8 +93,8 @@ class Get_Message extends Controller {
 				$friend = $this->user_managment->GetUser($message->from_id);
 				$friend_data = $this->user_managment->GetUserData($message->from_id);
 
-				$data['UserFullName'] = $user->first_name . ' ' . $user->last_name;
-				$data['FriendFullName'] = $friend->first_name . ' ' . $friend->last_name;
+				$data['UserFullName'] = $friend->first_name . ' ' . $friend->last_name;
+				$data['FriendFullName'] = $user->first_name . ' ' . $user->last_name;
 				$data['SubjectValue'] = $message->subject;
 				
 				$return_str = '';
