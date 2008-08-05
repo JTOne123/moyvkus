@@ -7,27 +7,9 @@ class Main extends Controller {
 		parent::Controller();
 		$this->load->model('register_form');
 		$this->load->model('best_recipes');
+		$this->load->library('user_managment');
+		$this->load->library('receipes_management');
 	}
-	
-/*	function _remap($method) {
-		
-	    if($this->user_authorization->is_logged_in() == true)
-		redirect('/profile/', 'refresh');	
-		
-		//страницы, доступные без авторизации
-		$allowedPages = array('index');
-		$pars = $this->uri->segment_array();
-		unset($pars[1]);
-		unset($pars[2]);
-		
-		
-		if (($method != null) &&
-				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
-			call_user_func_array(array($this, $method), $pars);
-		}
-		else 
-			redirect('/login/', 'refresh');	
-	} */
 	
 	
 	function index()
@@ -81,6 +63,10 @@ class Main extends Controller {
 		$data['SimpleSearchDescriptionRecipies'] = $this->lang->line('SimpleSearchDescriptionRecipies');
 		
 		$data['LittleDescription'] = $this->lang->line('LittleDescription');
+		$data['population'] = $this->lang->line('population').': '.$this->user_managment->GetNumberOfUsers();
+		$data['number_of_recipes'] = $this->lang->line('number_of_recipes').': '.$this->receipes_management->GetNumberOfRecipes();
+		
+		
 
 		return $data;
 	}

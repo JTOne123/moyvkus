@@ -903,3 +903,11 @@ width:50px;
 font-size:14px;
 line-height:16px;color:gray;
 }
+
+.Statistic
+{
+font-size:18px;
+line-height:16px;
+color:gray;
+vertical-align: top;
+}

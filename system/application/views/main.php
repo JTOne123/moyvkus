@@ -156,8 +156,11 @@ else
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td class="Statistic">
 							<img src="../../images/logo320x100.gif"/>
+							{population}
+							<br>
+							{number_of_recipes}
 						</td>
 					</tr>
 				</table>

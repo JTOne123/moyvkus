@@ -190,5 +190,11 @@ class User_managment {
 		}
 		return $return_value;
 	}
+	
+	function GetNumberOfUsers()
+	{
+		$query = $this->ci->db->query("SELECT id FROM users");
+		return $query->num_rows();
+	}
 }
 ?>
