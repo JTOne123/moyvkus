@@ -100,7 +100,10 @@ class Profile extends Controller {
 		$user_id = $this->user_authorization->get_loged_on_user_id();
 		
 		if($user_id_from_uri == false) 
+		{
 			$user_id_from_uri = $user_id;
+			redirect('profile/id/'.$user_id, 'refresh');
+		}
 		
 		$user_id_to_view = $user_id;
 		
@@ -109,8 +112,9 @@ class Profile extends Controller {
 			if($this->user_managment->IsUserExists_by_id($user_id_from_uri) === true)
 				$user_id_to_view = $user_id_from_uri; 
 			else 
-				redirect('profile', 'refresh');
+				redirect('profile/id/'.$user_id_to_view, 'refresh');
 		}
+		
 		
 		//Показывать ли ссылки
 		if($user_id_to_view === $user_id)
@@ -254,9 +258,9 @@ class Profile extends Controller {
 			$data['Recommend_recipes'] = $this->Recommend->Build($user_id_to_view);
 			
 			if($user_data->avatar_name != null)
-				$data['AvatarUrl'] = '/uploads/user_avatars/'.$user_data->avatar_name;
+				$data['AvatarUrl'] = base_url().'/uploads/user_avatars/'.$user_data->avatar_name;
 			else
-				$data['AvatarUrl'] = "../../images/noavatar.gif";
+				$data['AvatarUrl'] = base_url()."images/noavatar.gif";
 			
 			
 		}
@@ -267,7 +271,7 @@ class Profile extends Controller {
 			$data['Activities'] = "";
 			$data['Interests'] = "";
 			$data['About'] = "";
-			$data['AvatarUrl'] = "../../images/noavatar.gif";
+			$data['AvatarUrl'] = base_url()."images/noavatar.gif";
 			
 		}
 		

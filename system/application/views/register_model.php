@@ -1,6 +1,5 @@
     <div style="width: 100%; height: 100%; display: inline;">
         <!--Содержимое этой дивки и есть регистрация-->
-<script src="<?=$baseurl?>js/prototype.js"></script>
 
         <div id="Registration" class="Registration">
         <form method="POST" action="<?=base_url()?>register" id="RegistForm">
@@ -21,7 +20,7 @@
                             {first_name}
                         </td>
                         <td>
-                            <input id="first_name" name="first_name" value="" type="text" class="Registration_input" onClick="ajax_request(true)" />
+                            <input id="first_name" name="first_name" value="" type="text" class="Registration_input"/>
 						</td>
                     </tr>
                     <tr>
@@ -45,7 +44,7 @@
                             {password}
                         </td>
                         <td>
-                            <input id="password" name="password" " value="" type="password" class="Registration_input" onClick="ajax_request(true)"/>
+                            <input id="password" name="password" " value="" type="password" class="Registration_input"/>
                         </td>
                     </tr>
                     <tr>
