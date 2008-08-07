@@ -55,11 +55,11 @@ $lang['InviteEmailMessage'] = "Уважаемый {InvetedUserFullName}<br/>
 <br/>
 Если вы не хотите участвовать в проекте или вы не знакомы с данным пользователем, просто удалите это письмо.
 <br/>
-С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
 $lang['NewPasswordRequestMessage'] = "Уважаемый пользователь {UserFullName}, 
 Ваш новый пароль для входа в систему: {NewPassword}
-С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 $lang['NewPasswordRequestSubject'] = "Ваш новый пароль";
 
 
@@ -67,20 +67,20 @@ $lang['NewMessageSubject']="Пользователь {UserFrom} оставил(а) Вам новое личное 
 $lang['NewMessageText']="{ToUserFullName},
 Вы получили новое личное сообщение.
 Просмотреть Ваши новые личные сообщения можно на странице: http://www.moyvkus.ru/mymessages
-С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
 $lang['NewFriendSubject']="Пользователь {UserFrom} хочет добавить Вас в друзья";
 $lang['NewFriendText']="{ToUserFullName},
 Вы получили новый запрос на дружбу.
 Просмотреть список Ваших друзей и добавить новых можно на странице: http://www.moyvkus.ru/myfriends
-С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
 
 $lang['NewCommentSubject']="Пользователь {UserFrom} оставил комментарий к Вашему рецепту";
 $lang['NewCommentText']="{ToUserFullName},
 К Вашему рецепту оставили новый комментарий.
 Просмотреть рецепт и комментарии к нему можно на странице: http://www.moyvkus.ru/view_recipe/id/{RecipeID}
-С уважаением администарация проекта Мой Вкус.ru http://www.moyvkus.ru";
+С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
 
 

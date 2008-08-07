@@ -17,7 +17,7 @@ class My_recipes extends Controller {
 		$this->load->helper('text');
 	}
 	
-	function _remap($method) {
+	/*function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
 		$pars = $this->uri->segment_array();
@@ -31,7 +31,7 @@ class My_recipes extends Controller {
 		}
 		else
 			redirect('/login/', 'refresh');
-	}
+	}*/
 	
 	function index()
 	{
@@ -103,15 +103,15 @@ class My_recipes extends Controller {
 		$recipe_list='';
 		$recipe_item = $this->receipes_management->recipesbuilder();
 		
-		$config['base_url'] = base_url().'/my_recipes/view/page/';
+		$config['base_url'] = base_url().'/my_recipes/id/'.$user_id_to_view.'/view/page/';
 		$config['total_rows'] = $RecipesCount;
 		$config['per_page'] = '10';
-		$config['uri_segment'] = 4;
+		$config['uri_segment'] = 6;
 		$config['first_link'] = 'Начало';
 		$config['last_link'] = 'Конец';
 		$this->pagination->initialize($config);
 		$data['paginator']=$this->pagination->create_links();
-		$cur_page = $this->uri->segment(4);
+		$cur_page = $this->uri->segment(6);
 		//var_dump($cur_page);
 		if($cur_page==null)
 		{

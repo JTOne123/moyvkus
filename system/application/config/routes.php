@@ -53,7 +53,7 @@ $route['myfriends/reject_friend_id/:num'] = "myfriends";
 $route['profile/id/:num'] = "profile";
 
 $route['my_recipes/id/:num'] = "my_recipes";
-$route['my_recipes/view/:any'] = "my_recipes";
+$route['my_recipes/id/:num/view/:any'] = "my_recipes";
 
 $route['edit_recipe/id/:num'] = "add_recipe";
 $route['add_new_recipe'] = "add_recipe";

@@ -113,8 +113,8 @@ class Get_Message extends Controller {
 
 				$data['AvatarUrl'] = $avatar_url;
 
-				$data['UserUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $user_id;
-				$data['FriendUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $message->from_id;
+				$data['UserUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $message->from_id;
+				$data['FriendUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $user_id;
 
 				$data['AnswerUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $message->from_id . '/answer/id/' . $message->id;
 				$data['MessageDeleteUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $message->id;
