@@ -17,7 +17,7 @@ class My_recipes extends Controller {
 		$this->load->helper('text');
 	}
 	
-	/*function _remap($method) {
+	function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
 		$pars = $this->uri->segment_array();
@@ -31,7 +31,7 @@ class My_recipes extends Controller {
 		}
 		else
 			redirect('/login/', 'refresh');
-	}*/
+	}
 	
 	function index()
 	{
@@ -143,11 +143,11 @@ class My_recipes extends Controller {
 				$recipe_current = str_replace("{RecipeText}", $return_str, $recipe_current);
 				if($row['photo_name']!=='' and $row['photo_name']!==NULL)
 				{
-					$photo_url = '/uploads/recipe_photos/'.$row['photo_name'];
+					$photo_url = base_url().'uploads/recipe_photos/'.$row['photo_name'];
 				}
 				else
 				{ 
-					$photo_url = '../../../images/nophoto.gif';
+					$photo_url = base_url().'images/nophoto.gif';
 				}
 				
 				$recipe_current = str_replace("{FriendAvatarUrl}", $photo_url, $recipe_current);

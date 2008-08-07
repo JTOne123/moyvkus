@@ -12,21 +12,37 @@ class Recommend extends Model {
 	function Build($user_id_to_view)
 	{
 		$quantity = 10; 
-		$quantity_rec = 2;
+		$quantity_rec = 1;
 
 		$ids_of_relevant_users = $this->get_ids_of_relevant_users($quantity, $user_id_to_view);
 		$html_stack = '';
 		foreach ($ids_of_relevant_users as $row):
 		$returned_recipes_arr = $this->get_ids_of_relevant_recipes($row->user_id, $quantity_rec, $user_id_to_view);
-
+		
 		foreach ($returned_recipes_arr as $recipe_obj):
-		if($this->receipes_management->IsExistRecipeId($recipe_obj->recipe_id) and $this->receipes_management->GetAuthorIdByRecipeId($recipe_obj->recipe_id)!=$user_id_to_view)
+		$dublicate_protection_stack[]= $recipe_obj->recipe_id;
+		endforeach;
+		
+		$dublicate_protection_stack = array_unique($dublicate_protection_stack);
+		
+		/*foreach ($returned_recipes_arr as $recipe_obj):
+		if($this->receipes_management->IsExistRecipeId($recipe_obj->recipe_id) and $this->receipes_management->GetAuthorIdByRecipeId($recipe_obj->recipe_id)!=$user_id_to_view and array_search($recipe_obj->recipe_id ,$dublicate_protection_stack)!==false)
 		{
+		//var_dump(array_search($recipe_obj->recipe_id ,$dublicate_protection_stack));
 		$html_stack =  $html_stack.$this->GetHtml($recipe_obj->recipe_id);
+		unset($dublicate_protection_stack[array_search($recipe_obj->recipe_id ,$dublicate_protection_stack)]);
 		}
+		endforeach; */
 		endforeach;
+		
+		foreach ($dublicate_protection_stack as $key):
+		if($this->receipes_management->IsExistRecipeId($key) and $this->receipes_management->GetAuthorIdByRecipeId($key)!=$user_id_to_view)
+		{
+		$html_stack =  $html_stack.$this->GetHtml($key);
+		}
+		endforeach; 
 
-		endforeach;
+		//endforeach;
 
 		return $html_stack;
 	}
@@ -92,13 +108,13 @@ class Recommend extends Model {
 	//получаем id юзеров, с похожими вкусами - т.е. тех, кто голосал за те же рецепты, что и Я(логиненый юзер)
 	function get_ids_of_relevant_users($quantity, $user_id_to_view)
 	{
-		$query = $this->db->query("select user_id from rating_act_desk where recipe_id in (select recipe_id from rating_act_desk where user_id=$user_id_to_view) and user_id<>$user_id_to_view group by user_id order by count(recipe_id) desc limit $quantity");
+		$query = $this->db->query("select DISTINCT user_id from rating_act_desk where recipe_id in (select recipe_id from rating_act_desk where user_id=$user_id_to_view) and user_id<>$user_id_to_view group by user_id order by count(recipe_id) desc limit $quantity");
 		return $row = $query->result();
 	}
 	//получаем id рецептов по релевантному юзеру
 	function get_ids_of_relevant_recipes($user_id, $quantity, $user_id_to_view)
 	{
-		$query = $this->db->query("SELECT recipe_id FROM rating_act_desk WHERE recipe_id not in (select recipe_id from rating_act_desk where user_id=$user_id_to_view) and user_id=$user_id limit $quantity");
+		$query = $this->db->query("SELECT DISTINCT recipe_id FROM rating_act_desk WHERE recipe_id not in (select recipe_id from rating_act_desk where user_id=$user_id_to_view) and user_id=$user_id limit $quantity");
 		return $row = $query->result();
 	}
 }
