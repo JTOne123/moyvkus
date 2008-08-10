@@ -196,5 +196,100 @@ class User_managment {
 		$query = $this->ci->db->query("SELECT id FROM users");
 		return $query->num_rows();
 	}
+	
+	function GetUsersByRate()
+	{
+		$query = $this->ci->db->query("SELECT user_id FROM user_data WHERE rating>0 ORDER BY rating DESC LIMIT 10");
+		return $query->result();
+	}
+	
+	
+	function GetUsersBuilderHTML()
+	{
+		return "<div id=\"FriendsItem\" class=\"FriendsItem\">
+				<table cellpadding=\"0\" cellspacing=\"0\" class=\"FriendsItemTable\">
+				<tr>
+				<td valign=\"top\" class=\"FriendAvatarTD\">
+				<a href=\"{UserUrl}\">
+				<img src=\"{AvatarUrl}\" title=\"{UserFullName}\" class=\"FriendAvatar\"/></a>
+				</td>
+				<td valign=\"top\">
+				<table>
+				<tr>
+				<td class=\"LabelTextFriends\">
+				{FullNameText}
+				</td>
+				<td class=\"LableValueFriends\">
+				<a href=\"{UserUrl}\">{UserFullName}</a>
+				</td>
+				</tr>
+				<tr>
+				<td class=\"LabelTextFriends\">
+				{FriendRatingLevelText}
+				</td>
+				<td class=\"LableValueFriends\">
+				{UserRating}
+				</td>
+				</tr>
+				<tr>
+				<td class=\"LabelTextFriends\">
+				{BestRecipeText}
+				</td>
+				<td class=\"LableValueFriends\">
+				<a href=\"/view_recipe/id/{BestRecipeId}\">{BestRecipe}</a>
+				</td>
+				</tr>
+				</table>
+				</td>
+				<td valign=\"top\">
+				<table class=\"GetMessageButtonsTable\">
+				<tr>
+				{SendMessageBtn}
+				</tr>
+				<tr>
+				{FriendsBtn}
+				</tr>
+				<tr>
+				{FriendBtn}
+				</tr>
+				</table>
+				</td>
+				</tr>
+				</table>
+				</div>";
+	}
+	
+	function GetFriendBtn()
+	{
+		return "<td>
+				<a href=\"{AddFriendUrl}\" id=\"AddFriend\" name=\"AddFriend\"\">
+				<div class=\"Login_submit\">
+				{AddFriend}
+				</div>
+				</a>
+				</td>";
+	}
+	
+	function SendMessageBtn()
+	{
+		return "<td>
+				<a href=\"{SendMessageUrl}\" id=\"SendMessage\" name=\"SendMessage\">
+				<div class=\"Login_submit\">
+				{SendMessage}
+				</div>
+				</a>
+				</td>";
+	}
+	
+	function FriendsBtn()
+	{
+		return "<td>
+				<a href=\"{FriendFriendsUrl}\" id=\"FriendFriends\" name=\"FriendFriends\">
+				<div class=\"Login_submit\">
+				{FriendFriends}
+				</div>
+				</a>
+				</td>";
+	}
 }
 ?>

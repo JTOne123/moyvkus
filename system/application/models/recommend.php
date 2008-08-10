@@ -22,7 +22,8 @@ class Recommend extends Model {
 		foreach ($returned_recipes_arr as $recipe_obj):
 		$dublicate_protection_stack[]= $recipe_obj->recipe_id;
 		endforeach;
-		
+
+		if(isset($dublicate_protection_stack))
 		$dublicate_protection_stack = array_unique($dublicate_protection_stack);
 		
 		/*foreach ($returned_recipes_arr as $recipe_obj):
@@ -35,6 +36,7 @@ class Recommend extends Model {
 		endforeach; */
 		endforeach;
 		
+		if(isset($dublicate_protection_stack) and sizeof($dublicate_protection_stack) > 0)
 		foreach ($dublicate_protection_stack as $key):
 		if($this->receipes_management->IsExistRecipeId($key) and $this->receipes_management->GetAuthorIdByRecipeId($key)!=$user_id_to_view)
 		{

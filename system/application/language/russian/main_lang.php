@@ -307,4 +307,14 @@ $lang['LittleDescription'] = "МойВкус.Ru - это социальная сеть, объединяющая люд
 $lang['population'] = "Всего кулинаров";
 $lang['number_of_recipes'] = "Всего рецептов";
 
+//Пользователи
+$lang['Users'] = "Кулинары";
+$lang['link_rate'] = "По рейтингу";
+$lang['link_active'] = "По активности";
+$lang['link_newbes'] = "Новые";
+$lang['UsersPageDescrRate'] = "10 лучших кулинаров";
+$lang['UsersPageDescrActive'] = "10 самых активных кулинаров";
+$lang['UsersPageDescrNewbes'] = "10 новых кулинаров";
+
+
 ?>
