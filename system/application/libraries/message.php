@@ -162,4 +162,12 @@ class Message {
 				</div>';
 	}
 	
+	function MessageCount($user_id)
+	{
+		$query = $this->ci->db->query("SELECT COUNT(1) AS c FROM message WHERE to_id = $user_id");
+		
+		$row = $query->row();
+		
+		return $row->c;
+	}
 	}

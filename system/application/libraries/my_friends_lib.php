@@ -12,7 +12,7 @@ class My_friends_lib {
 	
 	
 	/*
-	Добавляем друга
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	*/
 	function AddFriend($user_id, $friend_id)
 	{
@@ -21,7 +21,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Подтверждение дружбы
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function ConfirmFriend($user_id, $friend_id)
 	{
@@ -29,7 +29,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Проверяем на дружбу
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function IsTheyFriends($user_id, $friend_id)
 	{
@@ -45,7 +45,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Проверяем на дружбу
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function IsTheyNotConfirmedFriends($user_id, $friend_id)
 	{
@@ -61,7 +61,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Удаляем из спика друзей
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function DeleteFriend($user_id, $friend_id)
 	{
@@ -70,7 +70,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Получаем список друзей
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function GetFriends($user_id, $filter)
 	{
@@ -88,7 +88,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Получаем список новых друзей
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function GetNewFriends($user_id, $filter)
 	{
@@ -106,7 +106,7 @@ class My_friends_lib {
 	}
 	
 	/*
-	Количество новых друзей
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	*/
 	function GetNewFriendsCount($user_id, $friend_id)
 	{
@@ -272,6 +272,15 @@ class My_friends_lib {
 				</tr>
 				</table>
 				</div>";
+	}
+	
+	function NewFriendCount($user_id)
+	{
+		$query = $this->ci->db->query("SELECT COUNT(1) AS c FROM myfriends WHERE friend_id = $user_id AND is_confirmed = 0");
+		
+		$row = $query->row();
+		
+		return $row->c;
 	}
 }
 ?>
