@@ -16,7 +16,7 @@ class Users extends Controller {
 		$this->load->helper('text');
 	}
 
-	/*
+	
 	function _remap($method) {
 	//страницы, доступные без авторизации
 	$allowedPages = array();
@@ -32,7 +32,7 @@ class Users extends Controller {
 	else
 	redirect('/login/', 'refresh');
 	}
-	*/
+	
 
 	function index()
 	{
@@ -81,7 +81,7 @@ class Users extends Controller {
 		$link_active = '<a href="#" onclick="ajax_active()">'.$this->lang->line('link_active').'</a>';
 		$link_newbes = '<a href="#" onclick="ajax_newbes()">'.$this->lang->line('link_newbes').'</a>';
 
-		$data['UserListLinks'] = $link_rate.'&nbsp;&nbsp;'.$link_active.'&nbsp;&nbsp;'.$link_newbes;
+		$data['UserListLinks'] = $link_rate.' '.$link_active.' '.$link_newbes;
 		
 		$data['rate'] = $this->rate();
 		return $data;
@@ -182,14 +182,187 @@ class Users extends Controller {
 	}
 	
 	
-	function newbes()
-	{
-		echo 'Уже скоро будет работать! ;)';
-	}
-	
 	function active()
 	{
-		echo 'Уже скоро будет работать! ;)';
+
+		$active_users = $this->user_managment->GetUsersByActive();
+		
+		$html = $this->user_managment->GetUsersBuilderHTML();
+		$html_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $html);
+		$html_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $html_item);
+		$html_item = str_replace("{BestRecipeText}", $this->lang->line('MyBestRecipesText'), $html_item);
+
+
+		$users_list = "";
+		foreach ($active_users as $key => $value):
+		
+		$user = $this->user_managment->GetUser($key);
+		$user_data = $this->user_managment->GetUserData($key);
+
+		$friend_full_name = $user->first_name . ' ' . $user->last_name;
+		if(strlen($friend_full_name) > 30)
+		$friend_full_name =	substr($friend_full_name, 0, 30) . '...';
+
+		$user_item = str_replace("{UserFullName}", $friend_full_name, $html_item);
+		$user_item = str_replace("{UserUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $key, $user_item);
+		
+
+		if($user_data->avatar_name != null)
+		$avatar_url = base_url().'uploads/user_avatars/'.$user_data->avatar_name;
+		else
+		$avatar_url = base_url()."images/noavatar.gif";
+
+		$arr=$this->receipes_management->GetBestRecipe($key);
+		if($arr[0]['name'] !=='')
+		{
+			$user_item = str_replace("{BestRecipe}", $arr[0]['name'], $user_item);
+			$user_item = str_replace("{BestRecipeId}", $arr[0]['id'], $user_item);
+		}
+		else
+		{
+			$user_item = str_replace("{BestRecipe}", '', $user_item);
+			$user_item = str_replace("{BestRecipeId}", '', $user_item);
+		}
+
+		$user_item = str_replace("{AvatarUrl}", $avatar_url, $user_item);
+
+		$value = $this->user_managment->GetUserRating($key);
+		$user_item = str_replace("{UserRating}", $value, $user_item);
+
+		if($this->user_authorization->get_loged_on_user_id()==$key)
+		{
+		$user_item = str_replace("{FriendBtn}", '', $user_item);
+		$user_item = str_replace("{AddFriendUrl}", '', $user_item);	
+		$user_item = str_replace("{SendMessageBtn}", '', $user_item);	
+		$user_item = str_replace("{FriendsBtn}", $this->user_managment->FriendsBtn(), $user_item);	
+		$user_item = str_replace("{FriendFriends}", $this->lang->line('Friends'), $user_item);	
+		$user_item = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $key, $user_item);
+		}
+		
+		if($this->my_friends_lib->IsTheyFriends($this->user_authorization->get_loged_on_user_id(), $key)===true)
+		{
+		$user_item = str_replace("{FriendBtn}", $this->user_managment->GetFriendBtn(), $user_item);
+		$user_item = str_replace("{AddFriend}", $this->lang->line('DeleteFromFriends'), $user_item);
+		$user_item = str_replace("{AddFriendUrl}", base_url().'messagebox/type/delete_friend/friend_id/'.$key, $user_item);
+		
+		$user_item = str_replace("{SendMessageBtn}", $this->user_managment->SendMessageBtn(), $user_item);
+		$user_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $user_item);
+		$user_item = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $key, $user_item);
+		
+		$user_item = str_replace("{FriendsBtn}", $this->user_managment->FriendsBtn(), $user_item);	
+		$user_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $user_item);	
+		$user_item = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $key, $user_item);
+		}
+		else 
+		{
+		$user_item = str_replace("{FriendBtn}", $this->user_managment->GetFriendBtn(), $user_item);
+		$user_item = str_replace("{AddFriend}", $this->lang->line('AddToFriends'), $user_item);	
+		$user_item = str_replace("{AddFriendUrl}", base_url().'messagebox/type/add_friend/friend_id/'.$key, $user_item);	
+		
+		$user_item = str_replace("{SendMessageBtn}", $this->user_managment->SendMessageBtn(), $user_item);
+		$user_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $user_item);
+		$user_item = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $key, $user_item);
+		
+		$user_item = str_replace("{FriendsBtn}", $this->user_managment->FriendsBtn(), $user_item);	
+		$user_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $user_item);
+		$user_item = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $key, $user_item);
+		}
+
+		$users_list = $users_list . $user_item;		
+		
+		endforeach;
+		
+		echo $users_list;
+	}
+	
+	function newbes()
+	{
+		$html = $this->user_managment->GetUsersBuilderHTML();
+		$top_users = $this->user_managment->GetNewbeUsers();
+		$html_item = str_replace("{FullNameText}", $this->lang->line('FirstNameText'), $html);
+		$html_item = str_replace("{FriendRatingLevelText}", $this->lang->line('MyRatingLevelText'), $html_item);
+		$html_item = str_replace("{BestRecipeText}", $this->lang->line('MyBestRecipesText'), $html_item);
+
+
+		$users_list = "";
+		foreach ($top_users as $item):
+		$user = $this->user_managment->GetUser($item->id);
+		$user_data = $this->user_managment->GetUserData($item->id);
+
+		$friend_full_name = $user->first_name . ' ' . $user->last_name;
+		if(strlen($friend_full_name) > 30)
+		$friend_full_name =	substr($friend_full_name, 0, 30) . '...';
+
+		$user_item = str_replace("{UserFullName}", $friend_full_name, $html_item);
+		$user_item = str_replace("{UserUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $item->id, $user_item);
+		
+
+		if($user_data->avatar_name != null)
+		$avatar_url = base_url().'uploads/user_avatars/'.$user_data->avatar_name;
+		else
+		$avatar_url = base_url()."images/noavatar.gif";
+
+		$arr=$this->receipes_management->GetBestRecipe($item->id);
+		if($arr[0]['name'] !=='')
+		{
+			$user_item = str_replace("{BestRecipe}", $arr[0]['name'], $user_item);
+			$user_item = str_replace("{BestRecipeId}", $arr[0]['id'], $user_item);
+		}
+		else
+		{
+			$user_item = str_replace("{BestRecipe}", '', $user_item);
+			$user_item = str_replace("{BestRecipeId}", '', $user_item);
+		}
+
+		$user_item = str_replace("{AvatarUrl}", $avatar_url, $user_item);
+
+		$value = $this->user_managment->GetUserRating($item->id);
+		$user_item = str_replace("{UserRating}", $value, $user_item);
+
+		if($this->user_authorization->get_loged_on_user_id()==$item->id)
+		{
+		$user_item = str_replace("{FriendBtn}", '', $user_item);
+		$user_item = str_replace("{AddFriendUrl}", '', $user_item);	
+		$user_item = str_replace("{SendMessageBtn}", '', $user_item);	
+		$user_item = str_replace("{FriendsBtn}", $this->user_managment->FriendsBtn(), $user_item);	
+		$user_item = str_replace("{FriendFriends}", $this->lang->line('Friends'), $user_item);	
+		$user_item = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $item->id, $user_item);
+		}
+		
+		if($this->my_friends_lib->IsTheyFriends($this->user_authorization->get_loged_on_user_id(), $item->id)===true)
+		{
+		$user_item = str_replace("{FriendBtn}", $this->user_managment->GetFriendBtn(), $user_item);
+		$user_item = str_replace("{AddFriend}", $this->lang->line('DeleteFromFriends'), $user_item);
+		$user_item = str_replace("{AddFriendUrl}", base_url().'messagebox/type/delete_friend/friend_id/'.$item->id, $user_item);
+		
+		$user_item = str_replace("{SendMessageBtn}", $this->user_managment->SendMessageBtn(), $user_item);
+		$user_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $user_item);
+		$user_item = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $item->id, $user_item);
+		
+		$user_item = str_replace("{FriendsBtn}", $this->user_managment->FriendsBtn(), $user_item);	
+		$user_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $user_item);	
+		$user_item = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $item->id, $user_item);
+		}
+		else 
+		{
+		$user_item = str_replace("{FriendBtn}", $this->user_managment->GetFriendBtn(), $user_item);
+		$user_item = str_replace("{AddFriend}", $this->lang->line('AddToFriends'), $user_item);	
+		$user_item = str_replace("{AddFriendUrl}", base_url().'messagebox/type/add_friend/friend_id/'.$item->id, $user_item);	
+		
+		$user_item = str_replace("{SendMessageBtn}", $this->user_managment->SendMessageBtn(), $user_item);
+		$user_item = str_replace("{SendMessage}", $this->lang->line('SendMessage'), $user_item);
+		$user_item = str_replace("{SendMessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $item->id, $user_item);
+		
+		$user_item = str_replace("{FriendsBtn}", $this->user_managment->FriendsBtn(), $user_item);	
+		$user_item = str_replace("{FriendFriends}", $this->lang->line('FriendFriends'), $user_item);
+		$user_item = str_replace("{FriendFriendsUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $item->id, $user_item);
+		}
+
+		$users_list = $users_list . $user_item;
+		endforeach;
+
+
+		echo $users_list;
 	}
 
 }
