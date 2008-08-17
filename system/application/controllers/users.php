@@ -81,7 +81,7 @@ class Users extends Controller {
 		$link_active = '<a href="#" onclick="ajax_active()">'.$this->lang->line('link_active').'</a>';
 		$link_newbes = '<a href="#" onclick="ajax_newbes()">'.$this->lang->line('link_newbes').'</a>';
 
-		$data['UserListLinks'] = $link_rate.' '.$link_active.' '.$link_newbes;
+		$data['UserListLinks'] = $link_rate.'&nbsp;&nbsp;'.$link_active.'&nbsp;&nbsp;'.$link_newbes;
 		
 		$data['rate'] = $this->rate();
 		return $data;

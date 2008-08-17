@@ -1,16 +1,16 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class receipes_management {
-
+	
 	var $ci;
-
+	
 	function receipes_management()
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();
 	}
-
-
+	
+	
 	function GetCategorys()
 	{
 		$query = $this->ci->db->query("SELECT id, name FROM categorys");
@@ -20,7 +20,7 @@ class receipes_management {
 		}
 		return $rows;
 	}
-
+	
 	function GetKitchens()
 	{
 		$query = $this->ci->db->query("SELECT id, name FROM kitchens");
@@ -30,7 +30,7 @@ class receipes_management {
 		}
 		return $rows;
 	}
-
+	
 	function SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
 	{
 		$this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', null)");
@@ -42,38 +42,38 @@ class receipes_management {
 		
 	}
 	
-		function UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
+	function UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
 	{
 		$this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', timestamp=null WHERE id='$id_of_recipe'");	
 	}
 	
 	
-
+	
 	function SavePhoto($id, $photo_name)
 	{
 		$query = $this->ci->db->query("UPDATE recipes set photo_name='$photo_name' WHERE id=$id");
 	}
-
+	
 	function GetDataForEdit($id)
 	{
 		$query = $this->ci->db->query("SELECT * FROM recipes WHERE id=$id");
 		$arr = $query->result_array();
 		return $arr;
 	}
-
+	
 	function GetBestRecipe($id)
 	{
 		$query = $this->ci->db->query("SELECT id, name, rating FROM recipes WHERE user_id=$id GROUP BY rating DESC LIMIT 1");
-
+		
 		$arr = $query->result_array();
 		if ($query->num_rows() > 0)
 		{
 			return $arr;
 		}
 		else
-		return array(array(''=>'', 'name'=>''));
+			return array(array(''=>'', 'name'=>''));
 	}
-
+	
 	function GetUserRecipes($id, $limit_from, $limit_to)
 	{
 		if($limit_to!==0)
@@ -84,15 +84,15 @@ class receipes_management {
 		{
 			$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$id' GROUP BY timestamp DESC");
 		}
-
+		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
 		}
 		else
-		return array(array('id'=>'', 'name'=>''));
+			return array(array('id'=>'', 'name'=>''));
 	}
-
+	
 	
 	function GetRecipesByCategoryId($category_id, $limit_from, $limit_to)
 	{
@@ -104,23 +104,23 @@ class receipes_management {
 		{
 			$query = $this->ci->db->query("SELECT * FROM recipes WHERE category_id='$category_id' GROUP BY id DESC");
 		}
-
+		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
 		}
 		else
-		return array(array('id'=>'', 'name'=>''));
+			return array(array('id'=>'', 'name'=>''));
 	}
-
+	
 	
 	function RecipeCount($user_id)
 	{
 		$query = $this->ci->db->query("SELECT id FROM recipes WHERE user_id='$user_id'");
-
+		
 		return $query->num_rows();
 	}
-
+	
 	function RecipesBuilder()
 	{
 		return "<div id=\"FriendsItemNotConfirmed\" class=\"FriendsItem\">
@@ -143,7 +143,7 @@ class receipes_management {
 				{RecipeText}
 				</td>
 				</tr>
-
+				
 				
 				</table>
 				</td>
@@ -174,18 +174,18 @@ class receipes_management {
 				</table>
 				</div>";
 	}
-
+	
 	function ButtonEdit()
 	{
 		return  "<div class=\"MyRecipeButtonDiv\">
-					<a href=\"{EditRecipeUrl}\" id=\"EditRecipe\" name=\"EditRecipe\">
-						<div class=\"Login_submit\">
-							{EditRecipe}
-						</div>
-					</a>
+				<a href=\"{EditRecipeUrl}\" id=\"EditRecipe\" name=\"EditRecipe\">
+				<div class=\"Login_submit\">
+				{EditRecipe}
+				</div>
+				</a>
 				</div>";
 	}
-
+	
 	function ButtonFavorites()
 	{
 		return "
@@ -205,13 +205,13 @@ class receipes_management {
 		$query = $this->ci->db->query("SELECT * FROM recipes WHERE user_id='$user_id'");
 		return $query->result_array();
 	}
-
+	
 	function GetOneRecipeByRecipeId($recipe_id)
 	{
 		$query = $this->ci->db->query("SELECT * FROM recipes WHERE id='$recipe_id'");
 		return $query->row();
 	}
-
+	
 	function IsExistRecipeId($id_of_recipe)
 	{
 		$query = $this->ci->db->query("SELECT name FROM recipes WHERE id='$id_of_recipe'");
@@ -220,9 +220,9 @@ class receipes_management {
 			return TRUE;
 		}
 		else
-		return FALSE;
+			return FALSE;
 	}
-
+	
 	function IsUserIsAuthorOfRecipe($id_of_recipe, $logened_user_id)
 	{
 		$query = $this->ci->db->query("SELECT user_id FROM recipes WHERE id='$id_of_recipe'");
@@ -232,21 +232,21 @@ class receipes_management {
 			return true;
 		}
 		else
-		return false;
+			return false;
 	}
-
+	
 	function GetNameOfCategory($category_id)
 	{
 		$query = $this->ci->db->query("SELECT name FROM categorys WHERE id='$category_id'");
 		return $query->row();
 	}
-
+	
 	function GetNameOfKitchen($kitchen_id)
 	{
 		$query = $this->ci->db->query("SELECT name FROM kitchens WHERE id='$kitchen_id'");
 		return $query->row();
 	}
-
+	
 	//Есть ли рецепты в категории
 	function IsCategoryIsEmpty($category_id)
 	{
@@ -256,7 +256,7 @@ class receipes_management {
 			return TRUE;
 		}
 		else
-		return FALSE;
+			return FALSE;
 	}
 	
 	//Колличество рецептов в категории
@@ -266,7 +266,7 @@ class receipes_management {
 		return $query->num_rows();
 	}
 	
-		function GetNumberOfRecipes()
+	function GetNumberOfRecipes()
 	{
 		$query = $this->ci->db->query("SELECT id FROM recipes");
 		return $query->num_rows();
@@ -277,6 +277,11 @@ class receipes_management {
 		$query = $this->ci->db->query("SELECT user_id FROM recipes WHERE id=$recipe_id");
 		$row = $query->row();
 		return $row->user_id;
+	}
+	
+	function DeleteVeryLongSpaces($str)
+	{
+		return str_replace("          ", " " ,$str);
 	}
 }
 ?>

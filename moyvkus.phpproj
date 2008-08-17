@@ -144,6 +144,10 @@
     {
     "ProjRelPath" = "T"
     }
+    "system\\application\\controllers\\users.php"
+    {
+    "ProjRelPath" = "T"
+    }
     "system\\application\\controllers\\view_recipe.php"
     {
     "ProjRelPath" = "T"
@@ -357,6 +361,10 @@
     "ProjRelPath" = "T"
     }
     "system\\application\\views\\send_message.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "system\\application\\views\\users.php"
     {
     "ProjRelPath" = "T"
     }

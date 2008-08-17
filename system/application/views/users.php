@@ -83,12 +83,13 @@ function ajax_newbes()
                 <td class="FriendsBuilder">
                     {UserListLinks}
                 </td>
-                
-                 <td class="FriendsBuilder">
-                 
-				<div id="rate">{rate}</div>
+            </tr>
+			<tr>
+				<td class="FriendsBuilder">
+	                 
+					<div id="rate">{rate}</div>
 				
                 </td>
-            </tr>
+			</tr>
         </table>
     </div>
