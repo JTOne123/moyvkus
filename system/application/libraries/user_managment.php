@@ -203,6 +203,43 @@ class User_managment {
 		return $query->result();
 	}
 	
+	function GetUsersByActive()
+	{
+		//$query = $this->ci->db->query("SELECT user_id FROM user_data WHERE rating>0 ORDER BY rating DESC LIMIT 10");
+		//return $query->result();
+		$UsersByRate = $this->GetUsersByRate();
+		foreach ($UsersByRate as $var):
+		//сколько раз юзер голосовал
+		$query = $this->ci->db->query("SELECT COUNT(*) FROM rating_act_desk WHERE user_id=$var->user_id");
+		$row = $query->row_array();
+		$rating[$var->user_id]=$row['COUNT(*)'];
+		
+		//сколько комментов
+		$query = $this->ci->db->query("SELECT COUNT(*) FROM comments WHERE user_id=$var->user_id");
+		$row = $query->row_array();
+		$comments[$var->user_id]=$row['COUNT(*)'];
+		
+		//сколько рецептов
+		$query = $this->ci->db->query("SELECT COUNT(*) FROM recipes WHERE user_id=$var->user_id");
+		$row = $query->row_array();
+		$recipes[$var->user_id]=$row['COUNT(*)'];
+		endforeach;
+		
+		foreach ($rating as $key => $value):
+		
+		$active_users[$key] = 0.3*$rating[$key] + 0.5*$comments[$key] + 0.5*$recipes[$key]; 
+		endforeach;
+		
+		arsort($active_users);
+		return $active_users;
+	}
+	
+	function GetNewbeUsers()
+	{
+		$query = $this->ci->db->query("SELECT id FROM users ORDER BY id DESC LIMIT 10");
+		return $query->result();
+	}
+	
 	
 	function GetUsersBuilderHTML()
 	{
