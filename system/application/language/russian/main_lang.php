@@ -30,7 +30,7 @@ $lang['Error_password'] = "Пароль должен быть не менее 6 символов";
 $lang['Error_repassword'] = "Введенные пароли не совпадают";
 $lang['Error_captcha'] = "Код с картинки должен содержать 4 символа";
 $lang['captcha_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Код с картинки введен не верно! Попробуйте еще раз</div>";
-$lang['email_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователь с таким email уже зарегестрирован!</div>";
+$lang['email_check'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Пользователь с таким email уже зарегистрирован!</div>";
  //Форма авторизации
 $lang['check_user_mail_exist'] = "<div class = \"Registraion_validator MessageWide\" style=\"display:block;\">Пользователя с таким email не существует!</div>";
 $lang['check_password'] = "<div class = \"Registraion_validator\" style=\"display:block;\">Указан неверный логин или пароль.</div>";
