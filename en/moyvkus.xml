@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<icons>
+  <icon image="images/pictures/pizza.gif" titre="Pizza" desc="Italian cuisine"/>
+  <icon image="images/pictures/sushi.gif" titre="Sushi" desc="Japanese cuisine"/>
+  <icon image="images/pictures/borsh.gif" titre="Ukrainian Borscht" desc="Ukrainian cuisine"/>
+  <icon image="images/pictures/pelmeni.gif" titre="Dumplings" desc="Russian cuisine"/>
+  <icon image="images/pictures/logo.gif" titre="Oskrer" desc="http://www.oskrer.com"/>
+  <icon image="images/pictures/chili.gif" titre="Garlic Soup" desc="Spanish cuisine"/>
+  <icon image="images/pictures/ylitka.gif" titre="Snails from Burgundy" desc="French cuisine"/>
+  <icon image="images/pictures/gluehwein.gif" titre="Mulled wine" desc="German cuisine"/>
+  <icon image="images/pictures/pahlava.gif" titre="Pahlava" desc="Turkish Cuisine"/>
+  <icon image="images/pictures/gamburger.gif" titre="Hamburger" desc="American cuisine"/>
+</icons>
