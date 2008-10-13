@@ -29,7 +29,7 @@ class Forget_password extends Controller {
 	
 	function _load_headers()
 	{
-		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('Invite');
+		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('ForgetPassword');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();
