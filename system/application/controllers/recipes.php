@@ -14,7 +14,7 @@ class Recipes extends Controller {
 		$this->load->helper('form');
 	}
 
-	function _remap($method) {
+	/*function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
 		$pars = $this->uri->segment_array();
@@ -28,7 +28,7 @@ class Recipes extends Controller {
 		}
 		else
 		redirect('/login/', 'refresh');
-	}
+	}*/
 
 	function index()
 	{
