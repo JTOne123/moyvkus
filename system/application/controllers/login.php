@@ -13,7 +13,7 @@ class Login extends Controller {
 	
 	function index()
 	{
-		$data['title'] = $this->lang->line('title').' - Âõîä';
+		$data['title'] = $this->lang->line('title') . ' - ' . $this->lang->line('LoginPageTitle');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();

@@ -19,7 +19,7 @@ $lang['log_in'] = "Log in";
 $lang['forgot_password'] = "Forgot password?"; 
 $lang['checkbox_remember'] = "Remember me"; 
 $lang['login_text'] = "To log in the system authorization is required:"; 
-
+$lang['LoginPageTitle'] = "Log in";
 
 
 //Message from validators 
