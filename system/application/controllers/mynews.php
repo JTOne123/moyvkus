@@ -1,8 +1,8 @@
 <?php
 
-    class MyComments extends Controller {
+    class MyNews extends Controller {
         
-        function MyComments()
+        function MyNews()
         {
             parent::Controller();
                 
