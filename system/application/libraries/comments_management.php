@@ -162,7 +162,7 @@
             $query = $this->ci->db->query("SELECT DISTINCT recipe_id
                                                FROM comments
                                                WHERE user_id = $user_id
-                                               ORDER BY timestamp
+                                               ORDER BY timestamp DESC
                                                LIMIT 0, 30");
             return $query;
         }
