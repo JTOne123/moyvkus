@@ -124,13 +124,14 @@ CREATE TABLE IF NOT EXISTS `menu` (
 -- Дамп данных таблицы `menu`
 -- 
 
-INSERT INTO `menu` VALUES (5, 'My Recipes', '~/my_recipes', '', 'My Recipes', 3);
-INSERT INTO `menu` VALUES (6, 'Search', '~/search', '', 'Search', 5);
+INSERT INTO `menu` VALUES (5, 'My Recipes', '~/my_recipes', '', 'My Recipes', 4);
+INSERT INTO `menu` VALUES (6, 'Search', '~/search', '', 'Search', 6);
 INSERT INTO `menu` VALUES (8, 'My Friends', '~/myfriends', '', 'My Friends', 1);
-INSERT INTO `menu` VALUES (9, 'Recipes', '~/recipes', '', 'Recipes', 4);
+INSERT INTO `menu` VALUES (9, 'Recipes', '~/recipes', '', 'Recipes', 5);
 INSERT INTO `menu` VALUES (4, 'My Messages', '~/mymessages', '', 'My Messages', 2);
+INSERT INTO `menu` VALUES (10, 'My News', '~/mynews', '', 'My News', 3);
 INSERT INTO `menu` VALUES (3, 'Home', '~/profile', '', 'Home', 0);
-INSERT INTO `menu` VALUES (11, 'Invate a friend', '~/invite', '', 'Invate a friend', 6);
+INSERT INTO `menu` VALUES (11, 'Invate a friend', '~/invite', '', 'Invate a friend', 7);
 
 -- 
 -- Структура таблицы `word_censor`

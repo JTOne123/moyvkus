@@ -51,12 +51,13 @@ CREATE TABLE IF NOT EXISTS `menu` (
 
 
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецепты','~/my_recipes','','Мои рецепты',3);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Мой поиск','~/search','','Мой поиск',5);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Мои друзья','~/myfriends','','Мои друзья',1);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (9,'Рецепты','~/recipes','','Мой каталог',4);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Мои сообщения','~/mymessages','','Мои сообщения',2);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Поиск','~/search','','Поиск',6);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Друзья','~/myfriends','','Друзья',1);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (9,'Рецепты','~/recipes','','Рецепты',5);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Сообщения','~/mymessages','','Сообщения',2);
+INSERT INTO `menu` (`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) VALUES (10, 'Мои новости', '~/mynews', '', 'Мои новости',4);
 insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (3,'Главная','~/profile','','Главная',0);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (11,'Пригласить друга','~/invite','','Пригласить друга',6);
+insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (11,'Пригласить друга','~/invite','','Пригласить друга',7);
 
 /*Table structure for table `user_data` */
 

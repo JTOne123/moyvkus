@@ -317,5 +317,8 @@ $lang['UsersPageDescrRate'] = "10 best cookers";
 $lang['UsersPageDescrActive'] = "10 most active cookers"; 
 $lang['UsersPageDescrNewbes'] = "10 new cookers "; 
 
+//My news
+$lang['MyNews'] = "My News";
+$lang['NewCommentForRecipe'] = "Add a new comment to the recipe - ";
 
 ?>
