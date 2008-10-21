@@ -316,5 +316,8 @@ $lang['UsersPageDescrRate'] = "10 лучших кулинаров";
 $lang['UsersPageDescrActive'] = "10 самых активных кулинаров";
 $lang['UsersPageDescrNewbes'] = "10 новых кулинаров";
 
+//My news
+$lang['MyNews'] = "Мои новости";
+$lang['NewCommentForRecipe'] = "Добавили новый комментарий к рецепту - ";
 
 ?>
