@@ -13,7 +13,7 @@
 				<table>
 					<tr>
 						<td class="LogoTD">
-							<a href="<?=base_url()?>profile"><img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/></a>
+							<a href="<?=base_url()?>"><img src="<?=base_url()?>images/top_logo.gif" class="HeaderLinks"/></a>
 						</td>
 						<td>
 							<img src="<?=base_url()?>images/top_center_header.gif"/>
@@ -47,6 +47,9 @@
 		<!-- Counters END-->
 		<tr>
 			<td align="center" class="About">
+                            <br/>
+                            <br/>
+                    
 				<br/>
 				<br/>
 				(c)&nbsp;<a id="firstAuthorLink"></a>&nbsp;|&nbsp;<a id="secondAuthorLink"></a>&nbsp;2008

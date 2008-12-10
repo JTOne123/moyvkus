@@ -68,10 +68,16 @@
                             <a href="{ForgetPasswordUrl}">{forgot_password}</a>
                         </td>
                     </tr>
-                         <tr>
+                    <tr>
                         <td colspan="2">
 							<?php echo $this->validation->emailLogin_error;?>
 							<?php echo $this->validation->passwordLogin_error;?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        <br />
+                            <a href="/register" class="loginRegisterLink">Регистрация</a>
                         </td>
                     </tr>
                 </table>
