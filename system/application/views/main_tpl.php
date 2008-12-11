@@ -4,6 +4,9 @@
 <head>
 	<!-- PageHeader START -->
    {header}
+    <meta name="Robots" content="index,all">
+    <meta name="keywords" content="Кулинария, рецепты, повар, приготовление, еда, вкусняшки, борщ, рестораны, блюда, вкус, пицца, суши, рецепты, кухня">
+    <meta name="description" content="Мой вкус. Кулинарный клуб. Социальная сеть по кулинарии. Приготовление блюд. Поиск рецептов. Европейская кухня. Избранные рецепты. Лучшие повара. Приготовление еды.">
 	<!-- PageHeader END -->
 </head>
 <body>
@@ -49,7 +52,19 @@
 			<td align="center" class="About">
                             <br/>
                             <br/>
-                    
+                            <div>
+                                <script type="text/javascript"><!--
+                                    google_ad_client = "pub-4686512746284407";
+                                    /* moyvkus_ads */
+                                    google_ad_slot = "0910743053";
+                                    google_ad_width = 468;
+                                    google_ad_height = 60;
+                                    //-->
+                                    </script>
+                                    <script type="text/javascript"
+                                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                                </script>
+                            </div>
 				<br/>
 				<br/>
 				(c)&nbsp;<a id="firstAuthorLink"></a>&nbsp;|&nbsp;<a id="secondAuthorLink"></a>&nbsp;2008
