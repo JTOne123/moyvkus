@@ -130,6 +130,9 @@ class View_recipe extends Controller {
 
 			$data['RatingLabel'] = $this->lang->line('RatingLabel');
 			$data['RatingValue'] = $recipe_obj_from_db->rating;
+			
+			$data['SourceLabel'] = $this->lang->line('SourceOfRecipe');
+			$data['SourceValue'] = $recipe_obj_from_db->source;
 
 			$data['IngredientsText'] = $this->lang->line('IngredientsText');
 			$return_str='';

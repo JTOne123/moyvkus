@@ -69,11 +69,13 @@ class Add_recipe extends Controller {
 		$data['Save'] = $this->lang->line('Save');
 		$data['NewRecipeTitle'] = $this->lang->line('AddRecipe');
 		$data['RecipeImgText'] = $this->lang->line('RecipeImgText');
+		$data['SourceOfRecipe'] = $this->lang->line('SourceOfRecipe');
 		
 		$data['errorDivName']	= $this->lang->line('errorDivName');
 		$data['errorDivPortions']	= $this->lang->line('errorDivPortions');
 		$data['errorDivIngredients']	= $this->lang->line('errorDivIngredients');
 		$data['errorDivRecipeText']	= $this->lang->line('errorDivRecipeText');
+		$data['errorDivRecipeSource']	= $this->lang->line('errorDivRecipeSource');
 		
 		return $data;
 	}
@@ -93,6 +95,7 @@ class Add_recipe extends Controller {
 			}
 			
 			$data['name'] = $arr[0]['name'];
+			$data['source'] = $arr[0]['source'];
 			$data['portions'] = $arr[0]['portions'];
 			$data['ingredients'] = $arr[0]['ingredients'];
 			$data['recipe_text'] = $arr[0]['recipe_text'];
@@ -152,6 +155,7 @@ class Add_recipe extends Controller {
 		$rules['portions'] = "required|numeric";
 		$rules['ingredients'] = "required|min_length[25]|max_length[2000]";
 		$rules['receipe_text'] = "required|min_length[100]|max_length[3000]";
+		$rules['source'] = "min_length[5]|max_length[60]";
 		
 		$this->validation->set_rules($rules);
 		
@@ -159,12 +163,14 @@ class Add_recipe extends Controller {
 		$fields['portions']	= $this->lang->line('PortionsOfRecipe');
 		$fields['ingredients']	= $this->lang->line('IngredientsOfRecipe');
 		$fields['receipe_text']	= $this->lang->line('TextOfRecipe');
+		$fields['source']	= $this->lang->line('SourceOfRecipe');
 		
 		$this->validation->set_fields($fields);
 		
 		if ($this->validation->run())
 		{
 			$name = $this->input->post('name');
+			$source = $this->input->post('source');
 			$portions = $this->input->post('portions');
 			$kitchen_id = $this->input->post('kitchens');
 			$category_id = $this->input->post('category');
@@ -182,11 +188,11 @@ class Add_recipe extends Controller {
 			//Сохраняем рецепт *****
 			if($update_or_insert=='insert')
 			{
-				$last_inserted_id=$this->receipes_management->SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
+				$last_inserted_id=$this->receipes_management->SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe, $source);
 			}
 			if($update_or_insert=='update')
 			{
-				$this->receipes_management->UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe);
+				$this->receipes_management->UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe, $source);
 				$last_inserted_id=$id_of_recipe;
 			}
 			//Убиваем сессию

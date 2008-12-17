@@ -142,6 +142,16 @@ window.onload = function() {
                                         {KitchenNameValue}
                                     </td>
                                 </tr>
+                                
+                                 <tr>
+                                    <td class="LabelText LableTextViewRecipe">
+                                        {SourceLabel}:
+                                    </td>
+                                    <td class="LableValue LableValueViewRecipe">
+                                        <a href="{SourceValue}">{SourceValue}</a>
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <td class="LabelText LableTextViewRecipe">
                                         {RatingLabel}:

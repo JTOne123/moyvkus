@@ -86,6 +86,21 @@
 							</div>
 						</td>
 					</tr>
+					
+					<tr>
+						<td class="LabelText LabelValueMessage LabelValueEdit">
+							{SourceOfRecipe}:
+						</td>
+						<td class="LableValue LableValueAddRecipe">
+							<input type="text" id="source" name="source" value="<?=$source?>" size="60" class="RecipeInput">
+							<?=$this->validation->source_error; ?>
+							<div id="errorDivRecipeSource" class="Registraion_validator_more_height">
+								{errorDivRecipeSource}
+							</div>
+						</td>
+					</tr>
+					
+					
 					<tr>
 						<td class="LabelText LabelValueMessage LabelValueEdit">
 						</td>

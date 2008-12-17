@@ -31,9 +31,9 @@ class receipes_management {
 		return $rows;
 	}
 	
-	function SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
+	function SaveRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe, $source)
 	{
-		$this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', null)");
+		$this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, source, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', '$source', null)");
 		
 		//возвращаем айди, по которому находится только-что вставленный рецепт
 		$query=$this->ci->db->query("SELECT id FROM recipes WHERE id=last_insert_id()");
@@ -42,9 +42,9 @@ class receipes_management {
 		
 	}
 	
-	function UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe)
+	function UpdateRecipe($name, $category_id, $kitchen_id, $portions, $ingredients, $recipe_text, $photo_name, $user_id, $rating, $id_of_recipe, $source)
 	{
-		$this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', timestamp=null WHERE id='$id_of_recipe'");	
+		$this->ci->db->query("UPDATE recipes set name='$name', category_id='$category_id', kitchen_id='$kitchen_id', portions='$portions', ingredients='$ingredients', recipe_text='$recipe_text', user_id='$user_id', source='$source', timestamp=null WHERE id='$id_of_recipe'");	
 	}
 	
 	

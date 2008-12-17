@@ -200,6 +200,7 @@ $lang['GetMessage'] = "Мои сообщения";
 
 //Add recipe
 $lang['AddRecipe'] = "Добавить новый рецепт";
+$lang['SourceOfRecipe'] = "Источник";
 $lang['NameOfRecipe'] = "Название блюда";
 $lang['CategoryOfRecipe'] = "Категория";
 $lang['KitchenOfRecipe'] = "Кухня";
@@ -212,6 +213,7 @@ $lang['errorDivName'] = "Введите пожайлуста корректное название, не менее 5 симв
 $lang['errorDivPortions'] = "Введите пожалуйста, количество порций";
 $lang['errorDivIngredients'] = "Введите пожалуйста, ингредиенты рецепта, не менее 25 символов";
 $lang['errorDivRecipeText'] = "Введите пожалуйста, способ приготовления рецепта, не менее 100 символов";
+$lang['errorDivRecipeSource'] = "Введите корректный URL источника";
 
 
 //My recipes
