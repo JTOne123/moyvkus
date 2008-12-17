@@ -152,11 +152,12 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `ingredients` varchar(2000) NOT NULL,
   `recipe_text` varchar(3000) NOT NULL,
   `photo_name` varchar(200) default NULL,
+  `source` varchar(100) NOT NULL,
   `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
   `rating` int(10) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
         
         
 
