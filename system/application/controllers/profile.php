@@ -15,7 +15,8 @@ class Profile extends Controller {
 		
 		$this->load->helper('date');
 		$this->load->helper('typography');
-		
+		$this->load->helper('url');
+                
 		$this->load->model('Recommend');
 	}
 	
@@ -232,7 +233,7 @@ class Profile extends Controller {
 		
 		if($user_data != null)
 		{
-			$data['WebSite'] = $user_data->website;
+			$data['WebSite'] = prep_url($user_data->website);
 			$data['InstantMessager'] = $user_data->phone;
 			$data['Activities'] = auto_typography($user_data->activities);
 			$data['Interests'] = auto_typography($user_data->interests);
@@ -298,6 +299,5 @@ class Profile extends Controller {
 				break;
 		}
 	}
-	
 }
 ?>

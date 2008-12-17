@@ -175,7 +175,7 @@
                                                 {WebSiteText}
                                             </td>
                                             <td class="LableValue">
-												<a href="http://{WebSite}">{WebSite}</a>
+												<a href="{WebSite}">{WebSite}</a>
                                             </td>
                                         </tr>
                                         <tr>
