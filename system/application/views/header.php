@@ -1,5 +1,5 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
-<title><?=$title?></title>
+<title><?php if(isset($title)) echo $title; else echo '{title}';?></title>
 <meta name="keywords" content="<?=$keywords?>"/>
 <meta name="description" content="<?=$description?>"/>
 <link rel="stylesheet" href="<?=$baseurl?>default.css" type="text/css" />

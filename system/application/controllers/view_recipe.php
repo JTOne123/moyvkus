@@ -49,7 +49,7 @@ class View_recipe extends Controller {
 
 	function _load_headers()
 	{
-		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('SomeRecipe');
+		//$data['title'] = $this->lang->line('title').' - '.$this->lang->line('SomeRecipe');
 		$data['keywords'] = $this->lang->line('keywords');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();
@@ -106,6 +106,7 @@ class View_recipe extends Controller {
 			$data['RecipeImgUrl'] = '../../../images/nophoto_big.gif';
 
 			$data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
+			$data['title'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name.' - '.$this->lang->line('title');
 
 
 			$returned_row_userdata=$this->user_managment->getuserdata($recipe_obj_from_db->user_id);
@@ -237,6 +238,7 @@ class View_recipe extends Controller {
 			endforeach;
 			$data['CommentsBuilder'] = $comment_list;
 			//Комментарии END
+			
 
 
 		}
