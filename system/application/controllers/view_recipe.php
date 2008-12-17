@@ -103,7 +103,7 @@ class View_recipe extends Controller {
 				$data['RecipeImgUrl'] = '/uploads/recipe_photos/big_photos/'.$recipe_obj_from_db->photo_name;
 			}
 			else
-			$data['RecipeImgUrl'] = '../../../images/nophoto_big.gif';
+			$data['RecipeImgUrl'] = base_url().'images/nophoto_big.jpg';
 
 			$data['ViewRecipeTitle'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name;
 			$data['title'] = $this->lang->line('SomeRecipe').': '.$recipe_obj_from_db->name.' - '.$this->lang->line('title');
