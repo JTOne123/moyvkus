@@ -123,6 +123,7 @@ class Add_recipe extends Controller {
 		else
 		{
 			$data['name'] = '';
+			$data['source'] = '';
 			$data['portions'] = '';
 			$data['ingredients'] = '';
 			$data['recipe_text'] = '';
