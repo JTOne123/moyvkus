@@ -6,6 +6,7 @@
    {header}
     <meta name="Robots" content="index,all">
 	<!-- PageHeader END -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 </head>
 <body>
 	<table class="MainTable" cellpadding="0" cellspacing="0">

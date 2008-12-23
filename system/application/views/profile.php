@@ -105,6 +105,21 @@
 									</table>
                                 </td>
                             </tr>
+                            <tr>
+                                <td align="center">
+                                    <script type="text/javascript"><!--
+                                    google_ad_client = "pub-4686512746284407";
+                                    /* moyvkus - 180x150 */
+                                    google_ad_slot = "8340270334";
+                                    google_ad_width = 180;
+                                    google_ad_height = 150;
+                                    //-->
+                                    </script>
+                                    <script type="text/javascript"
+                                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                                    </script>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </td>
