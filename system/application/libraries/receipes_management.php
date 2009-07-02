@@ -8,16 +8,18 @@ class receipes_management {
 	{
 		$this->ci =& get_instance();
 		$this->ci->load->database();
+		$this->ci->load->library('twitter');
 	}
 	
 	
 	function GetCategorys()
-	{
+	{	
 		$query = $this->ci->db->query("SELECT id, name FROM categorys");
 		foreach ($query->result_array() as $row)
 		{
 			$rows[$row['id']]=$row['name'];
 		}
+		
 		return $rows;
 	}
 	
@@ -35,9 +37,16 @@ class receipes_management {
 	{
 		$this->ci->db->query("INSERT INTO recipes (name, category_id, kitchen_id, portions, ingredients, recipe_text, user_id, source, timestamp) VALUES('$name', '$category_id', '$kitchen_id', '$portions', '$ingredients', '$recipe_text', '$user_id', '$source', null)");
 		
+		
 		//возвращаем айди, по которому находится только-что вставленный рецепт
 		$query=$this->ci->db->query("SELECT id FROM recipes WHERE id=last_insert_id()");
 		$row = $query->row();
+		
+		$text = iconv("windows-1251", "UTF-8", "$name http://moyvkus.ru/view_recipe/id/$row->id"); 
+		
+		$this->ci->twitter->auth('moyvkus','121212');
+		$this->ci->twitter->update($text);
+		
 		return $row->id;
 		
 	}

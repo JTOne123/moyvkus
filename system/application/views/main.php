@@ -161,6 +161,11 @@ else
 							{population}
 							<br>
 							{number_of_recipes}
+							<p>
+							
+							<a href="http://twitter.com/moyvkus" target="_blank">
+							 <img src="../../images/twitter.png" class="HeaderLinks" />
+							</a>
 						</td>
 					</tr>
 				</table>
