@@ -16,7 +16,7 @@ class View_recipe extends Controller {
 		$this->load->helper('date');
 		$this->load->helper('smiley');
 	}
-
+/*
 	function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
@@ -32,7 +32,7 @@ class View_recipe extends Controller {
 		else
 		redirect('/login/', 'refresh');
 	}
-
+*/
 	function index()
 	{
 		$data = $this->_load_headers();
