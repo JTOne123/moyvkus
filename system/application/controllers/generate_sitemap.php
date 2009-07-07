@@ -24,6 +24,8 @@ class Generate_sitemap extends Controller
 
 		//$sitemap->add_item($item); //Append the item to the sitemap object
 		$sitemap->build("./sitemap.xml"); //Build it...
+		
+		echo 'Сгенерировано';
 
 		//Let's compress it to gz
 		$data = implode("", file("./sitemap.xml"));

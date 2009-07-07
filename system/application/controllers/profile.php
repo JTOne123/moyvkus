@@ -12,6 +12,7 @@ class Profile extends Controller {
 		$this->load->library('location');
 		$this->load->library('my_friends_lib');
 		$this->load->library('receipes_management');
+		$this->load->library('session');
 		
 		$this->load->helper('date');
 		$this->load->helper('typography');
@@ -26,11 +27,11 @@ class Profile extends Controller {
 		$pars = $this->uri->segment_array();
 		unset($pars[1]);
 		unset($pars[2]);
-		
+	
 		
 		if (($method != null) &&
 				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
-			call_user_func_array(array($this, $method), $pars);
+			call_user_func_array(array($this, $method), $pars);	
 		}
 		else
 			redirect('/login/', 'refresh');
