@@ -76,6 +76,11 @@
                                             </table>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            {HistoryRepeater}
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>

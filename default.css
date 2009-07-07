@@ -515,6 +515,21 @@ a
 	margin-left: auto;
 }
 
+.MessageDate
+{
+    color:gray;
+    font-size:10px;
+    line-height:16px;
+    vertical-align:top;
+}
+
+.MessageHistory
+{
+    color:#36638E;
+    font-size:10px;
+    line-height:16px;
+}
+
 /* Invite */
 
 .Note

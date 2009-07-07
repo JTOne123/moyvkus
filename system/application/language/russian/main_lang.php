@@ -82,7 +82,7 @@ $lang['NewCommentText']="{ToUserFullName},
 Просмотреть рецепт и комментарии к нему можно на странице: http://www.moyvkus.ru/view_recipe/id/{RecipeID}
 С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
-
+$lang['History']="История";
 
 										
 //Profile

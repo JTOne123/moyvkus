@@ -83,7 +83,7 @@ class Get_Message extends Controller {
 			$delete_message_id = $this->uri->segment(5);
 
 			if($delete_message_id != false)
-			$this->message->DeleteMessage($delete_message_id, $user_id);
+                            $this->message->DeleteMessage($delete_message_id, $user_id);
 
 			$message =  $this->message->GetMessage($user_id, $message_id);
 
@@ -99,17 +99,19 @@ class Get_Message extends Controller {
 				
 				$return_str = '';
 				$MessageShortText = $message->text;
+
 				for($i = 0; $i < strlen($MessageShortText); $i++)
-				$return_str = $return_str.$MessageShortText[$i] . '<wbr>';
+                                    $return_str = $return_str.$MessageShortText[$i] . '<wbr>';
+
 				$return_str= str_replace("\n", "<br>", $return_str);
 				$return_str = parse_smileys($return_str, "/images/smileys/");
 
 				$data['TextValue'] = $return_str;
 
 				if($friend_data->avatar_name != null)
-				$avatar_url = '/uploads/user_avatars/'.$friend_data->avatar_name;
+                                    $avatar_url = '/uploads/user_avatars/'.$friend_data->avatar_name;
 				else
-				$avatar_url = "../../../images/noavatar.gif";
+                                    $avatar_url = "../../../images/noavatar.gif";
 
 				$data['AvatarUrl'] = $avatar_url;
 
@@ -118,6 +120,8 @@ class Get_Message extends Controller {
 
 				$data['AnswerUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $message->from_id . '/answer/id/' . $message->id;
 				$data['MessageDeleteUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $message->id;
+
+                                $data['HistoryRepeater'] = $this->message->history_repeater($this->message->get_history($message->from_id ,$user_id), $message->id, $this->lang->line('History'));
 			}
 			else
 			redirect('/mymessages/', 'refresh');

@@ -107,7 +107,7 @@ class Send_Message extends Controller {
 					if($friend_data->avatar_name != null)
 						$data['AvatarUrl'] = '/uploads/user_avatars/' . $friend_data->avatar_name;
 					else
-						$data['AvatarUrl'] = "../../../images/noavatar.gif";
+						$data['AvatarUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . "/images/noavatar.gif";
 				}
 				else
 					redirect('', 'refresh');
@@ -126,10 +126,10 @@ class Send_Message extends Controller {
 				$this->notification->new_message($send_to_id, $user_id);
 				
 				
-				$answer_message_id = $this->uri->segment(7);
+				/*$answer_message_id = $this->uri->segment(7);
 				
 				if($answer_message_id != false)
-					$this->message->DeleteMessage($answer_message_id, $user_id);
+					$this->message->DeleteMessage($answer_message_id, $user_id);*/
 				
 				redirect('mymessages', 'refresh');
 			}

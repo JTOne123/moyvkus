@@ -170,4 +170,34 @@ class Message {
 		
 		return $row->c;
 	}
-	}
+
+        function get_history($from_id, $to_id)
+        {
+            $query = $this->ci->db->query("SELECT id, subject, text, date FROM message WHERE to_id = $to_id AND from_id = $from_id ORDER BY date DESC");
+
+            return $query->result();
+        }
+
+        function history_repeater($query, $current_message_id, $history)
+        {
+            $str = '';
+            
+            foreach ($query as $row) {                
+              if($current_message_id != $row->id)
+              {
+                  $str .= '<tr>
+                               <td class="LabelText LabelTextMessage">' . $row->subject . ': </td>
+                               <td class="LableValue LabelValueMessage">' . $row->text . '</td>
+                               <td class="MessageDate">' . $row->date . '</td>
+                               <td valign="top"><a href="' . 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $row->id. '"><img src="' . 'http://' . $_SERVER['HTTP_HOST'] . '/images/delete_history_message.gif" class="HeaderLinks" /></a></td>
+                          </tr>';
+              }
+            }
+
+            if($str != '')
+                $str = "<br/><span class='MessageHistory'>$history</span><table width='100%'>$str</table>";
+                
+            return $str;
+        }
+
+    }
