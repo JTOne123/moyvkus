@@ -121,7 +121,7 @@ class MyMessages extends Controller {
 			if($friend_data->avatar_name != null)
 				$avatar_url = '/uploads/user_avatars/'.$friend_data->avatar_name;
 			else
-				$avatar_url = "../../images/noavatar.gif";
+				$avatar_url = 'http://' . $_SERVER['HTTP_HOST'] . "/images/noavatar.gif";
 			
 			$message_current = str_replace("{AuthorAvatarUrl}", $avatar_url, $message_current);
 			

@@ -40,7 +40,7 @@ class Menu extends Model {
 	{	
 		if($menu_id == 4)
 		{
-			$message_count = $this->message->MessageCount($user_id);
+			$message_count = $this->message->MessageCount($user_id, false);
 			
 			if($message_count>0)
 			{

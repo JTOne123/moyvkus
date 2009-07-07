@@ -162,18 +162,26 @@ class Message {
 				</div>';
 	}
 	
-	function MessageCount($user_id)
+	function MessageCount($user_id, $is_readed=true)
 	{
-		$query = $this->ci->db->query("SELECT COUNT(1) AS c FROM message WHERE to_id = $user_id");
-		
+		if($is_readed)
+                    $query = $this->ci->db->query("SELECT COUNT(1) AS c FROM message WHERE to_id = $user_id");
+		else
+                    $query = $this->ci->db->query("SELECT COUNT(1) AS c FROM message WHERE to_id = $user_id AND is_readed = 0");
+
 		$row = $query->row();
 		
 		return $row->c;
 	}
 
+        function readed($message_id)
+        {
+            $this->ci->db->query("UPDATE message SET is_readed = 1 WHERE id = $message_id");
+        }
+
         function get_history($from_id, $to_id)
         {
-            $query = $this->ci->db->query("SELECT id, subject, text, date FROM message WHERE to_id = $to_id AND from_id = $from_id ORDER BY date DESC");
+            $query = $this->ci->db->query("SELECT id, subject, text, date FROM message WHERE (to_id = $to_id AND from_id = $from_id) OR (to_id = $from_id AND from_id = $to_id) ORDER BY date DESC");
 
             return $query->result();
         }

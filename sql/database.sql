@@ -125,14 +125,15 @@ CREATE TABLE `invite` (
 /*Table structure for table `message` */
 
 CREATE TABLE `message` (
-  `from_id` int(11) DEFAULT NULL,
-  `to_id` int(11) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `text` text DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` datetime DEFAULT NULL,
+  `from_id` int(11) default NULL,
+  `to_id` int(11) default NULL,
+  `subject` varchar(100) default NULL,
+  `text` text,
+  `id` int(11) NOT NULL auto_increment,
+  `date` datetime default NULL,
+  `is_readed` int(11) NOT NULL default '0',
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=16;
 
 /*Table structure for table `message_spam_filter` */
 

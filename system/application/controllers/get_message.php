@@ -121,7 +121,9 @@ class Get_Message extends Controller {
 				$data['AnswerUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $message->from_id . '/answer/id/' . $message->id;
 				$data['MessageDeleteUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $message->id;
 
-                                $data['HistoryRepeater'] = $this->message->history_repeater($this->message->get_history($message->from_id ,$user_id), $message->id, $this->lang->line('History'));
+                                $this->message->readed($message->id);
+                                
+                                $data['HistoryRepeater'] = $this->message->history_repeater($this->message->get_history($message->from_id, $user_id), $message->id, $this->lang->line('History'));
 			}
 			else
 			redirect('/mymessages/', 'refresh');
