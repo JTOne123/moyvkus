@@ -181,12 +181,12 @@ class Message {
 
         function get_history($from_id, $to_id)
         {
-            $query = $this->ci->db->query("SELECT id, subject, text, date FROM message WHERE (to_id = $to_id AND from_id = $from_id) OR (to_id = $from_id AND from_id = $to_id) ORDER BY date DESC");
+            $query = $this->ci->db->query("SELECT id, subject, text, date, from_id FROM message WHERE (to_id = $to_id AND from_id = $from_id) OR (to_id = $from_id AND from_id = $to_id) ORDER BY date DESC");
 
             return $query->result();
         }
 
-        function history_repeater($query, $current_message_id, $history)
+        function history_repeater($query, $current_message_id, $history, $from_id)
         {
             $str = '';
             
@@ -196,9 +196,11 @@ class Message {
                   $str .= '<tr>
                                <td class="LabelText LabelTextMessage">' . $row->subject . ': </td>
                                <td class="LableValue LabelValueMessage">' . $row->text . '</td>
-                               <td class="MessageDate">' . $row->date . '</td>
-                               <td valign="top"><a href="' . 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $row->id. '"><img src="' . 'http://' . $_SERVER['HTTP_HOST'] . '/images/delete_history_message.gif" class="HeaderLinks" /></a></td>
-                          </tr>';
+                               <td class="MessageDate">' . $row->date . '</td>';
+                  if($from_id == $row->from_id)
+                    $str .= '<td valign="top"><a href="' . 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $row->id. '"><img src="' . 'http://' . $_SERVER['HTTP_HOST'] . '/images/delete_history_message.gif" class="HeaderLinks" /></a></td>';
+                  
+                  $str .= '</tr>';
               }
             }
 

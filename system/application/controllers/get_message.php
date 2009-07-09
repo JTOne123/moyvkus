@@ -123,7 +123,7 @@ class Get_Message extends Controller {
 
                                 $this->message->readed($message->id);
                                 
-                                $data['HistoryRepeater'] = $this->message->history_repeater($this->message->get_history($message->from_id, $user_id), $message->id, $this->lang->line('History'));
+                                $data['HistoryRepeater'] = $this->message->history_repeater($this->message->get_history($message->from_id, $user_id), $message->id, $this->lang->line('History'), $message->from_id);
 			}
 			else
 			redirect('/mymessages/', 'refresh');
