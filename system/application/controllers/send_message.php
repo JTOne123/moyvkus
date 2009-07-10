@@ -95,10 +95,14 @@ class Send_Message extends Controller {
 					$answer_message_id = $this->uri->segment(7);
 					
 					if($answer_message_id != false)
+                                        {
 						$data['sended_to_id'] = $send_to_id . '/answer/id/' . $answer_message_id;
+                                                $this->message->readed($answer_message_id);
+                                        }
 					else
 						$data['sended_to_id'] = $send_to_id;
-					
+
+
 					$data['UserFullName'] = $user->first_name . ' ' . $user->last_name;
 					$data['FriendFullName'] = $friend->first_name . ' ' . $friend->last_name;
 					$data['UserUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/profile/id/' . $user->id;

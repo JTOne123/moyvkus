@@ -11,6 +11,8 @@ class Message {
 		$this->ci->load->database();
 		
 		$this->ci->load->helper('date');
+
+                $this->ci->load->library('user_managment');
 	}
 	
 	function SendMessage($from_id, $to_id, $subject, $text)
@@ -31,9 +33,9 @@ class Message {
 	function GetMessages($user_id, $filter)
 	{
 		if($filter == "")
-			$query = $this->ci->db->query("SELECT from_id, subject, text, id, date FROM message WHERE to_id = $user_id");
+			$query = $this->ci->db->query("SELECT from_id, subject, text, id, date FROM message WHERE to_id = $user_id ORDER BY id DESC");
 		else
-			$query = $this->ci->db->query("SELECT from_id, subject, text, id, date FROM message WHERE to_id = $user_id AND (subject LIKE '$filter' OR text LIKE '$filter' OR date LIKE '$filter'))");
+			$query = $this->ci->db->query("SELECT from_id, subject, text, id, date FROM message WHERE to_id = $user_id AND (subject LIKE '$filter' OR text LIKE '$filter' OR date LIKE '$filter')) ORDER BY id DESC");
 		
 		
 		return $query;
@@ -96,7 +98,7 @@ class Message {
 	function GetMessageListBuilderHTML()
 	{
 		return '<div id="FriendsItem" class="FriendsItem">
-				<table cellpadding="0" cellspacing="0" class="MessageItemTable">
+				<table cellpadding="0" cellspacing="0" class="MessageItemTable {IsReaded}">
 				<tr>
 				<td valign="top" class="MessageAvatarTd">
 				<a href="{AuthorUrl}">
@@ -179,6 +181,17 @@ class Message {
             $this->ci->db->query("UPDATE message SET is_readed = 1 WHERE id = $message_id");
         }
 
+        function is_readed($message_id)
+        {
+            $query = $this->ci->db->query("SELECT is_readed FROM message WHERE id = $message_id");
+            $row = $query->row();
+
+            if($row->is_readed == 1)
+                return true;
+            else
+                return false;
+        }
+
         function get_history($from_id, $to_id)
         {
             $query = $this->ci->db->query("SELECT id, subject, text, date, from_id FROM message WHERE (to_id = $to_id AND from_id = $from_id) OR (to_id = $from_id AND from_id = $to_id) ORDER BY date DESC");
@@ -193,8 +206,10 @@ class Message {
             foreach ($query as $row) {                
               if($current_message_id != $row->id)
               {
+                  $user = $this->ci->user_managment->GetUser($row->from_id);
+
                   $str .= '<tr>
-                               <td class="LabelText LabelTextMessage">' . $row->subject . ': </td>
+                               <td class="LabelText LabelTextMessage">' . $user->first_name . ' ' . $user->last_name . ': </td>
                                <td class="LableValue LabelValueMessage">' . $row->text . '</td>
                                <td class="MessageDate">' . $row->date . '</td>';
                   if($from_id == $row->from_id)

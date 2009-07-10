@@ -117,7 +117,16 @@ class MyMessages extends Controller {
 			$message_current = str_replace("{AnswerUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $row->from_id . '/answer/id/' . $row->id , $message_current);
 			$message_current = str_replace("{MessageDeleteUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/mymessages/delete/id/' . $row->id , $message_current);
 			$message_current = str_replace("{MessageUrl}", 'http://' . $_SERVER['HTTP_HOST'] . '/get_message/message/id/' . $row->id , $message_current);
-			
+
+                        if($this->message->is_readed($row->id))
+                        {
+                            $message_current = str_replace("{IsReaded}", 'IsReadedTrue'  , $message_current);
+                        }
+                        else
+                        {
+                            $message_current = str_replace("{IsReaded}", 'IsReadedFalse'  , $message_current);
+                        }
+
 			if($friend_data->avatar_name != null)
 				$avatar_url = '/uploads/user_avatars/'.$friend_data->avatar_name;
 			else

@@ -560,6 +560,16 @@ a
 	background-color: #F5F9FB;
 }
 
+.IsReadedTrue
+{
+    background-color:white;
+}
+
+.IsReadedFalse
+{
+    background-color:#F5F9FB;
+}
+
 .MessageCaption
 {
 	color: gray;
