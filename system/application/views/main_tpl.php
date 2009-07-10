@@ -66,7 +66,7 @@
                             </div>
 				<br/>
 				<br/>
-				(c)&nbsp;<a id="firstAuthorLink"></a>&nbsp;|&nbsp;<a id="secondAuthorLink"></a>&nbsp;2008
+
 			</td>
 		</tr>
 		<tr>
@@ -76,39 +76,11 @@
 		</tr>
 	</table>
 </body>
-
-    <script language="javascript" type="text/javascript">
-
-    var firstAuthorLink = document.getElementById('firstAuthorLink');
-    var secondAuthorLink = document.getElementById('secondAuthorLink');
-
-    var DatsyukName = "Дацюк Павел";
-    var DatsyukId = 2;
-
-    var VerbovskyName = "Вербовский Александр";
-    var VerbovskyId = 1;
-
-    if(Math.random()<0.5)
-    {
-    	firstAuthorLink.innerHTML = DatsyukName;
-    	secondAuthorLink.innerHTML = VerbovskyName;
-
-    	firstAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
-    	secondAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
-    }
-    else
-    {
-    	firstAuthorLink.innerHTML = VerbovskyName;
-    	secondAuthorLink.innerHTML = DatsyukName;
-
-    	firstAuthorLink.href = "<?=base_url()?>profile/id/" + VerbovskyId;
-    	secondAuthorLink.href = "<?=base_url()?>profile/id/" + DatsyukId;
-    }
-
-    </script>
-    
+ 
     <noindex>
     <div align="center">
+     <a href="/about">О проекте</a>
+     <p>
     <!--LiveInternet counter--><script type="text/javascript"><!--
 document.write("<a href='http://www.liveinternet.ru/click' "+
 "target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
