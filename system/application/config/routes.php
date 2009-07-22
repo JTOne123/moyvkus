@@ -55,6 +55,15 @@ $route['profile/id/:num'] = "profile";
 $route['my_recipes/id/:num'] = "my_recipes";
 $route['my_recipes/id/:num/view/:any'] = "my_recipes";
 
+$route['blog/user/:num/:num'] = "blog";
+$route['blog/user/:num'] = "blog";
+
+$route['blogs/page/:num'] = "blogs";
+$route['blogs/page'] = "blogs";
+
+$route['blog_post/:num'] = "blog_post";
+$route['edit_blog_post/id/:num'] = "new_blog_post";
+
 $route['edit_recipe/id/:num'] = "add_recipe";
 $route['add_new_recipe'] = "add_recipe";
 $route['view_recipe/id/:num'] = "view_recipe";

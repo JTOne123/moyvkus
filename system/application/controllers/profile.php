@@ -141,6 +141,10 @@ class Profile extends Controller {
 			
 			$data['Favorites'] = $this->lang->line('Favorites');
 			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
+			
+			$data['Blog'] = $this->lang->line('Blog');
+			$data['BlogUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/blog/user/' . $user_id_to_view;
+			
 		}
 		else 
 		{
@@ -154,6 +158,9 @@ class Profile extends Controller {
 			
 			$data['Favorites'] = $this->lang->line('HisFavorites');
 			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
+			
+			$data['Blog'] = $this->lang->line('Blog');
+			$data['BlogUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/blog/user/' . $user_id_to_view;
 			
 			//Проверка или просматриветься профиль друга
 			if($this->my_friends_lib->IsTheyFriends($user_id, $user_id_to_view))

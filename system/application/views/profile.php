@@ -102,6 +102,15 @@
 											</td>
 										</tr>
 										
+										<tr>
+											<td>
+												<a href="{BlogUrl}">
+													<div class="Login_submit">
+														{Blog}
+													</div>
+												</a>
+											</td>
+										</tr>										
 									</table>
                                 </td>
                             </tr>

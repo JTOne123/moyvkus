@@ -346,4 +346,15 @@ $lang['AboutProjectText'] = "
 +38067 718-51-58
 ";
 
+
+//Blogs
+$lang['BlogPostTitle'] = "Заголовок вашей заметки";
+$lang['NewBlogPost'] = "Новая запись в блоге";
+$lang['BlogText'] = "Текст";
+$lang['MyBlog'] = "Мой блог";
+$lang['TotalPosts'] = "Всего записей";
+$lang['BlogsLenta'] = "Лента блогов";
+$lang['Read'] = "Читать далее";
+$lang['Blog'] = "Блог";
+
 ?>
