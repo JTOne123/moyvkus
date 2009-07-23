@@ -356,5 +356,6 @@ $lang['TotalPosts'] = "Всего записей";
 $lang['BlogsLenta'] = "Лента блогов";
 $lang['Read'] = "Читать далее";
 $lang['Blog'] = "Блог";
+$lang['AddPost'] = "Новая запись в блог";
 
 ?>

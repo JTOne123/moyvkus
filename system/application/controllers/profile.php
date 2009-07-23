@@ -1,57 +1,57 @@
 <?php
 
 class Profile extends Controller {
-	
+
 	function Profile()
 	{
 		parent::Controller();
-		
+
 		$this->load->library('validation');
-		
+
 		$this->load->library('user_managment');
 		$this->load->library('location');
 		$this->load->library('my_friends_lib');
 		$this->load->library('receipes_management');
 		$this->load->library('session');
-		
+
 		$this->load->helper('date');
 		$this->load->helper('typography');
 		$this->load->helper('url');
-                
+
 		$this->load->model('Recommend');
 	}
-	
+
 	function _remap($method) {
 		//страницы, доступные без авторизации
 		$allowedPages = array();
 		$pars = $this->uri->segment_array();
 		unset($pars[1]);
 		unset($pars[2]);
-	
-		
+
+
 		if (($method != null) &&
-				(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
-			call_user_func_array(array($this, $method), $pars);	
+		(($this->user_authorization->is_logged_in() !== false) ||  in_array($method, $allowedPages))) {
+			call_user_func_array(array($this, $method), $pars);
 		}
 		else
-			redirect('/login/', 'refresh');
+		redirect('/login/', 'refresh');
 	}
-	
+
 	function index()
 	{
-		
+
 		$data = $this->_load_headers();
-		
+
 		$data = $this->_load_resource($data);
-		
+
 		$data = $this->_data_bind($data);
-		
+
 		$data['body']= $this->parser->parse('profile', $data);
-		
+
 		$this->parser->parse('main_tpl', $data);
 	}
-	
-	
+
+
 	function _load_headers()
 	{
 		$data['title'] = $this->lang->line('title').' - '.$this->lang->line('Prifile');
@@ -61,10 +61,10 @@ class Profile extends Controller {
 		$data['header'] = $this->load->view('header', $data, true);
 		$data['menu']=$this->Menu->buildmenu();
 		$data['login']='';
-		
+
 		return $data;
 	}
-	
+
 	function _load_resource($data)
 	{
 		// Локализация надписей
@@ -92,111 +92,117 @@ class Profile extends Controller {
 		$data['SendMessage'] = $this->lang->line('SendMessage');
 		$data['AddToFriends'] = $this->lang->line('AddToFriends');
 		$data['DeleteFromFriends'] = $this->lang->line('DeleteFromFriends');
-		
+
 		return $data;
 	}
-	
+
 	function _data_bind($data)
 	{
 		$user_id_from_uri = $this->uri->segment(3);
 		$user_id = $this->user_authorization->get_loged_on_user_id();
-		
-		if($user_id_from_uri == false) 
+
+		if($user_id_from_uri == false)
 		{
 			$user_id_from_uri = $user_id;
 			redirect('profile/id/'.$user_id, 'refresh');
 		}
-		
+
 		$user_id_to_view = $user_id;
-		
+
 		if($user_id_from_uri != $user_id_to_view)
 		{
 			if($this->user_managment->IsUserExists_by_id($user_id_from_uri) === true)
-				$user_id_to_view = $user_id_from_uri; 
-			else 
-				redirect('profile/id/'.$user_id_to_view, 'refresh');
+			$user_id_to_view = $user_id_from_uri;
+			else
+			redirect('profile/id/'.$user_id_to_view, 'refresh');
 		}
-		
-		
+
+
 		//Показывать ли ссылки
 		if($user_id_to_view === $user_id)
 		{
 			$data['EditProfileUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/edit_profile';
 			$data['Edit'] = $this->lang->line('Edit');
-			
+
 			$data['SendMessageUrl'] = '';
 			$data['AddToFriendsUrl'] = '';
 			$data['DeleteFromFriendsUrl'] = '';
-			
+
 			$data['SendMessageShow'] = 'none';
 			$data['AddToFriendsShow'] = 'none';
 			$data['DeleteFromFriendsShow'] = 'none';
-			
+
 			$data['AddRecipeShow'] = '';
 			$data['AddRecipe'] = $this->lang->line('AddRecipe');
 			$data['AddRecipeUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/add_new_recipe';
-			
+
 			$data['MyRecipes'] = $this->lang->line('MyRecipes');
 			$data['MyRecipesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes';
-			
+
 			$data['Favorites'] = $this->lang->line('Favorites');
 			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
-			
+
 			$data['Blog'] = $this->lang->line('Blog');
 			$data['BlogUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/blog/user/' . $user_id_to_view;
-			
+
+			$data['AddPost'] = $this->lang->line('AddPost');
+			$data['AddPostUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/new_blog_post';
+
 		}
-		else 
+		else
 		{
 			$data['AddRecipeShow'] = 'none';
-			
+
 			$data['MyRecipes'] = $this->lang->line('HisRecipes');
 			$data['MyRecipesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/my_recipes/id/' . $user_id_to_view;
-			
+
 			$data['SendMessageShow'] = '';
 			$data['SendMessageUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/send_message/send_to/id/' . $user_id_to_view;
-			
+
 			$data['Favorites'] = $this->lang->line('HisFavorites');
 			$data['FavoritesUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/favorites/id/' . $user_id_to_view;
-			
+
 			$data['Blog'] = $this->lang->line('Blog');
 			$data['BlogUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/blog/user/' . $user_id_to_view;
-			
+
+			$data['AddPost'] = $this->lang->line('AddPost');
+			$data['AddPostUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/new_blog_post';
+
 			//Проверка или просматриветься профиль друга
 			if($this->my_friends_lib->IsTheyFriends($user_id, $user_id_to_view))
 			{
 				$data['DeleteFromFriendsShow'] = '';
 				$data['DeleteFromFriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/delete_friend/friend_id/' . $user_id_to_view;
-				
+
 				$data['AddToFriendsShow'] = 'none';
 			}
 			else
 			{
 				$data['AddToFriendsShow'] = '';
 				$data['AddToFriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/messagebox/type/add_friend/friend_id/' . $user_id_to_view;
-				
+
 				$data['DeleteFromFriendsShow'] = 'none';
 			}
-			
+
 			$data['EditProfileUrl']='';
 			$data['Edit'] = '';
 		}
-		
+
 		$month = array(
-				'01'  => 'Января',
-				'02'  => 'Февраля',
-				'03'  => 'Марта',
-				'04'  => 'Апреля',
-				'05'  => 'Мая',
-				'06'  => 'Июня',
-				'07'  => 'Июля',
-				'08'  => 'Августа',
-				'09'  => 'Сентября',
-				'10' => 'Октября',
-				'11' => 'Ноября',
-				'12' => 'Декабря',
-				);
-		
+		'01'  => 'Января',
+		'02'  => 'Февраля',
+		'03'  => 'Марта',
+		'04'  => 'Апреля',
+		'05'  => 'Мая',
+		'06'  => 'Июня',
+		'07'  => 'Июля',
+		'08'  => 'Августа',
+		'09'  => 'Сентября',
+		'10' => 'Октября',
+		'11' => 'Ноября',
+		'12' => 'Декабря',
+		);
+
 		//Получение данных юзера и заполнение их
 		$users = $this->user_managment->GetUser($user_id_to_view);
 		$user_data = $this->user_managment->GetUserData($user_id_to_view);
@@ -204,19 +210,19 @@ class Profile extends Controller {
 		if($users != null)
 		{
 			$data['UserStatus'] = $users->first_name . ' ' . $users->last_name;
-			
+
 			$data['FirstName'] = $users->first_name;
 			$data['LastName'] = $users->last_name;
 			$data['Sex'] = $this->GetSex($users->sex);
-			
+
 			$data['FriendsUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/myfriends/id/' . $user_id_to_view;
-			
+
 			$day_string =  mdate("%d", mysql_to_unix($users->birthday));
 			$month_string =  mdate("%m", mysql_to_unix($users->birthday));
 			$year_string =  mdate("%Y", mysql_to_unix($users->birthday));
-			
+
 			$data['Birthday'] = $day_string .  ' ' . $month[$month_string] . ' ' . $year_string;
-			
+
 			if($users->city != null)
 			{
 				$city = $this->location->GetCity($users->city);
@@ -226,8 +232,8 @@ class Profile extends Controller {
 			{
 				$city_name = "";
 			}
-			if($users->country != null)	
-			{		
+			if($users->country != null)
+			{
 				$country = $this->location->GetCountry($users->country);
 				$country_name = ', ' . $country->name;
 			}
@@ -235,10 +241,10 @@ class Profile extends Controller {
 			{
 				$country_name = "";
 			}
-			
+
 			$data['Loction'] =  $city_name . $country_name;
 		}
-		
+
 		if($user_data != null)
 		{
 			$data['WebSite'] = prep_url($user_data->website);
@@ -246,32 +252,32 @@ class Profile extends Controller {
 			$data['Activities'] = auto_typography($user_data->activities);
 			$data['Interests'] = auto_typography($user_data->interests);
 			$data['About'] = auto_typography($user_data->about);
-			
+
 			$arr=$this->receipes_management->GetBestRecipe($user_id_to_view);
 			if($arr[0]['name'] !=='')
 			{
-			$data['MyBestRecipe'] = $arr[0]['name'];
-			$data['MyBestRecipeID'] = $arr[0]['id'];
+				$data['MyBestRecipe'] = $arr[0]['name'];
+				$data['MyBestRecipeID'] = $arr[0]['id'];
 			}
 			else
-			{ 
-			$data['MyBestRecipe'] = '';
-			$data['MyBestRecipeID'] = '';
+			{
+				$data['MyBestRecipe'] = '';
+				$data['MyBestRecipeID'] = '';
 			}
-			
+
 			$arr=$this->user_managment->GetUserRating($user_id_to_view);
 			$data['MyRating'] = $arr;
-			
+
 			$arr=$this->receipes_management->getuserrecipes($user_id_to_view, 0,5);
-			
+
 			$data['Recommend_recipes'] = $this->Recommend->Build($user_id_to_view);
-			
+
 			if($user_data->avatar_name != null)
-				$data['AvatarUrl'] = base_url().'/uploads/user_avatars/'.$user_data->avatar_name;
+			$data['AvatarUrl'] = base_url().'/uploads/user_avatars/'.$user_data->avatar_name;
 			else
-				$data['AvatarUrl'] = base_url()."images/noavatar.gif";
-			
-			
+			$data['AvatarUrl'] = base_url()."images/noavatar.gif";
+
+
 		}
 		else
 		{
@@ -281,25 +287,25 @@ class Profile extends Controller {
 			$data['Interests'] = "";
 			$data['About'] = "";
 			$data['AvatarUrl'] = base_url()."images/noavatar.gif";
-			
+
 		}
-		
-		
+
+
 		return $data;
 	}
-	
-	
+
+
 	function GetSex($SexID)
 	{
 		if($SexID == null)
-			return "";
-		
+		return "";
+
 		switch($SexID)
 		{
 			case 0:
 				return $this->lang->line('Man');
 				break;
-			case 1: 
+			case 1:
 				return $this->lang->line('Woman');
 				break;
 			default:

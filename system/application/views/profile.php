@@ -110,7 +110,17 @@
 													</div>
 												</a>
 											</td>
-										</tr>										
+										</tr>			
+										
+										<tr>
+											<td>
+												<a href="{AddPostUrl}">
+													<div class="Login_submit">
+														{AddPost}
+													</div>
+												</a>
+											</td>
+										</tr>								
 									</table>
                                 </td>
                             </tr>

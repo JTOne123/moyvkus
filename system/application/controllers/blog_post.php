@@ -16,7 +16,8 @@ class Blog_post extends Controller {
 
 		$data = $this->_load_headers();
 
-		$user_id = $this->user_authorization->get_loged_on_user_id();
+		//$user_id = $this->user_authorization->get_loged_on_user_id();
+		$user_id = $this->blog_lib->GetUserIdByPostId($this->uri->segment(2));
 		$user_arr = $this->user_managment->GetUser($user_id);
 
 		$data['MyBlog'] = $this->lang->line('MyBlog');
