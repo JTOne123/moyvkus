@@ -4,4 +4,5 @@
 <meta name="description" content="<?=$description?>"/>
 <link rel="stylesheet" href="<?=$baseurl?>default.css" type="text/css" />
 <link rel="shortcut icon" href="favicon.ico" />
+ <link rel="alternate" type="application/rss+xml" title="Лента блогов" href="<?=$baseurl?>blogs/feed/" />
 <script language="javascript" type="text/javascript" src="<?=$baseurl?>js/validator.js"></script>

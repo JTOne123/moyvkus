@@ -44,7 +44,7 @@ class receipes_management {
 		
 		$text = iconv("windows-1251", "UTF-8", "$name http://moyvkus.ru/view_recipe/id/$row->id"); 
 		
-		$this->ci->twitter->auth('moyvkus','121212');
+		$this->ci->twitter->auth('moyvkus','moyvkus1212');
 		$this->ci->twitter->update($text);
 		
 		return $row->id;

@@ -28,11 +28,9 @@ CREATE TABLE `captcha` (
 -- 
 
 
--- 
+--
 -- Структура таблицы `menu`
--- 
-
-/*Table structure for table `menu` */
+--
 
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE IF NOT EXISTS `menu` (
@@ -43,21 +41,23 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `tooltip` varchar(200) default NULL,
   `sort` int(11) NOT NULL,
   UNIQUE KEY `id` (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=14 ;
 
--- 
+--
 -- Дамп данных таблицы `menu`
--- 
+--
 
+INSERT INTO `menu` (`ID`, `text`, `url`, `img_url`, `tooltip`, `sort`) VALUES
+(5, 'Кулинары', '~/users', '', 'Кулинары', 3),
+(6, 'Поиск', '~/search', '', 'Поиск', 7),
+(8, 'Друзья', '~/myfriends', '', 'Друзья', 1),
+(9, 'Рецепты', '~/recipes', '', 'Рецепты', 5),
+(4, 'Сообщения', '~/mymessages', '', 'Сообщения', 2),
+(10, 'Мои новости', '~/mynews', '', 'Мои новости', 4),
+(3, 'Профиль', '~/profile', '', 'Профиль', 0),
+(11, 'Пригласить друга', '~/invite', '', 'Пригласить друга', 8),
+(13, 'Блоги', '~/blogs', NULL, 'Блоги', 6);
 
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (5,'Мои рецепты','~/my_recipes','','Мои рецепты',3);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (6,'Поиск','~/search','','Поиск',6);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (8,'Друзья','~/myfriends','','Друзья',1);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (9,'Рецепты','~/recipes','','Рецепты',5);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (4,'Сообщения','~/mymessages','','Сообщения',2);
-INSERT INTO `menu` (`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) VALUES (10, 'Мои новости', '~/mynews', '', 'Мои новости',4);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (3,'Главная','~/profile','','Главная',0);
-insert  into `menu`(`ID`,`text`,`url`,`img_url`,`tooltip`,`sort`) values (11,'Пригласить друга','~/invite','','Пригласить друга',7);
 
 /*Table structure for table `user_data` */
 
@@ -323,3 +323,18 @@ CREATE TABLE `forget_password` (
   `user_id` int(11) DEFAULT NULL,
   `user_code` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+
+
+
+--
+-- Структура таблицы `blog`
+--
+
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE IF NOT EXISTS `blog` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(150) NOT NULL,
+  `text` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=0 ;

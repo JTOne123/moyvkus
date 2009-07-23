@@ -7,7 +7,7 @@ class Blogs extends Controller {
 		parent::Controller();
 		$this->load->library('blog_lib');
 		$this->load->library('pagination');
-		
+
 		$this->load->helper('text');
 		$this->load->helper('typography');
 	}
@@ -24,8 +24,16 @@ class Blogs extends Controller {
 
 		$data['BlogsLenta'] = $this->lang->line('BlogsLenta');
 
-		//$query = $this->db->get_where('blog', array('user_id' => $user_id));
-
+		if($this->user_authorization->is_logged_in()==true)
+		{
+		$data['new_blog_post'] = '<a href="/new_blog_post">'.$this->lang->line('AddPost').'</a>';
+		$data['main_page'] = '<a href="/" class="linkHome">'.$this->lang->line('main_page').'</a>';
+		}
+		else 
+		{
+		$data['new_blog_post'] = '';
+		$data['main_page'] = '<a href="/" class="linkHome">'.$this->lang->line('main_page').'</a>';
+		}
 
 		$data = $this->_data_bind($data);
 
@@ -37,8 +45,8 @@ class Blogs extends Controller {
 	function _load_headers()
 	{
 		$data['menu']=$this->Menu->buildmenu();
-		$data['title'] = $this->lang->line('title');
-		$data['keywords'] = $this->lang->line('keywords');
+		$data['title'] = $this->lang->line('BlogsLenta').' - '.$this->lang->line('title');
+		$data['keywords'] = $this->lang->line('BlogsLenta');
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
@@ -54,7 +62,7 @@ class Blogs extends Controller {
 
 		$this->db->order_by('id', 'desc');
 		$query = $this->db->get('blog');
-		
+
 		$config['total_rows'] = $this->db->count_all_results('blog');
 		$config['per_page'] = '10';
 		$config['uri_segment'] = 3;
@@ -63,11 +71,10 @@ class Blogs extends Controller {
 		$this->pagination->initialize($config);
 		$data['paginator'] = $this->pagination->create_links();
 		$cur_page = $this->uri->segment(3);
-		
-		if(!isset($cur_page)) $cur_page=0;
-		
-		$posts = $this->blog_lib->GetPosts($config['per_page'], $cur_page);
 
+		if(!isset($cur_page)) $cur_page=0;
+
+		$posts = $this->blog_lib->GetPosts($config['per_page'], $cur_page);
 
 
 
@@ -79,7 +86,7 @@ class Blogs extends Controller {
 
 		$post_list_current = str_replace("{PostTitle}", $row->title, $post_list_current);
 		$post_list_current = str_replace("{ViewPostUrl}", '/blog_post/'.$row->id, $post_list_current);
-		
+
 		$text = word_limiter($row->text, 50).'<br><a href="/blog_post/'.$row->id.'">'.$this->lang->line('Read').'</a>';
 		$text = auto_typography($text);
 		$post_list_current = str_replace("{PostText}", $text, $post_list_current);
@@ -106,6 +113,28 @@ class Blogs extends Controller {
 
 		$data['BlogBuilder'] = $post_list;
 		return $data;
+	}
+
+
+	function feed()
+	{
+		$this->load->helper('xml');
+		$this->load->helper('text');
+
+		$data['encoding'] = 'windows-1251';
+		$data['feed_name'] = $this->lang->line('BlogsLenta').' - '.$this->lang->line('title');
+		$data['feed_url'] = base_url().'blogs/feed/';
+		$data['page_description'] = $this->lang->line('BlogsLenta');
+		$data['page_language'] = 'ru';
+		$data['creator_email'] = 'info at moyvkus.ru';
+		
+		$this->db->order_by('id', 'desc');
+		$this->db->limit(10);
+		$query = $this->db->get('blog');
+
+		$data['posts'] = $query->result();
+		header("Content-Type: application/rss+xml");
+		$this->load->view('blog_feed', $data);
 	}
 }
 ?>

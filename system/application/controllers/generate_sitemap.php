@@ -14,13 +14,30 @@ class Generate_sitemap extends Controller
 
 		// рецепты
 		$query = $this->db->get('recipes');
-
 		foreach ($query->result() as $row)
 		{
 			$item = new google_sitemap_item(base_url()."view_recipe/id/".$row->id,date("Y-m-d"), 'weekly', '0.8' );
 			$sitemap->add_item($item);
 		}
-
+		//блог-посты
+		$query = $this->db->get('blog');
+		foreach ($query->result() as $row)
+		{
+			$item = new google_sitemap_item(base_url()."blog_post/".$row->id,date("Y-m-d"), 'weekly', '0.8' );
+			$sitemap->add_item($item);
+		}
+		//блоги юзеров
+		$query = $this->db->get('users');
+		foreach ($query->result() as $row)
+		{
+			$item = new google_sitemap_item(base_url()."blog/user/".$row->ID,date("Y-m-d"), 'weekly', '0.8' );
+			$sitemap->add_item($item);
+		}
+			
+			$item = new google_sitemap_item(base_url()."blogs/",date("Y-m-d"), 'weekly', '0.8' );
+			$sitemap->add_item($item);
+			$item = new google_sitemap_item(base_url(),date("Y-m-d"), 'weekly', '0.8' );
+			$sitemap->add_item($item);
 
 		//$sitemap->add_item($item); //Append the item to the sitemap object
 		$sitemap->build("./sitemap.xml"); //Build it...

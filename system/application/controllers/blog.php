@@ -16,7 +16,8 @@ class Blog extends Controller {
 
 		$data = $this->_load_headers();
 
-		//$user_id = $this->user_authorization->get_loged_on_user_id();
+		if($this->uri->segment(2)==false and $this->user_authorization->is_logged_in()==false)
+		redirect('/blog/user/1', 'refresh');
 		
 		if($this->uri->segment(3)!='')
 		{

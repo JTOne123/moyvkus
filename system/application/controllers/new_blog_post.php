@@ -9,8 +9,10 @@ class New_blog_post extends Controller {
 		$this->load->library('validation');
 		$this->load->library('blog_lib');
 		$this->load->library('receipes_management');
+		$this->load->library('twitter');
 
 		$this->load->helper('form');
+		$this->load->helper('text');
 	}
 
 	function _remap($method) {
@@ -31,7 +33,7 @@ class New_blog_post extends Controller {
 
 	function index()
 	{
-
+				
 		$data = $this->_load_headers();
 
 		$data = $this->_load_resource($data);
@@ -77,13 +79,18 @@ class New_blog_post extends Controller {
 	function _data_bind($data)
 	{
 
+		
+					//	$this->twitter->auth('moyvkus','moyvkus1212');
+				//$this->twitter->update('test');
+				//var_dump($this->twitter->update('test'));
+				
 		if($this->uri->segment(1)=='new_blog_post' and $this->session->userdata('update_or_insert')!='update')
 		{
 			$options = array(
 			'update_or_insert'  => 'insert'
 			);
 			$this->session->set_userdata($options);
-			
+
 			$data['post_title'] = '';
 			$data['post_text'] = '';
 		}
@@ -135,9 +142,33 @@ class New_blog_post extends Controller {
 			if($update_or_insert = 'insert')
 			{
 				$this->db->insert('blog', $db_data);
+				
 				//Убиваем сессию
 				$this->session->unset_userdata('update_or_insert');
 				$this->session->unset_userdata('post_id');
+
+				//Ping
+				$this->load->library('xmlrpc');
+				$this->xmlrpc->server('http://rpc.pingomatic.com/', 80);
+				$this->xmlrpc->method('weblogUpdates.ping');
+				$request = array($this->lang->line('BlogsLenta').' - '.$this->lang->line('title'), base_url().'blogs/');
+				$this->xmlrpc->request($request);
+				if ( ! $this->xmlrpc->send_request())
+				{
+					echo $this->xmlrpc->display_error();
+				}
+				//Twitter
+				$this->db->order_by("id", "desc"); 
+				$this->db->limit(1);
+				$query =  $this->db->get('blog');
+				$row = $query->row();
+				
+				$title = 'Блоги: '.$title;
+				$title = character_limiter($title, 135);
+				$text = iconv("windows-1251", "UTF-8", $title.' http://moyvkus.ru/blog_post/'.$row->id);
+				$text = character_limiter($text, 160);
+				$this->twitter->auth('moyvkus','moyvkus1212');
+				$st=$this->twitter->update($text);
 				redirect('blog');
 			}
 		}
