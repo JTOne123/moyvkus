@@ -11,6 +11,7 @@ class Comments extends Controller {
 		$this->load->library('receipes_management');
 		$this->load->library('user_managment');
 		$this->load->library('notification');
+                $this->load->library('blog_lib');
 	}
 
 	function _remap($method) {
@@ -63,6 +64,7 @@ class Comments extends Controller {
 		$data['YourComment'] = $this->lang->line('YourComment');
 		$data['SubmitCommentForm'] = $this->lang->line('SubmitCommentForm');
 		$data['recipe_id'] = '';
+                $data['blog_id'] = '';
 
 		return $data;
 	}
@@ -102,6 +104,42 @@ class Comments extends Controller {
 		$this->parser->parse('main_tpl', $data);
 	}
 
+	function new_comment_blog()
+	{
+		$comment = $this->input->post('comment');
+		$blog_id = $this->input->post('blog_id');
+		$user_id = $this->user_authorization->get_loged_on_user_id();
+
+		$rules['comment']	= "trim|required|min_length[5]|max_length[1500]|xss_clean|callback_word_censor";
+		$rules['blog_id']	= "required|numeric";
+		$this->validation->set_rules($rules);
+
+		$fields['comment'] = $this->lang->line('YourComment');
+		$fields['blog_id'] = 'blog_id';
+		$this->validation->set_fields($fields);
+
+
+		if ($this->validation->run() !== FALSE)
+		{
+			$this->comments_management->SaveComment($comment, $blog_id, $user_id, false);
+
+                        $author_id = $this->blog_lib->GetUserIdByPostId($blog_id);
+
+			if($author_id != $user_id)
+			{
+                            $this->notification->new_comment($author_id, $user_id, $blog_id, false);
+			}
+
+			redirect('blog_post/' . $blog_id. '#comments', 'refresh');
+		}
+
+
+		$data = $this->_load_headers();
+		$data = $this->_load_resource($data);
+		$data['body']= $this->parser->parse('new_comment_blog', $data);
+		$this->parser->parse('main_tpl', $data);
+	}
+
 	function word_censor($comment)
 	{
 		$disallowed = $this->comments_management->GetCensorWords();
@@ -133,6 +171,24 @@ class Comments extends Controller {
 		
 	}
 
+        function delete_comment_blog()
+	{
+		$comment_id = $this->uri->segment(4);
+		$blog_id = $this->uri->segment(6);
+                
+		$id_of_logened_user = $this->user_authorization->get_loged_on_user_id();
+
+		$IsUserIsCommentAuthor = $this->comments_management->IsUserIsCommentAuthor($comment_id, $id_of_logened_user);
+
+                if($IsUserIsCommentAuthor==TRUE)
+		{
+			$this->comments_management->DeleteComment($comment_id);
+			redirect('/blog_post/' . $blog_id, 'refresh');
+		}
+		else
+                    redirect('/blog_post/' . $blog_id, 'refresh');
+
+	}
 
 	function _data_bind($data)
 	{

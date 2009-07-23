@@ -82,6 +82,12 @@ $lang['NewCommentText']="{ToUserFullName},
 Просмотреть рецепт и комментарии к нему можно на странице: http://www.moyvkus.ru/view_recipe/id/{RecipeID}
 С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
 
+$lang['NewCommentBlogSubject']="Пользователь {UserFrom} оставил комментарий к Вашей записи в блоге";
+$lang['NewCommentBlogText']="{ToUserFullName},
+К Вашей записе в блоге оставили новый комментарий.
+Просмотреть запись в блоге и комментарии к нему можно на странице: http://www.moyvkus.ru/blog_pos/{RecipeID}
+С уважаением администрация проекта Мой Вкус.ru http://www.moyvkus.ru";
+
 $lang['History']="История";
 
 										

@@ -6,7 +6,12 @@ class Blog_post extends Controller {
 	{
 		parent::Controller();
 		$this->load->library('blog_lib');
+                $this->load->library('comments_management');
+
 		$this->load->helper('typography');
+                $this->load->helper('form');
+		$this->load->helper('date');
+		$this->load->helper('smiley');
 	}
 
 
@@ -43,6 +48,10 @@ class Blog_post extends Controller {
 		$data['description'] = $this->lang->line('description');
 		$data['baseurl'] = base_url();
 		$data['header'] = $this->load->view('header', $data, true);
+		$data['YourComment'] = $this->lang->line('YourComment');
+		$data['SubmitCommentForm'] = $this->lang->line('SubmitCommentForm');
+		$data['MainData'] = $this->lang->line('MainData');
+		$data['errorDivComment'] = $this->lang->line('errorDivComment');
 
 		return $data;
 	}
@@ -52,7 +61,7 @@ class Blog_post extends Controller {
 		
 		$user_id = $this->user_authorization->get_loged_on_user_id();
 		$post_id = $this->uri->segment(2);
-		$get_post=$this->blog_lib->GetPostByPostId($post_id);
+		$get_post = $this->blog_lib->GetPostByPostId($post_id);
 
 		$data['PostTitle'] = $get_post->title;
 		$data['PostText'] = auto_typography($get_post->text);
@@ -70,6 +79,70 @@ class Blog_post extends Controller {
 		{
 			$data['EditPostBut'] = '';
 		}
+
+                //Комментарии START
+                $data['blog_id'] = $post_id;
+
+                $returned_html = $this->comments_management->ViewCommentsBuilder();
+                $returned_comments_arr = $this->comments_management->GetComments($post_id, false);
+                $comment_list = '';
+                foreach ($returned_comments_arr as $row):
+
+                $returned_str='';
+                $text=$row['text'];
+                //$text = parse_smileys($row['text'], "/images/smileys/");
+                for($i = 0; $i < strlen($text); $i++)
+                $returned_str = $returned_str . $text[$i] . '<wbr>';
+                $text = $returned_str;
+                $text = str_replace("\n", "<br>", $text);
+                $text = parse_smileys($text, "/images/smileys/");
+                $comment_current = str_replace("{CommentText}", $text, $returned_html);
+
+                $user_info_obj=$this->user_managment->GetUser($row['user_id']);
+                $user_data_info_obj=$this->user_managment->GetUserData($row['user_id']);
+
+                $First_Last_Name = $user_info_obj->first_name.' '.$user_info_obj->last_name;
+                $comment_current = str_replace("{AuthorFirstLastName}", $First_Last_Name, $comment_current);
+
+                if($user_data_info_obj->avatar_name!=='' and $user_data_info_obj->avatar_name!==NULL)
+                {
+                        $avatar_name = base_url() . 'uploads/user_avatars/' . $user_data_info_obj->avatar_name;
+                }
+                else
+                {
+                        $avatar_name = base_url() . 'images/nophoto.gif';
+                }
+
+                $comment_current = str_replace("{AvatarUrl}", $avatar_name, $comment_current);
+
+                $comment_current = str_replace("{DateOfPost}", $row['timestamp'], $comment_current);
+
+                $comment_current = str_replace("{AuthorProfileUrl}", '/profile/id/' . $row['user_id'], $comment_current);
+
+                //Ссылка УДАЛИТЬ КОММЕНТ
+                $is_user_is_comment_author=$this->comments_management->IsUserIsCommentAuthor($row['id'], $this->user_authorization->get_loged_on_user_id()); //True / False
+                if($is_user_is_comment_author == TRUE)
+                {
+                        $comment_current = str_replace("{DeleteRecipeLink}", '/comments/delete_comment_blog/id/' . $row['id'] . '/blog/' . $post_id, $comment_current);
+                        $comment_current = str_replace("{DeleteRecipeLinkText}", $this->lang->line('DeleteRecipeLinkText'), $comment_current);
+
+                        $comment_current = str_replace("{SendMessageToCommentAuthor}", '', $comment_current);
+                        $comment_current = str_replace("{SendMessageToCommentAuthorText}", '', $comment_current);
+                }
+
+                $comment_current = str_replace("{DeleteRecipeLinkText}", '', $comment_current);
+                $comment_current = str_replace("{DeleteRecipeLink}", '', $comment_current);
+                $comment_current = str_replace("{WriteOn}", $this->lang->line('WriteOn'), $comment_current);
+
+                $comment_current = str_replace("{SendMessageToCommentAuthor}", '/send_message/send_to/id/' . $row['user_id'], $comment_current);
+                $comment_current = str_replace("{SendMessageToCommentAuthorText}", $this->lang->line('SendMessageToCommentAuthorText'), $comment_current);
+
+
+                //Складываем
+                $comment_list = $comment_list . $comment_current;
+                endforeach;
+                $data['CommentsBuilder'] = $comment_list;
+                //Комментарии END
 
 		//$data['EditPost'] = $post_list_current;
 		return $data;

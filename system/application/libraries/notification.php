@@ -145,7 +145,7 @@ class Notification {
 		$this->ci->email->send();
 	}
 
-	function new_comment($to_user_id, $from_user_id, $recipe_id)
+	function new_comment($to_user_id, $from_user_id, $recipe_id, $is_recipe=true)
 	{
 		$to_user = $this->ci->user_managment->GetUser($to_user_id);
 		$from_user = $this->ci->user_managment->GetUser($from_user_id);
@@ -153,11 +153,19 @@ class Notification {
 		$this->ci->email->from($this->ci->lang->line('AfterRegistraionEmailFrom'), $this->ci->lang->line('AfterRegistraionEmailFromName'));
 		$this->ci->email->to($to_user->email);
 
-		$subject_text = $this->ci->lang->line('NewCommentSubject');
+		
+                if($is_recipe)
+                    $subject_text = $this->ci->lang->line('NewCommentSubject');
+                else
+                    $subject_text = $this->ci->lang->line('NewCommentBlogSubject');
+
 		$subject_text = str_replace("{UserFrom}", $from_user->first_name . ' ' . $from_user->last_name, $subject_text);
 		$this->ci->email->subject($subject_text);
 
-		$message_text = $this->ci->lang->line('NewCommentText');
+                if($is_recipe)
+                    $message_text = $this->ci->lang->line('NewCommentText');
+                else
+                    $message_text = $this->ci->lang->line('NewCommentBlogText');
 
 		$message_text = str_replace("{ToUserFullName}", $to_user->first_name . ' ' . $to_user->last_name, $message_text);
 		$message_text = str_replace("{RecipeID}", $recipe_id, $message_text);

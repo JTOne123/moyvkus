@@ -271,15 +271,15 @@ INSERT INTO `kitchens` VALUES (68, 'Японская');
 
 
 
-CREATE TABLE IF NOT EXISTS `comments` (
+CREATE TABLE `comments` (
   `id` int(11) NOT NULL auto_increment,
   `text` varchar(1500) NOT NULL,
   `recipe_id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
-
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 
 

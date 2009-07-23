@@ -11,15 +11,17 @@
         }
 
 
-        function SaveComment($text, $recipe_id, $user_id)
+        function SaveComment($text, $t_id, $user_id, $is_recipe=true)
         {
-            $query = $this->ci->db->query("INSERT INTO comments (text, recipe_id, user_id) VALUES('$text', '$recipe_id', '$user_id')");
-            if($query)
-            {
-                return true;
-            }
+            if($is_recipe)
+                $query = $this->ci->db->query("INSERT INTO comments (text, recipe_id, user_id) VALUES('$text', '$t_id', '$user_id')");
             else
-            return false;
+                $query = $this->ci->db->query("INSERT INTO comments (text, blog_id, user_id) VALUES('$text', '$t_id', '$user_id')");
+
+            if($query)
+                return true;
+            else
+                return false;
         }
 
         function GetCensorWords()
@@ -34,15 +36,23 @@
             return $word;
         }
 
-        function GetNumberOfComments($id_of_recipe)
+        function GetNumberOfComments($id_of_recipe, $is_recipe=true)
         {
-            $query = $this->ci->db->query("SELECT id FROM comments WHERE recipe_id=$id_of_recipe");
+            if($is_recipe)
+                $query = $this->ci->db->query("SELECT id FROM comments WHERE recipe_id=$id_of_recipe");
+            else
+                $query = $this->ci->db->query("SELECT id FROM comments WHERE blog_id=$id_of_recipe");
+
             return $query->num_rows();
         }
 
-        function GetComments($id_of_recipe)
+        function GetComments($id, $is_recipe=true)
         {
-            $query = $this->ci->db->query("SELECT * FROM comments WHERE recipe_id=$id_of_recipe ORDER BY id DESC");
+            if($is_recipe)
+                $query = $this->ci->db->query("SELECT * FROM comments WHERE recipe_id=$id ORDER BY id DESC");
+            else
+                $query = $this->ci->db->query("SELECT * FROM comments WHERE blog_id=$id ORDER BY id DESC");
+
             return $query->result_array();
         }
 
@@ -51,12 +61,10 @@
             $query = $this->ci->db->query("SELECT user_id FROM comments WHERE id=$comment_id");
             $row = $query->row();
 
-            if($row->user_id===$logened_user_id)
-            {
+            if($row->user_id === $logened_user_id)
                 return true;
-            }
             else
-            return false;
+                return false;
         }
         
         function DeleteComment($id_of_comment)
