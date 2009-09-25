@@ -75,6 +75,13 @@ function addSubmitButton(sumbitId, validationGroup){
     };
 }
 
+function addSubmitEnter(txtId, validationGroup){
+    document.getElementById(txtId).onkeypress = function(e){
+        if(e.keyCode == 13)
+            objValidatorHelper.isFormValid(validationGroup)
+    };
+}
+
 function validatorHelper(){
 
     //Initialization of public arrays with data
