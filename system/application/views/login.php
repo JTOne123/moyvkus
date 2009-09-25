@@ -8,6 +8,8 @@
     	addValidatorRegEx("passwordLogin", "errorDivPassword", "^.{6,21}$", "vgLogin");
 
     	addSubmitButton("login_sumbit", "vgLogin");
+
+        addSubmitEnter("passwordLogin", "vgLogin");
     }
     </script>
 

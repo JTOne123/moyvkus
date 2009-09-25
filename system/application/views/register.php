@@ -13,11 +13,13 @@
 
     addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vg");
 	
-	addValidatorCompare("repassword", "password", "errorDivRePassword", "vg");
-	
-	addValidatorRegEx("captcha", "errorDivCaptcha", "^.{4}$", "vg");
+    addValidatorCompare("repassword", "password", "errorDivRePassword", "vg");
+
+    addValidatorRegEx("captcha", "errorDivCaptcha", "^.{4}$", "vg");
 
     addSubmitButton("send", "vg");
+
+    addSubmitEnter("captcha", "vg");
     }
 	
 </script>

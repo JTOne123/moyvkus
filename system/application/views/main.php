@@ -3,29 +3,20 @@
  window.onload = function() {
 
     	addForm("LoginForm" ,"vgLogin");
-
     	addValidatorRegEx("emailLogin", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vgLogin");
-
     	addValidatorRegEx("passwordLogin", "errorDivPassword", "^.{6,21}$", "vgLogin");
-
     	addSubmitButton("login_sumbit", "vgLogin");
-		
+        addSubmitEnter("passwordLogin", "vgLogin");
 		
 		addForm("RegistForm" ,"vg");
-
 		addValidatorRegEx("email", "errorDivEmail", "^([a-zA-Z0-9_\\.\\-])+\\@([a-zA-Z0-9\\.\\-])+\\.[a-zA-Z0-9]{2,4}$", "vg");
-
 		addValidatorRegEx("first_name", "errorDivFirstName", "^.{4,100}$", "vg");
-
 		addValidatorRegEx("last_name", "errorDivLastName", "^.{4,100}$", "vg");
-
 		addValidatorRegEx("password", "errorDivPassword", "^.{6,21}$", "vg");
-
 		addValidatorCompare("repassword", "password", "errorDivRePassword", "vg");
-
 		addValidatorRegEx("captcha", "errorDivCaptcha", "^.{4}$", "vg");
-
 		addSubmitButton("send", "vg");
+                addSubmitEnter("captcha", "vg");
     }
     </script>
     
